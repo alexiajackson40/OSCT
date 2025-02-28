@@ -1,33 +1,73 @@
 <?php
 
-use App\Models\Patient;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PatientController;
 
-// View all patients (with search functionality)
-Route::get('/patients', function () {
-    // Get the search query if it's present in the URL
-    $search = request('search');
-    
-    // If there is a search query, filter the patients by name
-    $patients = Patient::where('patient_name', 'like', "%$search%")
-                       ->paginate(10); // Show 10 patients per page
-
-    // Return the view with the patients and search term
-    return view('patients.index', compact('patients', 'search'));
+// Route for login page
+Route::get('/login', function () {
+    return view('login');
 });
 
-// Show the form to add a new patient
-Route::get('/patients/create', [PatientController::class, 'create'])->name('patients.create');
+// Route for home page (admin_user)
+Route::get('/home', function () {
+    return view('admin_user.home');
+});
 
-// Store a new patient
-Route::post('/patients', [PatientController::class, 'store']);
+// Route for profile page (admin_user)
+Route::get('/profile', function () {
+    return view('admin_user.profile');
+});
 
-// Show the form to edit an existing patient
-Route::get('/patients/{id}/edit', [PatientController::class, 'edit'])->name('patients.edit');
+// Route for schedule page (admin_user)
+Route::get('/schedule', function () {
+    return view('admin_user.schedule');
+});
 
-// Update an existing patient
-Route::put('/patients/{id}', [PatientController::class, 'update']);
+// Route for documents page (admin_user)
+Route::get('/documents', function () {
+    return view('admin_user.documents');
+});
 
-// Delete a patient
-Route::delete('/patients/{id}', [PatientController::class, 'destroy'])->name('patients.destroy');
+// Route for profile page (patient_user)
+Route::get('/profile-patient', function () {
+    return view('patient_user.profile');
+});
+
+// Route for home page (patient_user)
+Route::get('/home-patient', function () {
+    return view('patient_user.home');
+});
+
+// Route for schedule page (patient_user)
+Route::get('/schedule-patient', function () {
+    return view('patient_user.schedule');
+});
+
+// Route for lab results page (patient_user)
+Route::get('/lab-results', function () {
+    return view('patient_user.lab_results');
+});
+
+// Route for documents page (patient_user)
+Route::get('/documents-patient', function () {
+    return view('patient_user.documents');
+});
+
+// Route for profile page (personnel_user)
+Route::get('/profile-personnel', function () {
+    return view('personnel_user.profile');
+});
+
+// Route for home page (personnel_user)
+Route::get('/home-personnel', function () {
+    return view('personnel_user.home');
+});
+
+// Route for schedule page (personnel_user)
+Route::get('/schedule-personnel', function () {
+    return view('personnel_user.schedule');
+});
+
+// Route for users page (personnel_user)
+Route::get('/users', function () {
+    return view('personnel_user.users');
+});

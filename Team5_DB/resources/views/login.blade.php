@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Operación Salud Colima Tamizaje</title>
-    <link rel="stylesheet" href="/src/style.css">
-    <link rel="stylesheet" href="/src/assets/theme.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
@@ -16,7 +16,7 @@
       <div class="login-content"> <!--Everything in the Login Card Section-->
         <div class="logo">
           <div class="media">
-            <img src="/src/assets/img/colimaGobiernoDelEstado.png" alt="logo">
+            <img src="{{ asset('img/colimaGobiernoDelEstado.png') }}" alt="logo">
           </div>
         </div>
         <h1 class="card-title">Sign In</h1>
@@ -38,8 +38,8 @@
   </div>
 </div>
 
-    <script src="/src/loadLogin.js"></script>
-    <script type="module" src="/src/main.js"></script>
+    <script src="{{ asset('js/loadLogin.js') }}"></script>
+    <script type="module" src="{{ asset('js/main.js') }}"></script>
 </body>
 <style>
   .login-container {

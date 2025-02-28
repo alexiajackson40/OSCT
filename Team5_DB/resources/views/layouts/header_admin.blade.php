@@ -12,7 +12,7 @@
 
     <!-- Profile Button -->
     <div class="user-container">
-        <a class="btn btn-light" href="/profile-personnel" role="button">
+        <a class="btn btn-light" href="/profile" role="button">
             <img src="{{ asset('img/The_Donkey.JPEG') }}" class="img-thumbnail" alt="profile" width="50" height="50">
             Profile
         </a>
@@ -22,9 +22,9 @@
 <!-- Navigation Bar -->
 <div class="navigation-container">
     <nav class="nav nav-pills nav-fill">
-        <a class="nav-link" href="/home-personnel">Home</a>
+        <a class="nav-link" href="/home">Home</a>
         <a class="nav-link" href="/users">Users</a>
-        <a class="nav-link" href="/schedule-personnel">Schedule</a>
+        <a class="nav-link" href="/schedule">Schedule</a>
     </nav>
 </div>
 

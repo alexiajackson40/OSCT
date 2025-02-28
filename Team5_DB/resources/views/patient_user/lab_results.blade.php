@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Schedule - Operación Salud Colima Tamizaje</title>
+    <title>Lab Results - Operación Salud Colima Tamizaje</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -12,39 +12,35 @@
 
 <body>
     <!-- Placeholder for the header -->
-    @include('layouts.header_personnel')
+    @include('layouts.header_patient')
 
     <!-- Main Content -->
     <div class="main-content">
-        <div class="schedule-container mt-5">
+        <div class="labresults-container mt-5">
             <div class="card">
                 <div class="card-body d-flex flex-column">
-                    <div class="schedule-content">
-                        <h1 class="card-title">Personnel Schedule</h1>
+                    <div class="document-content">
+                        <h1 class="card-title">Lab Results</h1>
+                        <div id="documentsTable"></div>
                         <h2 class="table-title">Example Schedule Display Filler</h2>
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Name of School</th>
-                                    <th>Location</th>
-                                    <th>Date</th>
+                                    <th>Document Name</th>
+                                    <th>Date Assigned</th>
+                                    <th>Download Link</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>FRANCISCO HERNANDEZ ESPINOSA</td>
-                                    <td>COLIMA</td>
-                                    <td>LUNES 23/09/24</td>
+                                    <td><a href="#" class="btn btn-link">Document 1</a></td>
+                                    <td>March 17th, 2025</td>
+                                    <td><a href="#" class="btn btn-link">Download</a></td>
                                 </tr>
                                 <tr>
-                                    <td>JESÚS SILVERIO CAVAZOS CEBALLOS</td>
-                                    <td>COLIMA</td>
-                                    <td>LUNES 23/09/24</td>
-                                </tr>
-                                <tr>
-                                    <td>JESUS ALCARAZ RODRIGUEZ</td>
-                                    <td>LA ESPERANZA</td>
-                                    <td>LUNES 23/09/24</td>
+                                    <td><a href="#" class="btn btn-link">Document 2</a></td>
+                                    <td>April 17th, 2025</td>
+                                    <td><a href="#" class="btn btn-link">Download</a></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -55,6 +51,11 @@
     </div>
 
     <script src="{{ asset('js/loadHeader.js') }}"></script>
+    <script type="module">
+        import { loadTable } from '{{ asset('js/loadTable.js') }}'
+        const page = 'labResults'
+        loadTable(page)
+    </script>
     <script type="module" src="{{ asset('js/main.js') }}"></script>
 </body>
 
@@ -66,7 +67,7 @@
         align-items: center;
         min-height: 100vh;
     }
-    .schedule-container {
+    .labresults-container {
         width: 70%;
     }
     .card {
@@ -74,7 +75,7 @@
         height: 100%;
         min-height: 100vh;
     }
-    .schedule-content {
+    .document-content {
         margin-left: 25px;
         margin-right: 25px;
     }

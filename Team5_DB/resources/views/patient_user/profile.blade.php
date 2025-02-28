@@ -11,14 +11,14 @@
 </head>
 <body>
     <!--Header-->
-    @include('layouts.header_personnel')
+    @include('layouts.header_patient')
 
     <!-- Main Content -->
     <div class="main-content">
         <div class="profile-container mt-5">
             <div class="card">
                 <div class="card-body d-flex flex-column align-items-center">
-                    <h1 class="card-title">Top of Content(Personnel Profile)</h1>
+                    <h1 class="card-title">Top of Content(Patient Profile)</h1>
                 </div>
             </div>
         </div>

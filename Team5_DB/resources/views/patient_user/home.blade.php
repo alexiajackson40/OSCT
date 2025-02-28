@@ -3,27 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile - Operación Salud Colima Tamizaje</title>
+    <title>Home - Operación Salud Colima Tamizaje</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
+
 <body>
-    <!--Header-->
-    @include('layouts.header_personnel')
+    <!-- Placeholder for the header -->
+    @include('layouts.header_patient')
 
     <!-- Main Content -->
     <div class="main-content">
-        <div class="profile-container mt-5">
+        <div class="home-container mt-5">
             <div class="card">
                 <div class="card-body d-flex flex-column align-items-center">
-                    <h1 class="card-title">Top of Content(Personnel Profile)</h1>
+                    <div class="media mb-3">
+                        <img src="{{ asset('img/colimaGobiernoDelEstado.png') }}" alt="logo" width="225" height="200">
+                    </div>
+                    <p class="card-text">Lorem ipsum dolor sit amet...</p>
+                    <!-- More content here -->
                 </div>
             </div>
         </div>
     </div>
 
+    <script src="{{ asset('js/loadLogin.js') }}"></script>
     <script src="{{ asset('js/loadHeader.js') }}"></script>
     <script type="module" src="{{ asset('js/main.js') }}"></script>
 </body>
@@ -36,16 +42,14 @@
         align-items: center;
         min-height: 100vh;
     }
-    .profile-container {
+    .home-container {
         width: 70%;
-    }
-    .card {
-        background-color: #F2F2F2;
-        height: 100%;
-        min-height: 100vh;
     }
     .card-title {
         font-size: 30px;
+    }
+    p {
+        font-weight: 500;
     }
 </style>
 
