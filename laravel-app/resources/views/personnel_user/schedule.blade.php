@@ -1,46 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
-    <!-- Placeholder for the header -->
     <div id="header"></div> 
-    
+
     <!-- Main Content -->
     <div class="main-content">
-        <div class="schedule-container mt-5"> <!--mt-5: larger top margin-->
-          <div class="card">
-            <button class="btn-page btn-primary">[Update Schedule]</button>
-            <div class="card-body d-flex flex-column"> <!--Makes card customizable-->
-                  <div class="schedule-content">
-                    <h1 class="card-title">Personnel Schedule</h1>
-                    <h2 class="table-title">Example Schedule Display Filler</h2>
-                    <!-- Example table to show until database is ready-->
-                    <table class="table">
-                        <thead>
-                          <tr>
-                            <th>Name of School</th>
-                            <th>Location</th>
-                            <th>Date</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>FRANCISCO HERNANDEZ ESPINOSA</td>
-                            <td>COLIMA</td>
-                            <td>LUNES 23/09/24</td>
-                          </tr>
-                          <tr>
-                            <td>JESÚS SILVERIO CAVAZOS CEBALLOS</td>
-                            <td>COLIMA</td>
-                            <td>LUNES 23/09/24</td>
-                          </tr>
-                          <tr>
-                            <td>JESUS ALCARAZ RODRIGUEZ</td>
-                            <td>LA ESPERANZA</td>
-                            <td>LUNES 23/09/24</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                  </div>
+        <div class="schedule-container mt-5">
+            <div class="card">
+                <button class="btn-page btn-primary">[Update Schedule]</button>
+                <div class="card-body d-flex flex-column">
+                    <div class="schedule-content">
+                        <h1 class="card-title">Personnel Schedule</h1>
+                        <h2 class="table-title">Example Schedule Display Filler</h2>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name of School</th>
+                                    <th>Location</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                    use Illuminate\Support\Facades\Storage;
+                                    $json = Storage::get('public/patient_user/scheduleData.json');
+                                    $data = json_decode($json, true);
+                                @endphp
+
+                                @foreach ($data as $item)
+                                    <tr>
+                                        <td>{{ $item['school'] ?? 'N/A' }}</td>
+                                        <td>{{ $item['location'] ?? 'N/A' }}</td>
+                                        <td>{{ $item['date'] ?? 'N/A' }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -71,20 +67,19 @@
         margin-right:25px;
     }
     .card-title {
-      font-size:32px;
-      font-weight: 500;
-      text-align:left;
-      margin-bottom:25px;
-      margin-top:25px;
+        font-size:32px;
+        font-weight: 500;
+        text-align:left;
+        margin-bottom:25px;
+        margin-top:25px;
     }
-    .table{
+    .table {
         margin-bottom:0px;
         --bs-table-bg:#F2F2F2;
         --bs-table-border-color:#000;
         align-items:center;
-
     }
-    .td a{
+    .td a {
         display:flex;
         align-items:center;
         justify-content:center;
@@ -103,7 +98,7 @@
         color:#000;
         font-size:20px;
         font-weight:500;
-  }
+    }
 </style>
 
 </html>

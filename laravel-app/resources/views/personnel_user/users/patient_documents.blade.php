@@ -4,18 +4,17 @@
 <body>
     <div id="header"></div> 
     <div class="main-content">
-        <div class="document-container mt-5b"> <!--mt-5: larger top margin-->
+        <div class="document-container mt-5b">
             <div class="card">
                 <div class="top-buttons d-flex flex-row align-self-center">
                     <button id="back-btn" class="btn-back" href="/src/components/admin_user/users/patient_users.html" data-page="admin_user/users/patient_users">&lt; Go Back</button>
                     <button class="btn-edit">[Upload Document]</button>
                 </div>
-                <div class="card-body d-flex flex-column"> <!--Makes card customizable-->
+                <div class="card-body d-flex flex-column">
                     <div class="document-content">
                         <h1 class="card-title">Documents</h1>
-                        <!-- Example table to show until database is ready-->
                         <h2 class="table-title">Example List of Documents Table</h2>
-                        <table class="table table-hover">
+                        <table id="Table" class="table table-hover" table-data="/storage/patient_user/docData.json">
                             <thead>
                               <tr>
                                 <th>Document Name</th>
@@ -23,8 +22,7 @@
                                 <th>Download Link</th>
                               </tr>
                             </thead>
-                            <tbody> <!-- id="function to load documents into table"-->
-                              <!-- Add functionality to pull documents from somewhere, database?-->
+                            <tbody>
                                 <tr>
                                     <td>Alice</td>
                                     <td>Kent</td>
@@ -49,6 +47,7 @@
         </div>
     </div>
     <script src="/src/loadContent.js"></script>
+    <script src="/storage/patient_user/docData.json"></script>
     <script type="module" src="/src/main.js"></script>
 </body>
 <style>
@@ -83,7 +82,6 @@
         --bs-table-bg:#F2F2F2;
         --bs-table-border-color:#000;
         align-items:center;
-
     }
     .td a{
         display:flex;
