@@ -1,130 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<!--List of Patient Users-->
-<body>
-    <div id="header"></div> 
-    <div class="main-content">
-        <!-- Side Buttons Container-->
-        <div class="button-container mt-5 d-flex flex-column">
-            <a class="table-btn btn-primary" role="button" href="/src/components/admin_user/users/patient_users.html" data-page="admin_user/users/patient_users">Patients</a>
-            <a class="table-btn btn-primary" role="button" href="/src/components/admin_user/users/personnel_users.html" data-page="admin_user/users/personnel_users">Personnel</a>
-            <a class="table-btn btn-primary" role="button" href="/src/components/admin_user/users/admin_users.html" data-page="admin_user/users/admin_users">Admin</a>
-        </div>
-        <div class="users-container mt-5"> <!--mt-5: larger top margin-->
-            <div class="card">
-                <button class="btn-page btn-primary">[Add/Remove User]</button>
-                <div class="card-body d-flex flex-column"> <!--Makes card customizable-->
-                    <div class="document-content">
+@extends('layouts.app')
+
+@section('content')
+<div class="main-content">
+    <div class="button-container mt-5 d-flex flex-column">
+        <a class="table-btn btn-primary" href="{{ url('admin/users/patient') }}">Patients</a>
+        <a class="table-btn btn-primary" href="{{ url('admin/users/personnel') }}">Personnel</a>
+        <a class="table-btn btn-primary" href="{{ url('admin/users/admin') }}">Admin</a>
+    </div>
+    <div class="users-container mt-5">
+        <div class="card">
+            <button class="btn-page btn-primary">[Add/Remove User]</button>
+            <div class="card-body d-flex flex-column">
+                <div class="document-content">
                     <h1 class="card-title">Patient Users</h1>
-                    <!--Table List Container-->
                     <table class="table table-hover">
                         <thead>
-                          <tr>
-                            <th>ID Number</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>User Type</th>
-                          </tr>
+                            <tr><th>ID Number</th><th>First Name</th><th>Last Name</th><th>User Type</th></tr>
                         </thead>
                         <tbody>
-                          <tr class="listed-user" href="/src/components/admin_user/users/patient_profile.html" data-page="admin_user/users/patient_profile">
-                            <td>xxxxxxxxx</td>
-                            <td>Alice</td>
-                            <td>Kent</td>
-                            <td>Patient</td>
-                          </tr>
-                          <tr class="listed-user" href="/src/components/admin_user/users/patient_profile.html" data-page="admin_user/users/patient_profile">
-                            <td>xxxxxxxxx</td>
-                            <td>Bob</td>
-                            <td>McClerk</td>
-                            <td>Patient</td>
-                          </tr>
-                          <tr class="listed-user" href="/src/components/admin_user/users/patient_profile.html" data-page="admin_user/users/patient_profile">
-                            <td>xxxxxxxxx</td>
-                            <td>Ramona</td>
-                            <td>Kimberk</td>
-                            <td>Patient</td>
-                          </tr>
+                            @foreach ($patients as $user)
+                                <tr class="listed-user" onclick="location.href='{{ url('admin/users/patient/profile/' . $user->id) }}';" style="cursor:pointer;">
+                                    <td>{{ $user->id }}</td>
+                                    <td>{{ $user->first_name }}</td>
+                                    <td>{{ $user->last_name }}</td>
+                                    <td>{{ ucfirst($user->user_type) }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
-                      </table>
-                    </div>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-    <script src="/src/loadContent.js"></script>
-    <script type="module" src="/src/main.js"></script>
-</body>
-<style>
-    .main-content {
-        display:flex;
-        justify-content:left;
-        width:100%;
-        min-height:100vh;
-    }
-    .users-container {
-        width:70%;
-    }
-    .card {
-        background-color:#F2F2F2;
-        height:100%;
-        min-height:100vh;
-    }
-    .document-content{
-        margin-left:1.5625rem;
-        margin-right:1.5625rem;
-    }
-    .card-title {
-        font-size:2rem;
-        font-weight:500;
-        text-align:left;
-        margin-bottom:1.5625rem;
-        margin-top:1.5625rem;
-    }
-    .button-container {
-        width:13.375rem;
-        height:13rem;
-        display:flex;
-        justify-content:center;
-        justify-content:space-around;
-        align-items:center;
-        margin-right:0.5rem;
-        margin-left:0.5rem;
-    }
-    .table-btn {
-        width:214px;
-        height:60px;
-        display:inline-flex;
-        padding:18.5px 40px 18.5px 39px;
-        justify-content:center;
-        align-items:center;
-        border-radius:8px;
-        background:#6F1A34;
-        box-shadow:0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        color:#FFF;
-        font-size:20px;
-        font-weight:500;
-    }
-    .table{
-        align-items:center;
-        margin-bottom:0px;
-        --bs-table-bg:#F2F2F2;
-        --bs-table-border-color:#000;
-    }
-    .td a{
-        display:flex;
-        align-items:center;
-        justify-content:center;
-    }
-    .btn-page {
-        position:absolute;
-        right:4px;
-        width:214px;
-        height:60px;
-        border:none;
-        color:#000;
-        font-size:20px;
-        font-weight:500;
-  }
-</style>
-</html>
+</div>
+@endsection

@@ -1,104 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<body>
-    <div id="header"></div> 
+<!-- resources/views/personnel_user/schedule.blade.php -->
+@extends('layouts.app')
 
-    <!-- Main Content -->
+@section('content')
+    @include('components.header_personnel')
+
     <div class="main-content">
         <div class="schedule-container mt-5">
             <div class="card">
                 <button class="btn-page btn-primary">[Update Schedule]</button>
                 <div class="card-body d-flex flex-column">
-                    <div class="schedule-content">
-                        <h1 class="card-title">Personnel Schedule</h1>
-                        <h2 class="table-title">Example Schedule Display Filler</h2>
-                        <table class="table">
-                            <thead>
+                    <h1 class="card-title">Personnel Schedule</h1>
+                    <h2 class="table-title">Example Schedule Display Filler</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name of School</th>
+                                <th>Location</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($scheduleData as $item)
                                 <tr>
-                                    <th>Name of School</th>
-                                    <th>Location</th>
-                                    <th>Date</th>
+                                    <td>{{ $item['nombre'] ?? 'N/A' }}</td>
+                                    <td>{{ $item['localidad'] ?? 'N/A' }}</td>
+                                    <td>{{ $item['fecha'] ?? 'N/A' }}</td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                    use Illuminate\Support\Facades\Storage;
-                                    $json = Storage::get('public/patient_user/scheduleData.json');
-                                    $data = json_decode($json, true);
-                                @endphp
-
-                                @foreach ($data as $item)
-                                    <tr>
-                                        <td>{{ $item['school'] ?? 'N/A' }}</td>
-                                        <td>{{ $item['location'] ?? 'N/A' }}</td>
-                                        <td>{{ $item['date'] ?? 'N/A' }}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-
-    <script src="/src/loadContent.js"></script>
-    <script type="module" src="/src/main.js"></script>
-</body>
-
-<style>
-    .main-content {
-        display:flex;
-        justify-content:center;
-        width: 100%;
-        align-items:center;
-        min-height: 100vh;
-    }
-    .schedule-container {
-        width: 70%;
-    }
-    .card {
-        background-color:#F2F2F2;
-        height: 100%;
-        min-height: 100vh;
-    }
-    .schedule-content{
-        margin-left:25px;
-        margin-right:25px;
-    }
-    .card-title {
-        font-size:32px;
-        font-weight: 500;
-        text-align:left;
-        margin-bottom:25px;
-        margin-top:25px;
-    }
-    .table {
-        margin-bottom:0px;
-        --bs-table-bg:#F2F2F2;
-        --bs-table-border-color:#000;
-        align-items:center;
-    }
-    .td a {
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        color:#000;
-    }
-    .table-title {
-        font-size: 20px;
-        margin-bottom:20px;
-    }
-    .btn-page {
-        position:absolute;
-        right:4px;
-        width:214px;
-        height:60px;
-        border:none;
-        color:#000;
-        font-size:20px;
-        font-weight:500;
-    }
-</style>
-
-</html>
+@endsection

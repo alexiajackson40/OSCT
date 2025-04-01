@@ -216,7 +216,7 @@ function fetchContent(page)
     //console.clear(); //used to simplify previous logs so I could focus on these logs for error checking
     console.log('Fetching Content.......................'); //console log output for status
     const contentElement = document.getElementById('content');
-    fetch(`/src/components/${page}.html`)
+    fetch(`/resources/views/${page}.blade.php`)
     .then(response => response.text())
     .then(data => 
     {

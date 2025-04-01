@@ -1,7 +1,7 @@
 // --------------------------------------------------------------------FUNCTION TO LOAD LOGIN--------------------------------------------------------------------
 function loadLogin() 
 {
-fetch('/src/components/login.html')
+fetch('/resources/views/login.blade.php')
     .then(response => response.text())
     .then(data => 
         {
@@ -39,13 +39,13 @@ fetch('/src/components/login.html')
             }
             //---------------------------------------------------------User Type Conditions--------------------------------------------------------------------
             if (username === "patient") {
-                loadInitContent('/src/components/patient_user/home.html', '/src/components/patient_user/header_patient.html');
+                loadInitContent('/resources/views/patient_user/home.blade.php', '/resources/views/patient_user/header_patient.blade.php');
             }
             else if (username === "personnel") {
-                loadInitContent('/src/components/personnel_user/home.html', '/src/components/personnel_user/header_personnel.html');
+                loadInitContent('/resources/views/personnel_user/home.blade.php', '/resources/views/personnel_user/header_personnel.blade.php');
             }
             else if (username === "admin") {
-                loadInitContent('/src/components/admin_user/home.html', '/src/components/admin_user/header_admin.html');
+                loadInitContent('/resources/views/admin_user/home.blade.php', '/resources/views/admin_user/header_admin.blade.php');
             }
             else {
                 console.log("Input is not valid");
