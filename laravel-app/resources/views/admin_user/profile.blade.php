@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--Admin User Profile Page-->
+<!-- Admin User Profile Page -->
 <body>
     <div id="header"></div> 
     <div class="main-content">
         <div class="profile-container mt-5">
             <div class="card">
+                <!-- Button for editing profile -->
                 <button class="btn-page btn-primary" onclick="window.location='{{ route('edit.profile') }}'">[Edit Information]</button>
-                <div class="card-body d-flex flex-column align-self-center"> <!--Makes card customizable-->
-                    <h1 class="card-title">{{ $user->name }}</h1>
+                <div class="card-body d-flex flex-column align-self-center">
+                    <h1 class="card-title">{{ $user->first_name }} {{ $user->last_name }}</h1>
                     <div class="information-container d-flex flex-column align-items-left">
                         <h2 class="container-header">User Information</h2>
                         <table id="Table" class="table">
@@ -20,7 +21,6 @@
                                 <td>Email</td>
                                 <td>{{ $user->email }}</td>
                             </tr>
-                            <!-- Add more fields here -->
                         </table>
                     </div>
                     <div class="contact-container d-flex flex-column align-items-left">
@@ -34,16 +34,16 @@
                                 <td>Address</td>
                                 <td>{{ $user->address }}</td>
                             </tr>
-                            <!-- Add more fields here -->
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <script src="{{ asset('js/loadContent.js') }}"></script>
     <script type="module" src="{{ asset('js/main.js') }}"></script>
 </body>
+
 <style>
     .main-content {
         display: flex;
@@ -105,11 +105,6 @@
         font-size: 20px;
         font-weight: 500;
         text-decoration-line: underline;
-        text-decoration-style: solid;
-        text-decoration-skip-ink: auto;
-        text-decoration-thickness: auto;
-        text-underline-offset: auto;
-        text-underline-position: from-font;
     }
 </style>
 </html>

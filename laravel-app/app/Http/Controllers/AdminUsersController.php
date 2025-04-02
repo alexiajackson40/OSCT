@@ -155,4 +155,39 @@ class AdminUsersController extends Controller
 
         return redirect()->route('admin.users.patientDocuments', $id)->with('success', 'Document uploaded successfully!');
     }
+
+    // Profile method to display authenticated user's profile (no authentication needed for now)
+    public function profile()
+    {
+        $user = User::first(); // For now, we'll just get the first user
+        return view('admin_user.profile', compact('user')); // Pass user data to view
+    }
+
+    // Edit Profile method (no authentication needed for now)
+    public function editProfile()
+    {
+        $user = User::first(); // For now, we'll just get the first user
+        return view('admin_user.edit_profile', compact('user')); // Pass the user data to the view
+    }
+
+    // Update Profile method (no authentication needed for now)
+    public function updateProfile(Request $request)
+    {
+        $validated = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username,' . auth()->id(),
+            // Add more validation as needed
+        ]);
+
+        $user = User::first(); // For now, we'll just get the first user
+        $user->update([
+            'first_name' => $validated['first_name'],
+            'last_name' => $validated['last_name'],
+            'username' => $validated['username'],
+            // Update other fields as needed
+        ]);
+
+        return redirect()->route('admin.profile')->with('success', 'Profile updated successfully!');
+    }
 }

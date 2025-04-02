@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--Home Page-->
+<!-- Home Page -->
 <body>
     <div id="header"></div> 
     <div class="main-content">
@@ -8,6 +8,7 @@
             <div class="card">
                 <div class="card-body d-flex flex-column align-items-center">
                     <div class="media mb-3">
+                        <!-- Corrected the image path using asset() -->
                         <img src="{{ asset('img/colimaGobiernoDelEstado.png') }}" alt="logo" width="225" height="200">
                     </div>
                     <p class="card-text">Lorem ipsum dolor sit amet. 33 itaque laborum At labore ratione et autem exercitationem id veritatis dolorem sit maxime architecto qui beatae ratione. Et amet laborum qui nulla tempora vel impedit cupiditate est voluptatum adipisci et facilis quia sit optio unde.</p>
@@ -20,10 +21,8 @@
             </div>
         </div>
     </div>
-    <!-- Laravel doesn't need JS here unless necessary -->
-    <script src="{{ asset('js/loadContent.js') }}"></script>
-    <script type="module" src="{{ asset('js/main.js') }}"></script>
 </body>
+
 <style>
     .main-content {
         display: flex;
@@ -41,4 +40,8 @@
         font-weight: 500;
     }
 </style>
+
+<script src="{{ asset('js/loadContent.js') }}"></script>
+<script type="module" src="{{ asset('js/main.js') }}"></script>
+
 </html>
