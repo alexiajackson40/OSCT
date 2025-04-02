@@ -6,13 +6,13 @@
     <div class="main-content">
         <!-- Side Buttons Container-->
         <div class="button-container mt-5 d-flex flex-column">      
-            <a class="table-btn btn-primary" role="button" href="/src/components/admin_user/users/patient_users.html" data-page="admin_user/users/patient_users">Patients</a>
-            <a class="table-btn btn-primary" role="button" href="/src/components/admin_user/users/personnel_users.html" data-page="admin_user/users/personnel_users">Personnel</a>
-            <a class="table-btn btn-primary" role="button" href="/src/components/admin_user/users/admin_users.html" data-page="admin_user/users/admin_users">Admin</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.patientUsers') }}">Patients</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnelUsers') }}">Personnel</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.adminUsers') }}">Admin</a>
         </div>
         <div class="users-container mt-5">
             <div class="card">
-                <button id="add-btn" class="btn-page btn-primary" href="/src/components/admin_user/add_user.html" data-page="admin_user/add_user">[Add/Remove User]</button>
+                <a id="add-btn" class="btn-page btn-primary" href="{{ route('admin.addUser') }}">[Add/Remove User]</a>
                 <div class="card-body d-flex flex-column">
                     <div class="document-content">
                         <h1 class="card-title">Users</h1>
@@ -21,8 +21,8 @@
             </div>
         </div>
     </div>
-<script src="/src/loadContent.js"></script>
-<script type="module" src="/src/main.js"></script> 
+<script src="{{ asset('src/loadContent.js') }}"></script>
+<script type="module" src="{{ asset('src/main.js') }}"></script> 
 </body>
 <style>
     .main-content {

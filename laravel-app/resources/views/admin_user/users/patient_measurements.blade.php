@@ -1,33 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Patient User Profile Page-->
+<!-- Patient User Profile Page -->
 <body>
     <div id="header"></div> 
     <div class="main-content d-flex align-self-center">
         <div class="profile-container mt-5"> <!--mt-5: larger top margin-->
             <div class="card">
                 <div class="top-buttons d-flex flex-row align-self-center">
-                    <button id="back-btn" class="btn-back" href="/src/components/admin_user/users/patient_users.html" data-page="admin_user/users/patient_users">&lt; Go Back</button>
+                    <a href="{{ route('admin.users.patientUsers') }}" class="btn-back">&lt; Go Back</a>
                     <button class="btn-edit">[Update Measurements]</button>
                 </div>
                 <div class="card-body d-flex flex-column align-self-center align-items-left"> <!--Makes card customizable-->
                     <h1 class="card-title">Patient Measurements</h1>
                     <div class="measurements-container d-flex flex-column align-items-left">
-                        <table id="Table" class="table" table-data="/src/components/patient_user/data/measurementsData.json"></table>
+                        <table id="Table" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Measurement Type</th>
+                                    <th>Value</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($measurements as $measurement)
+                                    <tr>
+                                        <td>{{ $measurement->type }}</td>
+                                        <td>{{ $measurement->value }}</td>
+                                        <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
             <div class="button-container mt-5 d-flex flex-column">      
-                <a class="record-btn btn-primary" role="button" href="/src/components/admin_user/users/patient_profile.html" data-page="admin_user/users/patient_profile">Patient Profile</a>
-                <a class="record-btn btn-primary" role="button" href="/src/components/admin_user/users/patient_measurements.html" data-page="admin_user/users/patient_measurements">Measurements</a>
-                <a class="record-btn btn-primary" role="button" href="/src/components/admin_user/users/patient_documents.html" data-page="admin_user/users/patient_documents">Documents</a>
-                <a class="record-btn btn-primary" role="button" href="/src/components/admin_user/users/patient_labResults.html" data-page="admin_user/users/patient_labResults">Lab Results</a>
+                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientProfile', $patient->id) }}">Patient Profile</a>
+                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientMeasurements', $patient->id) }}">Measurements</a>
+                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientDocuments', $patient->id) }}">Documents</a>
+                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientLabResults', $patient->id) }}">Lab Results</a>
             </div>
         </div>
     </div>
-    <script src="/src/loadContent.js"></script>
-    <script src="/src/components/patient_user/data/measurementsData.json"></script>
-    <script type="module" src="/src/main.js"></script>
 </body>
 
 <style>
@@ -113,7 +127,6 @@
         background:#F2F2F2;
         font-size:1.25rem;
         font-weight:500;
-       
     }
     .button-container {
         width:13.375rem;

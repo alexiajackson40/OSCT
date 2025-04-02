@@ -1,34 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--Personnel User Profile Page-->
+<!-- Personnel User Profile Page-->
 <body>
     <div id="header"></div> 
     <div class="main-content">
-        <div class="profile-container mt-5"> <!--mt-5: larger top margin-->
+        <div class="profile-container mt-5">
             <div class="card">
                 <div class="top-buttons d-flex flex-row align-self-center">
-                    <button id="back-btn" class="btn-back" href="/src/components/admin_user/users/personnel_users.html" data-page="admin_user/users/personnel_users">&lt; Go Back</button>
+                    <a href="{{ route('admin.users.personnelUsers') }}" class="btn-back">&lt; Go Back</a>
                     <button class="btn-edit">[Edit Information]</button>
                 </div>
-                <div class="card-body d-flex flex-column align-self-center"> <!--Makes card customizable-->
-                    <h1 class="card-title">Personnel Name</h1>
+                <div class="card-body d-flex flex-column align-self-center">
+                    <h1 class="card-title">{{ $personnel->first_name }} {{ $personnel->last_name }}</h1>
                     <div class="information-container d-flex flex-column align-items-left">
-                        <h2 class="container-header">User Information</h2>
-                        <table id="Table" class="table" table-data="/src/components/personnel_user/infoData.json"></table>
+                        <h2 class="container-header">Personnel Information</h2>
+                        <table id="Table" class="table">
+                            <tr>
+                                <td><strong>Employee ID:</strong></td>
+                                <td>{{ $personnel->employee_id }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Phone Number:</strong></td>
+                                <td>{{ $personnel->phone_number }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Username:</strong></td>
+                                <td>{{ $personnel->username }}</td>
+                            </tr>
+                        </table>
                     </div>
                     <div class="contact-container d-flex flex-column align-items-left">
                         <h2 class="container-header">Contact Information</h2>
-                        <table id="Table" class="table" table-data="/src/components/personnel_user/contactData.json"></table>
+                        <table id="Table" class="table">
+                            <tr>
+                                <td><strong>Email:</strong></td>
+                                <td>{{ $personnel->email }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Address:</strong></td>
+                                <td>{{ $personnel->address ?? 'Not provided' }}</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="/src/loadContent.js"></script>
-    <script src="/src/components/personnel_user/infoData.json"></script>
-    <script src="/src/components/personnel_user/contactData.json"></script>
-    <script type="module" src="/src/main.js"></script>
+    <div class="button-container mt-5 d-flex flex-column">      
+        <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.personnelProfile', $personnel->id) }}">Personnel Profile</a>
+        <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientMeasurements', $personnel->id) }}">Measurements</a>
+        <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientDocuments', $personnel->id) }}">Documents</a>
+        <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientLabResults', $personnel->id) }}">Lab Results</a>
+    </div>
 </body>
+
 <style>
     .main-content {
         display:flex;
@@ -111,7 +136,6 @@
         background:#F2F2F2;
         font-size:20px;
         font-weight:500;
-       
     }
 </style>
 </html>

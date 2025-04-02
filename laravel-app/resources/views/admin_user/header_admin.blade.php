@@ -6,7 +6,7 @@
         <div class="header-container d-flex flex-row"> 
             <!--Logo-->
             <div class="media">
-                <img src="/src/assets/img/logoWhite.png" alt="logo" width="45" height="60">
+                <img src="{{ asset('img/logoWhite.png') }}" alt="logo" width="45" height="60">
             </div>
             <!--Project name-->
             <div class="project-title-container">
@@ -16,7 +16,7 @@
             <!--Profile Button with Dropdown-->
             <div class="user-container dropdown">
                 <a id="profile" class="btn btn-light d-flex align-items-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="/src/assets/img/The_Donkey.JPEG" class="img-thumbnail rounded-circle me-2" alt="logo" width="45" height="45">
+                    <img src="{{ asset('img/The_Donkey.JPEG') }}" class="img-thumbnail rounded-circle me-2" alt="logo" width="45" height="45">
                     <span class="user-text">Username</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
@@ -29,24 +29,24 @@
     <!--Navigation Bar-->
     <div class="navigation-container">
         <nav class="nav nav-pills nav-fill">
-            <a class="nav-link" href="/src/components/admin_user/home.html" data-page="admin_user/home">Home</a>
-            <a class="nav-link" href="/src/components/admin_user/users.html" data-page="admin_user/users">Users</a>
-            <a class="nav-link" href="/src/components/admin_user/schedule.html" data-page="admin_user/schedule">Schedule</a>
+            <a class="nav-link" href="{{ route('admin.home') }}" data-page="admin_user/home">Home</a>
+            <a class="nav-link" href="{{ route('admin.users') }}" data-page="admin_user/users">Users</a>
+            <a class="nav-link" href="{{ route('admin.schedule') }}" data-page="admin_user/schedule">Schedule</a>
         </nav>
     </div>
     <style>
         .main-body {
-            background-color:var(--primary-red);
+            background-color: var(--primary-red);
         }
         .header-container {
-            background-color:var(--primary-red);
-            align-items:center;
-            height:5rem;
+            background-color: var(--primary-red);
+            align-items: center;
+            height: 5rem;
         }
         .project-title-container {
-            color:var(--white);
-            text-align:left;
-            margin-left:1rem;
+            color: var(--white);
+            text-align: left;
+            margin-left: 1rem;
         }
 
         .user-container {
@@ -68,7 +68,7 @@
             font-weight: 600;
             margin-right: 0.5rem;
         }
-        .img-thumbnail{
+        .img-thumbnail {
             background: none;
             border-radius: 3.125rem;
             border-width: 0.0625rem;
@@ -83,35 +83,36 @@
             min-width: 12rem;
             height: 2.5rem;
         }
-/* Navigation Bar */
+
+        /* Navigation Bar */
         .nav-pills .nav-link {
-            color:black !important;
-            --bs-nav-pills-border-radius:0;
-            width:7.8125rem !important;
-            font-weight:600;
-            --bs-nav-link-font-size:1.25rem !important; 
+            color: black !important;
+            --bs-nav-pills-border-radius: 0;
+            width: 7.8125rem !important;
+            font-weight: 600;
+            --bs-nav-link-font-size: 1.25rem !important; 
         }
         .nav-pills .nav-link.active {
-            color:black !important;
-            background-color:var(--light-surface-three) !important;
-            border-bottom:0.25rem solid #7C1332 !important;
+            color: black !important;
+            background-color: var(--light-surface-three) !important;
+            border-bottom: 0.25rem solid #7C1332 !important;
             font-weight: 600;
-            width:7.8125rem !important;
-            height:3.75rem !important;
+            width: 7.8125rem !important;
+            height: 3.75rem !important;
         }
         .nav-pills .nav-link:hover {
-            color:#7C1332 !important;
-            background-color:var(--light-surface-one) !important;
+            color: #7C1332 !important;
+            background-color: var(--light-surface-one) !important;
         }
         .nav-pills .nav-link:not(.active):not(:hover) {
-            color:black !important;
+            color: black !important;
         }
         .nav {
-            background-color:var(--light-surface-two) !important;
-            box-shadow:0rem 0rem 0.25rem 0rem rgba(0, 0, 0, 0.25) !important;
-            height:3.75rem !important;
-            --bs-nav-link-padding-x:1rem !important;
-            --bs-nav-link-padding-y:1rem !important;
+            background-color: var(--light-surface-two) !important;
+            box-shadow: 0rem 0rem 0.25rem 0rem rgba(0, 0, 0, 0.25) !important;
+            height: 3.75rem !important;
+            --bs-nav-link-padding-x: 1rem !important;
+            --bs-nav-link-padding-y: 1rem !important;
         }
     </style>
 </body>

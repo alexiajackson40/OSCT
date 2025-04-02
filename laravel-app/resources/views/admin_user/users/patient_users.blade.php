@@ -7,33 +7,51 @@
         <div class="profile-container mt-5">
             <div class="card">
                 <div class="top-buttons d-flex flex-row align-self-center">
-                    <button id="back-btn" class="btn-back" href="/src/components/admin_user/users/patient_users.html" data-page="admin_user/users/patient_users">&lt; Go Back</button>
+                    <a href="{{ route('admin.users.patientUsers') }}" class="btn-back">&lt; Go Back</a>
                     <button class="btn-edit">[Edit Information]</button>
                 </div>
                 <div class="card-body d-flex flex-column align-self-center"> <!--Makes card customizable-->
-                    <h1 class="card-title">Patient Name</h1>
+                    <h1 class="card-title">{{ $patient->first_name }} {{ $patient->last_name }}</h1>
                     <div class="information-container d-flex flex-column align-items-left">
                         <h2 class="container-header">Patient Information</h2>
-                        <table id="Table" class="table" table-data="/src/components/patient_user/infoData.json"></table>
+                        <table id="Table" class="table">
+                            <tr>
+                                <td><strong>Student ID:</strong></td>
+                                <td>{{ $patient->student_id }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Phone Number:</strong></td>
+                                <td>{{ $patient->phone_number }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Username:</strong></td>
+                                <td>{{ $patient->username }}</td>
+                            </tr>
+                        </table>
                     </div>
                     <div class="contact-container d-flex flex-column align-items-left">
                         <h2 class="container-header">Contact Information</h2>
-                        <table id="Table" class="table" table-data="/src/components/patient_user/contactData.json"></table>
+                        <table id="Table" class="table">
+                            <tr>
+                                <td><strong>Email:</strong></td>
+                                <td>{{ $patient->email }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Address:</strong></td>
+                                <td>{{ $patient->address ?? 'Not provided' }}</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
             <div class="button-container mt-5 d-flex flex-column">      
-                <a class="record-btn btn-primary" role="button" href="/src/components/admin_user/users/patient_profile.html" data-page="admin_user/users/patient_profile">Patient Profile</a>
-                <a class="record-btn btn-primary" role="button" href="/src/components/admin_user/users/patient_measurements.html" data-page="admin_user/users/patient_measurements">Measurements</a>
-                <a class="record-btn btn-primary" role="button" href="/src/components/admin_user/users/patient_documents.html" data-page="admin_user/users/patient_documents">Documents</a>
-                <a class="record-btn btn-primary" role="button" href="/src/components/admin_user/users/patient_labResults.html" data-page="admin_user/users/patient_labResults">Lab Results</a>
+                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientProfile', $patient->id) }}">Patient Profile</a>
+                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientMeasurements', $patient->id) }}">Measurements</a>
+                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientDocuments', $patient->id) }}">Documents</a>
+                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientLabResults', $patient->id) }}">Lab Results</a>
             </div>
         </div>
     </div>
-    <script src="/src/loadContent.js"></script>
-    <script src="/src/components/patient_user/infoData.json"></script>
-    <script src="/src/components/patient_user/contactData.json"></script>
-    <script type="module" src="/src/main.js"></script>
 </body>
 
 <style>
@@ -118,7 +136,6 @@
         background:#F2F2F2;
         font-size:1.25rem;
         font-weight:500;
-       
     }
     .button-container {
         width:13.375rem;

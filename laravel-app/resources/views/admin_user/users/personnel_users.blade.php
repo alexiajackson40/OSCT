@@ -1,34 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--List of Personnel Users-->
+<!-- List of Personnel Users -->
 <body>
     <div id="header"></div>
     <div class="main-content">
         <!-- Side Buttons Container-->
         <div class="button-container mt-5 d-flex flex-column">
-            <a class="table-btn btn-primary" role="button" href="/src/components/admin_user/users/patient_users.html" data-page="admin_user/users/patient_users">Patients</a>
-            <a class="table-btn btn-primary" role="button" href="/src/components/admin_user/users/personnel_users.html" data-page="admin_user/users/personnel_users">Personnel</a>
-            <a class="table-btn btn-primary" role="button" href="/src/components/admin_user/users/admin_users.html" data-page="admin_user/users/admin_users">Admin</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.users.patientUsers') }}">Patients</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.users.personnelUsers') }}">Personnel</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.users.adminUsers') }}">Admin</a>
         </div>
         <div class="users-container mt-5">
             <div class="card">
-                <button class="btn-page btn-primary">[Add/Remove User]</button>
+                <a class="btn-page btn-primary" href="{{ route('admin.addUser') }}">[Add/Remove User]</a>
                 <div class="card-body d-flex flex-column">
                     <div class="document-content">
-                    <h1 class="card-title">Personnel Users</h1>
-                    <table id="Table" class="table table-hover" table-data="/src/components/admin_user/users/data/personnelUsersData.json">
-                        <thead></thead>
-                        <tbody tag="link" href="/src/components/admin_user/users/personnel_profile.html" data-page="admin_user/users/personnel_profile"></tbody>
-                    </table>
+                        <h1 class="card-title">Personnel Users</h1>
+                        <table id="Table" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($personnel as $person)
+                                    <tr>
+                                        <td>{{ $person->first_name }} {{ $person->last_name }}</td>
+                                        <td>{{ $person->email }}</td>
+                                        <td>
+                                            <a href="{{ route('admin.users.personnelProfile', $person->id) }}" class="btn btn-primary">View Profile</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="/src/loadContent.js"></script>
-    <script src="/src/components/admin_user/users/data/personnelUsersData.json"></script>
-    <script type="module" src="/src/main.js"></script>
 </body>
+
 <style>
     .main-content {
         display:flex;
@@ -44,7 +58,7 @@
         height:100%;
         min-height:100vh;
     }
-    .document-content{
+    .document-content {
         margin-left:1.5625rem;
         margin-right:1.5625rem;
     }
@@ -79,13 +93,13 @@
         font-size:20px;
         font-weight:500;
     }
-    .table{
+    .table {
         align-items:center;
         margin-bottom:0px;
         --bs-table-bg:#F2F2F2;
         --bs-table-border-color:#000;
     }
-    .td a{
+    .td a {
         display:flex;
         align-items:center;
         justify-content:center;
@@ -100,6 +114,6 @@
         background:#F2F2F2;
         font-size:20px;
         font-weight:500;
-  }
+    }
 </style>
 </html>

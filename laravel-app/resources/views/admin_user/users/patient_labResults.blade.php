@@ -1,37 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Patient Documents Content-->
+<!-- Patient Lab Results Content-->
 <body>
     <div id="header"></div> 
     <div class="main-content">
         <div class="document-container mt-5b">
             <div class="card">
                 <div class="top-buttons d-flex flex-row align-self-center">
-                    <button id="back-btn" class="btn-back" href="/src/components/admin_user/users/patient_users.html" data-page="admin_user/users/patient_users">&lt; Go Back</button>
-                    <button class="btn-edit">[Upload Document]</button>
+                    <a id="back-btn" class="btn-back" href="{{ route('admin.patientUsers') }}">&lt; Go Back</a>
+                    <button class="btn-edit" data-toggle="modal" data-target="#uploadLabResultModal">[Upload Lab Result]</button>
                 </div>
                 <div class="card-body d-flex flex-column">
                     <div class="document-content">
-                        <h1 class="card-title">Documents</h1>
-                        <h2 class="table-title">List of Assigned Documents</h2>
-                        <table id="Table" class="table table-hover" table-data="/src/components/patient_user/docData.json">
-                            <thead></thead>
-                            <tbody></tbody>
+                        <h1 class="card-title">Lab Results</h1>
+                        <h2 class="table-title">List of Assigned Lab Results</h2>
+                        <table id="Table" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Lab Result Name</th>
+                                    <th>Uploaded By</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($labResults as $labResult)
+                                    <tr>
+                                        <td>{{ $labResult->name }}</td>
+                                        <td>{{ $labResult->user->name }}</td>
+                                        <td>
+                                            <a href="{{ route('admin.labResultDownload', $labResult->id) }}" class="btn btn-primary">Download</a>
+                                            <!-- Add additional actions as needed -->
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
         <div class="button-container mt-5 d-flex flex-column">      
-            <a class="record-btn btn-primary" role="button" href="/src/components/admin_user/users/patient_profile.html" data-page="admin_user/users/patient_profile">Patient Profile</a>
-            <a class="record-btn btn-primary" role="button" href="/src/components/admin_user/users/patient_measurements.html" data-page="admin_user/users/patient_measurements">Measurements</a>
-            <a class="record-btn btn-primary" role="button" href="/src/components/admin_user/users/patient_documents.html" data-page="admin_user/users/patient_documents">Documents</a>
-            <a class="record-btn btn-primary" role="button" href="/src/components/admin_user/users/patient_labResults.html" data-page="admin_user/users/patient_labResults">Lab Results</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.patientProfile', $patient->id) }}">Patient Profile</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.patientMeasurements', $patient->id) }}">Measurements</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.patientDocuments', $patient->id) }}">Documents</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.patientLabResults', $patient->id) }}">Lab Results</a>
         </div>
     </div>
-    <script src="/src/loadContent.js"></script>
-    <script src="/src/components/patient_user/docData.json"></script>
-    <script type="module" src="/src/main.js"></script>
+
+    <!-- Modal for Uploading Lab Result -->
+    <div class="modal fade" id="uploadLabResultModal" tabindex="-1" role="dialog" aria-labelledby="uploadLabResultModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="uploadLabResultModalLabel">Upload New Lab Result</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('admin.uploadLabResult', $patient->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="lab_result">Select Lab Result</label>
+                            <input type="file" name="lab_result" id="lab_result" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea name="description" id="description" class="form-control" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <style>
     .main-content{
@@ -65,13 +107,6 @@
         --bs-table-bg:#F2F2F2;
         --bs-table-border-color:#000;
         align-items:center;
-
-    }
-    .td a{
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        color:#000;
     }
     .table-title{
         font-size:1.25rem;

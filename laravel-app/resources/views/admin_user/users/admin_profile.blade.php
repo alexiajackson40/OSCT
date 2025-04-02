@@ -7,27 +7,43 @@
         <div class="profile-container mt-5">
             <div class="card">
                 <div class="top-buttons d-flex flex-row align-self-center">
-                    <button id="back-btn" class="btn-back" href="/src/components/admin_user/users/admin_users.html" data-page="admin_user/users/admin_users">&lt; Go Back</button>
+                    <a id="back-btn" class="btn-back" href="{{ route('admin.adminUsers') }}">&lt; Go Back</a>
                     <button class="btn-edit">[Edit Information]</button>
                 </div>
                 <div class="card-body d-flex flex-column align-self-center">
-                    <h1 class="card-title">Admin Name</h1>
+                    <h1 class="card-title">{{ $admin->name }}</h1>
                     <div class="information-container d-flex flex-column align-items-left">
                         <h2 class="container-header">User Information</h2>
-                        <table id="Table" class="table" table-data="/src/components/admin_user/users/data/infoData.json"></table>
+                        <table id="Table" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>{{ $admin->name }}</th>
+                                </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <th>{{ $admin->email }}</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                     <div class="contact-container d-flex flex-column align-items-left">
                         <h2 class="container-header">Contact Information</h2>
-                        <table id="Table" class="table" table-data="/src/components/admin_user/users/data/contactData.json"></table>
+                        <table id="Table" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Phone</th>
+                                    <th>{{ $admin->phone ?? 'N/A' }}</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="/src/loadContent.js"></script>
-    <script src="/src/components/admin_user/users/data/infoData.json"></script>
-    <script src="/src/components/admin_user/users/data/contactData.json"></script>
-    <script type="module" src="/src/main.js"></script>
+    <script src="{{ asset('src/loadContent.js') }}"></script>
+    <script type="module" src="{{ asset('src/main.js') }}"></script>
 </body>
 <style>
     .main-content {

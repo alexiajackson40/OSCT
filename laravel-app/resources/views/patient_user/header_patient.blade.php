@@ -6,7 +6,7 @@
         <div class="header-container d-flex flex-row"> 
             <!--Logo-->
             <div class="media">
-                <img src="/src/assets/img/logoWhite.png" alt="logo" width="45" height="60">
+                <img src="{{ asset('public/img/logoWhite.png') }}" alt="logo" width="45" height="60">
             </div>
             <!--Project name-->
             <div class="project-title-container">
@@ -16,12 +16,12 @@
             <!--Profile Button with Dropdown-->
             <div class="user-container dropdown">
                 <a id="profile" class="btn btn-light d-flex align-items-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="/src/assets/img/The_Donkey.JPEG" class="img-thumbnail rounded-circle me-2" alt="logo" width="45" height="45">
-                    <span class="user-text">Username</span>
+                    <img src="{{ asset('public/img/The_Donkey.JPEG') }}" class="img-thumbnail rounded-circle me-2" alt="logo" width="45" height="45">
+                    <span class="user-text">{{ Auth::user()->username }}</span> <!-- Dynamically show the logged-in user's username -->
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
-                    <li><a class="dropdown-item" id="profile-button" href="#">View Profile</a></li>
-                    <li><a class="dropdown-item" id="signout-button" href="#">Sign Out</a></li>
+                    <li><a class="dropdown-item" id="profile-button" href="{{ route('user.profile') }}">View Profile</a></li>
+                    <li><a class="dropdown-item" id="signout-button" href="{{ route('logout') }}">Sign Out</a></li> <!-- Add logout route -->
                 </ul>
             </div>
         </div>
@@ -29,10 +29,10 @@
     <!--Navigation Bar-->
     <div class="navigation-container">
         <nav class="nav nav-pills nav-fill">
-            <a class="nav-link" href="/src/components/patient_user/home.html" data-page="patient_user/home">Home</a>
-            <a class="nav-link" href="/src/components/patient_user/schedule.html" data-page="patient_user/schedule">Schedule</a>
-            <a class="nav-link" href="/src/components/patient_user/lab_results.html" data-page="patient_user/lab_results">Lab Results</a>
-            <a class="nav-link" href="/src/components/patient_user/documents.html" data-page="patient_user/documents">Documents</a>
+            <a class="nav-link" href="{{ route('patient.home') }}">Home</a>
+            <a class="nav-link" href="{{ route('patient.schedule') }}">Schedule</a>
+            <a class="nav-link" href="{{ route('patient.labResults') }}">Lab Results</a>
+            <a class="nav-link" href="{{ route('patient.documents') }}">Documents</a>
         </nav>
     </div>
 
@@ -86,7 +86,7 @@
             height: 2.5rem;
         }
 
-/* Navigation Bar */
+        /* Navigation Bar */
         .nav-pills .nav-link {
             color:black !important;
             --bs-nav-pills-border-radius: 0;
