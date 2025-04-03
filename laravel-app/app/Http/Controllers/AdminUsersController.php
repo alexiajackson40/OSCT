@@ -149,4 +149,9 @@ class AdminUsersController extends Controller
 
         return redirect()->route('admin.users.patient_documents', $id)->with('success', 'Document uploaded successfully!');
     }
+
+    public function home()
+    {
+        return view('admin_user.home'); // Ensure this view exists in the 'admin_user' folder
+    }
 }
