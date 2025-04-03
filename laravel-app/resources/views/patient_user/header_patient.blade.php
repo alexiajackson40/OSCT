@@ -17,7 +17,7 @@
             <div class="user-container dropdown">
                 <a id="profile" class="btn btn-light d-flex align-items-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="{{ asset('public/img/The_Donkey.JPEG') }}" class="img-thumbnail rounded-circle me-2" alt="logo" width="45" height="45">
-                    <span class="user-text">{{ Auth::user()->username }}</span> <!-- Dynamically show the logged-in user's username -->
+                    <span class="user-text">{{ auth()->user()->username ?? 'Username' }}</span> <!-- Dynamically show the logged-in user's username --> 
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
                     <li><a class="dropdown-item" id="profile-button" href="{{ route('user.profile') }}">View Profile</a></li>

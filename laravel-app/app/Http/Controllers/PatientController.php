@@ -2,46 +2,58 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Document;
 use App\Models\LabResult;
 use App\Models\Measurement;
-use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PatientController extends Controller
 {
+    // Method to show the patient home page
+    public function home()
+    {
+        return view('patient_user.home');  // matches home.blade.php
+    }
+
     // Method to show patient profile
     public function profile()
     {
-        $patient = auth()->user(); // Assuming patient is logged in
-        return view('patient_user.profile', compact('patient'));
+        $patient = Auth::user(); // Assuming the patient is authenticated
+        return view('patient_user.profile', compact('patient')); // matches profile.blade.php
     }
 
     // Method to show patient's documents
     public function documents()
     {
-        $documents = Document::where('user_id', auth()->id())->get();
-        return view('patient_user.documents', compact('documents'));
+        $documents = Document::where('user_id', Auth::id())->get();
+        return view('patient_user.documents', compact('documents')); // matches documents.blade.php
     }
 
     // Method to show patient's lab results
     public function labResults()
     {
-        $labResults = LabResult::where('user_id', auth()->id())->get();
-        return view('patient_user.lab_results', compact('labResults'));
+        $labResults = LabResult::where('user_id', Auth::id())->get();
+        return view('patient_user.lab_results', compact('labResults')); // matches lab_results.blade.php
     }
 
     // Method to show patient's schedule
     public function schedule()
     {
-        $schedule = auth()->user()->schedule; // Assuming the patient has a schedule relationship
-        return view('patient_user.schedule', compact('schedule'));
+        $schedule = Auth::user()->schedule ?? []; // Assuming relationship or array
+        return view('patient_user.schedule', compact('schedule')); // matches schedule.blade.php
     }
 
     // Method to show patient's measurements
     public function measurements()
     {
-        $measurements = Measurement::where('user_id', auth()->id())->get();
+        $measurements = Measurement::where('user_id', Auth::id())->get();
         return view('patient_user.measurements', compact('measurements'));
+    }
+
+    // Optional: Method to show the signup page
+    public function signUp()
+    {
+        return view('patient_user.sign_up'); // matches sign_up.blade.php
     }
 }
