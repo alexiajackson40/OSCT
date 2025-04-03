@@ -7,7 +7,7 @@
         <div class="profile-container mt-5">
             <div class="card">
                 <div class="top-buttons d-flex flex-row align-self-center">
-                    <a href="{{ route('admin.users.personnelUsers') }}" class="btn-back">&lt; Go Back</a>
+                    <a href="{{ route('admin.users.personnel_users') }}" class="btn-back">&lt; Go Back</a>
                     <button class="btn-edit">[Edit Information]</button>
                 </div>
                 <div class="card-body d-flex flex-column align-self-center">
@@ -47,10 +47,10 @@
         </div>
     </div>
     <div class="button-container mt-5 d-flex flex-column">      
-        <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.personnelProfile', $personnel->id) }}">Personnel Profile</a>
-        <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientMeasurements', $personnel->id) }}">Measurements</a>
-        <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientDocuments', $personnel->id) }}">Documents</a>
-        <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientLabResults', $personnel->id) }}">Lab Results</a>
+        <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.personnel_profile', $personnel->id) }}">Personnel Profile</a>
+        <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_measurements', $personnel->id) }}">Measurements</a>
+        <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_documents', $personnel->id) }}">Documents</a>
+        <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_labResults', $personnel->id) }}">Lab Results</a>
     </div>
 </body>
 

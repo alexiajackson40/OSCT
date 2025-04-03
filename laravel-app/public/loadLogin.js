@@ -1,7 +1,16 @@
 // --------------------------------------------------------------------FUNCTION TO LOAD LOGIN--------------------------------------------------------------------
-function loadLogin() 
-{
-fetch('/resources/views/login.blade.php')
+function loadLogin() {
+    const headerElement = document.getElementById('header');
+    if (headerElement) {
+        headerElement.innerHTML = '';
+    }
+    
+    const contentElement = document.getElementById('content');
+    if (contentElement) {
+        contentElement.innerHTML = '';
+    }
+
+fetch('/src/components/login.html')
     .then(response => response.text())
     .then(data => 
         {
@@ -38,20 +47,35 @@ fetch('/resources/views/login.blade.php')
                 loginElement.innerHTML = '';
             }
             //---------------------------------------------------------User Type Conditions--------------------------------------------------------------------
+            let userType = null;
+            let homePage = null;
+            let headerPage = null;
             if (username === "patient") {
-                loadInitContent('/resources/views/patient_user/home.blade.php', '/resources/views/patient_user/header_patient.blade.php');
+                userType = "patient";
+                homePage = "/src/components/patient_user/home.html";
+                headerPage = "/src/components/patient_user/header_patient.html";
             }
             else if (username === "personnel") {
-                loadInitContent('/resources/views/personnel_user/home.blade.php', '/resources/views/personnel_user/header_personnel.blade.php');
+                userType = "personnel";
+                homePage = "/src/components/personnel_user/home.html";
+                headerPage = "/src/components/personnel_user/header_personnel.html";
             }
             else if (username === "admin") {
-                loadInitContent('/resources/views/admin_user/home.blade.php', '/resources/views/admin_user/header_admin.blade.php');
+                userType = "admin";
+                homePage = "/src/components/admin_user/home.html";
+                headerPage = "/src/components/admin_user/header_admin.html";
             }
             else {
                 console.log("Input is not valid");
+                return;
             }
+            // store user type in sessionStorage for later use
+            sessionStorage.setItem('userType', userType);
+
+            // load initial content based on user
+            loadInitContent(homePage, headerPage);
         });
-        })
+    })
     .catch(error => 
         {
         console.error('Error when attempting to load login form:', error);
@@ -65,7 +89,7 @@ function loadInitContent(page, userHeader)
     const headerElement = document.getElementById('header');
     console.log('Loading Initial Page:', page); //console log output for error checking
     console.log(''); //console log output for status
-    if(headerElement.innerHTML.trim() === "")
+    if(headerElement?.innerHTML.trim() === "" || !headerElement)
         {
             loadContent(userHeader);
         }
@@ -120,4 +144,3 @@ function loadSignUp(page)
         });
 }
 loadLogin();
-

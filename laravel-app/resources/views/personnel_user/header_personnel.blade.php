@@ -4,34 +4,35 @@
 <body>
     <div class="container-fluid main-body">
         <div class="header-container d-flex flex-row"> 
-            <!--Logo-->
+            <!-- Logo -->
             <div class="media">
-                <img src="/src/assets/img/logoWhite.png" alt="logo" width="45" height="60">
+                <img src="{{ asset('public/img/logoWhite.png') }}" alt="logo" width="45" height="60">
             </div>
-            <!--Project name-->
+            <!-- Project name -->
             <div class="project-title-container">
                 <h1 class="project-title" style="font-size: 2rem; margin-bottom: 0;">OSCT</h1>
                 <h2 class="project-subtitle" style="font-size: 1.125rem; font-weight: 400;">Operación Salud Colima Tamizaje</h2>
             </div>
-            <!--Profile Button with Dropdown-->
+            <!-- Profile Button with Dropdown -->
             <div class="user-container dropdown">
                 <a id="profile" class="btn btn-light d-flex align-items-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="/src/assets/img/The_Donkey.JPEG" class="img-thumbnail rounded-circle me-2" alt="logo" width="45" height="45">
-                    <span class="user-text">Username</span>
+                    <img src="{{ asset('public/img/The_Donkey.JPEG') }}" class="img-thumbnail rounded-circle me-2" alt="logo" width="45" height="45">
+                    <span class="user-text">{{ Auth::user()->name ?? 'Username' }}</span> <!-- Display logged-in user's name -->
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
-                    <li><a class="dropdown-item" id="profile-button" href="#">View Profile</a></li>
-                    <li><a class="dropdown-item" id="signout-button" href="#">Sign Out</a></li>
+                    <li><a class="dropdown-item" id="profile-button" href="{{ route('admin.users.personnelProfile', Auth::id()) }}">View Profile</a></li>
+                    <li><a class="dropdown-item" id="signout-button" href="{{ route('logout') }}">Sign Out</a></li> <!-- Laravel logout route -->
                 </ul>
             </div>
         </div>
     </div>
-    <!--Navigation Bar-->
+
+    <!-- Navigation Bar -->
     <div class="navigation-container">
         <nav class="nav nav-pills nav-fill">
-            <a class="nav-link" href="/src/components/personnel_user/home.html" data-page="personnel_user/home">Home</a>
-            <a class="nav-link" href="/src/components/personnel_user/users.html" data-page="personnel_user/users">Users</a>
-            <a class="nav-link" href="/src/components/personnel_user/schedule.html" data-page="personnel_user/schedule">Schedule</a>
+            <a class="nav-link" href="{{ route('personnel.home') }}" data-page="personnel_user/home">Home</a>
+            <a class="nav-link" href="{{ route('personnel.users') }}" data-page="personnel_user/users">Users</a>
+            <a class="nav-link" href="{{ route('personnel.schedule') }}" data-page="personnel_user/schedule">Schedule</a>
         </nav>
     </div>
 
@@ -49,7 +50,6 @@
             text-align: left;
             margin-left: 1rem;
         }
-
         .user-container {
             display: flex;
             align-items: center;
@@ -69,7 +69,7 @@
             font-weight: 600;
             margin-right: 0.5rem;
         }
-        .img-thumbnail{
+        .img-thumbnail {
             background: none;
             border-radius: 3.125rem;
             border-width: 0.0625rem;
@@ -85,9 +85,9 @@
             height: 2.5rem;
         }
 
-/* Navigation Bar */
+        /* Navigation Bar */
         .nav-pills .nav-link {
-            color:black !important;
+            color: black !important;
             --bs-nav-pills-border-radius: 0;
             width: 7.8125rem !important;
             font-weight: 600;

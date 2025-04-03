@@ -3,20 +3,19 @@
 <!-- Login Page -->
 <body>
   <div class="page-content">
-    <div class="login-container"> <!-- Login Content Container -->
+    <div class="login-container">
       <div class="card">
         <div class="card-body d-flex flex-column">
           <div class="login-content">
             <div class="logo">
               <div class="media">
-                <img src="{{ asset('public/img/colimaGobiernoDelEstado.png') }}" alt="logo">
+              <img src="{{ asset('img/colimaGobiernoDelEstado.png') }}" alt="logo">
               </div>
             </div>
             <h1 class="card-title">Sign In</h1>
             <div class="login-form">
-              <!-- Laravel login form -->
               <form action="{{ route('login') }}" method="POST">
-                @csrf <!-- CSRF Token for form security -->
+                @csrf
                 <div class="form-group">
                   <label for="username">Username</label>
                   <input type="text" class="form-control" id="username" name="username" aria-label="Username" placeholder="Username" required>

@@ -6,13 +6,14 @@
     <div class="main-content">
         <!-- Side Buttons Container-->
         <div class="button-container mt-5 d-flex flex-column">
-            <a class="table-btn btn-primary" role="button" href="{{ route('admin.patientUsers') }}">Patients</a>
-            <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnelUsers') }}">Personnel</a>
-            <a class="table-btn btn-primary" role="button" href="{{ route('admin.adminUsers') }}">Admin</a>
+            <!-- Ensure that the route names match correctly for navigation -->
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.patient_users') }}">Patients</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnel_users') }}">Personnel</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.admin_users') }}">Admin</a>
         </div>
         <div class="users-container mt-5"> <!-- mt-5: larger top margin -->
             <div class="card">
-                <a class="btn-page btn-primary" href="{{ route('admin.addUser') }}">[Add/Remove User]</a>
+                <a class="btn-page btn-primary" href="{{ route('admin.add_user') }}">[Add/Remove User]</a>
                 <div class="card-body d-flex flex-column"> <!-- Makes card customizable -->
                     <div class="document-content">
                         <h1 class="card-title">Admin Users</h1>
@@ -28,10 +29,11 @@
                             <tbody>
                                 @foreach($admins as $admin)
                                     <tr>
-                                        <td>{{ $admin->name }}</td>
+                                        <td>{{ $admin->name }}</td> <!-- Ensure 'name' exists on the admin object -->
                                         <td>{{ $admin->email }}</td>
                                         <td>
-                                            <a href="{{ route('admin.adminProfile', $admin->id) }}" class="btn btn-primary">View Profile</a>
+                                            <!-- Correctly reference the profile view route for admins -->
+                                            <a href="{{ route('admin.users.admin_profile', $admin->id) }}" class="btn btn-primary">View Profile</a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -10,7 +10,7 @@
                     <a href="{{ route('admin.users.patientUsers') }}" class="btn-back">&lt; Go Back</a>
                     <button class="btn-edit">[Edit Information]</button>
                 </div>
-                <div class="card-body d-flex flex-column align-self-center"> <!--Makes card customizable-->
+                <div class="card-body d-flex flex-column align-self-center">
                     <h1 class="card-title">{{ $patient->first_name }} {{ $patient->last_name }}</h1>
                     <div class="information-container d-flex flex-column align-items-left">
                         <h2 class="container-header">Patient Information</h2>
@@ -45,10 +45,10 @@
                 </div>
             </div>
             <div class="button-container mt-5 d-flex flex-column">      
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientProfile', $patient->id) }}">Patient Profile</a>
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientMeasurements', $patient->id) }}">Measurements</a>
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientDocuments', $patient->id) }}">Documents</a>
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientLabResults', $patient->id) }}">Lab Results</a>
+                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_profile', $patient->id) }}">Patient Profile</a>
+                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_measurements', $patient->id) }}">Measurements</a>
+                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_documents', $patient->id) }}">Documents</a>
+                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_labResults', $patient->id) }}">Lab Results</a>
             </div>
         </div>
     </div>

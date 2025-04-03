@@ -4,13 +4,13 @@
 <body>
     <div id="header"></div> 
     <div class="main-content d-flex align-self-center">
-        <div class="profile-container mt-5"> <!--mt-5: larger top margin-->
+        <div class="profile-container mt-5"> <!-- mt-5: larger top margin -->
             <div class="card">
                 <div class="top-buttons d-flex flex-row align-self-center">
-                    <a href="{{ route('admin.users.patientUsers') }}" class="btn-back">&lt; Go Back</a>
-                    <button class="btn-edit">[Update Measurements]</button>
+                    <a href="{{ route('admin.users.patient_users') }}" class="btn-back">&lt; Go Back</a>
+                    <button class="btn-edit" data-toggle="modal" data-target="#uploadMeasurementModal">[Update Measurements]</button>
                 </div>
-                <div class="card-body d-flex flex-column align-self-center align-items-left"> <!--Makes card customizable-->
+                <div class="card-body d-flex flex-column align-self-center align-items-left"> <!-- Makes card customizable -->
                     <h1 class="card-title">Patient Measurements</h1>
                     <div class="measurements-container d-flex flex-column align-items-left">
                         <table id="Table" class="table">
@@ -35,10 +35,42 @@
                 </div>
             </div>
             <div class="button-container mt-5 d-flex flex-column">      
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientProfile', $patient->id) }}">Patient Profile</a>
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientMeasurements', $patient->id) }}">Measurements</a>
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientDocuments', $patient->id) }}">Documents</a>
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientLabResults', $patient->id) }}">Lab Results</a>
+                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_profile', $patient->id) }}">Patient Profile</a>
+                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_measurements', $patient->id) }}">Measurements</a>
+                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_documents', $patient->id) }}">Documents</a>
+                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_labResults', $patient->id) }}">Lab Results</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Uploading Measurement -->
+    <div class="modal fade" id="uploadMeasurementModal" tabindex="-1" role="dialog" aria-labelledby="uploadMeasurementModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="uploadMeasurementModalLabel">Upload New Measurement</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('admin.uploadMeasurement', $patient->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="measurement_type">Measurement Type</label>
+                            <input type="text" name="measurement_type" id="measurement_type" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="measurement_value">Value</label>
+                            <input type="number" name="measurement_value" id="measurement_value" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="measurement_date">Date</label>
+                            <input type="date" name="measurement_date" id="measurement_date" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -87,7 +119,7 @@
         padding-left:0.875rem;
         padding-top:0.875rem;
     }
-    .measurments-container {
+    .measurements-container {
         margin-top:0.75rem;
         width:26.688rem;
         height:10.25rem;

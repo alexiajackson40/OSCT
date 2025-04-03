@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Patient Lab Results Content-->
+<!-- Patient Lab Results Content -->
 <body>
     <div id="header"></div> 
     <div class="main-content">
         <div class="document-container mt-5b">
             <div class="card">
                 <div class="top-buttons d-flex flex-row align-self-center">
-                    <a id="back-btn" class="btn-back" href="{{ route('admin.patientUsers') }}">&lt; Go Back</a>
+                    <a id="back-btn" class="btn-back" href="{{ route('admin.patient_users') }}">&lt; Go Back</a>
                     <button class="btn-edit" data-toggle="modal" data-target="#uploadLabResultModal">[Upload Lab Result]</button>
                 </div>
                 <div class="card-body d-flex flex-column">
@@ -29,7 +29,6 @@
                                         <td>{{ $labResult->user->name }}</td>
                                         <td>
                                             <a href="{{ route('admin.labResultDownload', $labResult->id) }}" class="btn btn-primary">Download</a>
-                                            <!-- Add additional actions as needed -->
                                         </td>
                                     </tr>
                                 @endforeach
@@ -40,10 +39,11 @@
             </div>
         </div>
         <div class="button-container mt-5 d-flex flex-column">      
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.patientProfile', $patient->id) }}">Patient Profile</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.patientMeasurements', $patient->id) }}">Measurements</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.patientDocuments', $patient->id) }}">Documents</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.patientLabResults', $patient->id) }}">Lab Results</a>
+            <!-- Update links for other patient-related actions -->
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.patient_profile', $patient->id) }}">Patient Profile</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.patient_measurements', $patient->id) }}">Measurements</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.patient_documents', $patient->id) }}">Documents</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.patient_labResults', $patient->id) }}">Lab Results</a>
         </div>
     </div>
 
@@ -75,6 +75,7 @@
         </div>
     </div>
 </body>
+
 <style>
     .main-content{
         margin-top:2rem;

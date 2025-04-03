@@ -1,35 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Patient Documents Content -->
+<!-- Patient User Profile Page -->
 <body>
     <div id="header"></div> 
-    <div class="main-content">
-        <div class="document-container mt-5b">
+    <div class="main-content d-flex align-self-center">
+        <div class="profile-container mt-5"> <!-- mt-5: larger top margin -->
             <div class="card">
                 <div class="top-buttons d-flex flex-row align-self-center">
-                    <a href="{{ route('admin.patientUsers') }}" class="btn-back">&lt; Go Back</a>
-                    <button class="btn-edit" data-toggle="modal" data-target="#uploadDocumentModal">[Upload Document]</button>
+                    <a href="{{ route('admin.users.patient_users') }}" class="btn-back">&lt; Go Back</a>
+                    <button class="btn-edit" data-toggle="modal" data-target="#uploadMeasurementModal">[Update Measurements]</button>
                 </div>
-                <div class="card-body d-flex flex-column">
-                    <div class="document-content">
-                        <h1 class="card-title">Documents</h1>
-                        <h2 class="table-title">List of Assigned Documents</h2>
-                        <table id="Table" class="table table-hover">
+                <div class="card-body d-flex flex-column align-self-center align-items-left"> <!-- Makes card customizable -->
+                    <h1 class="card-title">Patient Measurements</h1>
+                    <div class="measurements-container d-flex flex-column align-items-left">
+                        <table id="Table" class="table">
                             <thead>
                                 <tr>
-                                    <th>Document Name</th>
-                                    <th>Uploaded On</th>
-                                    <th>Actions</th>
+                                    <th>Measurement Type</th>
+                                    <th>Value</th>
+                                    <th>Date</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($documents as $document)
+                                @foreach($measurements as $measurement)
                                     <tr>
-                                        <td>{{ $document->name }}</td>
-                                        <td>{{ $document->created_at->format('Y-m-d') }}</td>
-                                        <td>
-                                            <a href="{{ route('admin.users.patientDocuments.download', $document->id) }}" class="btn btn-primary">Download</a>
-                                        </td>
+                                        <td>{{ $measurement->type }}</td>
+                                        <td>{{ $measurement->value }}</td>
+                                        <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -37,35 +34,39 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="button-container mt-5 d-flex flex-column">      
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.patientProfile', $patient->id) }}">Patient Profile</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.patientMeasurements', $patient->id) }}">Measurements</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.patientDocuments', $patient->id) }}">Documents</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.patientLabResults', $patient->id) }}">Lab Results</a>
+            <div class="button-container mt-5 d-flex flex-column">      
+                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_profile', $patient->id) }}">Patient Profile</a>
+                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_measurements', $patient->id) }}">Measurements</a>
+                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_documents', $patient->id) }}">Documents</a>
+                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_labResults', $patient->id) }}">Lab Results</a>
+            </div>
         </div>
     </div>
 
-    <!-- Modal for Uploading Document -->
-    <div class="modal fade" id="uploadDocumentModal" tabindex="-1" role="dialog" aria-labelledby="uploadDocumentModalLabel" aria-hidden="true">
+    <!-- Modal for Uploading Measurement -->
+    <div class="modal fade" id="uploadMeasurementModal" tabindex="-1" role="dialog" aria-labelledby="uploadMeasurementModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="uploadDocumentModalLabel">Upload New Document</h5>
+                    <h5 class="modal-title" id="uploadMeasurementModalLabel">Upload New Measurement</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('admin.users.uploadDocument', $patient->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.uploadMeasurement', $patient->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="document">Select Document</label>
-                            <input type="file" name="document" id="document" class="form-control" required>
+                            <label for="measurement_type">Measurement Type</label>
+                            <input type="text" name="measurement_type" id="measurement_type" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="description">Description</label>
-                            <textarea name="description" id="description" class="form-control" rows="3" required></textarea>
+                            <label for="measurement_value">Value</label>
+                            <input type="number" name="measurement_value" id="measurement_value" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="measurement_date">Date</label>
+                            <input type="date" name="measurement_date" id="measurement_date" class="form-control" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Upload</button>
                     </form>
@@ -76,41 +77,88 @@
 </body>
 
 <style>
-    .main-content{
-        margin-top:2rem;
+    .main-content {
         display:flex;
         justify-content:center;
-        width: 100%;
+        width:100%;
         min-height:100vh;
     }
-    .document-container{
+    .profile-container {
         width:70%;
+        display:flex;
+        justify-content:center;
     }
-    .card{
+    .card {
         background-color:#F2F2F2;
-        height:100%;
-        min-height:100vh;
+        width:34.063rem;
+        height:34.188rem;
+        position:relative;
     }
-    .document-content{
-        margin-left:1.5625rem;
-        margin-right:1.5625rem;
+    .top-buttons {
+        margin-top:0.625rem;
+        margin-bottom:0.625rem;
+        width:28.063;
+        padding-top:0.625rem;
+        display:flex;
+        flex-direction:row;
     }
-    .card-title{
+    .card-body {
+        padding-top:0.625rem;
+        display:flex;
+        flex-direction:column;
+        width:29rem;
+    }
+    .card-title {
         font-size:2rem;
         font-weight:500;
-        text-align:left;
-        margin-bottom:1.125rem;
-        margin-top:1.563rem;
+        margin-top:2.5rem;
     }
-    .table{
-        margin-bottom:0px;
-        --bs-table-bg:#F2F2F2;
-        --bs-table-border-color:#000;
-        align-items:center;
-    }
-    .table-title{
+    .container-header {
         font-size:1.25rem;
-        margin-bottom:1.563rem;
+        font-weight:500;
+        padding-left:0.875rem;
+        padding-top:0.875rem;
+    }
+    .measurements-container {
+        margin-top:0.75rem;
+        width:26.688rem;
+        height:10.25rem;
+        border-radius:0.375rem;
+        border:0.063rem solid rgba(0, 0, 0, 0.30);
+        background:#FFF;
+        display:flex;
+        justify-content: left;
+        align-items: left;
+    }
+    .table {
+        color:#000000;
+        font-size:1rem;
+        font-weight:400;
+    }
+    .td {
+        border-radius: 6px;
+        border-color:#000;
+        border-style: solid;
+        background: #FFF;
+        border-width: 1px;
+    }
+    .btn-back {
+        position:absolute;
+        left:1.875rem;
+        font-size:1.25rem;
+        font-weight:500;
+        border:none;
+        color:#000;
+        background:#F2F2F2;
+    }
+    .btn-edit {
+        position:absolute;
+        right:1.875rem;
+        border:none;
+        color:#000;
+        background:#F2F2F2;
+        font-size:1.25rem;
+        font-weight:500;
     }
     .button-container {
         width:13.375rem;
@@ -133,32 +181,6 @@
         box-shadow:0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         color:#FFF;
         font-size:20px;
-        font-weight:500;
-    }
-    .top-buttons {
-        margin-top:0.625rem;
-        margin-bottom:0.625rem;
-        width:28.063;
-        padding-top:0.625rem;
-        display:flex;
-        flex-direction:row;
-    }
-    .btn-back {
-        position:absolute;
-        left:1.875rem;
-        font-size:1.25rem;
-        font-weight:500;
-        border:none;
-        color:#000;
-        background:#F2F2F2;
-    }
-    .btn-edit {
-        position:absolute;
-        right:1.875rem;
-        border:none;
-        color:#000;
-        background:#F2F2F2;
-        font-size:1.25rem;
         font-weight:500;
     }
 </style>

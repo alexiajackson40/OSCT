@@ -6,9 +6,10 @@
     <div class="main-content">
         <!-- Side Buttons Container-->
         <div class="button-container mt-5 d-flex flex-column">      
-            <a class="table-btn btn-primary" role="button" href="{{ route('admin.patientUsers') }}">Patients</a>
-            <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnelUsers') }}">Personnel</a>
-            <a class="table-btn btn-primary" role="button" href="{{ route('admin.adminUsers') }}">Admin</a>
+            <!-- Update the route names to match the correct routes -->
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.patient_users') }}">Patients</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnel_users') }}">Personnel</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.admin_users') }}">Admin</a>
         </div>
         <div class="users-container mt-5">
             <div class="card">
@@ -21,8 +22,8 @@
             </div>
         </div>
     </div>
-<script src="{{ asset('src/loadContent.js') }}"></script>
-<script type="module" src="{{ asset('src/main.js') }}"></script> 
+    <script src="{{ asset('src/loadContent.js') }}"></script>
+    <script type="module" src="{{ asset('src/main.js') }}"></script> 
 </body>
 <style>
     .main-content {

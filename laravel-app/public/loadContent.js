@@ -3,7 +3,7 @@ function loadContent(userHeader)
 {
     //-----------------------------------------------------------------------Loads Header-------------------------------------------------------------------------
     const headerElement = document.getElementById('header');
-    if (headerElement.innerHTML.trim() !== "")
+    if (headerElement?.innerHTML.trim() !== "")
         {
             return;
         }
@@ -52,24 +52,40 @@ function navbarListeners() {
             });
         });
 
-    //------------------------------------------------------Event Listener for 'Profile' Page Button-------------------------------------------------------------
-    console.log('Adding Profile Event Listener.......................'); //console log output for status
-    const profileButton = document.getElementById('profile-button');
-    if(profileButton)
-        {
-            console.log('Profile Event Listener Added!'); //console log output for status
-            profileButton.addEventListener('click', function(event)
-            {
+    //------------------------------------------------------Event Listener for 'Profile' Dropdown Button-------------------------------------------------------------
+    console.log('Adding Profile Dropdown Event Listener.......................'); // console log output for status
+    const userType = sessionStorage.getItem('userType'); // get the stored user type
+    console.log('User Type:', userType); 
+    if (userType) {
+        const profileButton = document.getElementById('profile-button');
+        
+        if (profileButton) {
+            console.log('Profile Dropdown Event Listener Added!'); 
+            
+            profileButton.addEventListener('click', function (event) {
                 event.preventDefault();
-                const page = profileButton.getAttribute('data-page');
-                console.log('profile page', page); //console log output for error checking
+                const page = `${userType}_user/profile`; // dynamically set the profile page
                 fetchContent(page);
                 updateActiveTab(page);
                 updateHistory(page);
             });
+        } else {
+            console.warn('Profile button not found in the DOM.');
         }
+    }
+    //------------------------------------------------------Event Listener for 'Sign Out' Dropdown Button-------------------------------------------------------------
+    const signOutButton = document.getElementById('signout-button');
+    if (signOutButton) {
+        signOutButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            console.log('Signing out...');
+            // TODO: make sure this actually clears the storage
+            localStorage.clear(); // clear session or authentication data (?)
+            sessionStorage.clear();
+            loadLogin(); // call the function to load up the login page
+        });
+    }
 }
-
 //----------------------------------------------------------FUNCTION TO LOAD OTHER EVENT LISTENERS---------------------------------------------------------------------------------
 function eventListeners()
 {
@@ -88,9 +104,7 @@ function eventListeners()
             });
     });
     console.log('Listeners Added!'); //console log output for status 
-    console.log(''); //console log output for status
-
-    //--------------------------------------------------Event Listener for Listed Users-------------------------------------------------------------
+//--------------------------------------------------Event Listener for Listed Users-------------------------------------------------------------
     console.log('Adding Listed Users Event Listeners.......................'); //console log output for status
     document.querySelectorAll('.listed-user').forEach(user =>
     {
@@ -106,9 +120,7 @@ function eventListeners()
             });
     });
     console.log('Listeners Added!'); //console log output for status 
-    console.log(''); //console log output for status
-
-    //--------------------------------------------------Event Listener for Patient Profile Records Buttons-------------------------------------------------------------
+//--------------------------------------------------Event Listener for Patient Profile Records Buttons-------------------------------------------------------------
     console.log('Adding Patient Profile Records Buttons Event Listeners.......................'); //console log output for status
     document.querySelectorAll('.record-btn').forEach(recordButton =>
     {
@@ -123,9 +135,7 @@ function eventListeners()
             });
     });
     console.log('Listeners Added!'); //console log output for status 
-    console.log(''); //console log output for status
-
-    //------------------------------------------------------Event Listener for 'Back' Page Button-------------------------------------------------------------
+//------------------------------------------------------Event Listener for 'Back' Page Button-------------------------------------------------------------
     console.log('Adding Back Button Event Listener.......................'); //console log output for status
     const backButton = document.getElementById('back-btn');
     if(backButton)
@@ -142,9 +152,7 @@ function eventListeners()
             });
         }
     console.log('Listeners Added!'); //console log output for status 
-    console.log(''); //console log output for status
-
-    //------------------------------------------------------Event Listener for Add User Button-------------------------------------------------------------
+//------------------------------------------------------Event Listener for Add User Button-------------------------------------------------------------
     console.log('Adding Add User Event Listener.......................'); //console log output for status
     const addButton = document.getElementById('add-btn');
     if(addButton)
@@ -160,31 +168,82 @@ function eventListeners()
             });
         }
     console.log('Listeners Added!'); //console log output for status 
-    console.log(''); //console log output for status
+}
+//----------------------------------------------------------------FUNCTION TO LOAD USERS TABLE-------------------------------------------------------------
+function getUsersBody(data, body)
+{
+    const ref = body.getAttribute('href');
+    const page = body.getAttribute('data-page');
+    let rows = "";
+    for(i = 0; i < data.length; i++)
+        {
+            let row = `<tr class="listed-user" href="${ref}" data-page="${page}">`;
+            for(let item in data[i])
+            {
+                row += `<td>${data[i][item]}</td>`;
+            }
+            row += "</tr>";
+            rows += row;
+        }
+    body.innerHTML = rows;
+    eventListeners();
+}
+//----------------------------------------------------------------FUNCTION TO LOAD PROFILE TABLE-------------------------------------------------------------
+function getProfileTable(keys, data, table)
+{
+    let rows = "";
+    for(i = 0; i < data.length; i++)
+        {
+            j = 0;
+            for(let item in data[i])
+            {
+                let row = "<tr>";
+                row += `<th>${keys[j]}</th>
+                    <td>${data[i][item]}</td>
+                    </tr>`;
+                rows += row;
+                j++
+            }
+        }
+    table.innerHTML = rows;
+    eventListeners();
 }
 //----------------------------------------------------------------FUNCTION TO LOAD TABLE HEADER-------------------------------------------------------------
-function getHead(){ //loads in the header row of the table
-    const table = document.getElementById('Table');
+function getHead(table){ //loads in the header row of the table
     const tableData = table.getAttribute('table-data');
     fetch(`${tableData}`)
     .then(response => {
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         } 
-        //console.log('response',response.text());
         response.json().then(result=>
         {
-        console.log('result:', result);
         const column = result.keys;
         const header = document.querySelector('thead');
-        let rows = "<tr>";
-        for(i = 0; i < column.length; i++)
+        if(header)
         {
-            rows += `<th>${column[i]}</th>`;
+            let rows = "<tr>";
+            for(i = 0; i < column.length; i++)
+            {
+                rows += `<th>${column[i]}</th>`;
+            }
+            rows += "</tr>";
+            header.innerHTML = rows;
+            const body = document.querySelector('tbody');
+            const bodyTag = body.getAttribute('tag');
+            if(bodyTag === "link")
+            {
+                getUsersBody(result.data, body);
+            }
+            else
+            {
+                getBody(result.data); //loads in the body rows of the table
+            }
         }
-        rows += "</tr>";
-        header.innerHTML = rows;
-        getBody(result.data); //loads in the body rows of the table
+        else
+        {
+            getProfileTable(result.keys, result.data, table);
+        }
         });
     })  
     .catch(error => 
@@ -192,7 +251,6 @@ function getHead(){ //loads in the header row of the table
         console.error('Failed to fetch table data', error);
     });
 }
-
 //----------------------------------------------------------------FUNCTION TO LOAD TABLE BODY-------------------------------------------------------------
 function getBody(data)
 {
@@ -201,38 +259,43 @@ function getBody(data)
     for(i = 0; i < data.length; i++)
         {
             let row = "<tr>";
-            for(let item in data[i]){
+            for(let item in data[i])
+            {
                 row += `<td>${data[i][item]}</td>`;
             }
             row += "</tr>";
             rows += row;
         }
     body.innerHTML = rows;
+    eventListeners();
 }
-
 //----------------------------------------------------------------FUNCTION TO FETCH AND LOAD CONTENT-------------------------------------------------------------
 function fetchContent(page) 
 {
     //console.clear(); //used to simplify previous logs so I could focus on these logs for error checking
     console.log('Fetching Content.......................'); //console log output for status
     const contentElement = document.getElementById('content');
-    fetch(`/resources/views/${page}.blade.php`)
+    fetch(`/src/components/${page}.html`)
     .then(response => response.text())
     .then(data => 
     {
+        //TODO: Fix this to make listers function to wait until table is loaded in
+        //possibly make function who runs with a returned value from getHead()
         if (contentElement) 
             {
                 contentElement.innerHTML = data;
                 if(contentElement.querySelector('table'))
                 {
-                    console.log('Loading Table...');
-                    getHead();
+                    contentElement.querySelectorAll('table').forEach(table => 
+                    {
+                        console.log('Loading Table...');
+                        getHead(table);
+                        console.log('Table Loaded!');
+                    });
                 }
                 console.log('Content Loaded!'); //console log output for status
-                console.log(''); //console log output for status
                 contentElement.classList.remove('loading');        
-                eventListeners();  
-
+                eventListeners(); 
             }
     })
     .catch(error => 
@@ -297,38 +360,3 @@ function getLinkPage(link)
     console.log('Path:', linkPath); //console log output for status
     return linkPath;
 }
-
-//keeping this here for future use
-
-/*------------------------------------------------------------------FUNCTION TO RENDER TABLES--------------------------------------------------------------------
-function renderTable(page, tableID) 
-{
-    console.log('.......................Rendering Table.......................'); //console log output for status
-    const tableElement = document.getElementsById('table');
-    const tempData = document.createElement('div');
-    fetch(`/src/components/${page}.html`)
-    .then(response => response.text())
-    .then(data => 
-    {
-        tempData.innerHTML = data;
-        const tableData = tempData.querySelector(tableID);
-        if (tableElement) 
-            {
-            tableElement.innerHTML = tableData.innerHTML;
-            tableElement.classList.remove('loading');
-            }
-        else 
-            {
-            console.error('Requested table not found:', tableID); //console log error for error handling
-            }
-        console.log('Table Rendered!'); //console log output for status
-    })
-    .catch(error => 
-    {
-        console.error('There was a problem with the fetch operation:', error); //console log error for error handling
-        if (tableElement) 
-            {
-            tableElement.classList.remove('loading');
-            }
-    });
-} */
