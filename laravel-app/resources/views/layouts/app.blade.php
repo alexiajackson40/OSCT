@@ -12,6 +12,7 @@
     <!-- Include the header_admin view -->
     @include('admin_user.header_admin')
 
+    @include('patient_user.header_patient')
     <!-- Content section -->
     <div class="container">
         @yield('content')

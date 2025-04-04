@@ -1,0 +1,70 @@
+[2025-04-02 22:41:49] production.ERROR: The C:\Users\tuckm\OneDrive\Desktop\OSCT\OSCT\Team5_DB\bootstrap\cache directory must be present and writable. {"exception":"[object] (Exception(code: 0): The C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\bootstrap\\cache directory must be present and writable. at C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php:179)
+[stacktrace]
+#0 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(132): Illuminate\\Foundation\\PackageManifest->write()
+#1 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(108): Illuminate\\Foundation\\PackageManifest->build()
+#2 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(91): Illuminate\\Foundation\\PackageManifest->getManifest()
+#3 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(80): Illuminate\\Foundation\\PackageManifest->config()
+#4 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterFacades.php(26): Illuminate\\Foundation\\PackageManifest->aliases()
+#5 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(342): Illuminate\\Foundation\\Bootstrap\\RegisterFacades->bootstrap()
+#6 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(474): Illuminate\\Foundation\\Application->bootstrapWith()
+#7 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(196): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#8 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1235): Illuminate\\Foundation\\Console\\Kernel->handle()
+#9 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\artisan(16): Illuminate\\Foundation\\Application->handleCommand()
+#10 {main}
+"} 
+[2025-04-02 22:42:16] production.ERROR: The C:\Users\tuckm\OneDrive\Desktop\OSCT\OSCT\Team5_DB\bootstrap\cache directory must be present and writable. {"exception":"[object] (Exception(code: 0): The C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\bootstrap\\cache directory must be present and writable. at C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php:179)
+[stacktrace]
+#0 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(132): Illuminate\\Foundation\\PackageManifest->write()
+#1 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(108): Illuminate\\Foundation\\PackageManifest->build()
+#2 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(91): Illuminate\\Foundation\\PackageManifest->getManifest()
+#3 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(80): Illuminate\\Foundation\\PackageManifest->config()
+#4 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterFacades.php(26): Illuminate\\Foundation\\PackageManifest->aliases()
+#5 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(342): Illuminate\\Foundation\\Bootstrap\\RegisterFacades->bootstrap()
+#6 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(474): Illuminate\\Foundation\\Application->bootstrapWith()
+#7 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(196): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#8 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1235): Illuminate\\Foundation\\Console\\Kernel->handle()
+#9 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\artisan(16): Illuminate\\Foundation\\Application->handleCommand()
+#10 {main}
+"} 
+[2025-04-02 22:44:33] production.ERROR: The C:\Users\tuckm\OneDrive\Desktop\OSCT\OSCT\Team5_DB\bootstrap\cache directory must be present and writable. {"exception":"[object] (Exception(code: 0): The C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\bootstrap\\cache directory must be present and writable. at C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php:179)
+[stacktrace]
+#0 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(132): Illuminate\\Foundation\\PackageManifest->write()
+#1 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(108): Illuminate\\Foundation\\PackageManifest->build()
+#2 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(91): Illuminate\\Foundation\\PackageManifest->getManifest()
+#3 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(80): Illuminate\\Foundation\\PackageManifest->config()
+#4 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterFacades.php(26): Illuminate\\Foundation\\PackageManifest->aliases()
+#5 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(342): Illuminate\\Foundation\\Bootstrap\\RegisterFacades->bootstrap()
+#6 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(474): Illuminate\\Foundation\\Application->bootstrapWith()
+#7 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(196): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#8 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1235): Illuminate\\Foundation\\Console\\Kernel->handle()
+#9 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\artisan(16): Illuminate\\Foundation\\Application->handleCommand()
+#10 {main}
+"} 
+[2025-04-02 22:47:15] production.ERROR: The C:\Users\tuckm\OneDrive\Desktop\OSCT\OSCT\Team5_DB\bootstrap\cache directory must be present and writable. {"exception":"[object] (Exception(code: 0): The C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\bootstrap\\cache directory must be present and writable. at C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php:179)
+[stacktrace]
+#0 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(132): Illuminate\\Foundation\\PackageManifest->write()
+#1 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(108): Illuminate\\Foundation\\PackageManifest->build()
+#2 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(91): Illuminate\\Foundation\\PackageManifest->getManifest()
+#3 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(80): Illuminate\\Foundation\\PackageManifest->config()
+#4 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterFacades.php(26): Illuminate\\Foundation\\PackageManifest->aliases()
+#5 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(342): Illuminate\\Foundation\\Bootstrap\\RegisterFacades->bootstrap()
+#6 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(474): Illuminate\\Foundation\\Application->bootstrapWith()
+#7 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(196): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#8 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1235): Illuminate\\Foundation\\Console\\Kernel->handle()
+#9 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\artisan(16): Illuminate\\Foundation\\Application->handleCommand()
+#10 {main}
+"} 
+[2025-04-02 22:53:19] production.ERROR: The C:\Users\tuckm\OneDrive\Desktop\OSCT\OSCT\Team5_DB\bootstrap\cache directory must be present and writable. {"exception":"[object] (Exception(code: 0): The C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\bootstrap\\cache directory must be present and writable. at C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php:179)
+[stacktrace]
+#0 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(132): Illuminate\\Foundation\\PackageManifest->write()
+#1 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(108): Illuminate\\Foundation\\PackageManifest->build()
+#2 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(91): Illuminate\\Foundation\\PackageManifest->getManifest()
+#3 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(80): Illuminate\\Foundation\\PackageManifest->config()
+#4 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterFacades.php(26): Illuminate\\Foundation\\PackageManifest->aliases()
+#5 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(342): Illuminate\\Foundation\\Bootstrap\\RegisterFacades->bootstrap()
+#6 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(474): Illuminate\\Foundation\\Application->bootstrapWith()
+#7 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(196): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#8 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1235): Illuminate\\Foundation\\Console\\Kernel->handle()
+#9 C:\\Users\\tuckm\\OneDrive\\Desktop\\OSCT\\OSCT\\Team5_DB\\artisan(16): Illuminate\\Foundation\\Application->handleCommand()
+#10 {main}
+"} 

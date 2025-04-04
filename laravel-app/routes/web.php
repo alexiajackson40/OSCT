@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminUsersController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PersonnelController;
+use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 
@@ -78,7 +79,12 @@ Route::prefix('personnel')->group(function () {
     Route::get('patients/documents', [PersonnelController::class, 'documents'])->name('personnel.documents');
 });
 
-// Patient Routes
+//Patient User Routes
 Route::prefix('patient')->group(function () {
-    Route::get('home', [HomeController::class, 'patientHome'])->name('patient.home');
+    Route::get('home', [PatientController::class, 'home'])->name('patient.home');
+    Route::get('profile', [PatientController::class, 'profile'])->name('patient.profile');
+    Route::get('documents', [PatientController::class, 'documents'])->name('patient.documents'); //working
+    Route::get('lab-results', [PatientController::class, 'labResults'])->name('patient.lab_results');
+    Route::get('schedule', [PatientController::class, 'schedule'])->name('patient.schedule');
+    Route::get('signup', [PatientController::class, 'signUp'])->name('patient.signup');  //working
 });
