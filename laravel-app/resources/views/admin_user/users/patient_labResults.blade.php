@@ -2,13 +2,15 @@
 <html lang="en">
 <!-- Patient Lab Results Content -->
 <body>
-    <div id="header"></div> 
+    <!-- Include the header dynamically -->
+    @include('admin_user.header_admin')
+
     <div class="main-content">
-        <div class="document-container mt-5b">
+        <div class="document-container mt-5">
             <div class="card">
                 <div class="top-buttons d-flex flex-row align-self-center">
-                    <a id="back-btn" class="btn-back" href="{{ route('admin.patient_users') }}">&lt; Go Back</a>
-                    <button class="btn-edit" data-toggle="modal" data-target="#uploadLabResultModal">[Upload Lab Result]</button>
+                    <a id="back-btn" class="btn-back" href="{{ route('admin.patientUsers') }}">&lt; Go Back</a>
+                    <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#uploadLabResultModal">[Upload Lab Result]</button>
                 </div>
                 <div class="card-body d-flex flex-column">
                     <div class="document-content">
@@ -26,9 +28,14 @@
                                 @foreach($labResults as $labResult)
                                     <tr>
                                         <td>{{ $labResult->name }}</td>
-                                        <td>{{ $labResult->user->name }}</td>
+                                        <td>{{ $labResult->uploaded_by }}</td>
                                         <td>
-                                            <a href="{{ route('admin.labResultDownload', $labResult->id) }}" class="btn btn-primary">Download</a>
+                                            <a href="{{ route('admin.labResultDownload', $labResult->id) }}" class="btn btn-primary btn-sm">Download</a>
+                                            <form action="{{ route('admin.deleteLabResult', $labResult->id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -39,23 +46,21 @@
             </div>
         </div>
         <div class="button-container mt-5 d-flex flex-column">      
-            <!-- Update links for other patient-related actions -->
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.patient_profile', $patient->id) }}">Patient Profile</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.patient_measurements', $patient->id) }}">Measurements</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.patient_documents', $patient->id) }}">Documents</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.patient_labResults', $patient->id) }}">Lab Results</a>
+            <!-- Updated links for other patient-related actions -->
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_profile', $patient->id) }}">Patient Profile</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_measurements', $patient->id) }}">Measurements</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_documents', $patient->id) }}">Documents</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_labResults', $patient->id) }}">Lab Results</a>
         </div>
     </div>
 
     <!-- Modal for Uploading Lab Result -->
-    <div class="modal fade" id="uploadLabResultModal" tabindex="-1" role="dialog" aria-labelledby="uploadLabResultModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade" id="uploadLabResultModal" tabindex="-1" aria-labelledby="uploadLabResultModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="uploadLabResultModalLabel">Upload New Lab Result</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('admin.uploadLabResult', $patient->id) }}" method="POST" enctype="multipart/form-data">
@@ -76,6 +81,7 @@
     </div>
 </body>
 
+<!-- Existing Styling Maintained -->
 <style>
     .main-content{
         margin-top:2rem;

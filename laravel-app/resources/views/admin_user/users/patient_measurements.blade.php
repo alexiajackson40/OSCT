@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Patient User Profile Page -->
+<!-- Patient Measurements Page -->
 <body>
-    <div id="header"></div> 
+    <!-- Include the header dynamically -->
+    @include('admin_user.header_admin')
+
     <div class="main-content d-flex align-self-center">
-        <div class="profile-container mt-5"> <!-- mt-5: larger top margin -->
+        <div class="profile-container mt-5">
             <div class="card">
                 <div class="top-buttons d-flex flex-row align-self-center">
-                    <a href="{{ route('admin.users.patient_users') }}" class="btn-back">&lt; Go Back</a>
-                    <button class="btn-edit" data-toggle="modal" data-target="#uploadMeasurementModal">[Update Measurements]</button>
+                    <a href="{{ route('admin.patientUsers') }}" class="btn-back">&lt; Go Back</a>
+                    <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#uploadMeasurementModal">[Update Measurements]</button>
                 </div>
-                <div class="card-body d-flex flex-column align-self-center align-items-left"> <!-- Makes card customizable -->
+                <div class="card-body d-flex flex-column align-self-center align-items-left">
                     <h1 class="card-title">Patient Measurements</h1>
                     <div class="measurements-container d-flex flex-column align-items-left">
                         <table id="Table" class="table">
@@ -44,14 +46,12 @@
     </div>
 
     <!-- Modal for Uploading Measurement -->
-    <div class="modal fade" id="uploadMeasurementModal" tabindex="-1" role="dialog" aria-labelledby="uploadMeasurementModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade" id="uploadMeasurementModal" tabindex="-1" aria-labelledby="uploadMeasurementModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="uploadMeasurementModalLabel">Upload New Measurement</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('admin.uploadMeasurement', $patient->id) }}" method="POST" enctype="multipart/form-data">
@@ -76,6 +76,7 @@
     </div>
 </body>
 
+<!-- Existing Styling Preserved -->
 <style>
     .main-content {
         display:flex;

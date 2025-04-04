@@ -2,24 +2,27 @@
 <html lang="en">
 <!-- Admin User Profile Page -->
 <body>
-    <div id="header"></div> 
+    <!-- Include the header dynamically -->
+    @include('admin_user.header_admin')
+
     <div class="main-content">
         <div class="profile-container mt-5">
             <div class="card">
                 <div class="top-buttons d-flex flex-row align-self-center">
-                    <!-- Corrected route name to match the existing route for back button -->
-                    <a id="back-btn" class="btn-back" href="{{ route('admin.admin_users') }}">&lt; Go Back</a>
-                    <button class="btn-edit">[Edit Information]</button>
+                    <!-- Back Button -->
+                    <a id="back-btn" class="btn-back" href="{{ route('admin.adminUsers') }}">&lt; Go Back</a>
+                    <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#editAdminModal">[Edit Information]</button>
                 </div>
                 <div class="card-body d-flex flex-column align-self-center">
-                    <h1 class="card-title">{{ $admin->first_name }} {{ $admin->last_name }}</h1> <!-- Assuming 'first_name' and 'last_name' -->
+                    <!-- Admin Info -->
+                    <h1 class="card-title">{{ $admin->first_name }} {{ $admin->last_name }}</h1>
                     <div class="information-container d-flex flex-column align-items-left">
                         <h2 class="container-header">User Information</h2>
                         <table id="Table" class="table">
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>{{ $admin->first_name }} {{ $admin->last_name }}</th> <!-- Assuming first and last names -->
+                                    <th>{{ $admin->first_name }} {{ $admin->last_name }}</th>
                                 </tr>
                                 <tr>
                                     <th>Email</th>
@@ -28,13 +31,15 @@
                             </thead>
                         </table>
                     </div>
+
+                    <!-- Contact Info -->
                     <div class="contact-container d-flex flex-column align-items-left">
                         <h2 class="container-header">Contact Information</h2>
                         <table id="Table" class="table">
                             <thead>
                                 <tr>
                                     <th>Phone</th>
-                                    <th>{{ $admin->phone ?? 'N/A' }}</th> <!-- Optional Phone field -->
+                                    <th>{{ $admin->phone ?? 'N/A' }}</th>
                                 </tr>
                             </thead>
                         </table>
@@ -43,9 +48,49 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('src/loadContent.js') }}"></script>
-    <script type="module" src="{{ asset('src/main.js') }}"></script>
+
+    <!-- Modal for Editing Admin Information -->
+    <div class="modal fade" id="editAdminModal" tabindex="-1" aria-labelledby="editAdminModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editAdminModalLabel">Edit Admin Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('admin.updateAdmin', $admin->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+
+                        <div class="form-group">
+                            <label for="first_name">First Name</label>
+                            <input type="text" name="first_name" id="first_name" value="{{ $admin->first_name }}" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" name="last_name" id="last_name" value="{{ $admin->last_name }}" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" value="{{ $admin->email }}" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" name="phone" id="phone" value="{{ $admin->phone }}" class="form-control">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
+<!-- Existing Styling Preserved -->
 <style>
     .main-content {
         display: flex;

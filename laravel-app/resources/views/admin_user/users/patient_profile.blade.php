@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Patient User Profile Page-->
+<!-- Patient User Profile Page -->
 <body>
-    <div id="header"></div> 
+    <!-- Include the header dynamically -->
+    @include('admin_user.header_admin') 
+
     <div class="main-content d-flex align-self-center">
         <div class="profile-container mt-5">
             <div class="card">
+                <!-- Top Buttons -->
                 <div class="top-buttons d-flex flex-row align-self-center">
-                    <a href="{{ route('admin.users.patientUsers') }}" class="btn-back">&lt; Go Back</a>
-                    <button class="btn-edit">[Edit Information]</button>
+                    <a href="{{ route('admin.patientUsers') }}" class="btn-back">&lt; Go Back</a>
+                    <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#editPatientModal">[Edit Information]</button>
                 </div>
+
+                <!-- Patient Information -->
                 <div class="card-body d-flex flex-column align-self-center">
                     <h1 class="card-title">{{ $patient->first_name }} {{ $patient->last_name }}</h1>
                     <div class="information-container d-flex flex-column align-items-left">
@@ -29,6 +34,8 @@
                             </tr>
                         </table>
                     </div>
+                    
+                    <!-- Contact Information -->
                     <div class="contact-container d-flex flex-column align-items-left">
                         <h2 class="container-header">Contact Information</h2>
                         <table id="Table" class="table">
@@ -44,6 +51,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Navigation Buttons -->
             <div class="button-container mt-5 d-flex flex-column">      
                 <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_profile', $patient->id) }}">Patient Profile</a>
                 <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_measurements', $patient->id) }}">Measurements</a>
@@ -52,8 +61,49 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal for Editing Patient Information -->
+    <div class="modal fade" id="editPatientModal" tabindex="-1" aria-labelledby="editPatientModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editPatientModalLabel">Edit Patient Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('admin.updatePatient', $patient->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+
+                        <div class="form-group">
+                            <label for="first_name">First Name</label>
+                            <input type="text" name="first_name" id="first_name" value="{{ $patient->first_name }}" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" name="last_name" id="last_name" value="{{ $patient->last_name }}" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone_number">Phone Number</label>
+                            <input type="text" name="phone_number" id="phone_number" value="{{ $patient->phone_number }}" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" name="address" id="address" value="{{ $patient->address }}" class="form-control">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
+<!-- Existing Styling Maintained -->
 <style>
     .main-content {
         display:flex;

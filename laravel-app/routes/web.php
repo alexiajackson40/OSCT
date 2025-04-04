@@ -5,13 +5,16 @@ use App\Http\Controllers\AdminUsersController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PersonnelController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\HomeController; // Import the HomeController
+use App\Http\Controllers\HomeController;
 
 // Main Route
-Route::get('/', [HomeController::class, 'home'])->name('home'); // Main route for the home page
+Route::get('/', [HomeController::class, 'home'])->name('home');
 
 // Login Route
-Route::get('/login', [HomeController::class, 'login'])->name('login'); // Define the login route with the 'login' name
+Route::middleware('guest')->group(function () {
+    Route::view('/login', 'login')->name('login'); // Login form
+    Route::post('/login', [AuthController::class, 'authenticate'])->name('login'); // Handle login request
+});
 
 // Register Route
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
@@ -32,17 +35,33 @@ Route::prefix('admin')->group(function () {
     })->name('admin.header_admin');
 
     // Admin User Management Routes
-    Route::get('users', [AdminController::class, 'users'])->name('admin.users'); // List Users Page
-    Route::get('add-user', [AdminController::class, 'addUser'])->name('admin.addUser'); // Add User Page
+    Route::get('users', [AdminController::class, 'users'])->name('admin.users');
+    Route::get('add-user', [AdminController::class, 'addUser'])->name('admin.addUser');
 
     // Admin > Specific User Groups
-    Route::get('users/patient', [AdminController::class, 'patientUsers'])->name('admin.patientUsers'); // Patients
-    Route::get('users/personnel', [AdminController::class, 'personnelUsers'])->name('admin.personnelUsers'); // Personnel
-    Route::get('users/admin', [AdminController::class, 'adminUsers'])->name('admin.adminUsers'); // Admins
+    Route::get('users/patient', [AdminUsersController::class, 'patientUsers'])->name('admin.patientUsers');
+    Route::get('users/personnel', [AdminUsersController::class, 'personnelUsers'])->name('admin.personnelUsers');
+    Route::get('users/admin', [AdminUsersController::class, 'adminUsers'])->name('admin.adminUsers');
+
+    // Patient-Specific Routes
+    Route::get('users/patient/profile/{id}', [AdminUsersController::class, 'patientProfile'])->name('admin.users.patient_profile');
+    Route::get('users/patient/measurements/{id}', [AdminUsersController::class, 'patientMeasurements'])->name('admin.users.patient_measurements');
+    Route::get('users/patient/documents/{id}', [AdminUsersController::class, 'patientDocuments'])->name('admin.users.patient_documents');
+    Route::get('users/patient/labResults/{id}', [AdminUsersController::class, 'patientLabResults'])->name('admin.users.patient_labResults');
+
+    // Document Routes
+    Route::get('documents/{documentId}/download', [AdminUsersController::class, 'downloadDocument'])->name('admin.downloadDocument');
+    Route::post('documents/upload/{id}', [AdminUsersController::class, 'uploadDocument'])->name('admin.uploadDocument');
+    Route::delete('documents/{documentId}/delete', [AdminUsersController::class, 'deleteDocument'])->name('admin.deleteDocument');
+
+    // Lab Result Routes
+    Route::get('labResult/download/{id}', [AdminUsersController::class, 'downloadLabResult'])->name('admin.labResultDownload');
+    Route::post('labResult/upload/{id}', [AdminUsersController::class, 'uploadLabResult'])->name('admin.uploadLabResult');
+    Route::delete('labResult/delete/{id}', [AdminUsersController::class, 'deleteLabResult'])->name('admin.deleteLabResult');
 
     // Admin Schedule Routes
-    Route::get('schedule', [AdminController::class, 'schedule'])->name('schedule.index'); // Schedule Page
-    Route::get('schedule/edit/{id}', [AdminController::class, 'scheduleEdit'])->name('schedule.edit'); // Edit Schedule
+    Route::get('schedule', [AdminController::class, 'schedule'])->name('schedule.index');
+    Route::get('schedule/edit/{id}', [AdminController::class, 'scheduleEdit'])->name('schedule.edit');
 
     // Logout Route
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -50,18 +69,16 @@ Route::prefix('admin')->group(function () {
 
 // Personnel Routes
 Route::prefix('personnel')->group(function () {
-    // Personnel Home Page
     Route::get('home', [PersonnelController::class, 'home'])->name('personnel.home');
-
-    // Personnel Profile Routes
     Route::get('profile/{id}', [PersonnelController::class, 'personnelProfile'])->name('personnel.profile');
-
-    // Personnel Schedule Routes
     Route::get('schedule', [PersonnelController::class, 'schedule'])->name('personnel.schedule');
-
-    // Personnel Patient Routes
     Route::get('patients/{id}/lab-results', [PersonnelController::class, 'patientLabResults'])->name('personnel.patientLabResults');
     Route::get('patients/{id}/measurements', [PersonnelController::class, 'patientMeasurements'])->name('personnel.patientMeasurements');
     Route::get('patients/{id}/profile', [PersonnelController::class, 'patientProfile'])->name('personnel.patientProfile');
     Route::get('patients/documents', [PersonnelController::class, 'documents'])->name('personnel.documents');
+});
+
+// Patient Routes
+Route::prefix('patient')->group(function () {
+    Route::get('home', [HomeController::class, 'patientHome'])->name('patient.home');
 });

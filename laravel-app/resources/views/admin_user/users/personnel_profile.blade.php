@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Personnel User Profile Page-->
+<!-- Personnel User Profile Page -->
 <body>
-    <div id="header"></div> 
+    <!-- Include the header dynamically -->
+    @include('admin_user.header_admin')
+
     <div class="main-content">
         <div class="profile-container mt-5">
             <div class="card">
                 <div class="top-buttons d-flex flex-row align-self-center">
-                    <a href="{{ route('admin.users.personnel_users') }}" class="btn-back">&lt; Go Back</a>
-                    <button class="btn-edit">[Edit Information]</button>
+                    <a href="{{ route('admin.personnelUsers') }}" class="btn-back">&lt; Go Back</a>
+                    <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#editPersonnelModal">[Edit Information]</button>
                 </div>
                 <div class="card-body d-flex flex-column align-self-center">
                     <h1 class="card-title">{{ $personnel->first_name }} {{ $personnel->last_name }}</h1>
@@ -46,14 +48,49 @@
             </div>
         </div>
     </div>
-    <div class="button-container mt-5 d-flex flex-column">      
-        <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.personnel_profile', $personnel->id) }}">Personnel Profile</a>
-        <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_measurements', $personnel->id) }}">Measurements</a>
-        <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_documents', $personnel->id) }}">Documents</a>
-        <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_labResults', $personnel->id) }}">Lab Results</a>
+
+    <!-- Modal for Editing Personnel Information -->
+    <div class="modal fade" id="editPersonnelModal" tabindex="-1" aria-labelledby="editPersonnelModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editPersonnelModalLabel">Edit Personnel Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('admin.updatePersonnel', $personnel->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+
+                        <div class="form-group">
+                            <label for="first_name">First Name</label>
+                            <input type="text" name="first_name" id="first_name" value="{{ $personnel->first_name }}" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" name="last_name" id="last_name" value="{{ $personnel->last_name }}" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone_number">Phone Number</label>
+                            <input type="text" name="phone_number" id="phone_number" value="{{ $personnel->phone_number }}" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" name="address" id="address" value="{{ $personnel->address }}" class="form-control">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
+<!-- Existing Styling Preserved -->
 <style>
     .main-content {
         display:flex;

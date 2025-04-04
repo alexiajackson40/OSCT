@@ -2,20 +2,24 @@
 <html lang="en">
 <!-- List of Personnel Users -->
 <body>
-    <div id="header"></div>
+    <!-- Include the header dynamically -->
+    @include('admin_user.header_admin')
+
     <div class="main-content">
-        <!-- Side Buttons Container-->
+        <!-- Side Buttons Container -->
         <div class="button-container mt-5 d-flex flex-column">
-            <a class="table-btn btn-primary" role="button" href="{{ route('admin.users.patient_users') }}">Patients</a>
-            <a class="table-btn btn-primary" role="button" href="{{ route('admin.users.personnel_users') }}">Personnel</a>
-            <a class="table-btn btn-primary" role="button" href="{{ route('admin.users.admin_users') }}">Admin</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.patientUsers') }}">Patients</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnelUsers') }}">Personnel</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.adminUsers') }}">Admin</a>
         </div>
         <div class="users-container mt-5">
             <div class="card">
-                <a class="btn-page btn-primary" href="{{ route('admin.add_user') }}">[Add/Remove User]</a>
+                <!-- Add/Remove User -->
+                <a class="btn-page btn-primary" href="{{ route('admin.addUser') }}">[Add/Remove User]</a>
                 <div class="card-body d-flex flex-column">
                     <div class="document-content">
                         <h1 class="card-title">Personnel Users</h1>
+                        <!-- Table List -->
                         <table id="Table" class="table table-hover">
                             <thead>
                                 <tr>
@@ -30,7 +34,8 @@
                                         <td>{{ $person->first_name }} {{ $person->last_name }}</td>
                                         <td>{{ $person->email }}</td>
                                         <td>
-                                            <a href="{{ route('admin.users.personnel_profile', $person->id) }}" class="btn btn-primary">View Profile</a>
+                                            <!-- View Profile Button -->
+                                            <a href="{{ route('admin.users.personnel_profile', $person->id) }}" class="btn btn-primary btn-sm">View Profile</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -43,6 +48,7 @@
     </div>
 </body>
 
+<!-- Existing Styling Preserved -->
 <style>
     .main-content {
         display:flex;

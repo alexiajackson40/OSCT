@@ -2,19 +2,22 @@
 <html lang="en">
 <!-- List of Admin Users -->
 <body>
-    <div id="header"></div> 
+    <!-- Include the header dynamically -->
+    @include('admin_user.header_admin')
+
     <div class="main-content">
-        <!-- Side Buttons Container-->
+        <!-- Side Buttons Container -->
         <div class="button-container mt-5 d-flex flex-column">
-            <!-- Ensure that the route names match correctly for navigation -->
-            <a class="table-btn btn-primary" role="button" href="{{ route('admin.patient_users') }}">Patients</a>
-            <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnel_users') }}">Personnel</a>
-            <a class="table-btn btn-primary" role="button" href="{{ route('admin.admin_users') }}">Admin</a>
+            <!-- Corrected route names for navigation -->
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.patientUsers') }}">Patients</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnelUsers') }}">Personnel</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.adminUsers') }}">Admin</a>
         </div>
-        <div class="users-container mt-5"> <!-- mt-5: larger top margin -->
+        <div class="users-container mt-5">
             <div class="card">
-                <a class="btn-page btn-primary" href="{{ route('admin.add_user') }}">[Add/Remove User]</a>
-                <div class="card-body d-flex flex-column"> <!-- Makes card customizable -->
+                <!-- Add/Remove User -->
+                <a class="btn-page btn-primary" href="{{ route('admin.addUser') }}">[Add/Remove User]</a>
+                <div class="card-body d-flex flex-column">
                     <div class="document-content">
                         <h1 class="card-title">Admin Users</h1>
                         <!-- Table List Container -->
@@ -29,11 +32,11 @@
                             <tbody>
                                 @foreach($admins as $admin)
                                     <tr>
-                                        <td>{{ $admin->name }}</td> <!-- Ensure 'name' exists on the admin object -->
+                                        <td>{{ $admin->first_name }} {{ $admin->last_name }}</td>
                                         <td>{{ $admin->email }}</td>
                                         <td>
-                                            <!-- Correctly reference the profile view route for admins -->
-                                            <a href="{{ route('admin.users.admin_profile', $admin->id) }}" class="btn btn-primary">View Profile</a>
+                                            <!-- View Profile Button -->
+                                            <a href="{{ route('admin.users.admin_profile', $admin->id) }}" class="btn btn-primary btn-sm">View Profile</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -44,9 +47,9 @@
             </div>
         </div>
     </div>
-    <script src="/src/loadContent.js"></script>
-    <script type="module" src="/src/main.js"></script> 
 </body>
+
+<!-- Existing Styling Preserved -->
 <style>
     .main-content {
         display: flex;
