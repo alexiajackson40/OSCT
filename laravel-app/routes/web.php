@@ -29,6 +29,7 @@ Route::prefix('admin')->group(function () {
     Route::get('profile', [AdminController::class, 'profile'])->name('admin.profile');
     Route::get('profile/edit', [AdminController::class, 'editProfile'])->name('admin.editProfile');
     Route::put('profile/edit', [AdminController::class, 'updateProfile'])->name('admin.updateProfile');
+    Route::put('profile/update', [AdminController::class, 'updateProfile'])->name('update.profile');
 
     // Admin Header Route (Static View)
     Route::get('header_admin', function () {
@@ -43,6 +44,8 @@ Route::prefix('admin')->group(function () {
     Route::get('users/patient', [AdminUsersController::class, 'patientUsers'])->name('admin.patientUsers');
     Route::get('users/personnel', [AdminUsersController::class, 'personnelUsers'])->name('admin.personnelUsers');
     Route::get('users/admin', [AdminUsersController::class, 'adminUsers'])->name('admin.adminUsers');
+    Route::get('users/admin/profile/{id}', [AdminUsersController::class, 'adminProfile'])->name('admin.users.admin_profile'); // Admin profile
+    Route::put('users/admin/profile/{id}/update', [AdminUsersController::class, 'updateAdmin'])->name('admin.updateAdmin'); // Update Admin profile
 
     // Patient-Specific Routes
     Route::get('users/patient/profile/{id}', [AdminUsersController::class, 'patientProfile'])->name('admin.users.patient_profile');
@@ -79,7 +82,7 @@ Route::prefix('personnel')->group(function () {
     Route::get('patients/documents', [PersonnelController::class, 'documents'])->name('personnel.documents');
 });
 
-//Patient User Routes
+// Patient User Routes
 Route::prefix('patient')->group(function () {
     Route::get('home', [PatientController::class, 'home'])->name('patient.home');
     Route::get('profile', [PatientController::class, 'profile'])->name('patient.profile');

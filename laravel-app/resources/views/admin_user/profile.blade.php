@@ -7,7 +7,7 @@
         <div class="profile-container mt-5">
             <div class="card">
                 <!-- Button for editing profile -->
-                <button class="btn-page btn-primary" onclick="window.location='{{ route('edit.profile') }}'">[Edit Information]</button>
+                <button class="btn-page btn-primary" onclick="window.location='{{ route('admin.editProfile') }}'">[Edit Information]</button>
                 <div class="card-body d-flex flex-column align-self-center">
                     <h1 class="card-title">{{ $user->first_name }} {{ $user->last_name }}</h1>
                     <div class="information-container d-flex flex-column align-items-left">
@@ -99,12 +99,4 @@
         right: 4px;
         width: 214px;
         height: 60px;
-        border: none;
-        color: #000;
-        background: #F2F2F2;
-        font-size: 20px;
-        font-weight: 500;
-        text-decoration-line: underline;
-    }
-</style>
-</html>
+        border:

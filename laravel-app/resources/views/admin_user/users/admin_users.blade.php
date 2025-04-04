@@ -8,7 +8,7 @@
     <div class="main-content">
         <!-- Side Buttons Container -->
         <div class="button-container mt-5 d-flex flex-column">
-            <!-- Corrected route names for navigation -->
+            <!-- Correct route names for navigation -->
             <a class="table-btn btn-primary" role="button" href="{{ route('admin.patientUsers') }}">Patients</a>
             <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnelUsers') }}">Personnel</a>
             <a class="table-btn btn-primary" role="button" href="{{ route('admin.adminUsers') }}">Admin</a>
