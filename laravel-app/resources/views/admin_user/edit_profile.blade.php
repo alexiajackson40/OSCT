@@ -24,6 +24,10 @@
                                 <label for="username">Username</label>
                                 <input type="text" name="username" class="form-control" id="username" value="{{ $user->username }}" required>
                             </div>
+                            <div class="mb-3">
+                                <label for="phone_number">Phone Number</label>
+                                <input type="text" name="phone_number" class="form-control" id="phone_number" value="{{ $user->phone_number }}" required>
+                            </div>
                             <!-- Add more fields if needed -->
                         </div>
                         <button class="btn btn-primary" type="submit">Update Profile</button>

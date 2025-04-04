@@ -73,29 +73,29 @@ class AdminUsersController extends Controller
         return view('admin_user.users.patient_measurements', compact('measurements'));
     }
 
-    // Fetch Patient Documents
-    public function patientDocuments($id)
+    // Fetch All Patient Documents
+    public function allPatientDocuments()
     {
-        $documents = Document::where('user_id', $id)->get();
+        // Fetch all documents with related patient data
+        $documents = Document::with('user')->get();
         return view('admin_user.users.patient_documents', compact('documents'));
-    }
-
-    // Fetch Patient Lab Results
-    public function patientLabResults($id)
-    {
-        $labResults = LabResult::where('user_id', $id)->get();
-        return view('admin_user.users.patient_labResults', compact('labResults'));
     }
 
     // Download Document
     public function downloadDocument($documentId)
     {
         $document = Document::findOrFail($documentId);
-        return response()->download(storage_path("app/public/documents/{$document->file_name}"));
+        $filePath = storage_path("app/" . $document->file_name);
+
+        if (!file_exists($filePath)) {
+            abort(404, 'File not found.');
+        }
+
+        return response()->download($filePath);
     }
 
     // Upload Document
-    public function uploadDocument(Request $request, $id)
+    public function uploadDocument(Request $request, $id = null)
     {
         $request->validate([
             'document_name' => 'required|string|max:255',
@@ -111,14 +111,14 @@ class AdminUsersController extends Controller
             'file_name' => $path,
         ]);
 
-        return redirect()->route('admin.users.patient_documents', $id)->with('success', 'Document uploaded successfully!');
+        return redirect()->route('admin.users.patient_documents')->with('success', 'Document uploaded successfully!');
     }
 
     // Delete Document
     public function deleteDocument($documentId)
     {
         $document = Document::findOrFail($documentId);
-        $filePath = storage_path("app/public/documents/{$document->file_name}");
+        $filePath = storage_path("app/" . $document->file_name);
 
         if (file_exists($filePath)) {
             unlink($filePath);
@@ -126,47 +126,5 @@ class AdminUsersController extends Controller
 
         $document->delete();
         return redirect()->back()->with('success', 'Document deleted successfully!');
-    }
-
-    // Download Lab Result
-    public function downloadLabResult($id)
-    {
-        $labResult = LabResult::findOrFail($id);
-        return response()->download(storage_path("app/public/labResults/{$labResult->file_name}"));
-    }
-
-    // Upload Lab Result
-    public function uploadLabResult(Request $request, $id)
-    {
-        $request->validate([
-            'lab_result' => 'required|file|mimes:pdf,jpg,png|max:10240',
-            'description' => 'required|string|max:255',
-        ]);
-
-        $labResultFile = $request->file('lab_result');
-        $path = $labResultFile->storeAs('public/labResults', time() . '-' . $labResultFile->getClientOriginalName());
-
-        LabResult::create([
-            'user_id' => $id,
-            'name' => $labResultFile->getClientOriginalName(),
-            'file_name' => $path,
-            'description' => $request->input('description'),
-        ]);
-
-        return redirect()->route('admin.users.patient_labResults', $id)->with('success', 'Lab result uploaded successfully!');
-    }
-
-    // Delete Lab Result
-    public function deleteLabResult($id)
-    {
-        $labResult = LabResult::findOrFail($id);
-        $filePath = storage_path("app/public/labResults/{$labResult->file_name}");
-
-        if (file_exists($filePath)) {
-            unlink($filePath);
-        }
-
-        $labResult->delete();
-        return redirect()->back()->with('success', 'Lab result deleted successfully!');
     }
 }

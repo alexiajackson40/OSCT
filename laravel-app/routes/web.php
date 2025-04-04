@@ -50,12 +50,12 @@ Route::prefix('admin')->group(function () {
     // Patient-Specific Routes
     Route::get('users/patient/profile/{id}', [AdminUsersController::class, 'patientProfile'])->name('admin.users.patient_profile');
     Route::get('users/patient/measurements/{id}', [AdminUsersController::class, 'patientMeasurements'])->name('admin.users.patient_measurements');
-    Route::get('users/patient/documents/{id}', [AdminUsersController::class, 'patientDocuments'])->name('admin.users.patient_documents');
+    Route::get('users/patient/documents', [AdminUsersController::class, 'allPatientDocuments'])->name('admin.users.patient_documents');
     Route::get('users/patient/labResults/{id}', [AdminUsersController::class, 'patientLabResults'])->name('admin.users.patient_labResults');
 
     // Document Routes
     Route::get('documents/{documentId}/download', [AdminUsersController::class, 'downloadDocument'])->name('admin.downloadDocument');
-    Route::post('documents/upload/{id}', [AdminUsersController::class, 'uploadDocument'])->name('admin.uploadDocument');
+    Route::post('documents/upload/{id?}', [AdminUsersController::class, 'uploadDocument'])->name('admin.uploadDocument'); // Optional user ID
     Route::delete('documents/{documentId}/delete', [AdminUsersController::class, 'deleteDocument'])->name('admin.deleteDocument');
 
     // Lab Result Routes

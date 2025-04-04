@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Linking CSS and Bootstrap -->
     <link href="{{ asset('theme.css') }}" rel="stylesheet">
     <link href="{{ asset('style.css') }}" rel="stylesheet">
-    <script src="{{ asset('bootstrap.min.js') }}" defer></script>
-    <script src="{{ asset('loadContent.js') }}" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
 </head>
 <body>
-    <!-- Include the header -->
+    <!-- Include Header -->
     @include('admin_user.header_admin')
 
     <div class="main-content d-flex justify-content-center">
@@ -15,7 +16,7 @@
             <div class="card">
                 <!-- Top Buttons -->
                 <div class="top-buttons d-flex flex-row">
-                    <a href="{{ route('admin.users.patient_users') }}" class="btn-back">&lt; Go Back</a>
+                    <a href="{{ route('admin.patientUsers') }}" class="btn-back">&lt; Go Back</a>
                     <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#uploadDocumentModal">[Upload Document]</button>
                 </div>
 
@@ -26,6 +27,7 @@
                         <table id="Table" class="table">
                             <thead>
                                 <tr>
+                                    <th>Patient Name</th>
                                     <th>Document Name</th>
                                     <th>Upload Date</th>
                                     <th>Actions</th>
@@ -34,6 +36,7 @@
                             <tbody>
                                 @foreach($documents as $document)
                                     <tr>
+                                        <td>{{ $document->user->first_name ?? 'N/A' }} {{ $document->user->last_name ?? '' }}</td>
                                         <td>{{ $document->name }}</td>
                                         <td>{{ $document->created_at->format('Y-m-d') }}</td>
                                         <td>
@@ -51,18 +54,10 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Navigation Buttons -->
-            <div class="button-container mt-5 d-flex flex-column">
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_profile', $patient->id) }}">Patient Profile</a>
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_measurements', $patient->id) }}">Measurements</a>
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_documents', $patient->id) }}">Documents</a>
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_labResults', $patient->id) }}">Lab Results</a>
-            </div>
         </div>
     </div>
 
-    <!-- Modal for Uploading Documents -->
+    <!-- Upload Document Modal -->
     <div class="modal fade" id="uploadDocumentModal" tabindex="-1" aria-labelledby="uploadDocumentModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -71,7 +66,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('admin.uploadDocument', $patient->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.uploadDocument', null) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="document_name">Document Name</label>
@@ -81,7 +76,7 @@
                             <label for="document_file">Upload File</label>
                             <input type="file" name="document_file" id="document_file" class="form-control" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Upload</button>
+                        <button type="submit" class="btn btn-primary mt-3">Upload</button>
                     </form>
                 </div>
             </div>
@@ -127,10 +122,6 @@
         font-size: 1rem;
         background-color: var(--light-surface-three);
         color: #000;
-    }
-    .record-btn {
-        margin-top: 0.5rem;
-        text-align: center;
     }
 </style>
 </html>
