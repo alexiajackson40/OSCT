@@ -74,56 +74,6 @@ class AdminUsersController extends Controller
         return view('admin_user.users.patient_labResults', compact('labResults'));
     }
 
-    // Method to show the schedule
-    public function showSchedule()
-    {
-        // Fetch all schedules from the database
-        $schedules = Schedule::all();
-        return view('admin_user.schedule', compact('schedules'));
-    }
-
-    // Method to edit a schedule
-    public function editSchedule($id)
-    {
-        // Find the schedule by ID
-        $schedule = Schedule::findOrFail($id);
-        return view('admin_user.schedule_edit', compact('schedule'));
-    }
-
-    // Method to show add user page
-    public function addUser()
-    {
-        return view('admin_user.add_user'); // Ensure the view 'admin_user.add_user' exists
-    }
-
-    // Method to store the new user
-    public function storeUser(Request $request)
-    {
-        // Validate the incoming form data
-        $validated = $request->validate([
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'student_id' => 'required|unique:users,student_id|max:255',
-            'phone_number' => 'required|string|max:255',
-            'username' => 'required|string|unique:users,username|max:255',
-            'password' => 'required|string|confirmed|min:8', // password confirmation will be checked automatically
-        ]);
-
-        // Create a new user record
-        User::create([
-            'first_name' => $validated['first_name'],
-            'last_name' => $validated['last_name'],
-            'student_id' => $validated['student_id'],
-            'phone_number' => $validated['phone_number'],
-            'username' => $validated['username'],
-            'password' => bcrypt($validated['password']),
-            // Add other fields as needed
-        ]);
-
-        // Redirect back with a success message
-        return redirect()->route('admin.admin_users')->with('success', 'User added successfully!');
-    }
-
     // Method to download a document
     public function downloadDocument($documentId)
     {
@@ -149,9 +99,5 @@ class AdminUsersController extends Controller
 
         return redirect()->route('admin.users.patient_documents', $id)->with('success', 'Document uploaded successfully!');
     }
-
-    public function home()
-    {
-        return view('admin_user.home'); // Ensure this view exists in the 'admin_user' folder
-    }
 }
+

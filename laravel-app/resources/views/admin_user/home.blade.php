@@ -1,46 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Home Page -->
+<head>
+    <!-- Import Bootstrap and Custom Styles -->
+    <link href="{{ asset('theme.css') }}" rel="stylesheet">
+    <link href="{{ asset('style.css') }}" rel="stylesheet">
+    <script src="{{ asset('bootstrap.min.js') }}" defer></script>
+    <script src="{{ asset('loadContent.js') }}" defer></script>
+</head>
 <body>
-    <div id="header"></div> 
-    <div class="main-content">
+    <!-- Include the header -->
+    @include('admin_user.header_admin')
+
+    <div class="main-content mt-5 d-flex justify-content-center">
         <div class="home-container mt-5">
             <div class="card">
                 <div class="card-body d-flex flex-column align-items-center">
+                    <!-- Logo -->
                     <div class="media mb-3">
                         <img src="{{ asset('img/colimaGobiernoDelEstado.png') }}" alt="logo" width="225" height="200">
                     </div>
-                    <p class="card-text">Lorem ipsum dolor sit amet. 33 itaque laborum At labore ratione et autem exercitationem id veritatis dolorem sit maxime architecto qui beatae ratione. Et amet laborum qui nulla tempora vel impedit cupiditate est voluptatum adipisci et facilis quia sit optio unde.</p>
-                    <p class="card-text"> Vel laudantium facilis ut dolorem molestias ut galisum cupiditate eos earum voluptas ut fuga assumenda. Eos quos debitis et voluptatem galisum est distinctio impedit a facere sunt ut vitae saepe aut nihil architecto ea aspernatur labore. Eum libero facere est eius eaque At velit quam vel facilis amet et officiis quis aut sunt sunt aut commodi optio.</p>
-                    <p class="card-text">Est omnis aperiam sit doloribus atque At accusantium sint et esse assumenda quo exercitationem quaerat in consectetur totam. Est nostrum blanditiis At nisi nobis et consequatur minima aut voluptas molestiae et tempora obcaecati sit voluptatibus vero. Aut odio cumque qui impedit voluptatem ut consectetur tempora hic internos exercitationem. Vel quam placeat et pariatur dolor id ipsum quasi At velit numquam et quos quidem est alias obcaecati.</p>
-                    <p class="card-text">Lorem ipsum dolor sit amet. 33 itaque laborum At labore ratione et autem exercitationem id veritatis dolorem sit maxime architecto qui beatae ratione. Et amet laborum qui nulla tempora vel impedit cupiditate est voluptatum adipisci et facilis quia sit optio unde.</p>
-                    <p class="card-text">Vel laudantium facilis ut dolorem molestias ut galisum cupiditate eos earum voluptas ut fuga assumenda. Eos quos debitis et voluptatem galisum est distinctio impedit a facere sunt ut vitae saepe aut nihil architecto ea aspernatur labore. Eum libero facere est eius eaque At velit quam vel facilis amet et officiis quis aut sunt sunt aut commodi optio.</p>
-                    <p class="card-text">Est omnis aperiam sit doloribus atque At accusantium sint et esse assumenda quo exercitationem quaerat in consectetur totam. Est nostrum blanditiis At nisi nobis et consequatur minima aut voluptas molestiae et tempora obcaecati sit voluptatibus vero. Aut odio cumque qui impedit voluptatem ut consectetur tempora hic internos exercitationem. Vel quam placeat et pariatur dolor id ipsum quasi At velit numquam et quos quidem est alias obcaecati.</p>
+                    <!-- Text Content -->
+                    <p class="card-text">
+                        Lorem ipsum dolor sit amet. 33 itaque laborum At labore ratione et autem exercitationem id veritatis dolorem sit maxime architecto qui beatae ratione. Et amet laborum qui nulla tempora vel impedit cupiditate est voluptatum adipisci et facilis quia sit optio unde.
+                    </p>
+                    <p class="card-text">
+                        Vel laudantium facilis ut dolorem molestias ut galisum cupiditate eos earum voluptas ut fuga assumenda. Eos quos debitis et voluptatem galisum est distinctio impedit a facere sunt ut vitae saepe aut nihil architecto ea aspernatur labore. Eum libero facere est eius eaque At velit quam vel facilis amet et officiis quis aut sunt sunt aut commodi optio.
+                    </p>
+                    <p class="card-text">
+                        Est omnis aperiam sit doloribus atque At accusantium sint et esse assumenda quo exercitationem quaerat in consectetur totam. Est nostrum blanditiis At nisi nobis et consequatur minima aut voluptas molestiae et tempora obcaecati sit voluptatibus vero. Aut odio cumque qui impedit voluptatem ut consectetur tempora hic internos exercitationem. Vel quam placeat et pariatur dolor id ipsum quasi At velit quam vel facilis amet optio.
+                    </p>
                 </div>
             </div>
         </div>
     </div>
-</body>
-
-<style>
+    <style>
     .main-content {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        min-height: 100vh;
+    display:flex;
+    justify-content:center;
+    width:100%;
+    min-height:100vh;
     }
     .home-container {
-        width: 70%;
+        width:70%;
     }
     .card-title {
-        font-size: 30px;
+        font-size:30px;
     }
     p {
-        font-weight: 500;
+        font-weight:500;
     }
 </style>
-
-<script src="{{ asset('js/loadContent.js') }}"></script>
-<script type="module" src="{{ asset('js/main.js') }}"></script>
-
+</body>
 </html>
