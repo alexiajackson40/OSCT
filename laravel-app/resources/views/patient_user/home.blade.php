@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- Patient Home Page-->
+<head>
+     <!-- Import Bootstrap and Custom Styles -->
+     <link href="{{ asset('theme.css') }}" rel="stylesheet">
+     <link href="{{ asset('style.css') }}" rel="stylesheet">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+</head>
 <body>
-    @include('layouts.header_patient') <!-- Include the header blade -->
+   @include('layouts.header_patient') <!-- Include the header blade -->
 
     <div class="main-content">
         <div class="home-container mt-5">

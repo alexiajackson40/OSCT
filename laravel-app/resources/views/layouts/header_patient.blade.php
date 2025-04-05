@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <!-- Import Bootstrap and Custom Styles -->
+    <link href="{{ asset('theme.css') }}" rel="stylesheet">
+    <link href="{{ asset('style.css') }}" rel="stylesheet">
+    <script src="{{ asset('bootstrap.min.js') }}" defer></script>
+    <script src="{{ asset('loadContent.js') }}" defer></script>
+</head>
 <!-- Patient User Header-->
 <body>
     <div class="container-fluid main-body">
