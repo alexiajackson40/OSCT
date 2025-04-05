@@ -84,10 +84,10 @@ Route::prefix('personnel')->group(function () {
 
 // Patient User Routes
 Route::prefix('patient')->group(function () {
-    Route::get('home', [PatientController::class, 'home'])->name('patient.home');
+    Route::get('home', [PatientController::class, 'home'])->name('patient.home'); //working
     Route::get('profile', [PatientController::class, 'profile'])->name('patient.profile');
     Route::get('documents', [PatientController::class, 'documents'])->name('patient.documents'); //working
-    Route::get('lab-results', [PatientController::class, 'labResults'])->name('patient.lab_results');
-    Route::get('schedule', [PatientController::class, 'schedule'])->name('patient.schedule');
+    Route::get('lab-results', [PatientController::class, 'labResults'])->name('patient.lab_results'); //working
+    Route::get('schedule', [PatientController::class, 'schedule'])->name('patient.schedule'); //working
     Route::get('signup', [PatientController::class, 'signUp'])->name('patient.signup');  //working
 });

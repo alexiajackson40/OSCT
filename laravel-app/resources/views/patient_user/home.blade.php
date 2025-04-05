@@ -16,7 +16,7 @@
             <div class="card">
                 <div class="card-body d-flex flex-column align-items-center">
                     <div class="media mb-3">
-                        <img src="{{ asset('src/assets/img/colimaGobiernoDelEstado.png') }}" alt="logo" width="225" height="200">
+                        <img src="{{ asset('img/colimaGobiernoDelEstado.png') }}" alt="logo" width="225" height="200">
                     </div>
                     <p class="card-text">Lorem ipsum dolor sit amet. 33 itaque laborum At labore ratione et autem exercitationem id veritatis dolorem sit maxime architecto qui beatae ratione. Et amet laborum qui nulla tempora vel impedit cupiditate est voluptatum adipisci et facilis quia sit optio unde.</p>
                     <p class="card-text">Vel laudantium facilis ut dolorem molestias ut galisum cupiditate eos earum voluptas ut fuga assumenda. Eos quos debitis et voluptatem galisum est distinctio impedit a facere sunt ut vitae saepe aut nihil architecto ea aspernatur labore. Eum libero facere est eius eaque At velit quam vel facilis amet et officiis quis aut sunt sunt aut commodi optio.</p>
@@ -29,10 +29,7 @@
         </div>
     </div>
 
-    @include('layouts.footer') <!-- Optional footer -->
 
-    <script src="{{ asset('src/loadContent.js') }}"></script>
-    <script type="module" src="{{ asset('src/main.js') }}"></script>
 </body>
 
 <style>

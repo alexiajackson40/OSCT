@@ -13,7 +13,7 @@
         <div class="header-container d-flex flex-row"> 
             <!--Logo-->
             <div class="media">
-                <img src="{{ asset('public/img/logoWhite.png') }}" alt="logo" width="45" height="60">
+                <img src="{{ asset('img/logoWhite.png') }}" alt="logo" width="45" height="60">
             </div>
             <!--Project name-->
             <div class="project-title-container">
@@ -23,11 +23,11 @@
             <!--Profile Button with Dropdown-->
             <div class="user-container dropdown">
                 <a id="profile" class="btn btn-light d-flex align-items-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="{{ asset('public/img/The_Donkey.JPEG') }}" class="img-thumbnail rounded-circle me-2" alt="logo" width="45" height="45">
+                    <img src="{{ asset('img/The_Donkey.JPEG') }}" class="img-thumbnail rounded-circle me-2" alt="logo" width="45" height="45">
                     <span class="user-text">{{ auth()->user()->username ?? 'Username' }}</span> <!-- Dynamically show the logged-in user's username --> 
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
-                    <li><a class="dropdown-item" id="profile-button" href="{{ route('user.profile') }}">View Profile</a></li>
+                    <li><a class="dropdown-item" id="profile-button" href="{{ route('patient.profile') }}">View Profile</a></li>
                     <li><a class="dropdown-item" id="signout-button" href="{{ route('logout') }}">Sign Out</a></li> <!-- Add logout route -->
                 </ul>
             </div>
@@ -38,7 +38,7 @@
         <nav class="nav nav-pills nav-fill">
             <a class="nav-link" href="{{ route('patient.home') }}">Home</a>
             <a class="nav-link" href="{{ route('patient.schedule') }}">Schedule</a>
-            <a class="nav-link" href="{{ route('patient.labResults') }}">Lab Results</a>
+            <a class="nav-link" href="{{ route('patient.lab_results') }}">Lab Results</a>
             <a class="nav-link" href="{{ route('patient.documents') }}">Documents</a>
         </nav>
     </div>

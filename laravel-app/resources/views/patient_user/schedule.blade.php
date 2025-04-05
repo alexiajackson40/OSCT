@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+     <!-- Import Bootstrap and Custom Styles -->
+     <link href="{{ asset('theme.css') }}" rel="stylesheet">
+     <link href="{{ asset('style.css') }}" rel="stylesheet">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+</head>
 <!-- Patient Schedule Page -->
 <body>
     @include('layouts.header_patient') <!-- Include the header blade -->
@@ -20,10 +27,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($schedules as $schedule)
+                                @foreach($schedule as $schedule)
                                     <tr>
-                                        <td>{{ $schedule->date }}</td>
-                                        <td>{{ $schedule->location }}</td>
+                                        <td>{{ $schedule['date'] }}</td>
+                                        <td>{{ $schedule['location'] }}</td>
                                         <td>
                                             <!-- Actions (e.g. View details) -->
                                             <a href="{{ route('schedule.details', $schedule->id) }}" class="btn btn-primary">Ver Detalles</a>
@@ -38,7 +45,7 @@
         </div>
     </div>
 
-    @include('layouts.footer') <!-- Optional footer -->
+    
 </body>
 
 <style>
