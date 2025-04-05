@@ -66,18 +66,19 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('admin.uploadDocument', null) }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-group">
-                            <label for="document_name">Document Name</label>
-                            <input type="text" name="document_name" id="document_name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="document_file">Upload File</label>
-                            <input type="file" name="document_file" id="document_file" class="form-control" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary mt-3">Upload</button>
-                    </form>
+                <form action="{{ route('admin.uploadDocument') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <div class="form-group">
+        <label for="document_name">Document Name</label>
+        <input type="text" name="document_name" id="document_name" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="document_file">Upload File</label>
+        <input type="file" name="document_file" id="document_file" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Upload</button>
+</form>
+
                 </div>
             </div>
         </div>
