@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class LabResult extends Model
 {
-    protected $fillable = [
-        'user_id', 'name', 'file_path', 'assigned_date'
-    ];
+    protected $fillable = ['user_id', 'name', 'result_value', 'assigned_date'];
 
     public function user() {
         return $this->belongsTo(User::class);

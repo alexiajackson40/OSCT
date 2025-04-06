@@ -20,7 +20,7 @@
                     <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#uploadMeasurementModal">[Update Measurements]</button>
                 </div>
                 <div class="card-body d-flex flex-column align-self-center align-items-left">
-                    <h1 class="card-title">Patient Measurements</h1>
+                    <h1 class="card-title">Patient Measurements for {{ $patient->first_name }} {{ $patient->last_name }}</h1>
                     <div class="measurements-container d-flex flex-column align-items-left">
                         <table id="Table" class="table">
                             <thead>

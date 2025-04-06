@@ -49,8 +49,10 @@ Route::prefix('admin')->group(function () {
 
     // Patient-Specific Routes
     Route::get('users/patient/profile/{id}', [AdminUsersController::class, 'patientProfile'])->name('admin.users.patient_profile');
+    Route::put('users/patient/profile/{id}/update', [AdminUsersController::class, 'updatePatient'])->name('admin.updatePatient');
     Route::get('users/patient/measurements/{id}', [AdminUsersController::class, 'patientMeasurements'])->name('admin.users.patient_measurements');
-    Route::get('users/patient/documents', [AdminUsersController::class, 'allPatientDocuments'])->name('admin.users.patient_documents');
+    Route::post('users/patient/measurements/upload/{id}', [AdminUsersController::class, 'uploadMeasurement'])->name('admin.uploadMeasurement');
+    Route::get('users/patient/documents/{id}', [AdminUsersController::class, 'allPatientDocuments'])->name('admin.users.patient_documents');
     Route::get('users/patient/labResults/{id}', [AdminUsersController::class, 'patientLabResults'])->name('admin.users.patient_labResults');
 
     // Document Routes

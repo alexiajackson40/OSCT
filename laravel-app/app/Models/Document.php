@@ -6,11 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
 {
-    protected $fillable = [
-        'user_id', 'name', 'file_path', 'assigned_date'
-    ];
+    protected $fillable = ['name', 'file_path', 'user_id'];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }

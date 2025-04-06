@@ -66,34 +66,77 @@ class AdminUsersController extends Controller
         return view('admin_user.users.patient_profile', compact('patient'));
     }
 
+    // Update Patient Profile
+    public function updatePatient(Request $request, $id)
+    {
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'phone' => 'nullable|string|max:15',
+            'address' => 'nullable|string|max:255',
+        ]);
+
+        $patient = User::findOrFail($id);
+        $patient->update([
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+            'address' => $request->input('address'),
+        ]);
+
+        return redirect()->route('admin.users.patient_profile', $id)->with('success', 'Patient profile updated successfully!');
+    }
+
     // Fetch Patient Measurements
     public function patientMeasurements($id)
     {
-        $measurements = Measurement::where('user_id', $id)->get();
-        return view('admin_user.users.patient_measurements', compact('measurements'));
+        $patient = User::findOrFail($id);  // Get the patient by ID
+        $measurements = Measurement::where('user_id', $id)->get();  // Fetch the measurements for the patient
+    
+        return view('admin_user.users.patient_measurements', compact('measurements', 'patient'));  // Pass both measurements and patient
+    }
+    
+    // Upload Measurement
+    public function uploadMeasurement(Request $request, $id)
+    {
+        $request->validate([
+            'measurement_type' => 'required|string|max:255',
+            'measurement_value' => 'required|numeric',
+            'measurement_date' => 'required|date',
+        ]);
+
+        // Fetch the patient by ID
+        $patient = User::findOrFail($id);
+
+        // Create a new measurement record
+        Measurement::create([
+            'user_id' => $id,
+            'type' => $request->input('measurement_type'),
+            'value' => $request->input('measurement_value'),
+            'date' => $request->input('measurement_date'),
+        ]);
+
+        return redirect()->route('admin.users.patient_measurements', $id)->with('success', 'Measurement uploaded successfully!');
+    }
+
+    // Fetch All Patient LabResults
+    public function patientLabResults($id)
+    {
+        $patient = User::findOrFail($id);  // Get the patient by ID
+        $labResults = LabResult::where('user_id', $id)->get();  // Fetch the lab results for the patient
+    
+        return view('admin_user.users.patient_labResults', compact('labResults', 'patient'));  // Pass both labResults and patient
     }
 
     // Fetch All Patient Documents
-    public function allPatientDocuments()
+    public function allPatientDocuments($id)
     {
-        // Fetch all documents with related patient data
-        $documents = Document::with('user')->get();
-        return view('admin_user.users.patient_documents', compact('documents'));
-    }
-
-    // Download Document
-    public function downloadDocument($documentId)
-    {
-        $document = Document::findOrFail($documentId);
+        $patient = User::findOrFail($id); // Get the patient by ID
+        $documents = Document::where('user_id', $id)->get(); // Fetch all documents for this patient
     
-        // Correct the file path construction
-        $filePath = storage_path('app/' . $document->file_path);
-    
-        if (!file_exists($filePath)) {
-            abort(404, 'File not found.');
-        }
-    
-        return response()->download($filePath);
+        return view('admin_user.users.patient_documents', compact('documents', 'patient')); // Pass both documents and patient
     }
     
     // Upload Document
@@ -101,50 +144,52 @@ class AdminUsersController extends Controller
     {
         $request->validate([
             'document_name' => 'required|string|max:255',
-            'document_file' => 'required|file|mimes:pdf,doc,docx|max:10240',
-        ]);
-    
-        // Check if file exists in the request
+            'document_file' => 'required|file|mimes:pdf,doc,docx,png,jpg|max:10240',
+        ]);    
+
         if ($request->hasFile('document_file') && $request->file('document_file')->isValid()) {
-            $documentFile = $request->file('document_file');
-            $path = $documentFile->storeAs('public/documents', time() . '-' . $documentFile->getClientOriginalName());
-    
-            // Ensure the file exists after the store operation
-            $filePath = storage_path('app/' . $path);
-    
-            // Log file path for debugging
-            \Log::info('File path after store: ' . $filePath);
-    
-            if (!file_exists($filePath)) {
-                \Log::error('File does not exist after storeAs execution: ' . $filePath);
-                throw new \Exception('File does not exist after storeAs execution.');
-            }
-    
-            // Save the document record to the database
+            $file = $request->file('document_file');
+            $filename = time() . '-' . $file->getClientOriginalName();  // Ensure unique filename
+
+            // Store the file under 'public/documents' folder
+            $path = $file->storeAs('public/documents', $filename);  // Store in storage/app/public
+
+            // Save the file path to the database (no 'public/' prefix needed)
             Document::create([
                 'name' => $request->input('document_name'),
-                'file_path' => $path, // Store the path relative to public storage
+                'file_path' => 'documents/' . $filename,  // Relative to public storage
             ]);
-    
+            
             return redirect()->route('admin.users.patient_documents')->with('success', 'Document uploaded successfully!');
-        } else {
-            \Log::error('No file or invalid file uploaded.');
-            return back()->with('error', 'File upload failed or no valid file provided.');
         }
+
+        return back()->with('error', 'File upload failed or no valid file provided.');
     }
-    
+
+    // Download Document
+    public function downloadDocument($documentId)
+    {
+        $document = Document::findOrFail($documentId);
+        
+        $filePath = storage_path('app/public/' . $document->file_path); // Correct path
+        if (!file_exists($filePath)) {
+            abort(404, 'File not found.');
+        }
+        
+        return response()->download($filePath);
+    }
+
     // Delete Document
     public function deleteDocument($documentId)
     {
         $document = Document::findOrFail($documentId);
-        $filePath = storage_path('app/' . $document->file_path); // Match the same structure used in downloadDocument
+        $filePath = storage_path('app/public/' . $document->file_path);  // Ensure correct file path
     
         if (file_exists($filePath)) {
-            unlink($filePath); // Remove the file
+            unlink($filePath);  // Remove the file
         }
     
-        $document->delete(); // Delete the record from the database
+        $document->delete();  // Delete the record from the database
         return redirect()->back()->with('success', 'Document deleted successfully!');
     }
-    
 }

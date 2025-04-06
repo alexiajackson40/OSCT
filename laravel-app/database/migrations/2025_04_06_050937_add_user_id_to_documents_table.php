@@ -9,24 +9,21 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::table('documents', function (Blueprint $table) {
-            // Add the file_path column to store the file path
-            $table->string('file_path');
+            $table->unsignedBigInteger('user_id')->nullable();  // Make it nullable or not based on your needs
+    
+            // Add a foreign key constraint if you want
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    
+    public function down()
     {
         Schema::table('documents', function (Blueprint $table) {
-            // Drop the file_path column when rolling back
-            $table->dropColumn('file_path');
+            $table->dropColumn('user_id');
         });
-
-        Schema::dropIfExists('documents');
     }
+    
 };
