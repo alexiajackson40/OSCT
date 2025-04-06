@@ -12,14 +12,23 @@
     <!-- Include the header dynamically -->
     @include('admin_user.header_admin')
 
-    <div class="main-content d-flex align-self-center">
-        <div class="profile-container mt-5">
+    <div class="main-content">
+        <!-- Side Buttons Container -->
+        <div class="button-container mt-5 d-flex flex-column">
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.patientUsers') }}">Patients</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnelUsers') }}">Personnel</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.adminUsers') }}">Admin</a>
+        </div>
+        
+        <div class="users-container mt-5">
             <div class="card">
-                <div class="card-body d-flex flex-column align-self-center">
-                    <h1 class="card-title">Patient Users</h1>
-                    <div class="information-container d-flex flex-column align-items-left">
-                        <h2 class="container-header">Patient List</h2>
-                        <table id="Table" class="table">
+                <!-- Add/Remove User Button -->
+                <a class="btn-page btn-primary" href="{{ route('admin.addUser') }}">[Add/Remove User]</a>
+                <div class="card-body d-flex flex-column">
+                    <div class="document-content">
+                        <h1 class="card-title">Patient Users</h1>
+                        <!-- Table List -->
+                        <table id="Table" class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>First Name</th>
@@ -35,10 +44,11 @@
                                         <td>{{ $patient->last_name }}</td>
                                         <td>{{ $patient->student_id }}</td>
                                         <td>
-                                            <a class="btn btn-primary btn-sm" href="{{ route('admin.users.patient_profile', $patient->id) }}">View Profile</a>
-                                            <a class="btn btn-success btn-sm" href="{{ route('admin.users.patient_measurements', $patient->id) }}">Measurements</a>
-                                            <a class="btn btn-warning btn-sm" href="{{ route('admin.users.patient_documents', $patient->id) }}">Documents</a>
-                                            <a class="btn btn-info btn-sm" href="{{ route('admin.users.patient_labResults', $patient->id) }}">Lab Results</a>
+                                            <!-- View Profile Button -->
+                                            <a href="{{ route('admin.users.patient_profile', $patient->id) }}" class="btn btn-primary btn-sm">View Profile</a>
+                                            <a href="{{ route('admin.users.patient_measurements', $patient->id) }}" class="btn btn-success btn-sm">Measurements</a>
+                                            <a href="{{ route('admin.users.patient_documents', $patient->id) }}" class="btn btn-warning btn-sm">Documents</a>
+                                            <a href="{{ route('admin.users.patient_labResults', $patient->id) }}" class="btn btn-info btn-sm">Lab Results</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -51,55 +61,78 @@
     </div>
 </body>
 
-<!-- Existing Styling Maintained -->
+<!-- Existing Styling Preserved -->
 <style>
     .main-content {
-        display:flex;
-        justify-content:center;
-        width:100%;
-        min-height:100vh;
+        display: flex;
+        justify-content: left;
+        width: 100%;
+        min-height: 100vh;
     }
-    .profile-container {
-        width:70%;
-        display:flex;
-        justify-content:center;
+    .users-container {
+        width: 70%;
     }
     .card {
-        background-color:#F2F2F2;
-        width:34.063rem;
-        height:auto;
-        position:relative;
+        background-color: #F2F2F2;
+        height: 100%;
+        min-height: 100vh;
     }
-    .card-body {
-        padding-top:0.625rem;
-        display:flex;
-        flex-direction:column;
+    .document-content {
+        margin-left: 1.5625rem;
+        margin-right: 1.5625rem;
     }
     .card-title {
-        font-size:2rem;
-        font-weight:500;
-        margin-top:2.5rem;
+        font-size: 2rem;
+        font-weight: 500;
+        text-align: left;
+        margin-bottom: 1.5625rem;
+        margin-top: 1.5625rem;
     }
-    .container-header {
-        font-size:1.25rem;
-        font-weight:500;
-        padding-left:0.875rem;
-        padding-top:0.875rem;
+    .button-container {
+        width: 13.375rem;
+        height: 13rem;
+        display: flex;
+        justify-content: center;
+        justify-content: space-around;
+        align-items: center;
+        margin-right: 0.5rem;
+        margin-left: 0.5rem;
     }
-    .information-container {
-        margin-top:0.75rem;
-        width:100%;
-        height:auto;
-        border-radius:0.375rem;
-        border:0.063rem solid rgba(0, 0, 0, 0.30);
-        background:#FFF;
+    .table-btn {
+        width: 214px;
+        height: 60px;
+        display: inline-flex;
+        padding: 18.5px 40px 18.5px 39px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background: #6F1A34;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        color: #FFF;
+        font-size: 20px;
+        font-weight: 500;
     }
     .table {
-        margin-left:0.875rem;
-        color:#000000;
-        font-size:1rem;
-        font-weight:400;
-        width:calc(100% - 1.75rem);
+        align-items: center;
+        margin-bottom: 0px;
+        --bs-table-bg: #F2F2F2;
+        --bs-table-border-color: #000;
+    }
+    .td a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-page {
+        position: absolute;
+        right: 4px;
+        width: 214px;
+        height: 60px;
+        border: none;
+        color: #000;
+        background: #F2F2F2;
+        font-size: 20px;
+        font-weight: 500;
     }
 </style>
 </html>

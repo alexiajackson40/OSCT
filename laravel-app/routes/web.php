@@ -38,14 +38,17 @@ Route::prefix('admin')->group(function () {
 
     // Admin User Management Routes
     Route::get('users', [AdminController::class, 'users'])->name('admin.users');
-    Route::get('add-user', [AdminController::class, 'addUser'])->name('admin.addUser');
+    Route::get('add-user', [AdminController::class, 'addUser'])->name('admin.addUser');    
+    Route::post('add-user', [AdminController::class, 'storeUser'])->name('add-user.store'); // Route to handle user form submission
 
     // Admin > Specific User Groups
     Route::get('users/patient', [AdminUsersController::class, 'patientUsers'])->name('admin.patientUsers');
     Route::get('users/personnel', [AdminUsersController::class, 'personnelUsers'])->name('admin.personnelUsers');
     Route::get('users/admin', [AdminUsersController::class, 'adminUsers'])->name('admin.adminUsers');
-    Route::get('users/admin/profile/{id}', [AdminUsersController::class, 'adminProfile'])->name('admin.users.admin_profile'); // Admin profile
-    Route::put('users/admin/profile/{id}/update', [AdminUsersController::class, 'updateAdmin'])->name('admin.updateAdmin'); // Update Admin profile
+    Route::get('users/admin/profile/{id}', [AdminUsersController::class, 'adminProfile'])->name('admin.users.admin_profile');
+    Route::put('users/admin/profile/{id}/update', [AdminUsersController::class, 'updateAdmin'])->name('admin.updateAdmin');
+    Route::get('users/personnel/profile/{id}', [AdminUsersController::class, 'personnelProfile'])->name('admin.users.personnel_profile');
+    Route::put('users/personnel/profile/{id}/update', [AdminUsersController::class, 'updatePersonnel'])->name('admin.updatePersonnel');
 
     // Patient-Specific Routes
     Route::get('users/patient/profile/{id}', [AdminUsersController::class, 'patientProfile'])->name('admin.users.patient_profile');
@@ -57,7 +60,7 @@ Route::prefix('admin')->group(function () {
 
     // Document Routes
     Route::get('documents/{documentId}/download', [AdminUsersController::class, 'downloadDocument'])->name('admin.downloadDocument');
-    Route::post('documents/upload/{id?}', [AdminUsersController::class, 'uploadDocument'])->name('admin.uploadDocument'); // Optional user ID
+    Route::post('documents/upload/{id?}', [AdminUsersController::class, 'uploadDocument'])->name('admin.uploadDocument');
     Route::delete('documents/{documentId}/delete', [AdminUsersController::class, 'deleteDocument'])->name('admin.deleteDocument');
 
     // Lab Result Routes
@@ -86,10 +89,10 @@ Route::prefix('personnel')->group(function () {
 
 // Patient User Routes
 Route::prefix('patient')->group(function () {
-    Route::get('home', [PatientController::class, 'home'])->name('patient.home'); //working
+    Route::get('home', [PatientController::class, 'home'])->name('patient.home');
     Route::get('profile', [PatientController::class, 'profile'])->name('patient.profile');
-    Route::get('documents', [PatientController::class, 'documents'])->name('patient.documents'); //working
-    Route::get('lab-results', [PatientController::class, 'labResults'])->name('patient.lab_results'); //working
-    Route::get('schedule', [PatientController::class, 'schedule'])->name('patient.schedule'); //working
-    Route::get('signup', [PatientController::class, 'signUp'])->name('patient.signup');  //working
+    Route::get('documents', [PatientController::class, 'documents'])->name('patient.documents');
+    Route::get('lab-results', [PatientController::class, 'labResults'])->name('patient.lab_results');
+    Route::get('schedule', [PatientController::class, 'schedule'])->name('patient.schedule');
+    Route::get('signup', [PatientController::class, 'signUp'])->name('patient.signup');
 });

@@ -138,6 +138,37 @@ class AdminUsersController extends Controller
     
         return view('admin_user.users.patient_documents', compact('documents', 'patient')); // Pass both documents and patient
     }
+
+    public function personnelProfile($id)
+    {
+        // Fetch the personnel by ID
+        $personnel = User::where('user_type', 'personnel')->findOrFail($id);
+    
+        // Return the view with personnel data
+        return view('admin_user.users.personnel_profile', compact('personnel'));
+    }
+
+    public function updatePersonnel(Request $request, $id)
+    {
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'phone' => 'nullable|string|max:15',
+            'address' => 'nullable|string|max:255',
+    ]);
+
+        $personnel = User::where('user_type', 'personnel')->findOrFail($id);
+        $personnel->update([
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+            'address' => $request->input('address'),
+    ]);
+
+        return redirect()->route('admin.users.personnel_profile', $id)->with('success', 'Personnel profile updated successfully!');
+    }
     
     // Upload Document
     public function uploadDocument(Request $request)

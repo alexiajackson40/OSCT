@@ -192,7 +192,7 @@
         color:#000;
         background:#F2F2F2;
         font-size:1.25rem;
-        font-weight:500;
+        font-weight:500;  
     }
     .button-container {
         width:13.375rem;

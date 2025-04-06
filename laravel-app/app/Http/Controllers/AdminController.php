@@ -26,6 +26,27 @@ class AdminController extends Controller
         return view('admin_user.profile', compact('user'));
     }
     
+    public function storeUser(Request $request)
+    {
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
+            'user_type' => 'required|string',
+        ]);
+    
+        User::create([
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+            'user_type' => $request->input('user_type'),
+        ]);
+    
+        return redirect()->route('admin.users')->with('success', 'User added successfully!');
+    }    
+
     public function editProfile()
     {
         // Retrieve the currently authenticated user

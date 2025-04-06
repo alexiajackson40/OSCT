@@ -94,7 +94,7 @@
         margin-top:2rem;
         display:flex;
         justify-content:center;
-        width: 100%;
+        width:100%;
         min-height:100vh;
     }
     .document-container{
@@ -121,6 +121,13 @@
         --bs-table-bg:#F2F2F2;
         --bs-table-border-color:#000;
         align-items:center;
+
+    }
+    .td a{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        color:#000;
     }
     .table-title{
         font-size:1.25rem;
@@ -130,7 +137,7 @@
         width:13.375rem;
         height:17rem;
         display:flex;
-        flex-direction: column;
+        flex-direction:column;
         justify-content:space-between;
         margin-right:0.5rem;
         margin-left:0.5rem;
