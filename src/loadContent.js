@@ -89,7 +89,7 @@ function navbarListeners() {
 //----------------------------------------------------------FUNCTION TO LOAD OTHER EVENT LISTENERS---------------------------------------------------------------------------------
 function eventListeners()
 {
-    //--------------------------------------------------Event Listener for Admin 'Users' Page Buttons-------------------------------------------------------------
+//--------------------------------------------------Event Listener for Admin 'Users' Page Buttons-------------------------------------------------------------
     console.log('Adding Users List Button Event Listeners.......................'); //console log output for status
     document.querySelectorAll('.table-btn').forEach(tableButton =>
     {
@@ -103,6 +103,19 @@ function eventListeners()
                 updateHistory(page);
             });
     });
+    console.log('Listeners Added!'); //console log output for status 
+    //--------------------------------------------------Event Listener for Listed Documents Page -------------------------------------------------------------
+    console.log('Adding Listeners for Listed Documents Page.......................'); //console log output for status
+    document.querySelectorAll('.list-group-item').forEach(doc =>
+        {
+                doc.addEventListener('click', function(event)
+                {
+                    console.log('Listed Document Has Been Clicked.....................')
+                    event.preventDefault();
+                    const pdfUrl = doc.getAttribute('href');
+                    window.open(pdfUrl, '_blank');
+                });
+        });
     console.log('Listeners Added!'); //console log output for status 
 //--------------------------------------------------Event Listener for Listed Users-------------------------------------------------------------
     console.log('Adding Listed Users Event Listeners.......................'); //console log output for status
