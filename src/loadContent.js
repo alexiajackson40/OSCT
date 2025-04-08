@@ -134,7 +134,7 @@ function eventListeners()
                 updateHistory(page);
             });
     });
-    console.log('Listeners Added!'); //console log output for status 
+    console.log('Listeners Added!'); //console log output for status
 //------------------------------------------------------Event Listener for 'Back' Page Button-------------------------------------------------------------
     console.log('Adding Back Button Event Listener.......................'); //console log output for status
     const backButton = document.getElementById('back-btn');
@@ -147,7 +147,6 @@ function eventListeners()
                 const page = backButton.getAttribute('data-page');
                 console.log('go back page', page); //console log output for error checking
                 fetchContent(page);
-                updateActiveTab(page);
                 updateHistory(page);
             });
         }
@@ -279,8 +278,6 @@ function fetchContent(page)
     .then(response => response.text())
     .then(data => 
     {
-        //TODO: Fix this to make listers function to wait until table is loaded in
-        //possibly make function who runs with a returned value from getHead()
         if (contentElement) 
             {
                 contentElement.innerHTML = data;
