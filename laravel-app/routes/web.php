@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminUsersController;
 use App\Http\Controllers\AdminController;
@@ -7,6 +10,7 @@ use App\Http\Controllers\PersonnelController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 
 // Main Route
 Route::get('/', [HomeController::class, 'home'])->name('home');
@@ -15,10 +19,14 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::middleware('guest')->group(function () {
     Route::view('/login', 'login')->name('login'); // Login form
     Route::post('/login', [AuthController::class, 'authenticate'])->name('login'); // Handle login request
+    Route::get('/login', function () {return view('login');});
 });
 
 // Register Route
-Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::get('/signup', function () {
+    return view('patient_user.sign_up');
+})->name('signup');
+Route::post('/signup', [UserController::class, 'signup'])->name('signup');
 
 // Admin Routes
 Route::prefix('admin')->group(function () {

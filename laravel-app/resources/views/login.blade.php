@@ -3,6 +3,11 @@
 <!-- Login Page -->
 <body>
   <div class="page-content">
+  @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+  @endif
     <div class="login-container">
       <div class="card">
         <div class="card-body d-flex flex-column">
@@ -28,7 +33,7 @@
                 <div class="signUp-container">
                   <p>
                     Need an account?
-                    <a class="btn-signUp" href="{{ route('register') }}">Create one here</a>
+                    <a class="btn-signUp" href="{{ route('signup') }}">Create one here</a>
                   </p>
                 </div>
               </form>
