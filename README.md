@@ -1,29 +1,91 @@
 # Team5
-For Senior Design Project
 
-**Project Setup Instructions**
-Prerequisites
+---
 
-Ensure you have the following installed on your system: Homebrew (https://brew.sh/) for macOS users and Git (https://git-scm.com/).
+## **Senior Design Project**
 
-Step 1: Install MySQL
+### **Project Setup Instructions (for Windows + VS Code)**
 
-To install MySQL, open the terminal and run the command _brew install mysql_. After the installation, start the MySQL service using brew services start mysql. Secure your MySQL installation by running the command _mysql_secure_installation_ and following the prompts. Finally, verify the installation by typing _mysql --version_.
+---
 
-You can also go to the MySQL website and download the MySQL Community Server (https://dev.mysql.com/downloads/mysql/).
+### **Step 1: Install MySQL**
 
-Step 2: Install MySQL Workbench
+Go to the official MySQL website and download the **MySQL Community Server** for Windows:  
+(https://dev.mysql.com/downloads/mysql/)
 
-Download MySQL Workbench from the MySQL Downloads page at https://dev.mysql.com/downloads/workbench/. Follow the installation instructions provided by the installer. After installation, open MySQL Workbench and create a connection with the following details: Hostname: 127.0.0.1, Port: 3306, Username: root, and Password: (set during MySQL installation).
+During installation:
+- Set the **root password** (you’ll need it later).
+- Ensure MySQL Server is configured to start automatically.
 
-Step 3: Install PHP
+After installation, verify it's working:
+1. Open the **Command Prompt** or **PowerShell**.
+2. Run:
+   ```
+   mysql --version
+   ```
 
-To install PHP, use Homebrew by running the command _brew install php_. Once installed, start the PHP service with _brew services start php_. Verify the installation by typing _php --version_ in the terminal.
+To access MySQL from the command line, you may need to add the MySQL `bin` directory (usually `C:\Program Files\MySQL\MySQL Server X.X\bin`) to your system's **PATH** environment variable.
 
-Step 4: Install Laravel
+---
 
-First, ensure you have Composer, the dependency manager for PHP, installed. Install Composer by running _brew install composer_ and verify the installation with _composer --version_. To create a new Laravel project, use the command composer _create-project --prefer-dist laravel/laravel project-name_, replacing project-name with the desired name of your project. Navigate to the project directory using _cd project-name_ and start the Laravel development server by typing _php artisan serve_. The application will be accessible in your browser at the localhost which is http://127.0.0.1:8000.
+### **Step 2 (Optional): Install MySQL Workbench**
 
-Step 5: Run Migrations
+Step 2: Set Up SQLTools in VS Code (Alternative to MySQL Workbench)
+Open Visual Studio Code.
 
-Ensure your .env file is properly configured with your database credentials. Then, run the command _php artisan migrate_ to set up your database schema.
+Go to the Extensions view (Ctrl+Shift+X).
+
+Search for and install:
+- SQLTools by Matheus Teixeira
+- SQLTools MySQL/MariaDB Driver (you’ll need this to connect to MySQL)
+
+ - Click on SQLTools extension then click Add New connection
+ - In the Connection Assistant, click MySQL as the driver.
+ - Enter all the information found in the settings.json file, after the correct information is entered,
+   click, test connection. IF connection is successful, save connection.
+- The connection will now be visible in the Connections section of the SQLTools extention tab. Click the plug
+  symbol to connect to the databse from now on.
+---
+
+### **Step 3: Install PHP**
+
+1. Download PHP for Windows from:  
+   (https://windows.php.net/download/)
+
+2. Extract the downloaded ZIP and place it in a directory like `C:\php`.
+
+3. Add that directory to your **System PATH** environment variable.
+
+4. To verify installation, open **Command Prompt** and run:
+   ```
+   php --version
+   ```
+
+---
+
+### **Step 4: Install Composer (PHP dependency manager)**
+
+1. Download and install Composer for Windows from:  
+   (https://getcomposer.org/Composer-Setup.exe)
+
+2. After installation, verify Composer by running:
+   ```
+   composer --version
+   ```
+
+---
+
+### **Step 5: Accessing the Website**
+
+1. Navigate to the laravel-app directory in the frontend-backend-implementation branch
+
+2. Start the Laravel development server:
+   In the terminal, run the command:
+   ```
+   php artisan serve
+   ```
+  A link should pop up that you can follow to the website. This server must always
+  be running to access the website. You must create a new terminal if you need to run
+  and further commands.
+
+---
