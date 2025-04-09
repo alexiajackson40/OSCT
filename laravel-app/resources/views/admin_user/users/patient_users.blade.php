@@ -51,20 +51,68 @@
                             <input type="text" name="last_name" id="last_name" class="form-control mx-sm-2" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="username">Username:</label>
-                            <input type="text" name="username" id="username" class="form-control mx-sm-2" required>
+                            <label for="gender">Gender:</label>
+                            <input type="text" name="gender" id="gender" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="password">Password:</label>
-                            <input type="password" name="password" id="password" class="form-control mx-sm-2" required>
+                            <label for="age">Age:</label>
+                            <input type="number" name="age" id="age" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="email">Email:</label>
-                            <input type="email" name="email" id="email" class="form-control mx-sm-2">
+                            <label for="school_name">School Name:</label>
+                            <input type="text" name="school_name" id="school_name" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="phone">Phone:</label>
-                            <input type="text" name="phone" id="phone" class="form-control mx-sm-2">
+                            <label for="fasting_status">Fasting Status:</label>
+                            <input type="text" name="fasting_status" id="fasting_status" class="form-control mx-sm-2">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="glucose">Glucose:</label>
+                            <input type="text" name="glucose" id="glucose" class="form-control mx-sm-2">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="triglycerides">Triglycerides:</label>
+                            <input type="text" name="triglycerides" id="triglycerides" class="form-control mx-sm-2">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="total_cholesterol">Total Cholesterol:</label>
+                            <input type="text" name="total_cholesterol" id="total_cholesterol" class="form-control mx-sm-2">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="hba1c">HbA1c:</label>
+                            <input type="text" name="hba1c" id="hba1c" class="form-control mx-sm-2">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="weight">Weight:</label>
+                            <input type="text" name="weight" id="weight" class="form-control mx-sm-2">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="height">Height:</label>
+                            <input type="text" name="height" id="height" class="form-control mx-sm-2">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="bmi">BMI:</label>
+                            <input type="text" name="bmi" id="bmi" class="form-control mx-sm-2">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="waist">Waist:</label>
+                            <input type="text" name="waist" id="waist" class="form-control mx-sm-2">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="hip">Hip:</label>
+                            <input type="text" name="hip" id="hip" class="form-control mx-sm-2">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="icc">ICC:</label>
+                            <input type="text" name="icc" id="icc" class="form-control mx-sm-2">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="comments">Comments:</label>
+                            <textarea name="comments" id="comments" class="form-control mx-sm-2"></textarea>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="parent_id">Parent ID:</label>
+                            <input type="number" name="parent_id" id="parent_id" class="form-control mx-sm-2">
                         </div>
                         <button type="submit" class="btn btn-primary mb-2">Add Patient</button>
                     </form>

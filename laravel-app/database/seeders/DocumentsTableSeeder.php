@@ -10,11 +10,11 @@ class DocumentsTableSeeder extends Seeder
 {
     public function run(): void
     {
-        $user = Patient::where('username', 'alicek')->first(); // Corrected to Patient model
+        $patient = Patient::where('PACIENTE', 'SANCHEZ ESTRADA EDWAR OMAR')->first();
 
-        if ($user) {
+        if ($patient) {
             Document::create([
-                'user_id' => $user->id,
+                'user_id' => $patient->CURP,
                 'name' => 'Medical Clearance Form',
                 'date_assigned' => now(),
                 'file_path' => 'documents/sample.pdf',

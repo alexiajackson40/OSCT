@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('measurements', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->char('user_id', 8); // CURP as foreign key
             $table->float('waist')->nullable();
             $table->float('hip')->nullable();
             $table->float('waist_hip_ratio')->nullable();
@@ -20,6 +20,9 @@ return new class extends Migration
             $table->float('hemoglobin')->nullable();
             $table->float('triglycerides')->nullable();
             $table->timestamps();
+
+            // Foreign key constraint
+            $table->foreign('user_id')->references('CURP')->on('patients')->onDelete('cascade');
         });
     }
 

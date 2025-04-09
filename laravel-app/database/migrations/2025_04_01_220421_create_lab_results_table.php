@@ -10,11 +10,13 @@ return new class extends Migration
     {
         Schema::create('lab_results', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->char('user_id', 8);
             $table->string('name');
             $table->date('date_assigned')->nullable();
             $table->string('file_path');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('CURP')->on('patients')->onDelete('cascade');
         });
     }
 

@@ -3,15 +3,34 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Hash;
 
 class Patient extends Model
 {
+    protected $primaryKey = 'CURP'; // primary key is CURP
+    public $incrementing = false;
+    protected $keyType = 'string';
+
     protected $fillable = [
-        'first_name', 'last_name', 'username', 'password', 'email', 'phone',
-        'school_name', 'dob', 'gender', 'curp', 'bmi', 'icc', 'comments',
-        'fasting_status', 'glucose', 'rights_of_coverage', 'hba1c',
-        'height', 'weight', 'total_cholesterol', 'triglycerides', 'waist', 'hip'
+        'No_SOL',
+        'FECHA',
+        'CURP',
+        'PACIENTE',
+        'SEXO',
+        'EDAD',
+        'ESCUELA',
+        'DERECHOHABIENCIA',
+        'AYUNO',
+        'GLUCOSA',
+        'TRIGLICÉRIDOS',
+        'COLESTEROL TOTAL',
+        'HBA1C',
+        'PESO',
+        'TALLA',
+        'IMC',
+        'ICC',
+        'CINTURA',
+        'CADERA',
+        'COMENTARIO',
     ];
 
     public $timestamps = true;
@@ -33,17 +52,11 @@ class Patient extends Model
 
     public function schedules()
     {
-        return $this->hasMany(Schedule::class, 'patient_id'); // Ensure your foreign key matches here
+        return $this->hasMany(Schedule::class, 'patient_id');
     }
 
     public function parent()
     {
-        return $this->belongsTo(ParentModel::class, 'parent_id'); // Adjust if Parent model has a different namespace
-    }
-
-    // Automatically hash the password when it is set
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = Hash::make($value);
+        return $this->belongsTo(ParentModel::class, 'parent_id');
     }
 }

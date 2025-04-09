@@ -10,11 +10,11 @@ class LabResultsTableSeeder extends Seeder
 {
     public function run(): void
     {
-        $user = Patient::where('username', 'alicek')->first(); // Corrected to Patient model
+        $patient = Patient::where('PACIENTE', 'SANCHEZ ESTRADA EDWAR OMAR')->first(); // Corrected to Patient model
 
-        if ($user) {
+        if ($patient) {
             LabResult::create([
-                'user_id' => $user->id,
+                'user_id' => $patient->CURP,
                 'name' => 'Blood Test Results',
                 'date_assigned' => now(),
                 'file_path' => 'lab_results/sample_result.pdf',

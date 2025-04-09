@@ -41,14 +41,14 @@ class AuthController extends Controller
             return redirect()->route('personnel.home');
         }
 
-        // Patient authentication
+        /* Patient authentication
         $patient = Patient::where('username', $request->username)->first();
         if ($patient && Hash::check($request->password, $patient->password)) {  // Use Hash::check()
             Auth::login($patient);
             return redirect()->route('patient.home');
         }
 
-        /*
+        
         // Parent authentication
         $parent = ParentModel::where('username', $request->username)->first();
         if ($parent && Hash::check($request->password, $parent->password)) {  // Use Hash::check()

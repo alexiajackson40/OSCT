@@ -136,10 +136,10 @@ class AdminController extends Controller
     {
         $admins = Admin::all(); // Fetch admins
         $personnel = Personnel::all(); // Fetch personnel
-        $patients = Patient::all(); // Fetch patients
+        //$patients = Patient::all(); // Fetch patients
     
         // Combine all user types into one collection
-        $users = $admins->concat($personnel)->concat($patients);
+        $users = $admins->concat($personnel);
     
         return view('admin_user.users', compact('users'));
     }    
