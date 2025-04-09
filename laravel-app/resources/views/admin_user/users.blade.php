@@ -43,7 +43,7 @@
                                         <td>{{ ucfirst($user->role) }}</td> <!-- Display role (admin, personnel, patient) -->
                                         <td>
                                             <a href="{{ route('admin.users.edit', $user->getKey()) }}" class="btn btn-warning">Edit</a>
-                                            <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display:inline;">
+                                            <form action="{{ route('admin.users.destroy', $user->getKey()) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
