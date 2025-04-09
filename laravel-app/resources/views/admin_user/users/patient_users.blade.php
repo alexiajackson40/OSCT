@@ -14,11 +14,10 @@
     <div class="main-content">
         <!-- Side Buttons Container -->
         <div class="button-container mt-5 d-flex flex-column">
-            @if(auth()->user()->isAdmin())  <!-- Check if the logged-in user is an admin -->
-                <a class="table-btn btn-primary" role="button" href="{{ route('admin.patientUsers') }}">Patients</a>
-                <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnelUsers') }}">Personnel</a>
-                <a class="table-btn btn-primary" role="button" href="{{ route('admin.adminUsers') }}">Admin</a>
-            @endif
+            <!-- No admin check; these links will always show -->
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.patientUsers') }}">Patients</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnelUsers') }}">Personnel</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.adminUsers') }}">Admin</a>
         </div>
 
         <!-- Users Container -->
@@ -33,58 +32,56 @@
                 @endif
                 
                 <!-- Buttons for Add New Patient and CSV Upload -->
-                @if(auth()->user()->isAdmin())  <!-- Show the Add and Upload buttons only for admins -->
-                    <div class="d-flex align-items-center mb-4">
-                        <button id="toggleAddPatientForm" class="btn btn-primary me-3">Add New Patient</button>
-                        <button id="toggleCSVForm" class="btn btn-success">Import Patients via CSV</button>
-                    </div>
+                <div class="d-flex align-items-center mb-4">
+                    <button id="toggleAddPatientForm" class="btn btn-primary me-3">Add New Patient</button>
+                    <button id="toggleCSVForm" class="btn btn-success">Import Patients via CSV</button>
+                </div>
 
-                    <!-- Add New Patient Form (Hidden by Default) -->
-                    <div id="addPatientForm" class="add-patient-form mb-4 p-4" style="display: none;">
-                        <h2>Add New Patient</h2>
-                        <form action="{{ route('admin.addPatient') }}" method="POST" class="form-inline">
-                            @csrf
-                            <div class="form-group mb-2">
-                                <label for="first_name">First Name:</label>
-                                <input type="text" name="first_name" id="first_name" class="form-control mx-sm-2" required>
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="last_name">Last Name:</label>
-                                <input type="text" name="last_name" id="last_name" class="form-control mx-sm-2" required>
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="username">Username:</label>
-                                <input type="text" name="username" id="username" class="form-control mx-sm-2" required>
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="password">Password:</label>
-                                <input type="password" name="password" id="password" class="form-control mx-sm-2" required>
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="email">Email:</label>
-                                <input type="email" name="email" id="email" class="form-control mx-sm-2">
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="phone">Phone:</label>
-                                <input type="text" name="phone" id="phone" class="form-control mx-sm-2">
-                            </div>
-                            <button type="submit" class="btn btn-primary mb-2">Add Patient</button>
-                        </form>
-                    </div>
+                <!-- Add New Patient Form (Hidden by Default) -->
+                <div id="addPatientForm" class="add-patient-form mb-4 p-4" style="display: none;">
+                    <h2>Add New Patient</h2>
+                    <form action="{{ route('admin.addPatient') }}" method="POST" class="form-inline">
+                        @csrf
+                        <div class="form-group mb-2">
+                            <label for="first_name">First Name:</label>
+                            <input type="text" name="first_name" id="first_name" class="form-control mx-sm-2" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="last_name">Last Name:</label>
+                            <input type="text" name="last_name" id="last_name" class="form-control mx-sm-2" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="username">Username:</label>
+                            <input type="text" name="username" id="username" class="form-control mx-sm-2" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="password">Password:</label>
+                            <input type="password" name="password" id="password" class="form-control mx-sm-2" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="email">Email:</label>
+                            <input type="email" name="email" id="email" class="form-control mx-sm-2">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="phone">Phone:</label>
+                            <input type="text" name="phone" id="phone" class="form-control mx-sm-2">
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2">Add Patient</button>
+                    </form>
+                </div>
 
-                    <!-- CSV Upload Form (Hidden by Default) -->
-                    <div id="uploadCSVForm" class="upload-csv-form mb-4" style="display: none;">
-                        <h2>Import Patients via CSV</h2>
-                        <form action="{{ route('admin.importPatients') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-group mb-2">
-                                <label for="csv_file">Choose CSV File:</label>
-                                <input type="file" name="csv_file" id="csv_file" class="form-control" accept=".csv" required>
-                            </div>
-                            <button type="submit" class="btn btn-success mb-2">Upload and Import</button>
-                        </form>
-                    </div>
-                @endif
+                <!-- CSV Upload Form (Hidden by Default) -->
+                <div id="uploadCSVForm" class="upload-csv-form mb-4" style="display: none;">
+                    <h2>Import Patients via CSV</h2>
+                    <form action="{{ route('admin.importPatients') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group mb-2">
+                            <label for="csv_file">Choose CSV File:</label>
+                            <input type="file" name="csv_file" id="csv_file" class="form-control" accept=".csv" required>
+                        </div>
+                        <button type="submit" class="btn btn-success mb-2">Upload and Import</button>
+                    </form>
+                </div>
 
                 <!-- Card Body -->
                 <div class="card-body d-flex flex-column">
