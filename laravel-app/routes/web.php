@@ -16,19 +16,23 @@ use App\Http\Controllers\UserController;
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
 // Login Route
-Route::view('/login', 'login')->name('login'); // Login form
-Route::post('/login', [AuthController::class, 'authenticate'])->name('login'); // Handle login request
+Route::view('/login', 'login')->name('login');
+Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
 
-// Register Route
+// Register Routes
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+// Guest-Specific Routes
 Route::middleware('guest')->group(function () {
-    Route::view('/login', 'login')->name('login'); // Login form
-    Route::post('/login', [AuthController::class, 'authenticate'])->name('login'); // Handle login request
-    Route::get('/login', function () {return view('login');});
+    Route::view('/login', 'login')->name('login');
+    Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
+    Route::get('/login', function () {
+        return view('login');
+    });
 });
 
-// Register Route
+// Patient Sign-Up Route
 Route::get('/signup', function () {
     return view('patient_user.sign_up');
 })->name('signup');
@@ -53,8 +57,8 @@ Route::prefix('admin')->group(function () {
     Route::get('users', [AdminController::class, 'users'])->name('admin.users');
     Route::get('users/add', [AdminController::class, 'addUser'])->name('admin.addUser');
     Route::post('users/add', [AdminController::class, 'storeUser'])->name('add-user.store');
-    Route::get('users/edit/{id}', [AdminController::class, 'editUser'])->name('admin.users.edit'); // Edit user
-    Route::delete('users/{id}', [AdminController::class, 'destroyUser'])->name('admin.users.destroy'); // Delete user
+    Route::get('users/edit/{id}', [AdminController::class, 'editUser'])->name('admin.users.edit');
+    Route::delete('users/{id}', [AdminController::class, 'destroyUser'])->name('admin.users.destroy');
 
     // Admin > Specific User Groups
     Route::get('users/patient', [AdminUsersController::class, 'patientUsers'])->name('admin.patientUsers');
@@ -89,6 +93,7 @@ Route::prefix('admin')->group(function () {
     // Admin Schedule Routes
     Route::get('schedule', [AdminController::class, 'schedule'])->name('schedule.index');
     Route::get('schedule/edit/{id}', [AdminController::class, 'scheduleEdit'])->name('schedule.edit');
+    Route::post('schedule/upload', [AdminController::class, 'uploadSchedule'])->name('admin.uploadSchedule'); // Missing route added
 
     // Logout Route
     Route::post('/logout', function () {

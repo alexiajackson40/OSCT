@@ -21,7 +21,7 @@
                         <h2 class="table-title">Operación Salud Colima Tamizaje</h2>
                         <!-- Schedule Upload -->
                         <div class="form-group">
-                            <label for="schedule_file">Upload Schedule (Image or PDF)</label>
+                            <label for="schedule_file">Upload Schedule (Image, PDF, or CSV)</label>
                             <input type="file" class="form-control" id="schedule_file" name="schedule_file" accept="image/*, .pdf" required>
                         </div>
                         <button type="submit" class="btn btn-primary mt-3">Upload Schedule</button>
