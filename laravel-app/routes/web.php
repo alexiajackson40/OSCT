@@ -16,14 +16,12 @@ use App\Http\Controllers\UserController;
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
 // Login Route
-<<<<<<< HEAD
 Route::view('/login', 'login')->name('login'); // Login form
 Route::post('/login', [AuthController::class, 'authenticate'])->name('login'); // Handle login request
 
 // Register Route
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
-=======
 Route::middleware('guest')->group(function () {
     Route::view('/login', 'login')->name('login'); // Login form
     Route::post('/login', [AuthController::class, 'authenticate'])->name('login'); // Handle login request
@@ -35,7 +33,6 @@ Route::get('/signup', function () {
     return view('patient_user.sign_up');
 })->name('signup');
 Route::post('/signup', [UserController::class, 'signup'])->name('signup');
->>>>>>> df3f4356193d613d9d360f721b2a68255b117662
 
 // Admin Routes
 Route::prefix('admin')->group(function () {
