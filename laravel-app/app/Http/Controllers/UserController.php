@@ -1,3 +1,5 @@
+<?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -23,20 +25,40 @@ class UserController extends Controller
             'phone_number' => 'required|string|max:255',
             'username' => 'required|string|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed', // Include password validation
-            'agree_terms' => 'accepted', // Ensure terms are accepted
+            'role' => 'required|in:admin,personnel,patient',  // Make sure to validate the role
         ]);
-
-        // Create a new user using validated data
-        $user = User::create([
-            'first_name' => $validated['first_name'],
-            'last_name' => $validated['last_name'],
-            'student_id' => $validated['student_id'],
-            'phone' => $validated['phone_number'],
-            'username' => $validated['username'],
-            'password' => Hash::make($validated['password']), // Encrypt the password
-        ]);
-
+    
+        // Create a new user based on the role
+        if ($validated['role'] === 'admin') {
+            Admin::create([
+                'first_name' => $validated['first_name'],
+                'last_name' => $validated['last_name'],
+                'student_id' => $validated['student_id'],
+                'phone' => $validated['phone_number'],
+                'username' => $validated['username'],
+                'password' => Hash::make($validated['password']),
+            ]);
+        } elseif ($validated['role'] === 'personnel') {
+            Personnel::create([
+                'first_name' => $validated['first_name'],
+                'last_name' => $validated['last_name'],
+                'student_id' => $validated['student_id'],
+                'phone' => $validated['phone_number'],
+                'username' => $validated['username'],
+                'password' => Hash::make($validated['password']),
+            ]);
+        } else {
+            Patient::create([
+                'first_name' => $validated['first_name'],
+                'last_name' => $validated['last_name'],
+                'student_id' => $validated['student_id'],
+                'phone' => $validated['phone_number'],
+                'username' => $validated['username'],
+                'password' => Hash::make($validated['password']),
+            ]);
+        }
+    
         // Redirect back to the form with a success message
         return redirect()->route('add-user.create')->with('success', 'User created successfully!');
-    }
+    }    
 }

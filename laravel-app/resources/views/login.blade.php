@@ -9,10 +9,18 @@
           <div class="login-content">
             <div class="logo">
               <div class="media">
-              <img src="{{ asset('img/colimaGobiernoDelEstado.png') }}" alt="logo">
+                <img src="{{ asset('img/colimaGobiernoDelEstado.png') }}" alt="logo">
               </div>
             </div>
             <h1 class="card-title">Sign In</h1>
+
+            <!-- Display error message if login fails -->
+            @if(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+
             <div class="login-form">
               <form action="{{ route('login') }}" method="POST">
                 @csrf
@@ -144,7 +152,7 @@
     margin: 0 auto;
     display:block;
     width:25vw;
-    max-width: 25%;
+    max-width: 55%;
     height: auto;
   }
   .signUp-container {

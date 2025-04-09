@@ -14,13 +14,13 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('username')->unique();
             $table->string('password');
-            $table->string('user_type'); // 'admin', 'personnel', 'patient'
+            $table->string('role'); // New column to distinguish user roles
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->string('school_name')->nullable(); // patients only
-            $table->date('dob')->nullable(); // patients only
-            $table->string('gender')->nullable(); // patients only
-            $table->string('guardian')->nullable(); // patients only
+            $table->string('school_name')->nullable(); // For patients only
+            $table->date('dob')->nullable(); // For patients only
+            $table->string('gender')->nullable(); // For patients only
+            $table->string('guardian')->nullable(); // For patients only
             $table->timestamps();
         });
     }

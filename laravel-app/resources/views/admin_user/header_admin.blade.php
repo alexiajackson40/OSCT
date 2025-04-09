@@ -24,11 +24,21 @@
             <div class="user-container dropdown ms-auto">
                 <a id="profile" class="btn btn-light d-flex align-items-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="{{ asset('img/The_Donkey.JPEG') }}" class="img-thumbnail rounded-circle me-2" alt="profile logo" width="45" height="45">
-                    <span class="user-text">Username</span>
+                    @if(Auth::guard('admin')->check())
+                        <span class="user-text">{{ Auth::guard('admin')->user()->username }}</span>
+                    @else
+                        <span class="user-text">Guest</span>
+                    @endif
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
                     <li><a class="dropdown-item" id="profile-button" href="{{ route('admin.profile') }}">View Profile</a></li>
-                    <li><a class="dropdown-item" id="signout-button" href="#">Sign Out</a></li>
+                    <li>
+                        <!-- Sign Out link -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="dropdown-item">Sign Out</button>
+                        </form>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -43,17 +53,17 @@
     </div>
     <style>
         .main-body {
-            background-color:var(--primary-red);
+            background-color: var(--primary-red);
         }
         .header-container {
-            background-color:var(--primary-red);
-            align-items:center;
-            height:5rem;
+            background-color: var(--primary-red);
+            align-items: center;
+            height: 5rem;
         }
         .project-title-container {
-            color:var(--white);
-            text-align:left;
-            margin-left:1rem;
+            color: var(--white);
+            text-align: left;
+            margin-left: 1rem;
         }
 
         .user-container {
@@ -75,7 +85,7 @@
             font-weight: 600;
             margin-right: 0.5rem;
         }
-        .img-thumbnail{
+        .img-thumbnail {
             background: none;
             border-radius: 3.125rem;
             border-width: 0.0625rem;
@@ -90,35 +100,35 @@
             min-width: 12rem;
             height: 2.5rem;
         }
-/* Navigation Bar */
+        /* Navigation Bar */
         .nav-pills .nav-link {
-            color:black !important;
-            --bs-nav-pills-border-radius:0;
-            width:7.8125rem !important;
-            font-weight:600;
-            --bs-nav-link-font-size:1.25rem !important; 
+            color: black !important;
+            --bs-nav-pills-border-radius: 0;
+            width: 7.8125rem !important;
+            font-weight: 600;
+            --bs-nav-link-font-size: 1.25rem !important; 
         }
         .nav-pills .nav-link.active {
-            color:black !important;
-            background-color:var(--light-surface-three) !important;
-            border-bottom:0.25rem solid #7C1332 !important;
+            color: black !important;
+            background-color: var(--light-surface-three) !important;
+            border-bottom: 0.25rem solid #7C1332 !important;
             font-weight: 600;
-            width:7.8125rem !important;
-            height:3.75rem !important;
+            width: 7.8125rem !important;
+            height: 3.75rem !important;
         }
         .nav-pills .nav-link:hover {
-            color:#7C1332 !important;
-            background-color:var(--light-surface-one) !important;
+            color: #7C1332 !important;
+            background-color: var(--light-surface-one) !important;
         }
         .nav-pills .nav-link:not(.active):not(:hover) {
-            color:black !important;
+            color: black !important;
         }
         .nav {
-            background-color:var(--light-surface-two) !important;
-            box-shadow:0rem 0rem 0.25rem 0rem rgba(0, 0, 0, 0.25) !important;
-            height:3.75rem !important;
-            --bs-nav-link-padding-x:1rem !important;
-            --bs-nav-link-padding-y:1rem !important;
+            background-color: var(--light-surface-two) !important;
+            box-shadow: 0rem 0rem 0.25rem 0rem rgba(0, 0, 0, 0.25) !important;
+            height: 3.75rem !important;
+            --bs-nav-link-padding-x: 1rem !important;
+            --bs-nav-link-padding-y: 1rem !important;
         }
     </style>
 </body>

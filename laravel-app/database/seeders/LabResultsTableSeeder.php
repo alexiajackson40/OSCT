@@ -3,14 +3,14 @@
 namespace Database\Seeders;
 
 use App\Models\LabResult;
-use App\Models\User;
+use App\Models\Patient;
 use Illuminate\Database\Seeder;
 
 class LabResultsTableSeeder extends Seeder
 {
     public function run(): void
     {
-        $user = User::where('username', 'alicek')->first();
+        $user = Patient::where('username', 'alicek')->first(); // Corrected to Patient model
 
         if ($user) {
             LabResult::create([

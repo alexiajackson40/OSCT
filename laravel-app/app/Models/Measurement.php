@@ -11,7 +11,13 @@ class Measurement extends Model
         'body_mass', 'cholesterol', 'glucose', 'hemoglobin', 'triglycerides'
     ];
 
-    public function user() {
-        return $this->belongsTo(User::class);
+    public function patient()
+    {
+        return $this->belongsTo(Patient::class, 'user_id');
+    }
+
+    public function personnel()
+    {
+        return $this->belongsTo(Personnel::class, 'user_id');
     }
 }

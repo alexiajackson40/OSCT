@@ -20,12 +20,13 @@ return new class extends Migration
         });
     }
     
-    public function down()
+    public function down(): void
     {
         Schema::table('documents', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
-            $table->dropColumn('user_id');
+            if (Schema::hasColumn('documents', 'user_id')) {
+                $table->dropForeign(['user_id']);
+                $table->dropColumn('user_id');
+            }
         });
-    }
-    
+    }    
 };

@@ -26,14 +26,14 @@ class PatientController extends Controller
     // Method to show patient's documents
     public function documents()
     {
-        $documents = Document::where('user_id', Auth::id())->get();
+        $documents = Document::where('user_id', Auth::id())->get(); // Updated to fetch data for authenticated patient
         return view('patient_user.documents', compact('documents')); // matches documents.blade.php
     }
 
     // Method to show patient's lab results
     public function labResults()
     {
-        $labResults = LabResult::where('user_id', Auth::id())->get();
+        $labResults = LabResult::where('user_id', Auth::id())->get(); // Updated to fetch data for authenticated patient
         return view('patient_user.lab_results', compact('labResults')); // matches lab_results.blade.php
     }
 
@@ -47,7 +47,7 @@ class PatientController extends Controller
     // Method to show patient's measurements
     public function measurements()
     {
-        $measurements = Measurement::where('user_id', Auth::id())->get();
+        $measurements = Measurement::where('user_id', Auth::id())->get(); // Updated to fetch data for authenticated patient
         return view('patient_user.measurements', compact('measurements'));
     }
 

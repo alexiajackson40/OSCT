@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-     <!-- Import Bootstrap and Custom Styles -->
-     <link href="{{ asset('theme.css') }}" rel="stylesheet">
-     <link href="{{ asset('style.css') }}" rel="stylesheet">
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <!-- Import Bootstrap and Custom Styles -->
+    <link href="{{ asset('theme.css') }}" rel="stylesheet">
+    <link href="{{ asset('style.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
 </head>
-<!-- List of Patient Users Page -->
 <body>
     <!-- Include the header dynamically -->
     @include('admin_user.header_admin')
@@ -15,15 +14,79 @@
     <div class="main-content">
         <!-- Side Buttons Container -->
         <div class="button-container mt-5 d-flex flex-column">
-            <a class="table-btn btn-primary" role="button" href="{{ route('admin.patientUsers') }}">Patients</a>
-            <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnelUsers') }}">Personnel</a>
-            <a class="table-btn btn-primary" role="button" href="{{ route('admin.adminUsers') }}">Admin</a>
+            @if(auth()->user()->isAdmin())  <!-- Check if the logged-in user is an admin -->
+                <a class="table-btn btn-primary" role="button" href="{{ route('admin.patientUsers') }}">Patients</a>
+                <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnelUsers') }}">Personnel</a>
+                <a class="table-btn btn-primary" role="button" href="{{ route('admin.adminUsers') }}">Admin</a>
+            @endif
         </div>
-        
+
+        <!-- Users Container -->
         <div class="users-container mt-5">
             <div class="card">
-                <!-- Add/Remove User Button -->
-                <a class="btn-page btn-primary" href="{{ route('admin.addUser') }}">[Add/Remove User]</a>
+                <!-- Show success/error messages -->
+                @if(session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+                @if(session('error'))
+                    <div class="alert alert-danger">{{ session('error') }}</div>
+                @endif
+                
+                <!-- Buttons for Add New Patient and CSV Upload -->
+                @if(auth()->user()->isAdmin())  <!-- Show the Add and Upload buttons only for admins -->
+                    <div class="d-flex align-items-center mb-4">
+                        <button id="toggleAddPatientForm" class="btn btn-primary me-3">Add New Patient</button>
+                        <button id="toggleCSVForm" class="btn btn-success">Import Patients via CSV</button>
+                    </div>
+
+                    <!-- Add New Patient Form (Hidden by Default) -->
+                    <div id="addPatientForm" class="add-patient-form mb-4 p-4" style="display: none;">
+                        <h2>Add New Patient</h2>
+                        <form action="{{ route('admin.addPatient') }}" method="POST" class="form-inline">
+                            @csrf
+                            <div class="form-group mb-2">
+                                <label for="first_name">First Name:</label>
+                                <input type="text" name="first_name" id="first_name" class="form-control mx-sm-2" required>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="last_name">Last Name:</label>
+                                <input type="text" name="last_name" id="last_name" class="form-control mx-sm-2" required>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="username">Username:</label>
+                                <input type="text" name="username" id="username" class="form-control mx-sm-2" required>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="password">Password:</label>
+                                <input type="password" name="password" id="password" class="form-control mx-sm-2" required>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="email">Email:</label>
+                                <input type="email" name="email" id="email" class="form-control mx-sm-2">
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="phone">Phone:</label>
+                                <input type="text" name="phone" id="phone" class="form-control mx-sm-2">
+                            </div>
+                            <button type="submit" class="btn btn-primary mb-2">Add Patient</button>
+                        </form>
+                    </div>
+
+                    <!-- CSV Upload Form (Hidden by Default) -->
+                    <div id="uploadCSVForm" class="upload-csv-form mb-4" style="display: none;">
+                        <h2>Import Patients via CSV</h2>
+                        <form action="{{ route('admin.importPatients') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group mb-2">
+                                <label for="csv_file">Choose CSV File:</label>
+                                <input type="file" name="csv_file" id="csv_file" class="form-control" accept=".csv" required>
+                            </div>
+                            <button type="submit" class="btn btn-success mb-2">Upload and Import</button>
+                        </form>
+                    </div>
+                @endif
+
+                <!-- Card Body -->
                 <div class="card-body d-flex flex-column">
                     <div class="document-content">
                         <h1 class="card-title">Patient Users</h1>
@@ -42,13 +105,16 @@
                                     <tr>
                                         <td>{{ $patient->first_name }}</td>
                                         <td>{{ $patient->last_name }}</td>
-                                        <td>{{ $patient->student_id }}</td>
+                                        <td>{{ $patient->id }}</td>
                                         <td>
                                             <!-- View Profile Button -->
                                             <a href="{{ route('admin.users.patient_profile', $patient->id) }}" class="btn btn-primary btn-sm">View Profile</a>
-                                            <a href="{{ route('admin.users.patient_measurements', $patient->id) }}" class="btn btn-success btn-sm">Measurements</a>
-                                            <a href="{{ route('admin.users.patient_documents', $patient->id) }}" class="btn btn-warning btn-sm">Documents</a>
-                                            <a href="{{ route('admin.users.patient_labResults', $patient->id) }}" class="btn btn-info btn-sm">Lab Results</a>
+                                            <!-- Remove Button -->
+                                            <form action="{{ route('admin.removePatient', $patient->id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -59,9 +125,24 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Toggle Add Patient Form
+        document.getElementById('toggleAddPatientForm').addEventListener('click', function () {
+            const form = document.getElementById('addPatientForm');
+            const isHidden = form.style.display === 'none';
+            form.style.display = isHidden ? 'block' : 'none';
+        });
+
+        // Toggle CSV Upload Form
+        document.getElementById('toggleCSVForm').addEventListener('click', function () {
+            const form = document.getElementById('uploadCSVForm');
+            const isHidden = form.style.display === 'none';
+            form.style.display = isHidden ? 'block' : 'none';
+        });
+    </script>
 </body>
 
-<!-- Existing Styling Preserved -->
 <style>
     .main-content {
         display: flex;
@@ -117,11 +198,6 @@
         margin-bottom: 0px;
         --bs-table-bg: #F2F2F2;
         --bs-table-border-color: #000;
-    }
-    .td a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
     .btn-page {
         position: absolute;

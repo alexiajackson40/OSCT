@@ -32,10 +32,17 @@
                                 <input type="text" name="username" class="form-control" id="username" value="{{ $user->username }}" required>
                             </div>
                             <div class="mb-3">
-                                <label for="phone_number">Phone Number</label>
-                                <input type="text" name="phone_number" class="form-control" id="phone_number" value="{{ $user->phone_number }}" required>
+                                <label for="email">Email</label>
+                                <input type="email" name="email" class="form-control" id="email" value="{{ $user->email }}" required>
                             </div>
-                            <!-- Add more fields if needed -->
+                            <div class="mb-3">
+                                <label for="phone">Phone Number</label>
+                                <input type="text" name="phone" class="form-control" id="phone" value="{{ $user->phone }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address">Address</label>
+                                <input type="text" name="address" class="form-control" id="address" value="{{ $user->address }}" required>
+                            </div>
                         </div>
                         <button class="btn btn-primary" type="submit">Update Profile</button>
                     </form>

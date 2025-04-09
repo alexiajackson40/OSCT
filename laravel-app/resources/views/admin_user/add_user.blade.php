@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-     <!-- Import Bootstrap and Custom Styles -->
-     <link href="{{ asset('theme.css') }}" rel="stylesheet">
-     <link href="{{ asset('style.css') }}" rel="stylesheet">
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <!-- Import Bootstrap and Custom Styles -->
+    <link href="{{ asset('theme.css') }}" rel="stylesheet">
+    <link href="{{ asset('style.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
 </head>
 <!-- Add User Form -->
 <body>
@@ -34,20 +34,6 @@
                             </div>
                           </div>
                           <div class="mb-3">
-                            <label for="student_id">Student ID</label>
-                            <input type="text" name="student_id" class="form-control" id="student_id" placeholder="ID" required>
-                            <div class="invalid-feedback">
-                              Please provide a valid ID.
-                            </div>
-                          </div>
-                          <div class="mb-3">
-                            <label for="phone_number">Phone Number</label>
-                            <input type="text" name="phone_number" class="form-control" id="phone_number" placeholder="(xxx)xxx-xxxx" required>
-                            <div class="invalid-feedback">
-                              Please provide a valid number.
-                            </div>
-                          </div>
-                          <div class="mb-3">
                             <label for="username">Username</label>
                             <div class="input-group">
                               <div class="input-group-prepend">
@@ -59,6 +45,35 @@
                               </div>
                             </div>
                           </div>
+                          <div class="mb-3">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="Email" required>
+                            <div class="invalid-feedback">
+                              Please provide a valid email.
+                            </div>
+                          </div>
+                          <div class="mb-3">
+                            <label for="phone_number">Phone Number</label>
+                            <input type="text" name="phone_number" class="form-control" id="phone_number" placeholder="(xxx)xxx-xxxx" required>
+                            <div class="invalid-feedback">
+                              Please provide a valid number.
+                            </div>
+                          </div>
+
+                          <!-- Role selection -->
+                          <div class="mb-3">
+                            <label for="role">Role</label>
+                            <select name="role" class="form-control" id="role" required>
+                              <option value="admin">Admin</option>
+                              <option value="personnel">Personnel</option>
+                              <option value="patient">Patient</option>
+                            </select>
+                            <div class="invalid-feedback">
+                              Please select a role.
+                            </div>
+                          </div>
+
+                          <!-- Add more fields if needed -->
                         </div>
 
                         <div class="form-group">

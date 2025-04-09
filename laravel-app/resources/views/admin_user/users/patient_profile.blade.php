@@ -18,7 +18,10 @@
                 <!-- Top Buttons -->
                 <div class="top-buttons d-flex flex-row align-self-center">
                     <a href="{{ route('admin.patientUsers') }}" class="btn-back">&lt; Go Back</a>
-                    <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#editPatientModal">[Edit Information]</button>
+                    
+                    @if(auth()->user()->isAdmin())  <!-- Check if the logged-in user is an admin -->
+                        <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#editPatientModal">[Edit Information]</button>
+                    @endif
                 </div>
 
                 <!-- Patient Information -->
