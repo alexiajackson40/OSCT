@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Hash;
+//use Hash;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -60,5 +61,34 @@ class UserController extends Controller
     
         // Redirect back to the form with a success message
         return redirect()->route('add-user.create')->with('success', 'User created successfully!');
+<<<<<<< HEAD
     }    
+=======
+    }
+
+
+public function signup(Request $request)
+{
+    $validated = $request->validate([
+        'first_name'     => 'required|string|max:255',
+        'last_name'      => 'required|string|max:255',
+        'student_id'     => 'required|string|max:50',
+        'phone_number'   => 'required|string|max:20',
+        'username'       => 'required|string|max:255|unique:users,username',
+        'password'       => 'required|string|min:6|confirmed',
+    ]);
+
+    User::create([
+        'first_name'   => $validated['first_name'],
+        'last_name'    => $validated['last_name'],
+        'student_id'   => $validated['student_id'],
+        'phone_number' => $validated['phone_number'],
+        'username'     => $validated['username'],
+        'password'     => Hash::make($validated['password']),
+    ]);
+
+    return redirect('/login')->with('success', 'Account created! Please log in.');
+}
+
+>>>>>>> df3f4356193d613d9d360f721b2a68255b117662
 }

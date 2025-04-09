@@ -30,7 +30,8 @@
                                         <td>{{ $document->created_at->format('Y-m-d') }}</td>
                                         <td>
                                             <!-- Link to view or download the document -->
-                                            <a href="{{ route('admin.users.patientDocuments.download', $document->id) }}" class="btn btn-primary">Download</a>
+                                             <!-- throwing error since route does not exist -->
+                                            <a href="{{ route('admin.users.patientDocuments.download', $document->id) }}" class="btn btn-primary">Download</a> 
                                         </td>
                                     </tr>
                                 @endforeach
@@ -47,8 +48,6 @@
             <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientLabResults', $patient->id) }}">Lab Results</a>
         </div>
     </div>
-
-    @include('layouts.footer') <!-- Optional footer -->
 </body>
 
 <style>

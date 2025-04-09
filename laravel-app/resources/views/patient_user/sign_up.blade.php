@@ -14,7 +14,7 @@
       <div class="card">
         <div class="card-body d-flex flex-column">
             <div class="user-form">
-                <form action="{{ route('register') }}" method="POST" class="needs-validation" novalidate>
+                <form method="POST" action="{{ route('signup') }}">
                     @csrf
                     <div class="form-row">
                       <div class="mb-3">
