@@ -28,9 +28,8 @@ To access MySQL from the command line, you may need to add the MySQL `bin` direc
 
 ---
 
-### **Step 2 (Optional): Install MySQL Workbench**
+### **Step 2: Set Up SQLTools in VS Code (Alternative to MySQL Workbench)**
 
-Step 2: Set Up SQLTools in VS Code (Alternative to MySQL Workbench)
 Open Visual Studio Code.
 
 Go to the Extensions view (Ctrl+Shift+X).
