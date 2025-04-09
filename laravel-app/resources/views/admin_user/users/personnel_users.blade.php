@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-     <!-- Import Bootstrap and Custom Styles -->
-     <link href="{{ asset('theme.css') }}" rel="stylesheet">
-     <link href="{{ asset('style.css') }}" rel="stylesheet">
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <!-- Import Bootstrap and Custom Styles -->
+    <link href="{{ asset('theme.css') }}" rel="stylesheet">
+    <link href="{{ asset('style.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
 </head>
 <!-- List of Personnel Users -->
 <body>
@@ -41,8 +41,8 @@
                                         <td>{{ $person->first_name }} {{ $person->last_name }}</td>
                                         <td>{{ $person->email }}</td>
                                         <td>
-                                            <!-- View Profile Button -->
-                                            <a href="{{ route('admin.users.personnel_profile', $person->id) }}" class="btn btn-primary btn-sm">View Profile</a>
+                                            <!-- Use getKey() to ensure the correct primary key (employee_id) is passed -->
+                                            <a href="{{ route('admin.users.personnel_profile', $person->getKey()) }}" class="btn btn-primary btn-sm">View Profile</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -53,80 +53,80 @@
             </div>
         </div>
     </div>
-</body>
 
-<!-- Existing Styling Preserved -->
-<style>
-    .main-content {
-        display:flex;
-        justify-content:left;
-        width:100%;
-        min-height:100vh;
-    }
-    .users-container {
-        width:70%;
-    }
-    .card {
-        background-color:#F2F2F2;
-        height:100%;
-        min-height:100vh;
-    }
-    .document-content {
-        margin-left:1.5625rem;
-        margin-right:1.5625rem;
-    }
-    .card-title {
-        font-size:2rem;
-        font-weight:500;
-        text-align:left;
-        margin-bottom:1.5625rem;
-        margin-top:1.5625rem;
-    }
-    .button-container {
-        width:13.375rem;
-        height:13rem;
-        display:flex;
-        justify-content:center;
-        justify-content:space-around;
-        align-items:center;
-        margin-right:0.5rem;
-        margin-left:0.5rem;
-    }
-    .table-btn {
-        width:214px;
-        height:60px;
-        display:inline-flex;
-        padding:18.5px 40px 18.5px 39px;
-        justify-content:center;
-        align-items:center;
-        border-radius:8px;
-        background:#6F1A34;
-        box-shadow:0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        color:#FFF;
-        font-size:20px;
-        font-weight:500;
-    }
-    .table {
-        align-items:center;
-        margin-bottom:0px;
-        --bs-table-bg:#F2F2F2;
-        --bs-table-border-color:#000;
-    }
-    .td a {
-        display:flex;
-        align-items:center;
-        justify-content:center;
-    }
-    .btn-page {
-        position:absolute;
-        right:4px;
-        width:214px;
-        height:60px;
-        border:none;
-        color:#000;
-        background:#F2F2F2;
-        font-size:20px;
-        font-weight:500;
-    }
-</style>
+    <!-- Existing Styling Preserved -->
+    <style>
+        .main-content {
+            display: flex;
+            justify-content: left;
+            width: 100%;
+            min-height: 100vh;
+        }
+        .users-container {
+            width: 70%;
+        }
+        .card {
+            background-color: #F2F2F2;
+            height: 100%;
+            min-height: 100vh;
+        }
+        .document-content {
+            margin-left: 1.5625rem;
+            margin-right: 1.5625rem;
+        }
+        .card-title {
+            font-size: 2rem;
+            font-weight: 500;
+            text-align: left;
+            margin-bottom: 1.5625rem;
+            margin-top: 1.5625rem;
+        }
+        .button-container {
+            width: 13.375rem;
+            height: 13rem;
+            display: flex;
+            justify-content: center;
+            justify-content: space-around;
+            align-items: center;
+            margin-right: 0.5rem;
+            margin-left: 0.5rem;
+        }
+        .table-btn {
+            width: 214px;
+            height: 60px;
+            display: inline-flex;
+            padding: 18.5px 40px 18.5px 39px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            background: #6F1A34;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+            color: #FFF;
+            font-size: 20px;
+            font-weight: 500;
+        }
+        .table {
+            align-items: center;
+            margin-bottom: 0px;
+            --bs-table-bg: #F2F2F2;
+            --bs-table-border-color: #000;
+        }
+        .td a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-page {
+            position: absolute;
+            right: 4px;
+            width: 214px;
+            height: 60px;
+            border: none;
+            color: #000;
+            background: #F2F2F2;
+            font-size: 20px;
+            font-weight: 500;
+        }
+    </style>
+</body>
 </html>

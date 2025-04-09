@@ -43,63 +43,63 @@
                     <form action="{{ route('admin.addPatient') }}" method="POST" class="form-inline">
                         @csrf
                         <div class="form-group mb-2">
-                            <label for="first_name">First Name:</label>
+                            <label for="first_name">PACIENTE:</label>
                             <input type="text" name="first_name" id="first_name" class="form-control mx-sm-2" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="last_name">Last Name:</label>
-                            <input type="text" name="last_name" id="last_name" class="form-control mx-sm-2" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label for="gender">Gender:</label>
+                            <label for="gender">SEXO:</label>
                             <input type="text" name="gender" id="gender" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="age">Age:</label>
+                            <label for="age">EDAD:</label>
                             <input type="number" name="age" id="age" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="school_name">School Name:</label>
+                            <label for="school_name">ESCUELA:</label>
                             <input type="text" name="school_name" id="school_name" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="fasting_status">Fasting Status:</label>
+                            <label for="DERECHOHABIENCIA">DERECHOHABIENCIA:</label>
+                            <input type="text" name="DERECHOHABIENCIA" id="DERECHOHABIENCIA" class="form-control mx-sm-2">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="fasting_status">AYUNO:</label>
                             <input type="text" name="fasting_status" id="fasting_status" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="glucose">Glucose:</label>
+                            <label for="glucose">GLUCOSA:</label>
                             <input type="text" name="glucose" id="glucose" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="triglycerides">Triglycerides:</label>
+                            <label for="triglycerides">TRIGLICÉRIDOS:</label>
                             <input type="text" name="triglycerides" id="triglycerides" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="total_cholesterol">Total Cholesterol:</label>
+                            <label for="total_cholesterol">COLESTEROL TOTAL:</label>
                             <input type="text" name="total_cholesterol" id="total_cholesterol" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="hba1c">HbA1c:</label>
+                            <label for="hba1c">HBA1C:</label>
                             <input type="text" name="hba1c" id="hba1c" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="weight">Weight:</label>
+                            <label for="weight">PESO:</label>
                             <input type="text" name="weight" id="weight" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="height">Height:</label>
+                            <label for="height">TALLA:</label>
                             <input type="text" name="height" id="height" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="bmi">BMI:</label>
+                            <label for="bmi">IMC:</label>
                             <input type="text" name="bmi" id="bmi" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="waist">Waist:</label>
+                            <label for="waist">CINTURA:</label>
                             <input type="text" name="waist" id="waist" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="hip">Hip:</label>
+                            <label for="hip">CADERA:</label>
                             <input type="text" name="hip" id="hip" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
@@ -107,12 +107,8 @@
                             <input type="text" name="icc" id="icc" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="comments">Comments:</label>
+                            <label for="comments">COMENTARIO:</label>
                             <textarea name="comments" id="comments" class="form-control mx-sm-2"></textarea>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label for="parent_id">Parent ID:</label>
-                            <input type="number" name="parent_id" id="parent_id" class="form-control mx-sm-2">
                         </div>
                         <button type="submit" class="btn btn-primary mb-2">Add Patient</button>
                     </form>
@@ -139,8 +135,7 @@
                         <table id="Table" class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
+                                    <th>Name</th>
                                     <th>Student ID</th>
                                     <th>Actions</th>
                                 </tr>
@@ -148,14 +143,13 @@
                             <tbody>
                                 @foreach($patients as $patient)
                                     <tr>
-                                        <td>{{ $patient->first_name }}</td>
-                                        <td>{{ $patient->last_name }}</td>
-                                        <td>{{ $patient->id }}</td>
+                                        <td>{{ $patient->PACIENTE }}</td>
+                                        <td>{{ $patient->getKey() }}</td>
                                         <td>
                                             <!-- View Profile Button -->
-                                            <a href="{{ route('admin.users.patient_profile', $patient->id) }}" class="btn btn-primary btn-sm">View Profile</a>
+                                            <a href="{{ route('admin.users.patient_profile', $patient->getKey()) }}" class="btn btn-primary btn-sm">View Profile</a>
                                             <!-- Remove Button -->
-                                            <form action="{{ route('admin.removePatient', $patient->id) }}" method="POST" style="display:inline;">
+                                            <form action="{{ route('admin.removePatient', $patient->getKey()) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm">Remove</button>
