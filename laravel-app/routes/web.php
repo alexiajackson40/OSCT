@@ -12,34 +12,28 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 
-// Main Route
+// Main Route (public)
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
-// Login Route
-Route::view('/login', 'login')->name('login');
-Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
-
-// Register Routes
-Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
-Route::post('/register', [AuthController::class, 'register'])->name('register');
-
-// Guest-Specific Routes
+// Login & Register (for Guests)
 Route::middleware('guest')->group(function () {
+    // Only one set of login routes is defined.
     Route::view('/login', 'login')->name('login');
-    Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
-    Route::get('/login', function () {
-        return view('login');
-    });
+    Route::post('/login', [AuthController::class, 'authenticate'])->name('login.post');
+
+    // Register routes
+    Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+    Route::post('/register', [AuthController::class, 'register'])->name('register.post');
 });
 
-// Patient Sign-Up Route
+// Patient Sign-Up Route (public)
 Route::get('/signup', function () {
     return view('patient_user.sign_up');
 })->name('signup');
 Route::post('/signup', [UserController::class, 'signup'])->name('signup');
 
-// Admin Routes
-Route::prefix('admin')->group(function () {
+// Admin Routes (using the admin guard)
+Route::prefix('admin')->middleware('auth:admin')->group(function () {
     // Admin Home Page
     Route::get('home', [AdminController::class, 'home'])->name('admin.home');
 
@@ -48,19 +42,19 @@ Route::prefix('admin')->group(function () {
     Route::get('profile/edit', [AdminController::class, 'editProfile'])->name('admin.editProfile');
     Route::put('profile/update', [AdminController::class, 'updateProfile'])->name('update.profile');
 
-    // Admin Header Route (Static View)
+    // Static Admin Header
     Route::get('header_admin', function () {
         return view('admin_user.header_admin');
     })->name('admin.header_admin');
 
-    // Admin User Management Routes
+    // User Management Routes
     Route::get('users', [AdminController::class, 'users'])->name('admin.users');
     Route::get('users/add', [AdminController::class, 'addUser'])->name('admin.addUser');
     Route::post('users/add', [AdminController::class, 'storeUser'])->name('add-user.store');
     Route::get('users/edit/{id}', [AdminController::class, 'editUser'])->name('admin.users.edit');
     Route::delete('users/{id}', [AdminController::class, 'destroyUser'])->name('admin.users.destroy');
 
-    // Admin > Specific User Groups
+    // Specific User Groups
     Route::get('users/patient', [AdminUsersController::class, 'patientUsers'])->name('admin.patientUsers');
     Route::post('users/patient/add', [AdminUsersController::class, 'addPatient'])->name('admin.addPatient');
     Route::delete('users/patient/remove/{id}', [AdminUsersController::class, 'removePatient'])->name('admin.removePatient');
@@ -72,30 +66,42 @@ Route::prefix('admin')->group(function () {
     Route::get('users/personnel/profile/{id}', [AdminUsersController::class, 'personnelProfile'])->name('admin.users.personnel_profile');
     Route::put('users/personnel/profile/{id}/update', [AdminUsersController::class, 'updatePersonnel'])->name('admin.updatePersonnel');
 
-    // Patient-Specific Routes
-    Route::get('users/patient/profile/{id}', [AdminUsersController::class, 'patientProfile'])->name('admin.users.patient_profile');
-    Route::put('users/patient/profile/{id}/update', [AdminUsersController::class, 'updatePatient'])->name('admin.updatePatient');
-    Route::get('users/patient/measurements/{id}', [AdminUsersController::class, 'patientMeasurements'])->name('admin.users.patient_measurements');
-    Route::post('users/patient/measurements/upload/{id}', [AdminUsersController::class, 'uploadMeasurement'])->name('admin.uploadMeasurement');
-    Route::get('users/patient/documents/{id}', [AdminUsersController::class, 'allPatientDocuments'])->name('admin.users.patient_documents');
-    Route::get('users/patient/labResults/{id}', [AdminUsersController::class, 'patientLabResults'])->name('admin.users.patient_labResults');
+    // Patient-Specific Routes (Admin Panel)
+    Route::get('users/patient/profile/{id}', [AdminUsersController::class, 'patientProfile'])
+        ->name('admin.users.patient_profile');
+    Route::put('users/patient/profile/{id}/update', [AdminUsersController::class, 'updatePatient'])
+        ->name('admin.updatePatient');
+    Route::get('users/patient/measurements/{id}', [AdminUsersController::class, 'patientMeasurements'])
+        ->name('admin.users.patient_measurements');
+    Route::post('users/patient/measurements/upload/{id}', [AdminUsersController::class, 'uploadMeasurement'])
+        ->name('admin.uploadMeasurement');
+    Route::get('users/patient/documents/{id}', [AdminUsersController::class, 'allPatientDocuments'])
+        ->name('admin.users.patient_documents');
+    Route::get('users/patient/labResults/{id}', [AdminUsersController::class, 'patientLabResults'])
+        ->name('admin.users.patient_labResults');
 
     // Document Routes
-    Route::get('documents/{documentId}/download', [AdminUsersController::class, 'downloadDocument'])->name('admin.downloadDocument');
-    Route::post('documents/upload/{id?}', [AdminUsersController::class, 'uploadDocument'])->name('admin.uploadDocument');
-    Route::delete('documents/{documentId}/delete', [AdminUsersController::class, 'deleteDocument'])->name('admin.deleteDocument');
+    Route::get('documents/{documentId}/download', [AdminUsersController::class, 'downloadDocument'])
+        ->name('admin.downloadDocument');
+    Route::post('documents/upload/{id?}', [AdminUsersController::class, 'uploadDocument'])
+        ->name('admin.uploadDocument');
+    Route::delete('documents/{documentId}/delete', [AdminUsersController::class, 'deleteDocument'])
+        ->name('admin.deleteDocument');
 
     // Lab Result Routes
-    Route::get('labResult/download/{id}', [AdminUsersController::class, 'downloadLabResult'])->name('admin.labResultDownload');
-    Route::post('labResult/upload/{id}', [AdminUsersController::class, 'uploadLabResult'])->name('admin.uploadLabResult');
-    Route::delete('labResult/delete/{id}', [AdminUsersController::class, 'deleteLabResult'])->name('admin.deleteLabResult');
+    Route::get('labResult/download/{id}', [AdminUsersController::class, 'downloadLabResult'])
+        ->name('admin.labResultDownload');
+    Route::post('labResult/upload/{id}', [AdminUsersController::class, 'uploadLabResult'])
+        ->name('admin.uploadLabResult');
+    Route::delete('labResult/delete/{id}', [AdminUsersController::class, 'deleteLabResult'])
+        ->name('admin.deleteLabResult');
 
     // Admin Schedule Routes
     Route::get('schedule', [AdminController::class, 'schedule'])->name('schedule.index');
     Route::get('schedule/edit/{id}', [AdminController::class, 'scheduleEdit'])->name('schedule.edit');
-    Route::post('schedule/upload', [AdminController::class, 'uploadSchedule'])->name('admin.uploadSchedule'); // Missing route added
+    Route::post('schedule/upload', [AdminController::class, 'uploadSchedule'])->name('admin.uploadSchedule');
 
-    // Logout Route
+    // Logout Route (for admin)
     Route::post('/logout', function () {
         Auth::guard('admin')->logout();
         request()->session()->invalidate();
@@ -104,8 +110,8 @@ Route::prefix('admin')->group(function () {
     })->name('logout');
 });
 
-// Personnel Routes
-Route::prefix('personnel')->group(function () {
+// Personnel Routes (protected with auth middleware)
+Route::prefix('personnel')->middleware('auth')->group(function () {
     Route::get('home', [PersonnelController::class, 'home'])->name('personnel.home');
     Route::get('profile/{id}', [PersonnelController::class, 'personnelProfile'])->name('personnel.profile');
     Route::get('schedule', [PersonnelController::class, 'schedule'])->name('personnel.schedule');
@@ -115,8 +121,8 @@ Route::prefix('personnel')->group(function () {
     Route::get('patients/documents', [PersonnelController::class, 'documents'])->name('personnel.documents');
 });
 
-// Patient Routes
-Route::prefix('patient')->group(function () {
+// Patient Routes (protected with auth middleware)
+Route::prefix('patient')->middleware('auth')->group(function () {
     Route::get('home', [PatientController::class, 'home'])->name('patient.home');
     Route::get('profile', [PatientController::class, 'profile'])->name('patient.profile');
     Route::get('documents', [PatientController::class, 'documents'])->name('patient.documents');
@@ -125,8 +131,8 @@ Route::prefix('patient')->group(function () {
     Route::get('signup', [PatientController::class, 'signUp'])->name('patient.signup');
 });
 
-// Parent Routes
-Route::prefix('parent')->group(function () {
+// Parent Routes (protected with auth middleware)
+Route::prefix('parent')->middleware('auth')->group(function () {
     Route::get('home', [ParentController::class, 'home'])->name('parent.home');
     Route::get('profile', [ParentController::class, 'profile'])->name('parent.profile');
 });
