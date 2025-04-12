@@ -1,90 +1,54 @@
-# Team5
+# OSCT  
+For Senior Design Project  
 
----
+### Prerequisites  
+Make sure you have the following installed:  
 
-## **Senior Design Project**
+- **Node.js** v20.10.1 or higher (`node -v` to check)  
+- **npm** v10.8.2 (`npm -v` to check)  
 
-### **Project Setup Instructions (for Windows + VS Code)**
+If you don’t have Node.js installed, download it from [nodejs.org](https://nodejs.org/).
 
----
+## Getting Started  
 
-### **Step 1: Install MySQL**
+### Install Dependencies  
+```sh
+npm install
+```
 
-Go to the official MySQL website and download the **MySQL Community Server** for Windows:  
-(https://dev.mysql.com/downloads/mysql/)
+### Start the Development Server
+```sh
+npm run dev
+```
+After executing, control click on the local host link.
+```sh
+Local:   http://localhost:3000/
+```
+If your browser gives you an error page stating that it can not open the site, copy and paste the link manually into your browser bar.
 
-During installation:
-- Set the **root password** (you’ll need it later).
-- Ensure MySQL Server is configured to start automatically.
+### Build for Production
+```sh
+npm run build
+```
+## Jira Integration 
+To use Jira's Integration, you need to use an issue key to sync progress to Jira's Board.
+Issue keys are just special tags that are tied to any element we track in the app(Our to do tasks).
+Issue keys are displayed on the task card.
 
-After installation, verify it's working:
-1. Open the **Command Prompt** or **PowerShell**.
-2. Run:
-   ```
-   mysql --version
-   ```
+### Branching with Jira issue keys
+When creating your working branch, include the issue key for the task you are going to work on in order to sync with Jira Board.
+```sh
+git checkout -b issue-key-<branch-name>
+```
 
-To access MySQL from the command line, you may need to add the MySQL `bin` directory (usually `C:\Program Files\MySQL\MySQL Server X.X\bin`) to your system's **PATH** environment variable.
-
----
-
-### **Step 2: Set Up SQLTools in VS Code (Alternative to MySQL Workbench)**
-
-Open Visual Studio Code.
-
-Go to the Extensions view (Ctrl+Shift+X).
-
-Search for and install:
-- SQLTools by Matheus Teixeira
-- SQLTools MySQL/MariaDB Driver (you’ll need this to connect to MySQL)
-
- - Click on SQLTools extension then click Add New connection
- - In the Connection Assistant, click MySQL as the driver.
- - Enter all the information found in the settings.json file, after the correct information is entered,
-   click, test connection. IF connection is successful, save connection.
-- The connection will now be visible in the Connections section of the SQLTools extention tab. Click the plug
-  symbol to connect to the databse from now on.
----
-
-### **Step 3: Install PHP**
-
-1. Download PHP for Windows from:  
-   (https://windows.php.net/download/)
-
-2. Extract the downloaded ZIP and place it in a directory like `C:\php`.
-
-3. Add that directory to your **System PATH** environment variable.
-
-4. To verify installation, open **Command Prompt** and run:
-   ```
-   php --version
-   ```
-
----
-
-### **Step 4: Install Composer (PHP dependency manager)**
-
-1. Download and install Composer for Windows from:  
-   (https://getcomposer.org/Composer-Setup.exe)
-
-2. After installation, verify Composer by running:
-   ```
-   composer --version
-   ```
-
----
-
-### **Step 5: Accessing the Website**
-
-1. Navigate to the laravel-app directory in the frontend-backend-implementation branch
-
-2. Start the Laravel development server:
-   In the terminal, run the command:
-   ```
-   php artisan serve
-   ```
-  A link should pop up that you can follow to the website. This server must always
-  be running to access the website. You must create a new terminal if you need to run
-  and further commands.
-
----
+### Committing with Jira issue keys
+When committing from your working branch, include the issue key for the task you were working on to update Jira's Board.
+```sh
+git commit -m "issue-key <summary of commit>"
+```
+### Commit Resolved Issue When Pushing New Branch
+If you receive the error "fatal: The current branch <issue-key-<branch-name>> has no upstream branch.",
+run the following:
+```sh
+git push --set-upstream origin issue-key-<branch-name>
+```
