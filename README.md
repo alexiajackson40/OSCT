@@ -73,10 +73,7 @@ Search for and install:
 1. Download and install Composer for Windows from:  
    (https://getcomposer.org/Composer-Setup.exe)
 
-2. Add that directory to your **System PATH** environment variable.
-   (Example: C:\ProgramData\ComposerSetup\bin)
-
-4. After installation, verify Composer by running:
+2. After installation, verify Composer by running:
    ```
    composer --version
    ```
