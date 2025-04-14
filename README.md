@@ -55,7 +55,7 @@ Search for and install:
 1. Download PHP for Windows from:  
    (https://windows.php.net/download/)
 
-   Download version PHP 8.3 (8.3.20), VS16 x64 Non Thread Safe, ZIP
+   Download version PHP 8.4, VS16 x64 Non Thread Safe, ZIP
 
 3. Extract the downloaded ZIP and place it in a directory like `C:\php`.
 
