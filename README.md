@@ -42,7 +42,7 @@ Search for and install:
 - SQLTools by Matheus Teixeira
 - SQLTools MySQL/MariaDB Driver (you’ll need this to connect to MySQL)
 
- - Click on SQLTools extension then click Add New connection
+ - Click on SQLTools extension (left side of screen, cylinder symbol) then click Add New connection
  - In the Connection Assistant, click MySQL as the driver.
  - Enter all the information found in the settings.json file, after the correct information is entered,
    click, test connection. IF connection is successful, save connection.
@@ -55,7 +55,7 @@ Search for and install:
 1. Download PHP for Windows from:  
    (https://windows.php.net/download/)
 
-   Download version PHP 8.4, VS16 x64 Non Thread Safe, ZIP
+   Download version PHP 8.4, VS17 x64 Non Thread Safe, ZIP
 
 3. Extract the downloaded ZIP and place it in a directory like `C:\php`.
 
