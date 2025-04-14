@@ -15,6 +15,8 @@ add prerequisites here
 Go to the official MySQL website and download the **MySQL Community Server** for Windows:  
 (https://dev.mysql.com/downloads/mysql/)
 
+Download Windows (x86, 64-bit), MSI Installer. Then run the installer and follow the prompts.
+
 During installation:
 - Set the **root password** (you’ll need it later).
 - Ensure MySQL Server is configured to start automatically.
