@@ -1,27 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Personnel User Header -->
+<head>
+    <!-- Import Bootstrap and Custom Styles -->
+    <link href="{{ asset('theme.css') }}" rel="stylesheet">
+    <link href="{{ asset('style.css') }}" rel="stylesheet">
+    <script src="{{ asset('bootstrap.min.js') }}" defer></script>
+</head>
 <body>
+    <!-- Header Section -->
     <div class="container-fluid main-body">
-        <div class="header-container d-flex flex-row"> 
+        <div class="header-container d-flex flex-row align-items-center">
             <!-- Logo -->
             <div class="media">
-                <img src="{{ asset('public/img/logoWhite.png') }}" alt="logo" width="45" height="60">
+                <img src="{{ asset('img/logoWhite.png') }}" alt="logo" width="45" height="60">
             </div>
-            <!-- Project name -->
-            <div class="project-title-container">
-                <h1 class="project-title" style="font-size: 2rem; margin-bottom: 0;">OSCT</h1>
+            <!-- Project Name -->
+            <div class="project-title-container ms-3">
+                <h1 class="project-title m-0" style="font-size: 2rem;">OSCT</h1>
                 <h2 class="project-subtitle" style="font-size: 1.125rem; font-weight: 400;">Operación Salud Colima Tamizaje</h2>
             </div>
-            <!-- Profile Button with Dropdown -->
-            <div class="user-container dropdown">
+            <!-- Profile Dropdown -->
+            <div class="user-container dropdown ms-auto">
                 <a id="profile" class="btn btn-light d-flex align-items-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="{{ asset('public/img/The_Donkey.JPEG') }}" class="img-thumbnail rounded-circle me-2" alt="logo" width="45" height="45">
-                    <span class="user-text">{{ Auth::user()->name ?? 'Username' }}</span> <!-- Display logged-in user's name -->
+                    <img src="{{ asset('img/The_Donkey.JPEG') }}" class="img-thumbnail rounded-circle me-2" alt="profile logo" width="45" height="45">
+                    @if(Auth::check())
+                        <span class="user-text">{{ Auth::user()->username }}</span>
+                    @else
+                        <span class="user-text">Guest</span>
+                    @endif
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
-                    <li><a class="dropdown-item" id="profile-button" href="{{ route('admin.users.personnelProfile', Auth::id()) }}">View Profile</a></li>
-                    <li><a class="dropdown-item" id="signout-button" href="{{ route('logout') }}">Sign Out</a></li> <!-- Laravel logout route -->
+                    <li><a class="dropdown-item" id="profile-button" href="{{ route('personnel.profile', Auth::id()) }}">View Profile</a></li>
+                    <li>
+                        <!-- Sign Out form -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="dropdown-item">Sign Out</button>
+                        </form>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -30,9 +46,9 @@
     <!-- Navigation Bar -->
     <div class="navigation-container">
         <nav class="nav nav-pills nav-fill">
-            <a class="nav-link" href="{{ route('personnel.home') }}" data-page="personnel_user/home">Home</a>
-            <a class="nav-link" href="{{ route('personnel.users') }}" data-page="personnel_user/users">Users</a>
-            <a class="nav-link" href="{{ route('personnel.schedule') }}" data-page="personnel_user/schedule">Schedule</a>
+            <a class="nav-link {{ request()->is('personnel/home') ? 'active' : '' }}" href="{{ route('personnel.home') }}">Home</a>
+            <a class="nav-link {{ request()->is('personnel/users') ? 'active' : '' }}" href="{{ route('personnel.users') }}">Users</a>
+            <a class="nav-link {{ request()->is('personnel/schedule') ? 'active' : '' }}" href="{{ route('personnel.schedule') }}">Schedule</a>
         </nav>
     </div>
 
@@ -61,7 +77,7 @@
             width: 100%;
             height: 3.125rem;
             border: 0.125rem solid var(--light-surface-three);
-            cursor: pointer; 
+            cursor: pointer;
         }
         .user-text {
             color: var(--dark-surface-three);
@@ -91,7 +107,7 @@
             --bs-nav-pills-border-radius: 0;
             width: 7.8125rem !important;
             font-weight: 600;
-            --bs-nav-link-font-size: 1.25rem !important; 
+            --bs-nav-link-font-size: 1.25rem !important;
         }
         .nav-pills .nav-link.active {
             color: black !important;

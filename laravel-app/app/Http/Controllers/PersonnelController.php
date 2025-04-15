@@ -6,6 +6,10 @@ use App\Models\User;
 use App\Models\Measurement;
 use App\Models\LabResult;
 use Illuminate\Http\Request;
+use App\Models\Personnel;
+use App\Models\Patient;
+use App\Models\Document;
+
 
 class PersonnelController extends Controller
 {
@@ -18,7 +22,35 @@ class PersonnelController extends Controller
         $user = Personnel::findOrFail($id); // Retrieve personnel from the personnel table
         return view('personnel_user.profile', compact('user'));
     }
+
+    public function editProfile($id)
+    {
+        $user = \App\Models\Personnel::findOrFail($id);
+        return view('personnel_user.edit_profile', compact('user'));
+    }
+
+    public function updateProfile(Request $request, $id)
+    {
+        $user = \App\Models\Personnel::findOrFail($id);
+
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'phone' => 'nullable|string|max:15',
+            'address' => 'nullable|string|max:255',
+        ]);
+
+        $user->update($request->only(['first_name', 'last_name', 'phone', 'address']));
     
+        return redirect()->route('personnel.profile', $id)->with('success', 'Profile updated.');
+    }
+
+    public function users()
+    {
+        $patients = \App\Models\Patient::all();
+        return view('personnel_user.users', compact('patients'));
+    }    
+
     public function patientLabResults($id)
     {
         $labResults = LabResult::where('user_id', $id)->get();
@@ -28,9 +60,9 @@ class PersonnelController extends Controller
     
     public function patientMeasurements($id)
     {
-        $measurements = Measurement::where('user_id', $id)->first();  // Corrected to fetch from the patients table
-        $patient = Patient::findOrFail($id);  // Corrected to fetch from the patients table
-        return view('personnel_user.users.patient_measurements', compact('measurements', 'patient'));
+        $patient = Patient::where('CURP', $id)->firstOrFail();
+        $measurements = Measurement::where('user_id', $id)->get(); // not ->exists() or ->first()
+        return view('personnel_user.users.patient_measurements', compact('patient', 'measurements'));
     }
     
     public function patientProfile($id)
@@ -38,9 +70,13 @@ class PersonnelController extends Controller
         $patient = Patient::findOrFail($id);  // Corrected to fetch from the patients table
         return view('personnel_user.users.patient_profile', compact('patient'));
     }
-    
 
-    public function documents() {
-        return view('personnel_user.users.patient_documents');
+    public function documents($id)
+    {
+        $patient = Patient::findOrFail($id);
+        $documents = Document::where('user_id', $id)->get();
+    
+        return view('personnel_user.users.patient_documents', compact('patient', 'documents'));
     }
+    
 }
