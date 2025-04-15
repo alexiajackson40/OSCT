@@ -106,6 +106,11 @@ Remove the semicolon (`;`) to uncomment it:
 extension=fileinfo
 ```
 
+Also, remove the semicolon (`;`) to uncomment it:
+---
+extension=pdo_mysql
+---
+
 Save the file.
 
 
