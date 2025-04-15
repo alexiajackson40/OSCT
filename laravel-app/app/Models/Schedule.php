@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Schedule extends Model
 {
     protected $table = 'schedule';
-    
+
     protected $fillable = [
         'NIVEL',
         'TURNO',
@@ -18,13 +18,14 @@ class Schedule extends Model
         'DOMICILIO',
         'TOTAL_DE_ALUMNOS',
         'FECHA',
+        'school_name',
+        'location',
+        'visit_date',
+        'file_path',
+        'admin_id',
     ];
 
     public $timestamps = true;
-
-    protected $fillable = [
-        'school_name', 'location', 'visit_date', 'file_path', 'admin_id'
-    ];
 
     public function admin()
     {
