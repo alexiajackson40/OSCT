@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Personnel;
 use App\Models\Patient;
 use App\Models\Document;
+use App\Models\Schedule;
 
 
 class PersonnelController extends Controller
@@ -78,5 +79,10 @@ class PersonnelController extends Controller
     
         return view('personnel_user.users.patient_documents', compact('patient', 'documents'));
     }
-    
+
+    public function schedule()
+    {
+        $schedules = Schedule::all();
+        return view('admin_user.schedule', compact('schedules'));
+    }
 }
