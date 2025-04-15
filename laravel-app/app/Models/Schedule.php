@@ -6,6 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Schedule extends Model
 {
+    protected $table = 'schedule';
+    
+    protected $fillable = [
+        'NIVEL',
+        'TURNO',
+        'CCT',
+        'NOMBRE_DE_LA_ESCUELA',
+        'MUNICIPIO',
+        'LOCALIDAD',
+        'DOMICILIO',
+        'TOTAL_DE_ALUMNOS',
+        'FECHA',
+    ];
+
+    public $timestamps = true;
+
     protected $fillable = [
         'school_name', 'location', 'visit_date', 'file_path', 'admin_id'
     ];

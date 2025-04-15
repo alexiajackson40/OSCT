@@ -22,6 +22,7 @@
         <div class="users-container mt-5">
             <div class="card">
                 <!-- Add/Remove User -->
+                <a class="btn-page btn-primary" href="{{ route('admin.addUser') }}">[Add/Remove Personnel]</a>
                 <a class="btn-page btn-primary" href="{{ route('admin.addUser') }}">[Add/Remove User]</a>
                 <div class="card-body d-flex flex-column">
                     <div class="document-content">
