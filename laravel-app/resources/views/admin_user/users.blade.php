@@ -61,45 +61,44 @@
 
     <style>
         .main-content {
-            margin-top: 6rem;
             display: flex;
-            justify-content: flex-start;
-            align-items: flex-start;
-            padding: 1rem;
+            justify-content: left;
             width: 100%;
             min-height: 100vh;
         }
 
         .users-container {
-            flex-grow: 1;
             width: 70%;
-            background-color: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .card {
             background-color: #F2F2F2;
-            padding: 1rem;
+            height: 100%;
+            min-height: 100vh;
         }
 
         .document-content {
-            margin: 1.5rem;
+            margin-left: 1.5625rem;
+            margin-right: 1.5625rem;
         }
 
         .card-title {
             font-size: 2rem;
             font-weight: 500;
             text-align: left;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.5625rem;
+            margin-top: 1.5625rem;
         }
 
         .button-container {
-            width: 15rem;
+            width: 13.375rem;
+            height: 13rem;
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-right: 1rem;
+            justify-content: center;
+            justify-content: space-around;
+            align-items: center;
+            margin-right: 0.5rem;
+            margin-left: 0.5rem;
         }
 
         .table-btn {
@@ -110,7 +109,7 @@
             align-items: center;
             border-radius: 8px;
             background-color: #6F1A34;
-            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
             color: #FFF;
             font-size: 1.25rem;
             font-weight: 500;
@@ -120,7 +119,12 @@
         .table-btn:hover {
             background-color: #7C1332;
         }
-
+        .table {
+            align-items: center;
+            margin-bottom: 0px;
+            --bs-table-bg: #F2F2F2;
+            --bs-table-border-color: #000;
+    }
         .btn-page {
             position: absolute;
             right: 4px;
