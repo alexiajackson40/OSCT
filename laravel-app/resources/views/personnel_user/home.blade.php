@@ -8,8 +8,8 @@
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
 </head>
 <body>
-    <!-- Include the header from layouts -->
-    @include('layouts.header_patient') <!-- Include the header blade file -->
+    <!-- Include the personnel header -->
+    @include('personnel_user.header_personnel')
 
     <!-- Main Content -->
     <div class="main-content">

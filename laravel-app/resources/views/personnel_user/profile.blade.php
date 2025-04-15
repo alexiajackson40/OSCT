@@ -1,71 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Personnel User Profile Page -->
+<head>
+    <!-- Import Bootstrap and Custom Styles -->
+    <link href="{{ asset('theme.css') }}" rel="stylesheet">
+    <link href="{{ asset('style.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+</head>
 <body>
-    @include('layouts.header_personnel') <!-- Include the header blade -->
+    @include('personnel_user.header_personnel')
 
-    <div class="main-content">
-        <div class="profile-container mt-5">
+    <div class="main-content mt-5 d-flex justify-content-center">
+        <div class="profile-container">
             <div class="card">
-                <button class="btn-page btn-primary">[Edit Information]</button>
-                <div class="card-body d-flex flex-column align-self-center"> <!-- Makes card customizable -->
-                    <h1 class="card-title">User Name</h1>
-                    <div class="information-container d-flex flex-column align-items-left">
+            <button class="btn-page btn-primary" onclick="window.location='{{ route('personnel.editProfile', $user->employee_id) }}'">[Edit Information]</button>
+                <div class="card-body d-flex flex-column align-items-center">
+                    <h1 class="card-title">{{ $user->first_name }} {{ $user->last_name }}</h1>
+
+                    <!-- User Information -->
+                    <div class="information-container">
                         <h2 class="container-header">User Information</h2>
-                        <table id="Table" class="table">
-                            <thead>
-                                <tr>
-                                    <th>Field Name</th>
-                                    <th>Value</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Example: Populate this dynamically with actual user data -->
-                                <tr>
-                                    <td>First Name</td>
-                                    <td>{{ $user->first_name }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Last Name</td>
-                                    <td>{{ $user->last_name }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Username</td>
-                                    <td>{{ $user->username }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Phone Number</td>
-                                    <td>{{ $user->phone_number }}</td>
-                                </tr>
-                            </tbody>
+                        <table class="table">
+                            <tr>
+                                <td>First Name</td>
+                                <td>{{ $user->first_name }}</td>
+                            </tr>
+                            <tr>
+                                <td>Last Name</td>
+                                <td>{{ $user->last_name }}</td>
+                            </tr>
+                            <tr>
+                                <td>Username</td>
+                                <td>{{ $user->username }}</td>
+                            </tr>
+                            <tr>
+                                <td>Phone Number</td>
+                                <td>{{ $user->phone }}</td>
+                            </tr>
                         </table>
                     </div>
-                    <div class="contact-container d-flex flex-column align-items-left">
+
+                    <!-- Contact Information -->
+                    <div class="contact-container">
                         <h2 class="container-header">Contact Information</h2>
-                        <table id="Table" class="table">
-                            <thead>
-                                <tr>
-                                    <th>Field Name</th>
-                                    <th>Value</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Example: Populate this dynamically with actual user data -->
-                                <tr>
-                                    <td>Email</td>
-                                    <td>{{ $user->email }}</td>
-                                </tr>
-                                <!-- Add more rows as necessary -->
-                            </tbody>
+                        <table class="table">
+                            <tr>
+                                <td>Email</td>
+                                <td>{{ $user->email }}</td>
+                            </tr>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    @include('layouts.footer') <!-- Optional footer -->
-
 </body>
 
 <style>
@@ -77,71 +65,50 @@
     }
     .profile-container {
         width: 70%;
-        display: flex;
-        justify-content: center;
     }
     .card {
         background-color: #F2F2F2;
-        width: 545px;
-        height: 700px;
+        width: 100%;
+        max-width: 600px;
         position: relative;
     }
     .card-body {
-        padding-top: 10px;
-        display: flex;
-        flex-direction: column;
+        padding: 2rem;
     }
     .card-title {
-        font-size: 32px;
-        font-weight: 500;
-        margin-top: 40px;
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
     }
     .container-header {
-        font-size: 20px;
+        font-size: 1.25rem;
         font-weight: 500;
-        padding-left: 14px;
-        padding-top: 14px;
+        margin-bottom: 0.75rem;
+        margin-top: 1rem;
     }
-    .information-container {
-        margin-top: 12px;
-        width: 449px;
-        height: auto;
-        border-radius: 6px;
-        border: 1px solid rgba(0, 0, 0, 0.30);
-        background: #FFF;
-    }
+    .information-container,
     .contact-container {
-        margin-top: 15px;
-        width: 449px;
-        height: auto;
-        border-radius: 6px;
-        border: 1px solid rgba(0, 0, 0, 0.30);
+        width: 100%;
+        padding: 1rem;
         background: #FFF;
+        border-radius: 6px;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        margin-bottom: 1.25rem;
     }
     .table {
-        margin-left: 14px;
-        color: #000000;
-        font-size: 16px;
-        font-weight: 400;
-        width: auto;
+        font-size: 1rem;
+        color: #000;
     }
     .btn-page {
         position: absolute;
-        right: 4px;
-        width: 214px;
-        height: 60px;
+        right: 1rem;
+        top: 1rem;
+        width: auto;
         border: none;
-        color: #000;
         background: #F2F2F2;
-        font-size: 20px;
+        font-size: 1rem;
         font-weight: 500;
-        text-decoration-line: underline;
-        text-decoration-style: solid;
-        text-decoration-skip-ink: auto;
-        text-decoration-thickness: auto;
-        text-underline-offset: auto;
-        text-underline-position: from-font;
+        text-decoration: underline;
     }
 </style>
-
 </html>

@@ -36,8 +36,8 @@ class AuthController extends Controller
 
         // Personnel authentication
         $personnel = Personnel::where('username', $request->username)->first();
-        if ($personnel && Hash::check($request->password, $personnel->password)) {  // Use Hash::check()
-            Auth::login($personnel);
+        if ($personnel && Hash::check($request->password, $personnel->password)) {
+            Auth::guard('personnel')->login($personnel); // ← use personnel guard
             return redirect()->route('personnel.home');
         }
 
@@ -47,7 +47,6 @@ class AuthController extends Controller
             Auth::login($patient);
             return redirect()->route('patient.home');
         }
-
         
         // Parent authentication
         $parent = ParentModel::where('username', $request->username)->first();

@@ -1,48 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Personnel Schedule Page -->
+<head>
+    <!-- Import Bootstrap and Custom Styles -->
+    <link href="{{ asset('theme.css') }}" rel="stylesheet">
+    <link href="{{ asset('style.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+</head>
 <body>
-    @include('layouts.header_personnel') <!-- Include the header blade -->
+    @include('personnel_user.header_personnel')
 
-    <div class="main-content">
-        <div class="schedule-container mt-5">
+    <div class="main-content mt-5 d-flex justify-content-center">
+        <div class="schedule-container w-100 px-4">
             <div class="card">
                 <button class="btn-page btn-primary">[Update Schedule]</button>
                 <div class="card-body d-flex flex-column">
-                    <div class="schedule-content">
-                        <h1 class="card-title">Programación vista a Planteles Escolares</h1>
-                        <h2 class="table-title">Operación Salud Colima Tamizaje</h2>
-                        <table id="Table" class="table">
-                            <thead class="tHead">
+                    <h1 class="card-title">Programación vista a Planteles Escolares</h1>
+                    <h2 class="table-title">Operación Salud Colima Tamizaje</h2>
+
+                    <table class="table table-bordered">
+                        <thead class="tHead">
+                            <tr>
+                                <th>Plantel</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tBody">
+                            @foreach($schedules as $schedule)
                                 <tr>
-                                    <th>Plantel</th>
-                                    <th>Date</th>
-                                    <th>Time</th>
-                                    <th>Actions</th>
+                                    <td>{{ $schedule->school }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($schedule->date)->format('Y-m-d') }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($schedule->time)->format('H:i') }}</td>
+                                    <td>
+                                        <a href="{{ route('admin.users.editSchedule', $schedule->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody class="tBody">
-                                @foreach($schedules as $schedule)
-                                    <tr>
-                                        <td>{{ $schedule->school }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($schedule->date)->format('Y-m-d') }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($schedule->time)->format('H:i') }}</td>
-                                        <td>
-                                            <!-- Add any actions such as "Edit" or "Delete" -->
-                                            <a href="{{ route('admin.users.editSchedule', $schedule->id) }}" class="btn btn-primary">Edit</a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                            @endforeach
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>
     </div>
 
-    @include('layouts.footer') <!-- Optional footer -->
-
+    @include('layouts.footer')
 </body>
 
 <style>
@@ -50,54 +54,43 @@
         display: flex;
         justify-content: center;
         width: 100%;
-        align-items: center;
         min-height: 100vh;
-    }
-    .schedule-container {
-        width: 80%;
     }
     .card {
         background-color: #F2F2F2;
-        height: 100%;
         min-height: 100vh;
-    }
-    .schedule-content {
-        margin-left: 1.563rem;
-        margin-right: 1.563rem;
+        padding: 1rem;
     }
     .card-title {
         font-size: 2rem;
-        font-weight: 500;
+        font-weight: 600;
         text-align: left;
-        margin-bottom: 1.125rem;
-        margin-top: 1.563rem;
-    }
-    .table {
-        margin-bottom: 0px;
-        --bs-table-bg: #F2F2F2;
-        --bs-table-border-color: #000;
-        align-items: center;
+        margin-bottom: 1rem;
     }
     .table-title {
         font-size: 1.25rem;
-        margin-bottom: 1.563rem;
+        margin-bottom: 1rem;
+    }
+    .table {
+        background-color: #F2F2F2;
+        color: #000;
     }
     .btn-page {
         position: absolute;
-        right: 4px;
-        width: 214px;
-        height: 60px;
+        right: 1rem;
+        top: 1rem;
+        width: auto;
         border: none;
-        color: #000;
         background: #F2F2F2;
-        font-size: 20px;
+        font-size: 1rem;
         font-weight: 500;
     }
     .tHead {
-        font-size: 0.938rem;
+        font-size: 1rem;
+        font-weight: 600;
     }
     .tBody {
-        font-size: 0.75rem;
+        font-size: 0.9rem;
     }
 </style>
 </html>
