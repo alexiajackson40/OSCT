@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 
+
 class AdminController extends Controller
 {
     public function home()
@@ -189,6 +190,18 @@ class AdminController extends Controller
 
         return redirect()->route('schedule.index')->with('success', 'Schedule CSV uploaded successfully.');
     }        
+
+    
+    public function uploadSchedule(Request $request)
+    {
+        $request->validate([
+            'schedule_file' => 'required|file|mimes:pdf,jpg,jpeg,png|max:10240', // Max 10MB
+        ]);
+
+        $filePath = $request->file('schedule_file')->store('schedules', 'public');
+
+        return redirect()->route('admin.home')->with('success', 'Schedule uploaded successfully.');
+    }
 
     public function users()
     {
