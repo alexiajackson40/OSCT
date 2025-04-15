@@ -8,6 +8,8 @@ use App\Models\Patient;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -120,17 +122,73 @@ class AdminController extends Controller
         $schedules = Schedule::all();
         return view('admin_user.schedule', compact('schedules'));
     }
-    
+
+    // Upload and process the schedule CSV
     public function uploadSchedule(Request $request)
     {
+        set_time_limit(120); // Allow processing of large files
+
+        // Validate the uploaded file
         $request->validate([
-            'schedule_file' => 'required|file|mimes:pdf,jpg,jpeg,png|max:10240', // Max 10MB
+            'schedule_file' => 'required|file|mimes:csv,txt|max:2048', // Restrict to CSV and TXT files, max 2MB
         ]);
 
-        $filePath = $request->file('schedule_file')->store('schedules', 'public');
+        // Load the CSV file
+        $file = $request->file('schedule_file');
+        $data = array_map('str_getcsv', file($file->getRealPath())); // Parse CSV data
+        $header = array_map('trim', array_shift($data)); // Extract and clean header row
 
-        return redirect()->route('admin.home')->with('success', 'Schedule uploaded successfully.');
-    }
+        // Validate headers against expected column names
+        $expectedHeaders = [
+            'NIVEL', 'TURNO', 'CCT', 'NOMBRE DE LA ESCUELA', 
+            'MUNICIPIO', 'LOCALIDAD', 'DOMICILIO', 
+            'TOTAL DE ALUMNOS', 'FECHA'
+        ];
+
+        if ($header !== $expectedHeaders) {
+            return redirect()->back()->with('error', 'Invalid CSV format. Please upload a file with the correct headers.');
+        }
+
+        // Prepare data for insertion
+        $insertData = [];
+
+        foreach ($data as $row) {
+            // Clean and combine rows with headers
+            $row = array_map('trim', $row);
+            $row = @array_combine($header, $row);
+
+            // Skip invalid rows
+            if (!$row) {
+                continue;
+            }
+
+            // Add the row data exactly as given
+            $insertData[] = [
+                'NIVEL'              => $row['NIVEL'] ?? null,
+                'TURNO'              => $row['TURNO'] ?? null,
+                'CCT'                => $row['CCT'] ?? null,
+                'NOMBRE_DE_LA_ESCUELA' => $row['NOMBRE DE LA ESCUELA'] ?? null,
+                'MUNICIPIO'          => $row['MUNICIPIO'] ?? null,
+                'LOCALIDAD'          => $row['LOCALIDAD'] ?? null,
+                'DOMICILIO'          => $row['DOMICILIO'] ?? null,
+                'TOTAL_DE_ALUMNOS'   => isset($row['TOTAL DE ALUMNOS']) ? (int) $row['TOTAL DE ALUMNOS'] : null,
+                'FECHA'              => $row['FECHA'] ?? null, // Leave date as it is provided in the CSV
+                'created_at'         => now(),
+                'updated_at'         => now(),
+            ];
+        }
+
+        // Insert the data into the database
+        if (!empty($insertData)) {
+            foreach (array_chunk($insertData, 100) as $chunk) {
+                \DB::table('schedule')->insert($chunk);
+            }
+        } else {
+            return redirect()->back()->with('error', 'No valid data found in the uploaded CSV file.');
+        }
+
+        return redirect()->route('schedule.index')->with('success', 'Schedule CSV uploaded successfully.');
+    }        
 
     public function users()
     {

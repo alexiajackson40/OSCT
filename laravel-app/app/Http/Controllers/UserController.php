@@ -61,11 +61,7 @@ class UserController extends Controller
     
         // Redirect back to the form with a success message
         return redirect()->route('add-user.create')->with('success', 'User created successfully!');
-<<<<<<< HEAD
     }    
-=======
-    }
-
 
 public function signup(Request $request)
 {
@@ -90,5 +86,4 @@ public function signup(Request $request)
     return redirect('/login')->with('success', 'Account created! Please log in.');
 }
 
->>>>>>> df3f4356193d613d9d360f721b2a68255b117662
 }
