@@ -42,7 +42,7 @@ Search for and install:
 - SQLTools by Matheus Teixeira
 - SQLTools MySQL/MariaDB Driver (you’ll need this to connect to MySQL)
 
- - Click on SQLTools extension (left side of screen, cylinder symbol) then click Add New connection
+ - Click on SQLTools extension (left panel, cylinder symbol) then click Add New connection
  - In the Connection Assistant, click MySQL as the driver.
  - Enter all the information found in the settings.json file, after the correct information is entered,
    click, test connection. IF connection is successful, save connection.
@@ -82,12 +82,39 @@ Search for and install:
 
 ### **Step 5: Accessing the Website**
 
-1. Navigate to the laravel-app directory:
+1. In VSCode, navigate to the laravel-app directory:
    ```
    cd laravel-app
    ```
 
-2. Start the Laravel development server:
+2. Edit the .ini file
+
+Open your `php.ini` file
+Usually located at:
+```
+C:\php\php.ini
+```
+
+Now enable the `fileinfo` extension
+In the `php.ini` file, find this line (you can search for `fileinfo`):
+```
+;extension=fileinfo
+```
+
+Remove the semicolon (`;`) to uncomment it:
+```
+extension=fileinfo
+```
+
+Save the file.
+
+
+3. In VSCode, run the command
+   ---
+   composer install
+   ---
+
+4. Start the Laravel development server:
    In the terminal, run the command:
    ```
    php artisan serve
