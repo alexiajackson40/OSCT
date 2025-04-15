@@ -22,6 +22,10 @@ class Schedule extends Model
 
     public $timestamps = true;
 
+    protected $fillable = [
+        'school_name', 'location', 'visit_date', 'file_path', 'admin_id'
+    ];
+
     public function admin()
     {
         return $this->belongsTo(Admin::class, 'admin_id');
