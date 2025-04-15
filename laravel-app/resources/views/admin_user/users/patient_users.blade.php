@@ -33,8 +33,8 @@
                 
                 <!-- Buttons for Add New Patient and CSV Upload -->
                 <div class="d-flex align-items-center mb-4">
-                    <button id="toggleAddPatientForm" class="btn btn-primary me-3">Add New Patient</button>
-                    <button id="toggleCSVForm" class="btn btn-success">Import Patients via CSV</button>
+                    <button id="toggleAddPatientForm" class="btn btn-primary page-btn me-3">Add New Patient</button>
+                    <button id="toggleCSVForm" class="btn btn-success page-btn">Import Patients via CSV</button>
                 </div>
 
                 <!-- Add New Patient Form (Hidden by Default) -->
@@ -201,6 +201,14 @@
         margin-left: 1.5625rem;
         margin-right: 1.5625rem;
     }
+    .page-btn {
+        width: 13rem;
+        height: 3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #6F1A34;
+    }
     .card-title {
         font-size: 2rem;
         font-weight: 500;
@@ -219,19 +227,22 @@
         margin-left: 0.5rem;
     }
     .table-btn {
-        width: 214px;
-        height: 60px;
-        display: inline-flex;
-        padding: 18.5px 40px 18.5px 39px;
+        width: 100%;
+        height: 3.75rem;
+        display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 8px;
         background: #6F1A34;
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         color: #FFF;
-        font-size: 20px;
+        font-size: 1.25rem;
         font-weight: 500;
+        text-decoration: none;
     }
+    .table-btn:hover {
+            background-color: #7C1332;
+        }
     .table {
         align-items: center;
         margin-bottom: 0px;
@@ -249,5 +260,8 @@
         font-size: 20px;
         font-weight: 500;
     }
+    .btn-page:hover {
+            background-color: #E0E0E0;
+        }
 </style>
 </html>
