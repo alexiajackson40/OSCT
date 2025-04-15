@@ -1,4 +1,7 @@
 DESCRIBE documents;
+SELECT * FROM documents;
+SELECT * FROM documents WHERE user_id = 'J3QZD3TA';
+TRUNCATE TABLE documents;
 DESCRIBE patients;
 DROP TABLE IF EXISTS schedules;
 ALTER TABLE documents DROP FOREIGN KEY documents_user_id_foreign;
@@ -11,7 +14,10 @@ DESCRIBE personnel;
 DESCRIBE measurements;
 DESCRIBE schedule;
 SELECT * FROM schedule;
-SELECT * FROM patients WHERE CURP = 'J3QZD3TA';
+SELECT * FROM measurements WHERE id = 1;
+SELECT * FROM measurements;
+
+SELECT * FROM patients;
 
 SELECT * FROM admins;
 SELECT * FROM personnel;

@@ -9,7 +9,6 @@
 </head>
 <!-- Patient Measurements Page -->
 <body>
-    <!-- Include the header dynamically -->
     @include('admin_user.header_admin')
 
     <div class="main-content d-flex align-self-center">
@@ -19,67 +18,77 @@
                 <div class="top-buttons d-flex flex-row align-self-center">
                     <a href="{{ route('admin.patientUsers') }}" class="btn-back">&lt; Go Back</a>
                 </div>
+
                 <div class="card-body d-flex flex-column align-self-center align-items-left">
                     <h1 class="card-title">Patient Measurements for {{ $patient->PACIENTE }}</h1>
-                    <div class="measurements-container d-flex flex-column align-items-left">
-                        <table id="Table" class="table">
-                            <thead>
-                                <tr>
-                                    <th>Measurement Type</th>
-                                    <th>Value</th>
-                                    <th>Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($measurements as $measurement)
-                                    <!-- Ensure columns match the database schema -->
+
+                    <!-- Form starts -->
+                    <form action="{{ route('admin.updateMeasurement', $patient->CURP) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+
+                        <div class="measurements-container d-flex flex-column align-items-left">
+                            <table id="Table" class="table">
+                                <thead>
                                     <tr>
-                                        <td>Waist</td>
-                                        <td>{{ $measurement->waist }}</td>
-                                        <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
+                                        <th>Measurement Type</th>
+                                        <th>Value</th>
+                                        <th>Date</th>
                                     </tr>
-                                    <tr>
-                                        <td>Hip</td>
-                                        <td>{{ $measurement->hip }}</td>
-                                        <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Waist-Hip Ratio</td>
-                                        <td>{{ $measurement->waist_hip_ratio }}</td>
-                                        <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Body Mass</td>
-                                        <td>{{ $measurement->body_mass }}</td>
-                                        <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cholesterol</td>
-                                        <td>{{ $measurement->cholesterol }}</td>
-                                        <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Glucose Level</td>
-                                        <td>{{ $measurement->glucose_level }}</td>
-                                        <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hemoglobin</td>
-                                        <td>{{ $measurement->hemoglobin }}</td>
-                                        <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Triglycerides</td>
-                                        <td>{{ $measurement->triglycerides }}</td>
-                                        <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody>
+                                    @foreach($measurements as $measurement)
+                                        <tr>
+                                            <td>Waist</td>
+                                            <td><input type="text" name="measurements[{{ $measurement->id }}][waist]" value="{{ $measurement->waist }}" class="form-control"></td>
+                                            <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Hip</td>
+                                            <td><input type="text" name="measurements[{{ $measurement->id }}][hip]" value="{{ $measurement->hip }}" class="form-control"></td>
+                                            <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Waist-Hip Ratio</td>
+                                            <td><input type="text" name="measurements[{{ $measurement->id }}][waist_hip_ratio]" value="{{ $measurement->waist_hip_ratio }}" class="form-control"></td>
+                                            <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Body Mass</td>
+                                            <td><input type="text" name="measurements[{{ $measurement->id }}][body_mass]" value="{{ $measurement->body_mass }}" class="form-control"></td>
+                                            <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cholesterol</td>
+                                            <td><input type="text" name="measurements[{{ $measurement->id }}][cholesterol]" value="{{ $measurement->cholesterol }}" class="form-control"></td>
+                                            <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Glucose Level</td>
+                                            <td><input type="text" name="measurements[{{ $measurement->id }}][glucose_level]" value="{{ $measurement->glucose_level }}" class="form-control"></td>
+                                            <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Hemoglobin</td>
+                                            <td><input type="text" name="measurements[{{ $measurement->id }}][hemoglobin]" value="{{ $measurement->hemoglobin }}" class="form-control"></td>
+                                            <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Triglycerides</td>
+                                            <td><input type="text" name="measurements[{{ $measurement->id }}][triglycerides]" value="{{ $measurement->triglycerides }}" class="form-control"></td>
+                                            <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+                    </form>
                 </div>
             </div>
-            <div class="button-container mt-5 d-flex flex-column">      
+
+            <div class="button-container mt-5 d-flex flex-column">
                 <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_profile', $patient->CURP) }}">Patient Profile</a>
                 <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_measurements', $patient->CURP) }}">Measurements</a>
                 <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_documents', $patient->CURP) }}">Documents</a>
@@ -89,7 +98,6 @@
     </div>
 </body>
 
-<!-- Existing Styling Preserved -->
 <style>
     .main-content {
         display: flex;

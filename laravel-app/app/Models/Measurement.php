@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Measurement extends Model
 {
     protected $fillable = [
-        'user_id', 'waist', 'hip', 'waist_to_hip_ratio',
+        'user_id', 'waist', 'hip', 'waist_hip_ratio',
         'body_mass', 'cholesterol', 'glucose', 'hemoglobin', 'triglycerides'
-    ];
+    ];    
 
     public function patient()
     {

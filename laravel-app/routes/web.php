@@ -75,6 +75,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         ->name('admin.users.patient_measurements');
     Route::post('users/patient/measurements/upload/{id}', [AdminUsersController::class, 'uploadMeasurement'])
         ->name('admin.uploadMeasurement');
+    Route::put('users/patient/measurements/{id}/update', [AdminUsersController::class, 'updateMeasurement'])->name('admin.updateMeasurement');
     Route::get('users/patient/documents/{id}', [AdminUsersController::class, 'allPatientDocuments'])
         ->name('admin.users.patient_documents');
     Route::get('users/patient/labResults/{id}', [AdminUsersController::class, 'patientLabResults'])

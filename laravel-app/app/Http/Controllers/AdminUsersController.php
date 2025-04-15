@@ -290,10 +290,38 @@ class AdminUsersController extends Controller
         $patient = Patient::where('CURP', $id)->firstOrFail();
     
         // Retrieve measurements tied to the patient via user_id
-        $measurements = Measurement::where('user_id', $patient->CURP)->get(); // Assuming user_id maps to CURP
+        $measurements = Measurement::where('user_id', $patient->CURP)->get();
     
         return view('admin_user.users.patient_measurements', compact('measurements', 'patient'));
-    }       
+    }
+    
+    public function updateMeasurement(Request $request, $id)
+    {
+        // Fetch the patient using CURP
+        $patient = Patient::where('CURP', $id)->firstOrFail();
+    
+        // Update measurements and synchronize with patients table
+        foreach ($request->input('measurements', []) as $measurementId => $data) {
+            $measurement = Measurement::findOrFail($measurementId);
+            $measurement->update($data);
+    
+            // Update relevant fields in the patients table
+            $patient->update([
+                'GLUCOSA' => $measurement->glucose_level,
+                'TRIGLICÉRIDOS' => $measurement->triglycerides,
+                'COLESTEROL TOTAL' => $measurement->cholesterol,
+                'HBA1C' => $measurement->hemoglobin,
+                'IMC' => $measurement->body_mass,
+                'ICC' => $measurement->waist_hip_ratio,
+                'CINTURA' => $measurement->waist,
+                'CADERA' => $measurement->hip,
+            ]);
+        }
+    
+        return redirect()->route('admin.users.patient_measurements', $patient->CURP)
+            ->with('success', 'Measurements updated successfully and synced with patient records!');
+    }
+          
 
     // Fetch All Patient Lab Results
     public function patientLabResults($id)
