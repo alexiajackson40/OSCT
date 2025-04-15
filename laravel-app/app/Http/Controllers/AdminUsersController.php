@@ -310,7 +310,7 @@ class AdminUsersController extends Controller
         $patient = Patient::where('CURP', $id)->firstOrFail();
     
         // Retrieve documents tied to the patient via user_id
-        $documents = Document::where('user_id', $patient->id)->get(); // Ensure user_id maps to patient ID
+        $documents = Document::where('user_id', $patient->CURP)->get(); // Ensure user_id maps to patient ID
     
         return view('admin_user.users.patient_documents', compact('documents', 'patient'));
     }    
@@ -318,26 +318,22 @@ class AdminUsersController extends Controller
     // Upload Document
     public function uploadDocument(Request $request, $id)
     {
-        // Validate input
         $request->validate([
             'document_name' => 'required|string|max:255',
             'document_file' => 'required|file|mimes:pdf,doc,docx,png,jpg|max:10240',
         ]);
     
-        // Fetch the patient using CURP (primary key)
-        $patient = Patient::findOrFail($id); // Since CURP is the primary key, this works directly
+        $patient = Patient::where('CURP', $id)->firstOrFail();
     
-        // Check if a valid file is being uploaded
         if ($request->hasFile('document_file') && $request->file('document_file')->isValid()) {
             $file = $request->file('document_file');
             $filename = time() . '-' . $file->getClientOriginalName();
-            $path = $file->storeAs('public/documents', $filename);
+            $file->move(public_path('documents'), $filename); // Save file directly to public/documents
     
-            // Create the document record using CURP as the user_id
             Document::create([
-                'name' => $request->input('document_name'),
-                'file_path' => 'documents/' . $filename,
-                'user_id' => $patient->CURP, // Use CURP as the foreign key
+                'name'      => $request->input('document_name'),
+                'file_path' => 'documents/' . $filename, // Relative to the public folder
+                'user_id'   => $patient->CURP,
             ]);
     
             return redirect()->route('admin.users.patient_documents', $id)
@@ -345,13 +341,14 @@ class AdminUsersController extends Controller
         }
     
         return back()->with('error', 'File upload failed or no valid file provided.');
-    }                
+    }                           
 
     // Delete Document
     public function deleteDocument($documentId)
     {
         $document = Document::findOrFail($documentId);
-        $filePath = storage_path('app/public/' . $document->file_path);
+        // Look in public folder instead of storage
+        $filePath = public_path($document->file_path);
     
         if (file_exists($filePath)) {
             unlink($filePath);
@@ -360,5 +357,17 @@ class AdminUsersController extends Controller
         $document->delete();
     
         return redirect()->back()->with('success', 'Document deleted successfully!');
+    }    
+    
+    public function downloadDocument($documentId)
+    {
+        $document = Document::findOrFail($documentId);
+        $filePath = public_path($document->file_path);
+    
+        if (file_exists($filePath)) {
+            return response()->download($filePath);
+        }
+    
+        return redirect()->back()->with('error', 'File not found.');
     }    
 }

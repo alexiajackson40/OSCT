@@ -27,7 +27,7 @@
                             <thead>
                                 <tr>
                                     <th>Document Name</th>
-                                    <th>Uploaded By</th>
+                                    <th>Upload Date</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -35,9 +35,9 @@
                                 @foreach($documents as $document)
                                     <tr>
                                         <td>{{ $document->name }}</td>
-                                        <td>{{ $document->uploaded_by }}</td>
+                                        <td>{{ $document->created_at->format('M d, Y H:i') }}</td>
                                         <td>
-                                            <a href="{{ route('admin.downloadDocument', $document->id) }}" class="btn btn-primary btn-sm">Download</a>
+                                            <a href="{{ url('/' . $document->file_path) }}" target="_blank">Download</a>
                                             <form action="{{ route('admin.deleteDocument', $document->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')

@@ -112,7 +112,6 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         request()->session()->regenerateToken();
         return redirect()->route('login');
     })->name('logout');
-    
 });
 
 // Personnel Routes (protected with auth middleware)
@@ -145,3 +144,15 @@ Route::prefix('parent')->middleware('auth')->group(function () {
     Route::get('home', [ParentController::class, 'home'])->name('parent.home');
     Route::get('profile', [ParentController::class, 'profile'])->name('parent.profile');
 });
+
+// Fallback Route for Storage Files
+Route::get('storage/{path}', function ($path) {
+    $decodedPath = urldecode($path);
+    $filePath = storage_path('app/public/' . $decodedPath);
+
+    if (!file_exists($filePath)) {
+        abort(404, 'File not found.');
+    }
+
+    return response()->file($filePath);
+})->where('path', '.*');
