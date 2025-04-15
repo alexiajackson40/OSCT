@@ -101,24 +101,33 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('schedule/edit/{id}', [AdminController::class, 'scheduleEdit'])->name('schedule.edit');
     Route::post('schedule/upload', [AdminController::class, 'uploadSchedule'])->name('admin.uploadSchedule');
 
-    // Logout Route (for admin)
     Route::post('/logout', function () {
-        Auth::guard('admin')->logout();
+        if (Auth::guard('admin')->check()) {
+            Auth::guard('admin')->logout();
+        } elseif (Auth::guard('personnel')->check()) {
+            Auth::guard('personnel')->logout();
+        }
+    
         request()->session()->invalidate();
         request()->session()->regenerateToken();
         return redirect()->route('login');
     })->name('logout');
+    
 });
 
 // Personnel Routes (protected with auth middleware)
-Route::prefix('personnel')->middleware('auth')->group(function () {
+Route::prefix('personnel')->middleware('auth:personnel')->group(function () {
     Route::get('home', [PersonnelController::class, 'home'])->name('personnel.home');
     Route::get('profile/{id}', [PersonnelController::class, 'personnelProfile'])->name('personnel.profile');
+    Route::get('profile/edit/{id}', [PersonnelController::class, 'editProfile'])->name('personnel.editProfile');
+    Route::put('profile/update/{id}', [PersonnelController::class, 'updateProfile'])->name('personnel.updateProfile');
     Route::get('schedule', [PersonnelController::class, 'schedule'])->name('personnel.schedule');
+    Route::get('users', [\App\Http\Controllers\PersonnelController::class, 'users'])->name('personnel.users');
     Route::get('patients/{id}/lab-results', [PersonnelController::class, 'patientLabResults'])->name('personnel.patientLabResults');
+    Route::get('lab-results/download/{id}', [\App\Http\Controllers\PersonnelController::class, 'downloadLabResult'])->name('personnel.labResultDownload');
     Route::get('patients/{id}/measurements', [PersonnelController::class, 'patientMeasurements'])->name('personnel.patientMeasurements');
     Route::get('patients/{id}/profile', [PersonnelController::class, 'patientProfile'])->name('personnel.patientProfile');
-    Route::get('patients/documents', [PersonnelController::class, 'documents'])->name('personnel.documents');
+    Route::get('patients/{id}/documents', [PersonnelController::class, 'documents'])->name('personnel.documents');
 });
 
 // Patient Routes (protected with auth middleware)

@@ -2,17 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
 
-class Personnel extends Model
+class Personnel extends Authenticatable
 {
     protected $table = 'personnel';
 
-    // Use employee_id as the primary key
     protected $primaryKey = 'employee_id';
-    public $incrementing = false;  // Because employee_id is not auto-incrementing
-    protected $keyType = 'string';  // Since employee_id is stored as a string
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     protected $fillable = [
         'first_name', 'last_name', 'username', 'password', 'email', 'phone', 'role', 'employee_id'
@@ -35,7 +34,6 @@ class Personnel extends Model
         return $this->belongsToMany(Patient::class, 'personnel_patient', 'personnel_id', 'patient_id');
     }
 
-    // Automatically hash the password when it is set
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = Hash::make($value);

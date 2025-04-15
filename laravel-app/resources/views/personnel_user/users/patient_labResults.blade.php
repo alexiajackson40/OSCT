@@ -1,36 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Personnel User Lab Results Page -->
+<head>
+    <!-- Import Bootstrap and Custom Styles -->
+    <link href="{{ asset('theme.css') }}" rel="stylesheet">
+    <link href="{{ asset('style.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+</head>
+
 <body>
-    @include('layouts.header_personnel') <!-- Include the header blade -->
+    @include('personnel_user.header_personnel')
 
     <div class="main-content">
         <div class="document-container mt-5">
             <div class="card">
                 <div class="top-buttons d-flex flex-row align-self-center">
-                    <button class="btn-back" href="{{ route('admin.users.personnelUsers') }}">&lt; Go Back</button>
-                    <button class="btn-edit">[Upload Document]</button>
+                    <a id="back-btn" class="btn-back" href="{{ route('personnel.users') }}">&lt; Go Back</a>
                 </div>
                 <div class="card-body d-flex flex-column">
                     <div class="document-content">
                         <h1 class="card-title">Lab Results</h1>
-                        <h2 class="table-title">List of Assigned Lab Results</h2>
+                        <h2 class="table-title">List of Assigned Lab Results for {{ $patient->PACIENTE }}</h2>
                         <table id="Table" class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>Lab Result Name</th>
-                                    <th>Uploaded On</th>
+                                    <th>Uploaded By</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($labResults as $result)
+                                @foreach($labResults as $labResult)
                                     <tr>
-                                        <td>{{ $result->name }}</td>
-                                        <td>{{ $result->created_at->format('Y-m-d') }}</td>
+                                        <td>{{ $labResult->name }}</td>
+                                        <td>{{ $labResult->uploaded_by }}</td>
                                         <td>
-                                            <!-- Link to view or download the lab result -->
-                                            <a href="{{ route('admin.users.patientLabResults.download', $result->id) }}" class="btn btn-primary">Download</a>
+
                                         </td>
                                     </tr>
                                 @endforeach
@@ -40,15 +45,14 @@
                 </div>
             </div>
         </div>
-        <div class="button-container mt-5 d-flex flex-column">
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientProfile', $patient->id) }}">Patient Profile</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientMeasurements', $patient->id) }}">Measurements</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientDocuments', $patient->id) }}">Documents</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientLabResults', $patient->id) }}">Lab Results</a>
+
+        <div class="button-container mt-5 d-flex flex-column">      
+            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientProfile', $patient->CURP) }}">Patient Profile</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientMeasurements', $patient->CURP) }}">Measurements</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.documents', $patient->CURP) }}">Documents</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientLabResults', $patient->CURP) }}">Lab Results</a>
         </div>
     </div>
-
-    @include('layouts.footer') <!-- Optional footer -->
 </body>
 
 <style>
@@ -88,11 +92,22 @@
         --bs-table-border-color: #000;
         align-items: center;
     }
-    .td a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .btn-back {
+        position: absolute;
+        left: 1.875rem;
+        font-size: 1.25rem;
+        font-weight: 500;
+        border: none;
         color: #000;
+        background: #F2F2F2;
+    }
+    .top-buttons {
+        margin-top: 0.625rem;
+        margin-bottom: 0.625rem;
+        width: 28.063rem;
+        padding-top: 0.625rem;
+        display: flex;
+        flex-direction: row;
     }
     .button-container {
         width: 13.375rem;
@@ -115,32 +130,6 @@
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         color: #FFF;
         font-size: 20px;
-        font-weight: 500;
-    }
-    .top-buttons {
-        margin-top: 0.625rem;
-        margin-bottom: 0.625rem;
-        width: 28.063;
-        padding-top: 0.625rem;
-        display: flex;
-        flex-direction: row;
-    }
-    .btn-back {
-        position: absolute;
-        left: 1.875rem;
-        font-size: 1.25rem;
-        font-weight: 500;
-        border: none;
-        color: #000;
-        background: #F2F2F2;
-    }
-    .btn-edit {
-        position: absolute;
-        right: 1.875rem;
-        border: none;
-        color: #000;
-        background: #F2F2F2;
-        font-size: 1.25rem;
         font-weight: 500;
     }
 </style>

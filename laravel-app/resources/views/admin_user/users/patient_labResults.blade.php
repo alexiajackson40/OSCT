@@ -54,10 +54,10 @@
         </div>
         <div class="button-container mt-5 d-flex flex-column">      
             <!-- Updated links for other patient-related actions -->
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_profile', $patient->id) }}">Patient Profile</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_measurements', $patient->id) }}">Measurements</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_documents', $patient->id) }}">Documents</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_labResults', $patient->id) }}">Lab Results</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_profile', $patient->CURP) }}">Patient Profile</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_measurements', $patient->CURP) }}">Measurements</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_documents', $patient->CURP) }}">Documents</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_labResults', $patient->CURP) }}">Lab Results</a>
         </div>
     </div>
 
@@ -70,7 +70,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('admin.uploadLabResult', $patient->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.uploadLabResult', $patient->CURP) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="lab_result">Select Lab Result</label>
@@ -121,7 +121,6 @@
         --bs-table-bg:#F2F2F2;
         --bs-table-border-color:#000;
         align-items:center;
-
     }
     .td a{
         display:flex;

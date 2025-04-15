@@ -1,76 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Personnel Users Page -->
+<head>
+    <!-- Import Bootstrap and Custom Styles -->
+    <link href="{{ asset('theme.css') }}" rel="stylesheet">
+    <link href="{{ asset('style.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+</head>
 <body>
-    @include('layouts.header_personnel') <!-- Include the header blade -->
+    @include('personnel_user.header_personnel')
 
-    <div class="main-content">
-        <div class="users-container mt-5">
-            <div class="card">
-                <div class="card-body d-flex flex-column">
-                    <div class="document-content">
-                        <h1 class="card-title">Personnel Users</h1>
-                        <table id="Table" class="table table-hover">
-                            <thead>
+    <div class="main-content d-flex justify-content-center mt-5">
+        <div class="users-container w-75">
+            <div class="card p-4">
+                <div class="card-body">
+                    <h1 class="card-title mb-4">Patient Users</h1>
+
+                    <table class="table table-hover table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Name</th>
+                                <th>Student ID</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($patients as $patient)
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Actions</th>
+                                    <td>{{ $patient->PACIENTE }}</td>
+                                    <td>{{ $patient->getKey() }}</td>
+                                    <td>
+                                        <a href="{{ route('personnel.patientProfile', $patient->getKey()) }}" class="btn btn-primary btn-sm">View Profile</a>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($personnel as $user)
-                                    <tr>
-                                        <td>{{ $user->first_name }} {{ $user->last_name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>
-                                            <a href="{{ route('admin.users.personnelProfile', $user->id) }}" class="btn btn-primary">View Profile</a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                            @endforeach
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>
     </div>
-
-    @include('layouts.footer') <!-- Optional footer -->
 </body>
 
 <style>
     .main-content {
-        display: flex;
-        justify-content: center;
         width: 100%;
-        align-items: center;
         min-height: 100vh;
     }
-    .users-container {
-        width: 70%;
+    .card-title {
+        font-size: 2rem;
+        font-weight: 600;
+        text-align: left;
+    }
+    .table th, .table td {
+        vertical-align: middle;
     }
     .card {
         background-color: #F2F2F2;
-        height: 100%;
-        min-height: 100vh;
-    }
-    .document-content {
-        margin-left: 25px;
-        margin-right: 25px;
-    }
-    .card-title {
-        font-size: 32px;
-        font-weight: 500;
-        text-align: left;
-        margin-bottom: 25px;
-        margin-top: 25px;
-    }
-    .table {
-        align-items: center;
-        margin-bottom: 0px;
-        --bs-table-bg: #F2F2F2;
-        --bs-table-border-color: #000;
     }
 </style>
 </html>

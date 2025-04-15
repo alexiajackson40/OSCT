@@ -1,70 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Personnel User Patient Profile Page -->
+<head>
+    <!-- Import Bootstrap and Custom Styles -->
+    <link href="{{ asset('theme.css') }}" rel="stylesheet">
+    <link href="{{ asset('style.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+</head>
 <body>
-    @include('layouts.header_personnel') <!-- Include the header blade -->
+    @include('personnel_user.header_personnel')
 
     <div class="main-content d-flex align-self-center">
         <div class="profile-container mt-5">
             <div class="card">
+                <!-- Top Buttons -->
                 <div class="top-buttons d-flex flex-row align-self-center">
-                    <button class="btn-back" href="{{ route('admin.users.personnelUsers') }}">&lt; Go Back</button>
-                    <button class="btn-edit">[Edit Information]</button>
+                    <a href="{{ route('personnel.users') }}" class="btn-back">&lt; Go Back</a>
                 </div>
-                <div class="card-body d-flex flex-column align-self-center">
-                    <h1 class="card-title">{{ $patient->first_name }} {{ $patient->last_name }}</h1>
 
+                <!-- Patient Information -->
+                <div class="card-body d-flex flex-column align-self-center">
+                    <h1 class="card-title">{{ $patient->PACIENTE }}</h1>
                     <div class="information-container d-flex flex-column align-items-left">
                         <h2 class="container-header">Patient Information</h2>
-                        <table class="table">
-                            <tr>
-                                <td><strong>First Name:</strong></td>
-                                <td>{{ $patient->first_name }}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Last Name:</strong></td>
-                                <td>{{ $patient->last_name }}</td>
-                            </tr>
+                        <table id="Table" class="table">
                             <tr>
                                 <td><strong>Student ID:</strong></td>
-                                <td>{{ $patient->student_id }}</td>
+                                <td>{{ $patient->No_SOL }}</td>
                             </tr>
                             <tr>
-                                <td><strong>Phone Number:</strong></td>
-                                <td>{{ $patient->phone_number }}</td>
+                                <td><strong>Gender:</strong></td>
+                                <td>{{ $patient->SEXO }}</td>
                             </tr>
                             <tr>
-                                <td><strong>Username:</strong></td>
-                                <td>{{ $patient->username }}</td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <div class="contact-container d-flex flex-column align-items-left">
-                        <h2 class="container-header">Contact Information</h2>
-                        <table class="table">
-                            <tr>
-                                <td><strong>Email:</strong></td>
-                                <td>{{ $patient->email }}</td>
+                                <td><strong>Age:</strong></td>
+                                <td>{{ $patient->EDAD }}</td>
                             </tr>
                             <tr>
-                                <td><strong>Address:</strong></td>
-                                <td>{{ $patient->address }}</td>
+                                <td><strong>School:</strong></td>
+                                <td>{{ $patient->ESCUELA }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>CURP:</strong></td>
+                                <td>{{ $patient->CURP }}</td>
                             </tr>
                         </table>
                     </div>
                 </div>
             </div>
+
+            <!-- Navigation Buttons -->
             <div class="button-container mt-5 d-flex flex-column">
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientProfile', $patient->id) }}">Patient Profile</a>
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientMeasurements', $patient->id) }}">Measurements</a>
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientDocuments', $patient->id) }}">Documents</a>
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patientLabResults', $patient->id) }}">Lab Results</a>
+                <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientProfile', $patient->CURP) }}">Patient Profile</a>
+                <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientMeasurements', $patient->CURP) }}">Measurements</a>
+                <a class="record-btn btn-primary" role="button" href="{{ route('personnel.documents', $patient->CURP) }}">Documents</a>
+                <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientLabResults', $patient->CURP) }}">Lab Results</a>
             </div>
         </div>
     </div>
-
-    @include('layouts.footer') <!-- Optional footer -->
 </body>
 
 <style>
@@ -88,7 +81,7 @@
     .top-buttons {
         margin-top: 0.625rem;
         margin-bottom: 0.625rem;
-        width: 28.063;
+        width: 28.063rem;
         padding-top: 0.625rem;
         display: flex;
         flex-direction: row;
@@ -114,20 +107,12 @@
         width: 28.063rem;
         height: auto;
         border-radius: 0.375rem;
-        border: 0.063rem solid rgba(0, 0, 0, 0.30);
-        background: #FFF;
-    }
-    .contact-container {
-        margin-top: 0.938rem;
-        width: 28.063rem;
-        height: auto;
-        border-radius: 0.375rem;
-        border: 0.063rem solid rgba(0, 0, 0, 0.30);
+        border: 0.063rem solid rgba(0,0,0,0.30);
         background: #FFF;
     }
     .table {
         margin-left: 0.875rem;
-        color: #000000;
+        color: #000;
         font-size: 1rem;
         font-weight: 400;
         width: auto;
@@ -140,15 +125,6 @@
         border: none;
         color: #000;
         background: #F2F2F2;
-    }
-    .btn-edit {
-        position: absolute;
-        right: 1.875rem;
-        border: none;
-        color: #000;
-        background: #F2F2F2;
-        font-size: 1.25rem;
-        font-weight: 500;
     }
     .button-container {
         width: 13.375rem;
@@ -168,7 +144,7 @@
         align-items: center;
         border-radius: 8px;
         background: #6F1A34;
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
         color: #FFF;
         font-size: 20px;
         font-weight: 500;

@@ -97,7 +97,6 @@
     </div>
 </body>
 
-<!-- Existing Styling Preserved -->
 <style>
     .main-content {
         display: flex;
