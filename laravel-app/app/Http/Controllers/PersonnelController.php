@@ -20,7 +20,7 @@ class PersonnelController extends Controller
 
     public function personnelProfile($id)
     {
-        $user = Personnel::findOrFail($id); // Retrieve personnel from the personnel table
+        $user = Personnel::findOrFail($id);
         return view('personnel_user.profile', compact('user'));
     }
 
@@ -83,6 +83,6 @@ class PersonnelController extends Controller
     public function schedule()
     {
         $schedules = Schedule::all();
-        return view('admin_user.schedule', compact('schedules'));
-    }
+        return view('personnel_user.schedule', compact('schedules'));
+    }    
 }
