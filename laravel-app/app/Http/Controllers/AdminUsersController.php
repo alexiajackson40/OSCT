@@ -264,24 +264,47 @@ class AdminUsersController extends Controller
     public function updatePatient(Request $request, $id)
     {
         $request->validate([
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'phone' => 'nullable|string|max:15',
-            'address' => 'nullable|string|max:255',
+            'first_name'        => 'required|string|max:255',
+            'school_name'       => 'required|string|max:255',
+            'gender'            => 'required|string|max:10',
+            'age'               => 'required|numeric',
+            'fasting_status'    => 'nullable|string|max:10',
+            'glucose'           => 'nullable|numeric',
+            'triglycerides'     => 'nullable|numeric',
+            'total_cholesterol' => 'nullable|numeric',
+            'hba1c'             => 'nullable|numeric',
+            'weight'            => 'nullable|numeric',
+            'height'            => 'nullable|numeric',
+            'bmi'               => 'nullable|numeric',
+            'icc'               => 'nullable|numeric',
+            'waist'             => 'nullable|numeric',
+            'hip'               => 'nullable|numeric',
+            'comments'          => 'nullable|string',
         ]);
-
-        $patient = Patient::findOrFail($id);
+    
+        $patient = Patient::where('CURP', $id)->firstOrFail();
+    
         $patient->update([
-            'first_name' => $request->input('first_name'),
-            'last_name' => $request->input('last_name'),
-            'email' => $request->input('email'),
-            'phone' => $request->input('phone'),
-            'address' => $request->input('address'),
+            'PACIENTE'          => $request->input('first_name'),
+            'ESCUELA'           => $request->input('school_name'),
+            'SEXO'              => $request->input('gender'),
+            'EDAD'              => $request->input('age'),
+            'AYUNO'             => $request->input('fasting_status'),
+            'GLUCOSA'           => $request->input('glucose'),
+            'TRIGLICÉRIDOS'     => $request->input('triglycerides'),
+            'COLESTEROL TOTAL'  => $request->input('total_cholesterol'),
+            'HBA1C'             => $request->input('hba1c'),
+            'PESO'              => $request->input('weight'),
+            'TALLA'             => $request->input('height'),
+            'IMC'               => $request->input('bmi'),
+            'ICC'               => $request->input('icc'),
+            'CINTURA'           => $request->input('waist'),
+            'CADERA'            => $request->input('hip'),
+            'COMENTARIO'        => $request->input('comments'),
         ]);
-
+    
         return redirect()->route('admin.users.patient_profile', $id)->with('success', 'Patient profile updated successfully!');
-    }
+    }    
 
     // Fetch Patient Measurements
     public function patientMeasurements($id)
