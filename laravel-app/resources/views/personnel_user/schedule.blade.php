@@ -12,11 +12,12 @@
     <div class="main-content">
         <div class="schedule-container mt-5">
             <div class="card">
-            <form action="{{ route('admin.uploadSchedule') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="card-body d-flex flex-column">
-                <h1 class="card-title">Programación vista a Planteles Escolares</h1>
-                <h2 class="table-title">Operación Salud Colima Tamizaje</h2>
+                <form action="{{ route('admin.uploadSchedule') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="card-body d-flex flex-column">
+                        <h1 class="card-title">Programación vista a Planteles Escolares</h1>
+                        <h2 class="table-title">Operación Salud Colima Tamizaje</h2>
+                    </div>
                 </form>
                 <div class="schedule-content mt-4">
                     <table class="table table-bordered">
@@ -36,21 +37,20 @@
                         <tbody class="tBody">
                             @foreach($schedules as $schedule)
                                 <tr>
-                                    <td>{{ $schedule->NIVEL }}</td>
-                                    <td>{{ $schedule->TURNO }}</td>
-                                    <td>{{ $schedule->CCT }}</td>
-                                    <td>{{ $schedule->NOMBRE_DE_LA_ESCUELA }}</td>
-                                    <td>{{ $schedule->MUNICIPIO }}</td>
-                                    <td>{{ $schedule->LOCALIDAD }}</td>
-                                    <td>{{ $schedule->DOMICILIO }}</td>
-                                    <td>{{ $schedule->TOTAL_DE_ALUMNOS }}</td>
-                                    <td>{{ $schedule->FECHA }}</td>
+                                    <td>{{ $schedule->level }}</td>
+                                    <td>{{ $schedule->shift }}</td>
+                                    <td>{{ $schedule->cct }}</td>
+                                    <td>{{ $schedule->school_name }}</td>
+                                    <td>{{ $schedule->municipality }}</td>
+                                    <td>{{ $schedule->locality }}</td>
+                                    <td>{{ $schedule->address }}</td>
+                                    <td>{{ $schedule->total_students }}</td>
+                                    <td>{{ $schedule->date }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
     </div>

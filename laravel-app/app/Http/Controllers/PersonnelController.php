@@ -83,6 +83,7 @@ class PersonnelController extends Controller
     public function schedule()
     {
         $schedules = Schedule::all();
+        
         return view('personnel_user.schedule', compact('schedules'));
     }    
 }

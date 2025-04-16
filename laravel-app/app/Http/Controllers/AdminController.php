@@ -242,8 +242,7 @@ class AdminController extends Controller
     
         \Log::error('No file uploaded.');
         return back()->with('error', 'No file uploaded.');
-    }
-                
+    }          
 
     public function users()
     {

@@ -16,6 +16,7 @@ DESCRIBE measurements;
 DESCRIBE schedule;
 SELECT * FROM schedule;
 TRUNCATE TABLE schedule;
+
 SELECT * FROM measurements WHERE id = 1;
 SELECT * FROM measurements;
 
