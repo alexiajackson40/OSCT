@@ -15,6 +15,7 @@ DESCRIBE lab_results;
 DESCRIBE measurements;
 DESCRIBE schedule;
 SELECT * FROM schedule;
+TRUNCATE TABLE schedule;
 SELECT * FROM measurements WHERE id = 1;
 SELECT * FROM measurements;
 
@@ -45,6 +46,4 @@ ALTER TABLE schedule
   CHANGE `TURNO` shift VARCHAR(255),
   CHANGE `CCT` cct VARCHAR(255),
   CHANGE `FECHA` date DATE;
-
-TRUNCATE TABLE schedule;
 

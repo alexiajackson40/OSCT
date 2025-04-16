@@ -443,7 +443,6 @@ class AdminUsersController extends Controller
     public function deleteDocument($documentId)
     {
         $document = Document::findOrFail($documentId);
-        // Look in public folder instead of storage
         $filePath = public_path($document->file_path);
     
         if (file_exists($filePath)) {
