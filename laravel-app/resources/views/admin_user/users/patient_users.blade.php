@@ -10,7 +10,6 @@
 <body>
     <!-- Include the header dynamically -->
     @include('admin_user.header_admin')
-
     <div class="main-content">
         <!-- Side Buttons Container -->
         <div class="button-container mt-5 d-flex flex-column">
@@ -164,7 +163,6 @@
             </div>
         </div>
     </div>
-
     <script>
         // Toggle Add Patient Form
         document.getElementById('toggleAddPatientForm').addEventListener('click', function () {
@@ -181,7 +179,6 @@
         });
     </script>
 </body>
-
 <style>
     /* Styling for Page Containers*/
     .main-content {
