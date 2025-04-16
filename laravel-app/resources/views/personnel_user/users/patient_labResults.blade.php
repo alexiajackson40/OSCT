@@ -16,6 +16,7 @@
             <div class="card">
                 <div class="top-buttons d-flex flex-row align-self-center">
                     <a id="back-btn" class="btn-back" href="{{ route('personnel.users') }}">&lt; Go Back</a>
+                    <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#uploadLabResultModal">[Upload Lab Result]</button>
                 </div>
                 <div class="card-body d-flex flex-column">
                     <div class="document-content">
@@ -35,7 +36,12 @@
                                         <td>{{ $labResult->name }}</td>
                                         <td>{{ $labResult->uploaded_by }}</td>
                                         <td>
-
+                                            <a href="{{ url('/' . $labResult->file_path) }}" target="_blank" class="btn btn-primary btn-sm">Download</a>
+                                            <form action="{{ route('personnel.deleteLabResult', $labResult->id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -51,6 +57,32 @@
             <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientMeasurements', $patient->CURP) }}">Measurements</a>
             <a class="record-btn btn-primary" role="button" href="{{ route('personnel.documents', $patient->CURP) }}">Documents</a>
             <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientLabResults', $patient->CURP) }}">Lab Results</a>
+        </div>
+    </div>
+
+    <!-- Upload Lab Result Modal -->
+    <div class="modal fade" id="uploadLabResultModal" tabindex="-1" aria-labelledby="uploadLabResultModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="uploadLabResultModalLabel">Upload New Lab Result</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('personnel.uploadLabResult', $patient->CURP) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="lab_result">Select Lab Result</label>
+                            <input type="file" name="lab_result" id="lab_result" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea name="description" id="description" class="form-control" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </body>
@@ -95,6 +127,15 @@
     .btn-back {
         position: absolute;
         left: 1.875rem;
+        font-size: 1.25rem;
+        font-weight: 500;
+        border: none;
+        color: #000;
+        background: #F2F2F2;
+    }
+    .btn-edit {
+        position: absolute;
+        right: 1.875rem;
         font-size: 1.25rem;
         font-weight: 500;
         border: none;

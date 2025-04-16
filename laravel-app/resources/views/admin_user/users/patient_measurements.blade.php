@@ -26,7 +26,6 @@
                     <form action="{{ route('admin.updateMeasurement', $patient->CURP) }}" method="POST">
                         @csrf
                         @method('PUT')
-
                         <div class="measurements-container d-flex flex-column align-items-left">
                             <table id="Table" class="table">
                                 <thead>
@@ -82,7 +81,6 @@
                                 </tbody>
                             </table>
                         </div>
-
                         <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
                     </form>
                 </div>
