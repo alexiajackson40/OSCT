@@ -30,13 +30,14 @@
                 @if(session('error'))
                     <div class="alert alert-danger">{{ session('error') }}</div>
                 @endif
-                
-                <!-- Buttons for Add New Patient and CSV Upload -->
-                <div class="d-flex align-items-center mb-4">
-                    <button id="toggleAddPatientForm" class="btn btn-primary page-btn me-3">Add New Patient</button>
-                    <button id="toggleCSVForm" class="btn btn-success page-btn">Import Patients via CSV</button>
+                <div class="card-head d-flex flex-row">
+                    <h1 class="card-title">Patient Users</h1>
+                    <!-- Buttons for Add New Patient and CSV Upload -->
+                    <div class="addBtn-container d-flex flex-row align-items-right mb-4">
+                        <button id="toggleCSVForm" class="btn btn-success btn-import">Import Patients via CSV</button>
+                        <button id="toggleAddPatientForm" class="btn btn-primary btn-new">+ Add New Patient</button>
+                    </div>
                 </div>
-
                 <!-- Add New Patient Form (Hidden by Default) -->
                 <div id="addPatientForm" class="add-patient-form mb-4 p-4" style="display: none;">
                     <h2>Add New Patient</h2>
@@ -130,7 +131,6 @@
                 <!-- Card Body -->
                 <div class="card-body d-flex flex-column">
                     <div class="document-content">
-                        <h1 class="card-title">Patient Users</h1>
                         <!-- Table List -->
                         <table id="Table" class="table table-hover">
                             <thead>
@@ -147,7 +147,7 @@
                                         <td>{{ $patient->getKey() }}</td>
                                         <td>
                                             <!-- View Profile Button -->
-                                            <a href="{{ route('admin.users.patient_profile', $patient->getKey()) }}" class="btn btn-primary btn-sm">View Profile</a>
+                                            <a href="{{ route('admin.users.patient_profile', $patient->getKey()) }}" class="btn btn-primary btn-view btn-sm">View Profile</a>
                                             <!-- Remove Button -->
                                             <form action="{{ route('admin.removePatient', $patient->getKey()) }}" method="POST" style="display:inline;">
                                                 @csrf
@@ -183,6 +183,7 @@
 </body>
 
 <style>
+    /* Styling for Page Containers*/
     .main-content {
         display: flex;
         justify-content: left;
@@ -193,29 +194,25 @@
         width: 70%;
     }
     .card {
-        background-color: #F2F2F2;
+        background-color:#F2F2F2;
         height: 100%;
         min-height: 100vh;
+        display: flex;
+        justify-content: center;
     }
     .document-content {
         margin-left: 1.5625rem;
         margin-right: 1.5625rem;
     }
-    .page-btn {
-        width: 13rem;
-        height: 3rem;
+    .card-head{
+        width:93%;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #6F1A34;
+        justify-content: space-between;
+        align-self: center;
+        margin-top:0.5rem;
     }
-    .card-title {
-        font-size: 2rem;
-        font-weight: 500;
-        text-align: left;
-        margin-bottom: 1.5625rem;
-        margin-top: 1.5625rem;
-    }
+    /*-----------------------------------*/
+    /* Styling for Side Buttons */
     .button-container {
         width: 13.375rem;
         height: 13rem;
@@ -243,6 +240,39 @@
     .table-btn:hover {
             background-color: #7C1332;
         }
+    /*-----------------------------------*/
+    /* Styling for Card Title*/
+    .card-title {
+        font-size: 2.2rem;
+        font-weight: 500;
+        text-align: left;
+        margin-bottom: 1.5625rem;
+        margin-top: 2.5rem;
+    }
+    /*-----------------------------------*/
+    /* Styling for Add and Import Buttons*/
+    .addBtn-container{
+        margin-left: 1rem;
+        margin-top: 1rem;
+    }
+    .btn-new {
+        width: fit-content;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        border-radius:0.5rem;
+        font-weight: 500;
+    }
+    .btn-import {
+        width: fit-content;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        border-radius:0.5rem;
+        font-weight: 500;
+    }
+    /*-----------------------------------*/
+    /* Styling for Table and Table Rows */
     .table {
         align-items: center;
         margin-bottom: 0px;
@@ -263,5 +293,24 @@
     .btn-page:hover {
             background-color: #E0E0E0;
         }
+    /*-----------------------------------*/
+    /* Styling for View and Delete Buttons*/
+    .btn-danger {
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        border-radius:0.5rem;
+        font-weight: 500;
+        justify-content: center;
+    }
+    .btn-view {
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        border-radius:0.5rem;
+        font-weight: 500;
+        justify-content: center;
+    }
+    /*-----------------------------------*/
 </style>
 </html>
