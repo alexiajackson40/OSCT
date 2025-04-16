@@ -14,8 +14,17 @@ class Personnel extends Authenticatable
     protected $keyType = 'string';
 
     protected $fillable = [
-        'first_name', 'last_name', 'username', 'password', 'email', 'phone', 'role', 'employee_id'
+        'first_name',
+        'last_name',
+        'username',
+        'password',
+        'email',
+        'phone',
+        'role',
+        'employee_id',
+        'address'
     ];
+    
 
     public $timestamps = true;
 

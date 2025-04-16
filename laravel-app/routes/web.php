@@ -42,6 +42,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::post('users/add', [AdminController::class, 'storeUser'])->name('add-user.store');
     Route::get('users/edit/{id}', [AdminController::class, 'editUser'])->name('admin.users.edit');
     Route::delete('users/{id}', [AdminController::class, 'destroyUser'])->name('admin.users.destroy');
+    Route::put('users/update/{id}', [AdminController::class, 'updateUser'])->name('admin.users.update');
 
     Route::get('users/patient', [AdminUsersController::class, 'patientUsers'])->name('admin.patientUsers');
     Route::post('users/patient/add', [AdminUsersController::class, 'addPatient'])->name('admin.addPatient');
@@ -54,6 +55,9 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::put('users/admin/profile/{id}/update', [AdminUsersController::class, 'updateAdmin'])->name('admin.updateAdmin');
     Route::get('users/personnel/profile/{id}', [AdminUsersController::class, 'personnelProfile'])->name('admin.users.personnel_profile');
     Route::put('users/personnel/profile/{id}/update', [AdminUsersController::class, 'updatePersonnel'])->name('admin.updatePersonnel');
+    Route::delete('/admin/users/admin/remove/{id}', [AdminUsersController::class, 'removeAdmin'])->name('admin.removeAdmin');
+    Route::delete('/users/personnel/remove/{id}', [AdminUsersController::class, 'removePersonnel'])->name('admin.removePersonnel');
+    Route::get('users/personnel/profile/{id}', [AdminUsersController::class, 'personnelProfile'])->name('admin.users.personnel_profile');
 
     Route::get('users/patient/profile/{id}', [AdminUsersController::class, 'patientProfile'])->name('admin.users.patient_profile');
     Route::put('users/patient/profile/{id}/update', [AdminUsersController::class, 'updatePatient'])->name('admin.updatePatient');
@@ -75,6 +79,9 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('schedule', [AdminController::class, 'schedule'])->name('schedule.index');
     Route::get('schedule/edit/{id}', [AdminController::class, 'scheduleEdit'])->name('schedule.edit');
     Route::post('schedule/upload', [AdminController::class, 'uploadSchedule'])->name('admin.uploadSchedule');
+    Route::get('schedule/edit/{id}', [AdminController::class, 'scheduleEdit'])->name('schedule.edit');
+    Route::put('schedule/update/{id}', [AdminController::class, 'scheduleUpdate'])->name('schedule.update');
+    
 
     Route::post('/logout', function () {
         if (Auth::guard('admin')->check()) {

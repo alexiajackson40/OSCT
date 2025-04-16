@@ -40,7 +40,7 @@
                                     <tr>
                                         <td>{{ $user->first_name }} {{ $user->last_name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td>{{ ucfirst($user->role) }}</td> <!-- Display role (admin, personnel, patient) -->
+                                        <td>{{ ucfirst($user->role) }}</td>
                                         <td>
                                             <a href="{{ route('admin.users.edit', $user->getKey()) }}" class="btn btn-warning">Edit</a>
                                             <form action="{{ route('admin.users.destroy', $user->getKey()) }}" method="POST" style="display:inline;">

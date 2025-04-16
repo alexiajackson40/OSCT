@@ -24,6 +24,7 @@
                         <button type="submit" class="btn btn-primary mt-3">Upload Schedule</button>
                     </div>
                 </form>
+
                 <div class="schedule-content mt-4">
                     <table class="table table-bordered">
                         <thead class="tHead">
@@ -37,6 +38,7 @@
                                 <th>DOMICILIO</th>
                                 <th>TOTAL DE ALUMNOS</th>
                                 <th>FECHA</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody class="tBody">
@@ -51,6 +53,9 @@
                                     <td>{{ $schedule->address }}</td>
                                     <td>{{ $schedule->total_students }}</td>
                                     <td>{{ $schedule->date }}</td>
+                                    <td>
+                                        <a href="{{ route('schedule.edit', $schedule->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -101,8 +106,5 @@
             font-size: 0.85rem;
         }
     </style>
-
-    <script src="{{ asset('js/loadContent.js') }}"></script>
-    <script type="module" src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>

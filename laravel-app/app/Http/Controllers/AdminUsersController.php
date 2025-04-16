@@ -35,6 +35,56 @@ class AdminUsersController extends Controller
         return view('admin_user.users.admin_users', compact('admins'));
     }
 
+    public function adminProfile($id)
+    {
+        $admin = Admin::findOrFail($id);
+        return view('admin_user.users.admin_profile', compact('admin'));
+    }
+    
+    public function removeAdmin($id)
+    {
+        $admin = Admin::findOrFail($id);
+        $admin->delete();
+    
+        return redirect()->route('admin.adminUsers')->with('success', 'Admin removed successfully!');
+    }
+    
+    public function removePersonnel($id)
+    {
+        $personnel = \App\Models\Personnel::findOrFail($id);
+        $personnel->delete();
+    
+        return redirect()->route('admin.personnelUsers')->with('success', 'Personnel user removed successfully!');
+    }
+
+    public function personnelProfile($id)
+    {
+        $personnel = \App\Models\Personnel::findOrFail($id);
+        return view('admin_user.users.personnel_profile', compact('personnel'));
+    }    
+
+    public function updatePersonnel(Request $request, $id)
+    {
+        $request->validate([
+            'first_name'    => 'required|string|max:255',
+            'last_name'     => 'required|string|max:255',
+            'phone'  => 'nullable|string|max:15',
+            'address'       => 'nullable|string|max:255',
+        ]);
+    
+        $personnel = \App\Models\Personnel::where('employee_id', $id)->firstOrFail();
+    
+        $personnel->update([
+            'first_name'    => $request->input('first_name'),
+            'last_name'     => $request->input('last_name'),
+            'phone'  => $request->input('phone'),
+            'address'       => $request->input('address'),
+        ]);
+    
+        return redirect()->route('admin.users.personnel_profile', $id)
+            ->with('success', 'Personnel information updated successfully!');
+    }
+    
     // Add Patient
     public function addPatient(Request $request)
     {

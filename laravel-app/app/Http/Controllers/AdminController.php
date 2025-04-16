@@ -47,25 +47,27 @@ class AdminController extends Controller
                 'first_name' => $request->input('first_name'),
                 'last_name' => $request->input('last_name'),
                 'username' => $request->input('username'),
-                'password' => bcrypt($request->input('password')),
+                'password' => $request->input('password'),
                 'email' => $request->input('email'),
                 'phone' => $request->input('phone'),
+                'role' => 'admin'
             ]);
         } elseif ($request->input('role') === 'personnel') {
             Personnel::create([
                 'first_name' => $request->input('first_name'),
                 'last_name' => $request->input('last_name'),
                 'username' => $request->input('username'),
-                'password' => bcrypt($request->input('password')),
+                'password' => $request->input('password'),
                 'email' => $request->input('email'),
                 'phone' => $request->input('phone'),
+                'role' => 'personnel'
             ]);
         } else {
             Patient::create([
                 'first_name' => $request->input('first_name'),
                 'last_name' => $request->input('last_name'),
                 'username' => $request->input('username'),
-                'password' => bcrypt($request->input('password')),
+                'password' => $request->input('password'),
                 'email' => $request->input('email'),
                 'phone' => $request->input('phone'),
             ]);
@@ -113,6 +115,22 @@ class AdminController extends Controller
         return redirect()->back()->withErrors('Failed to update profile. Please try again.');
     }
 
+    public function destroyUser($id)
+    {
+        $admin = \App\Models\Admin::find($id);
+        $personnel = \App\Models\Personnel::find($id);
+    
+        if ($admin) {
+            $admin->delete();
+            return redirect()->route('admin.users')->with('success', 'Admin deleted successfully.');
+        } elseif ($personnel) {
+            $personnel->delete();
+            return redirect()->route('admin.users')->with('success', 'Personnel deleted successfully.');
+        }
+    
+        return redirect()->route('admin.users')->with('error', 'User not found.');
+    }
+    
     public function headerAdmin()
     {
         return view('admin_user.header_admin');
@@ -242,7 +260,43 @@ class AdminController extends Controller
     
         \Log::error('No file uploaded.');
         return back()->with('error', 'No file uploaded.');
-    }          
+    }
+    
+    public function scheduleEdit($id) {
+        $schedule = Schedule::findOrFail($id);
+        return view('admin_user.edit_schedule', compact('schedule'));
+    }
+    
+    public function scheduleUpdate(Request $request, $id)
+    {
+        $request->validate([
+            'level' => 'required|string',
+            'shift' => 'required|string',
+            'cct' => 'required|string',
+            'school_name' => 'required|string',
+            'municipality' => 'required|string',
+            'locality' => 'required|string',
+            'address' => 'required|string',
+            'total_students' => 'required|numeric',
+            'date' => 'required|date',
+        ]);
+    
+        $schedule = Schedule::findOrFail($id);
+    
+        $schedule->update([
+            'level' => $request->input('level'),
+            'shift' => $request->input('shift'),
+            'cct' => $request->input('cct'),
+            'school_name' => $request->input('school_name'),
+            'municipality' => $request->input('municipality'),
+            'locality' => $request->input('locality'),
+            'address' => $request->input('address'),
+            'total_students' => $request->input('total_students'),
+            'date' => $request->input('date'),
+        ]);
+    
+        return redirect()->route('schedule.index')->with('success', 'Schedule updated!');
+    }         
 
     public function users()
     {
@@ -272,4 +326,28 @@ class AdminController extends Controller
         return view('admin_user.edit_user', compact('user'));
     }
     
+    public function updateUser(Request $request, $id)
+    {
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'nullable|string|email|max:255',
+            'phone' => 'nullable|string|max:15',
+        ]);
+    
+        $user = Admin::find($id) ?? Personnel::find($id);
+    
+        if (!$user) {
+            return redirect()->route('admin.users')->withErrors('User not found.');
+        }
+    
+        $user->update([
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+        ]);
+    
+        return redirect()->route('admin.users')->with('success', 'User updated successfully!');
+    }    
 }
