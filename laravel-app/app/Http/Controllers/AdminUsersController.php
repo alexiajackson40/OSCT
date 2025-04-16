@@ -322,13 +322,81 @@ class AdminUsersController extends Controller
             ->with('success', 'Measurements updated successfully and synced with patient records!');
     }
           
-
     // Fetch All Patient Lab Results
     public function patientLabResults($id)
     {
-        $patient = Patient::findOrFail($id);
-        $labResults = LabResult::where('user_id', $id)->get();
+        // Fetch the patient using CURP
+        $patient = Patient::where('CURP', $id)->firstOrFail();
+
+        // Retrieve lab results tied to the patient via user_id
+        $labResults = LabResult::where('user_id', $patient->CURP)->get();
+
         return view('admin_user.users.patient_labResults', compact('labResults', 'patient'));
+    }
+
+    // Upload Lab Result
+    public function uploadLabResult(Request $request, $id)
+    {
+        // Validate upload inputs
+        $request->validate([
+            'lab_result'   => 'required|file|mimes:pdf,jpg,png|max:10240',
+            'description'  => 'required|string|max:255',
+        ]);
+
+        // Fetch the patient using CURP
+        $patient = Patient::where('CURP', $id)->firstOrFail();
+
+        if ($request->hasFile('lab_result')) {
+            $file = $request->file('lab_result');
+            $filename = time() . '-' . $file->getClientOriginalName();
+
+            // Save file directly to public/lab_results (similar to documents)
+            $file->move(public_path('lab_results'), $filename);
+
+            // Save lab result record using the correct relative path
+            LabResult::create([
+                'user_id'       => $patient->CURP,
+                'name'          => $request->input('description'),
+                'file_path'     => 'lab_results/' . $filename,  // Note the folder prefix, as in documents
+                'date_assigned' => now()->toDateString(),
+            ]);
+        }
+
+        return redirect()->route('admin.users.patient_labResults', $patient->CURP)
+            ->with('success', 'Lab result uploaded successfully!');
+    }
+
+    // Download Lab Result
+    public function downloadLabResult($id)
+    {   
+        $labResult = LabResult::findOrFail($id);
+        // Use public_path like in documents
+        $filePath = public_path($labResult->file_path);
+
+        if (file_exists($filePath)) {
+            return response()->download($filePath);
+        }
+
+        return redirect()->back()->with('error', 'Lab result not found.');
+    }    
+
+    public function deleteLabResult($id)
+    {
+        // Find the lab result by ID
+        $labResult = LabResult::findOrFail($id);
+
+        // Get the file path in the public folder
+        $filePath = public_path($labResult->file_path);
+
+        // Delete the file if it exists
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+
+        // Delete the lab result record from the database
+        $labResult->delete();
+
+        return redirect()->back()->with('success', 'Lab result deleted successfully!');
     }
 
     // Fetch All Patient Documents

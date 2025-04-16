@@ -78,9 +78,15 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::put('users/patient/measurements/{id}/update', [AdminUsersController::class, 'updateMeasurement'])->name('admin.updateMeasurement');
     Route::get('users/patient/documents/{id}', [AdminUsersController::class, 'allPatientDocuments'])
         ->name('admin.users.patient_documents');
-    Route::get('users/patient/labResults/{id}', [AdminUsersController::class, 'patientLabResults'])
+        Route::get('users/patient/labResults/{id}', [AdminUsersController::class, 'patientLabResults'])
         ->name('admin.users.patient_labResults');
-
+    Route::post('labResult/upload/{id}', [AdminUsersController::class, 'uploadLabResult'])
+        ->name('admin.uploadLabResult');
+    Route::get('labResult/download/{id}', [AdminUsersController::class, 'downloadLabResult'])
+        ->name('admin.labResultDownload');
+    Route::delete('labResult/delete/{id}', [AdminUsersController::class, 'deleteLabResult'])
+        ->name('admin.deleteLabResult');
+    
     // Document Routes
     Route::get('documents/{documentId}/download', [AdminUsersController::class, 'downloadDocument'])
         ->name('admin.downloadDocument');

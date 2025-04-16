@@ -11,6 +11,7 @@ show tables;
 DESCRIBE admins;
 DESCRIBE patients;
 DESCRIBE personnel;
+DESCRIBE lab_results;
 DESCRIBE measurements;
 DESCRIBE schedule;
 SELECT * FROM schedule;
