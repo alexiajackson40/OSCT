@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -349,5 +349,31 @@ class AdminController extends Controller
         ]);
     
         return redirect()->route('admin.users')->with('success', 'User updated successfully!');
-    }    
+    }
+
+    public function changePasswordForm()
+    {
+        $user = Auth::guard('admin')->user();
+        return view('admin_user.change_password', compact('user'));
+    }
+    
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|string|min:8|confirmed',
+        ]);
+    
+        $user = Auth::guard('admin')->user();
+    
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors(['current_password' => 'Current password is incorrect.']);
+        }
+    
+        $user->password = $request->new_password;
+        $user->save();
+    
+        return redirect()->route('admin.profile')->with('success', 'Password updated successfully.');
+    }
+    
 }

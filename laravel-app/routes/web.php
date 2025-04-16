@@ -35,6 +35,9 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('profile/edit', [AdminController::class, 'editProfile'])->name('admin.editProfile');
     Route::put('profile/update', [AdminController::class, 'updateProfile'])->name('update.profile');
 
+    Route::get('/admin/change-password', [AdminController::class, 'changePasswordForm'])->name('admin.changePassword');
+    Route::put('/admin/update-password', [AdminController::class, 'updatePassword'])->name('admin.updatePassword');
+
     Route::get('header_admin', fn () => view('admin_user.header_admin'))->name('admin.header_admin');
 
     Route::get('users', [AdminController::class, 'users'])->name('admin.users');
@@ -102,6 +105,9 @@ Route::prefix('personnel')->middleware('auth:personnel')->group(function () {
     Route::get('profile/{id}', [PersonnelController::class, 'personnelProfile'])->name('personnel.profile');
     Route::get('profile/edit/{id}', [PersonnelController::class, 'editProfile'])->name('personnel.editProfile');
     Route::put('profile/update/{id}', [PersonnelController::class, 'updateProfile'])->name('personnel.updateProfile');
+    
+    Route::get('/profile/{id}/change-password', [PersonnelController::class, 'changePasswordForm'])->name('personnel.changePasswordForm');
+    Route::put('/personnel/change-password/{id}', [PersonnelController::class, 'changePassword'])->name('personnel.changePassword');
 
     Route::get('schedule', [PersonnelController::class, 'schedule'])->name('personnel.schedule');
     Route::get('users', [PersonnelController::class, 'users'])->name('personnel.users');

@@ -202,40 +202,65 @@ class PersonnelController extends Controller
     }    
 
     // Delete Document (Personnel)
-public function deleteDocument($id)
-{
-    $document = Document::findOrFail($id);
-    $filePath = public_path($document->file_path);
+    public function deleteDocument($id)
+    {
+        $document = Document::findOrFail($id);
+        $filePath = public_path($document->file_path);
 
-    if (file_exists($filePath)) {
-        unlink($filePath);
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+
+        $document->delete();
+
+        return redirect()->back()->with('success', 'Document deleted successfully!');
     }
 
-    $document->delete();
+    // Delete Lab Result (Personnel)
+    public function deleteLabResult($id)
+    {
+        $labResult = LabResult::findOrFail($id);
+        $filePath = public_path($labResult->file_path);
 
-    return redirect()->back()->with('success', 'Document deleted successfully!');
-}
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
 
-// Delete Lab Result (Personnel)
-public function deleteLabResult($id)
-{
-    $labResult = LabResult::findOrFail($id);
-    $filePath = public_path($labResult->file_path);
+        $labResult->delete();
 
-    if (file_exists($filePath)) {
-        unlink($filePath);
-    }
-
-    $labResult->delete();
-
-    return redirect()->back()->with('success', 'Lab result deleted successfully!');
-}
-    
+        return redirect()->back()->with('success', 'Lab result deleted successfully!');
+    } 
     
     public function schedule()
     {
         $schedules = Schedule::all();
         
         return view('personnel_user.schedule', compact('schedules'));
+    } 
+
+    public function changePasswordForm($id)
+    {
+        $user = Personnel::findOrFail($id);
+        return view('personnel_user.change_password', compact('user'));
+    }
+    
+    public function changePassword(Request $request, $id)
+    {
+        $request->validate([
+            'current_password' => 'required|string',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+    
+        $personnel = \App\Models\Personnel::findOrFail($id);
+    
+        if (!\Hash::check($request->current_password, $personnel->password)) {
+            return back()->withErrors(['current_password' => 'Current password is incorrect.']);
+        }
+
+        $personnel->password = $request->password;
+        $personnel->save();
+    
+        return redirect()->route('personnel.profile', $id)->with('success', 'Password updated successfully.');
     }    
+    
 }
