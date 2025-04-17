@@ -149,6 +149,14 @@ Route::middleware('auth:parent')->group(function () {
     Route::get('/patient/lab-results', [ParentController::class, 'labResults'])->name('patient.lab_results');
     Route::get('/patient/documents/{id}/download', [ParentController::class, 'downloadDocument'])->name('parent.documents.download');
     Route::get('/patient/lab-results/{id}/download', [ParentController::class, 'downloadLabResult'])->name('parent.labResults.download');
+    Route::post('/parent/logout', function () {
+        Auth::logout();              // Log the user out
+        request()->session()->invalidate(); // Invalidate session
+        request()->session()->regenerateToken(); // Regenerate CSRF token
+    
+        return redirect('/login'); // Or wherever your login page is
+    })->name('parent.logout');
+    
 });
 
 Route::get('/whoami', function () {

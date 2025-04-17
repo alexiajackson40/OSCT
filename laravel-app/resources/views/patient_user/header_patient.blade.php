@@ -28,7 +28,14 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
                     <li><a class="dropdown-item" id="profile-button" href="{{ route('patient.profile') }}">View Profile</a></li>
-                    <li><a class="dropdown-item" id="signout-button" href="{{ route('logout') }}">Sign Out</a></li> <!-- Add logout route -->
+                    <li>
+                        <form action="{{ route('parent.logout') }}" method="POST" style="display: inline;">
+                        @csrf
+                        <button type="submit" class="dropdown-item" style="width: 100%; text-align: left; background: none; border: none; padding: 0.5rem 1rem;">
+                        Sign Out
+                        </button>
+                        </form>
+                    </li>
                 </ul>
             </div>
         </div>
