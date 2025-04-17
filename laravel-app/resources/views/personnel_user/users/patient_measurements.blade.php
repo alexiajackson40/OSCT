@@ -88,7 +88,6 @@
         </div>
     </div>
 </body>
-
 <style>
     .main-content {
         display: flex;

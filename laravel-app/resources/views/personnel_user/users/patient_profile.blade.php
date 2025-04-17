@@ -210,6 +210,7 @@
         border: 0.063rem solid rgba(0,0,0,0.30);
         background: #FFF;
     }
+    /*Contact Container needs to go here */
     .table {
         margin-left: 0.875rem;
         color: #000;

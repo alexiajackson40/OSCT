@@ -10,8 +10,7 @@
 <body>
     <!-- Include the header dynamically -->
     @include('admin_user.header_admin') 
-
-    <div class="main-content d-flex align-self-center">
+    <div class="main-content">
         <div class="profile-container mt-5">
             <div class="card">
                 <!-- Top Buttons -->
@@ -25,7 +24,7 @@
                 </div>
 
                 <!-- Patient Information -->
-                <div class="card-body d-flex flex-column align-self-center">
+                <div class="card-body d-flex flex-column">
                     <!-- Instead of separate first and last names, display the full patient name from the PACIENTE column -->
                     <h1 class="card-title">{{ $patient->PACIENTE }}</h1>
                     <div class="information-container d-flex flex-column align-items-left">
@@ -55,17 +54,15 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Navigation Buttons -->
-            <div class="button-container mt-5 d-flex flex-column">      
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_profile', $patient->CURP) }}">Patient Profile</a>
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_measurements', $patient->CURP) }}">Measurements</a>
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_documents', $patient->CURP) }}">Documents</a>
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_labResults', $patient->CURP) }}">Lab Results</a>
-            </div>
+        </div>
+        <!-- Navigation Buttons -->
+        <div class="button-container mt-5 d-flex flex-column">      
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_profile', $patient->CURP) }}">Patient Profile</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_measurements', $patient->CURP) }}">Measurements</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_documents', $patient->CURP) }}">Documents</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_labResults', $patient->CURP) }}">Lab Results</a>
         </div>
     </div>
-
     <!-- Modal for Editing Patient Information -->
     <div class="modal fade" id="editPatientModal" tabindex="-1" aria-labelledby="editPatientModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -177,15 +174,23 @@
         min-height: 100vh;
     }
     .profile-container {
-        width: 70%;
-        display: flex;
-        justify-content: center;
+        width: fit-content;
     }
     .card {
         background-color: #F2F2F2;
-        width: 34.063rem;
-        height: 800px;
-        position: relative;
+        width: fit-content;
+        height: fit-content;
+        display: flex;
+        justify-content: center;
+    }
+    .card-body {
+        margin-bottom: 1rem;
+        margin-left: 0.625rem;
+        margin-right: 0.625rem;
+        padding-top: 0.625rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     .top-buttons {
         margin-top: 0.625rem;
@@ -195,15 +200,11 @@
         display: flex;
         flex-direction: row;
     }
-    .card-body {
-        padding-top: 0.625rem;
-        display: flex;
-        flex-direction: column;
-    }
     .card-title {
         font-size: 2rem;
         font-weight: 500;
         margin-top: 2.5rem;
+        width: 28.063rem;
     }
     .container-header {
         font-size: 1.25rem;
@@ -254,26 +255,30 @@
     }
     .button-container {
         width: 13.375rem;
-        height: 17rem;
+        height: fit-content;
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        justify-content: center;
+        align-items: center;
         margin-right: 0.5rem;
         margin-left: 0.5rem;
+        gap: 0.5rem;
     }
     .record-btn {
-        width: 214px;
-        height: 60px;
-        display: inline-flex;
-        padding: 18.5px 40px 18.5px 39px;
+        width: 100%;
+        height: 3.75rem;
+        display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 8px;
-        background: #6F1A34;
-        box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+        background: #7C1332;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         color: #FFF;
-        font-size: 20px;
+        font-size: 1.25rem;
         font-weight: 500;
+        text-decoration: none;
     }
+    .record-btn:hover {
+            background-color: #6F1A34;
+        }
 </style>
 </html>

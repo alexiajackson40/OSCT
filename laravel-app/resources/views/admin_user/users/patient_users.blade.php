@@ -131,7 +131,7 @@
                 <div class="card-body d-flex flex-column">
                     <div class="document-content">
                         <!-- Table List -->
-                        <table id="Table" class="table table-hover">
+                        <table id="Table" class="table">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -227,7 +227,7 @@
         justify-content: center;
         align-items: center;
         border-radius: 8px;
-        background: #6F1A34;
+        background: #7C1332;
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         color: #FFF;
         font-size: 1.25rem;
@@ -235,7 +235,7 @@
         text-decoration: none;
     }
     .table-btn:hover {
-            background-color: #7C1332;
+            background-color: #6F1A34;
         }
     /*-----------------------------------*/
     /* Styling for Card Title*/
@@ -287,9 +287,6 @@
         font-size: 20px;
         font-weight: 500;
     }
-    .btn-page:hover {
-            background-color: #E0E0E0;
-        }
     /*-----------------------------------*/
     /* Styling for View and Delete Buttons*/
     .btn-danger {
