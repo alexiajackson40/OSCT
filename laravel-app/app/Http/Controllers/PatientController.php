@@ -7,6 +7,8 @@ use App\Models\Document;
 use App\Models\LabResult;
 use App\Models\Measurement;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Patient;
+use App\Models\ParentModel;
 
 class PatientController extends Controller
 {
@@ -19,10 +21,12 @@ class PatientController extends Controller
     // Method to show patient profile
     public function profile()
 {
-    $parent = auth()->user(); // the logged-in parent
-    $patient = $parent->linkedPatient(); // find patient via CURP match
+    $parent = auth()->user(); // logged-in parent
 
-    return view('patient_user.profile', compact('parent', 'patient'));
+    // Get patient whose CURP matches the parent's CURP
+    $patient = Patient::where('CURP', $parent->CURP)->first();
+
+    return view('patient_user.profile', compact('patient', 'parent'));
 }
 
     // Method to show patient's documents

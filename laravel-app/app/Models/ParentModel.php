@@ -23,6 +23,8 @@ class ParentModel extends Authenticatable
         'email',
         'username',
         'password',
+        'phone_number',
+        'address',
     ];
 
     protected $hidden = [

@@ -20,6 +20,17 @@ class ParentController extends Controller
         return view('patient_user.home');
     }
 
+    public function profile()
+{
+    $parent = auth()->user(); // logged-in parent
+
+    // Get patient whose CURP matches the parent's CURP
+    $patient = Patient::where('CURP', $parent->CURP)->first();
+
+    return view('patient_user.profile', compact('patient', 'parent'));
+}
+
+
     public function store(Request $request)
     {
         $request->validate([

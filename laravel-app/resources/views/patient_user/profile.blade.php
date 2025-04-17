@@ -21,7 +21,7 @@
                         <table id="Table" class="table">
                             <tr>
                                 <th>Student ID</th>
-                                <td>{{ $parent->student_id ?? 'N/A' }}</td>
+                                <td>{{ $patient->CURP ?? 'N/A' }}</td>
                             </tr>
                             <tr>
                                 <th>Student Name</th>
@@ -42,11 +42,11 @@
                         <table id="Table" class="table">
                             <tr>
                                 <th>Email</th>
-                                <td>{{ $patient->email }}</td>
+                                <td>{{ $parent->email }}</td>
                             </tr>
                             <tr>
                                 <th>Address</th>
-                                <td>{{ $patient->address ?? 'N/A' }}</td>
+                                <td>{{ $parent->address ?? 'N/A' }}</td>
                             </tr>
                         </table>
                     </div>
