@@ -3,18 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ParentModel;
-use App\Models\Patient;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Document;
+use App\Models\LabResult;
+use App\Models\Measurement;
+use Illuminate\Support\Facades\Auth;
 
 class ParentController extends Controller
 {
     public function showSignupForm()
-{
-    return view('patient_user.sign_up'); // Keep view in same folder
-}
+    {
+        return view('patient_user.sign_up');
+    }
 
-   public function home()
+    public function home()
     {
         return view('patient_user.home');
     }
@@ -30,7 +31,7 @@ class ParentController extends Controller
             'CURP'       => 'required|string|unique:parent,CURP',
         ]);
 
-        $parent = ParentModel::create([
+        ParentModel::create([
             'CURP'       => $request->CURP,
             'first_name' => $request->first_name,
             'last_name'  => $request->last_name,
@@ -38,15 +39,7 @@ class ParentController extends Controller
             'username'   => $request->username,
             'password'   => Hash::make($request->password),
         ]);
-        
 
-        // Link parent to patient
-        $patient = Patient::find($request->student_id);
-        if ($patient) {
-            $patient->parent_id = $parent->id;
-            $patient->save();
-        }
-
-        return redirect()->route('login')->with('success', 'Account created and linked to student.');
+        return redirect()->route('login')->with('success', 'Account created successfully.');
     }
 }

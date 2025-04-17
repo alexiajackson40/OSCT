@@ -83,7 +83,7 @@ return [
 
         'patients' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Patient::class,  // Use Patient model for patients
+            'model' => App\Models\ParentModel::class,  // Use Patient model for patients
         ],
 
         'parents' => [

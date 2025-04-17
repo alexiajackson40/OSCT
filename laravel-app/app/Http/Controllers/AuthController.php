@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
@@ -41,8 +42,8 @@ class AuthController extends Controller
             Auth::guard('personnel')->login($personnel); // ← use personnel guard
             return redirect()->route('personnel.home');
         }
-
-        /* Patient authentication
+        /*
+        // Patient authentication
         $patient = Patient::where('username', $request->username)->first();
         if ($patient && Hash::check($request->password, $patient->password)) {  // Use Hash::check()
             Auth::login($patient);
@@ -51,10 +52,12 @@ class AuthController extends Controller
         */
         // Parent authentication
         $parent = ParentModel::where('username', $request->username)->first();
-            if ($parent && Hash::check($request->password, $parent->password)) {
-            Auth::guard('web')->login($parent); // use 'web' guard since it's the default for ParentModel
-            return redirect()->route('patient.home');
-        }
+if ($parent) {
+    if (Hash::check($request->password, $parent->password)) {
+        Auth::guard('parent')->login($parent);
+        return redirect()->route('patient.home');
+    }
+} 
 
 
         // If no match is found

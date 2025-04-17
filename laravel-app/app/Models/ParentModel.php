@@ -4,14 +4,14 @@ namespace App\Models;
 use App\Models\Patient;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable; // If you want to log parents in
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class ParentModel extends Authenticatable
 {
     use Notifiable;
 
-    protected $table = 'parent'; // Table name is 'parent', not 'parents'
+    protected $table = 'parent';
     protected $primaryKey = 'CURP';
     public $incrementing = false;
     protected $keyType = 'string';
@@ -27,7 +27,11 @@ class ParentModel extends Authenticatable
 
     protected $hidden = [
         'password',
+        'remember_token',
     ];
+
+
+    //protected $rememberTokenName = 'remember_token'; // enables "remember me" support
 
     public $timestamps = true;
 
