@@ -145,6 +145,10 @@ Route::middleware('auth:parent')->group(function () {
     Route::get('/patient/profile', [PatientController::class, 'profile'])->name('patient.profile');
     Route::get('/patient/documents', [PatientController::class, 'documents'])->name('patient.documents');
     Route::get('/patient/lab-results', [PatientController::class, 'labResults'])->name('patient.lab_results');
+    Route::get('/patient/documents', [ParentController::class, 'documents'])->name('patient.documents');
+    Route::get('/patient/lab-results', [ParentController::class, 'labResults'])->name('patient.lab_results');
+    Route::get('/patient/documents/{id}/download', [ParentController::class, 'downloadDocument'])->name('parent.documents.download');
+    Route::get('/patient/lab-results/{id}/download', [ParentController::class, 'downloadLabResult'])->name('parent.labResults.download');
 });
 
 Route::get('/whoami', function () {

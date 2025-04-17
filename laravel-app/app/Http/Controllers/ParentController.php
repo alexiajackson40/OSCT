@@ -30,6 +30,48 @@ class ParentController extends Controller
     return view('patient_user.profile', compact('patient', 'parent'));
 }
 
+public function documents()
+{
+    $parent = auth()->user();
+    $documents = Document::where('user_id', $parent->CURP)->get();
+
+    return view('patient_user.documents', compact('documents'));
+}
+
+public function labResults()
+{
+    $parent = auth()->user();
+    $labResults = LabResult::where('user_id', $parent->CURP)->get();
+
+    return view('patient_user.lab_results', compact('labResults'));
+}
+
+
+public function downloadDocument($id)
+{
+    $document = Document::findOrFail($id);
+    $filePath = public_path($document->file_path); // ✅ Fix path
+
+    if (file_exists($filePath)) {
+        return response()->download($filePath);
+    }
+
+    return redirect()->back()->with('error', 'File not found.');
+}
+
+public function downloadLabResult($id)
+{
+    $result = LabResult::findOrFail($id);
+    $filePath = public_path($result->file_path); // ✅ Fix path
+
+    if (file_exists($filePath)) {
+        return response()->download($filePath);
+    }
+
+    return redirect()->back()->with('error', 'File not found.');
+}
+
+
 
     public function store(Request $request)
     {

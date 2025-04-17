@@ -32,8 +32,9 @@
                                         <td>{{ $result->name }}</td>
                                         <td>{{ $result->created_at->format('Y-m-d') }}</td>
                                         <td>
-                                            <!-- Link to view or download the lab result -->
-                                            <a href="{{ route('admin.users.patientLabResults.download', $result->id) }}" class="btn btn-primary">Download</a>
+                                        <a href="{{ route('parent.labResults.download', $result->id) }}" class="btn btn-sm btn-primary">
+                                        Download
+                                        </a>
                                         </td>
                                     </tr>
                                 @endforeach
