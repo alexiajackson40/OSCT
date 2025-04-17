@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use App\Models\Personnel;
 use App\Models\Patient;
+use App\Models\ParentModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -47,16 +48,19 @@ class AuthController extends Controller
             Auth::login($patient);
             return redirect()->route('patient.home');
         }
-        
+        */
         // Parent authentication
         $parent = ParentModel::where('username', $request->username)->first();
-        if ($parent && Hash::check($request->password, $parent->password)) {  // Use Hash::check()
-            Auth::login($parent);
-            return redirect()->route('parent.home');
+            if ($parent && Hash::check($request->password, $parent->password)) {
+            Auth::guard('web')->login($parent); // use 'web' guard since it's the default for ParentModel
+            return redirect()->route('patient.home');
         }
-        */
+
 
         // If no match is found
-        return back()->with('error', 'Invalid login credentials.');
+        return back()->withErrors([
+            'login' => 'Invalid username or password.',
+        ]);
+        
     }
 }

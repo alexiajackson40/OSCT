@@ -18,10 +18,12 @@ class PatientController extends Controller
 
     // Method to show patient profile
     public function profile()
-    {
-        $patient = Auth::user(); // Assuming the patient is authenticated
-        return view('patient_user.profile', compact('patient')); // matches profile.blade.php
-    }
+{
+    $parent = auth()->user(); // the logged-in parent
+    $patient = $parent->linkedPatient(); // find patient via CURP match
+
+    return view('patient_user.profile', compact('parent', 'patient'));
+}
 
     // Method to show patient's documents
     public function documents()

@@ -21,15 +21,19 @@
                         <table id="Table" class="table">
                             <tr>
                                 <th>Student ID</th>
-                                <td>{{ $patient->student_id }}</td>
+                                <td>{{ $parent->student_id ?? 'N/A' }}</td>
+                            </tr>
+                            <tr>
+                                <th>Student Name</th>
+                                <td>{{ $patient->PACIENTE ?? 'N/A' }}</td>
                             </tr>
                             <tr>
                                 <th>Phone Number</th>
-                                <td>{{ $patient->phone_number }}</td>
+                                <td>{{ $parent->phone_number ?? 'N/A' }}</td>
                             </tr>
                             <tr>
                                 <th>Username</th>
-                                <td>{{ $patient->username }}</td>
+                                <td>{{ $parent->username ?? 'N/A' }}</td>
                             </tr>
                         </table>
                     </div>
@@ -52,7 +56,6 @@
         </div>
     </div>
 
-    @include('layouts.footer') <!-- Optional footer -->
 </body>
 
 <style>

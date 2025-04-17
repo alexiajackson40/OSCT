@@ -49,6 +49,11 @@ return [
             'driver' => 'session',
             'provider' => 'patients',  // Custom provider for patients
         ],
+
+        'parent' => [
+            'driver' => 'session',
+            'provider' => 'parents', //Custom provider for parents
+        ],
     ],
 
     /*
@@ -63,7 +68,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),  // Default User model
+            'model' => App\Models\ParentModel::class,  // Default User model
         ],
 
         'admins' => [
@@ -79,6 +84,11 @@ return [
         'patients' => [
             'driver' => 'eloquent',
             'model' => App\Models\Patient::class,  // Use Patient model for patients
+        ],
+
+        'parents' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\ParentModel::class, // Use Parent model for parents
         ],
     ],
 

@@ -11,6 +11,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ParentController;
 
 // Main Route (public)
 Route::get('/', [HomeController::class, 'home'])->name('home');
@@ -25,12 +26,16 @@ Route::middleware('guest')->group(function () {
     Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
     Route::post('/register', [AuthController::class, 'register'])->name('register.post');
 });
-
+/*
 // Patient Sign-Up Route (public)
 Route::get('/signup', function () {
     return view('patient_user.sign_up');
 })->name('signup');
 Route::post('/signup', [UserController::class, 'signup'])->name('signup');
+*/
+// Parent Sign-Up Route
+Route::get('/signup', [ParentController::class, 'showSignupForm'])->name('signup');
+Route::post('/signup', [ParentController::class, 'store'])->name('signup');
 
 // Admin Routes (using the admin guard)
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
@@ -138,10 +143,4 @@ Route::prefix('patient')->middleware('auth')->group(function () {
     Route::get('lab-results', [PatientController::class, 'labResults'])->name('patient.lab_results');
     Route::get('schedule', [PatientController::class, 'schedule'])->name('patient.schedule');
     Route::get('signup', [PatientController::class, 'signUp'])->name('patient.signup');
-});
-
-// Parent Routes (protected with auth middleware)
-Route::prefix('parent')->middleware('auth')->group(function () {
-    Route::get('home', [ParentController::class, 'home'])->name('parent.home');
-    Route::get('profile', [ParentController::class, 'profile'])->name('parent.profile');
 });
