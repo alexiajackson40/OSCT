@@ -1,4 +1,7 @@
 DESCRIBE documents;
+SELECT * FROM documents;
+SELECT * FROM documents WHERE user_id = 'J3QZD3TA';
+TRUNCATE TABLE documents;
 DESCRIBE patients;
 DROP TABLE IF EXISTS schedules;
 ALTER TABLE documents DROP FOREIGN KEY documents_user_id_foreign;
@@ -8,10 +11,16 @@ show tables;
 DESCRIBE admins;
 DESCRIBE patients;
 DESCRIBE personnel;
+DESCRIBE lab_results;
 DESCRIBE measurements;
 DESCRIBE schedule;
 SELECT * FROM schedule;
-SELECT * FROM patients WHERE CURP = 'J3QZD3TA';
+TRUNCATE TABLE schedule;
+
+SELECT * FROM measurements WHERE id = 1;
+SELECT * FROM measurements;
+
+SELECT * FROM patients;
 
 SELECT * FROM admins;
 SELECT * FROM personnel;
@@ -38,6 +47,4 @@ ALTER TABLE schedule
   CHANGE `TURNO` shift VARCHAR(255),
   CHANGE `CCT` cct VARCHAR(255),
   CHANGE `FECHA` date DATE;
-
-TRUNCATE TABLE schedule;
 

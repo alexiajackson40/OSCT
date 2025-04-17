@@ -35,6 +35,56 @@ class AdminUsersController extends Controller
         return view('admin_user.users.admin_users', compact('admins'));
     }
 
+    public function adminProfile($id)
+    {
+        $admin = Admin::findOrFail($id);
+        return view('admin_user.users.admin_profile', compact('admin'));
+    }
+    
+    public function removeAdmin($id)
+    {
+        $admin = Admin::findOrFail($id);
+        $admin->delete();
+    
+        return redirect()->route('admin.adminUsers')->with('success', 'Admin removed successfully!');
+    }
+    
+    public function removePersonnel($id)
+    {
+        $personnel = \App\Models\Personnel::findOrFail($id);
+        $personnel->delete();
+    
+        return redirect()->route('admin.personnelUsers')->with('success', 'Personnel user removed successfully!');
+    }
+
+    public function personnelProfile($id)
+    {
+        $personnel = \App\Models\Personnel::findOrFail($id);
+        return view('admin_user.users.personnel_profile', compact('personnel'));
+    }    
+
+    public function updatePersonnel(Request $request, $id)
+    {
+        $request->validate([
+            'first_name'    => 'required|string|max:255',
+            'last_name'     => 'required|string|max:255',
+            'phone'  => 'nullable|string|max:15',
+            'address'       => 'nullable|string|max:255',
+        ]);
+    
+        $personnel = \App\Models\Personnel::where('employee_id', $id)->firstOrFail();
+    
+        $personnel->update([
+            'first_name'    => $request->input('first_name'),
+            'last_name'     => $request->input('last_name'),
+            'phone'  => $request->input('phone'),
+            'address'       => $request->input('address'),
+        ]);
+    
+        return redirect()->route('admin.users.personnel_profile', $id)
+            ->with('success', 'Personnel information updated successfully!');
+    }
+    
     // Add Patient
     public function addPatient(Request $request)
     {
@@ -264,24 +314,47 @@ class AdminUsersController extends Controller
     public function updatePatient(Request $request, $id)
     {
         $request->validate([
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'phone' => 'nullable|string|max:15',
-            'address' => 'nullable|string|max:255',
+            'first_name'        => 'required|string|max:255',
+            'school_name'       => 'required|string|max:255',
+            'gender'            => 'required|string|max:10',
+            'age'               => 'required|numeric',
+            'fasting_status'    => 'nullable|string|max:10',
+            'glucose'           => 'nullable|numeric',
+            'triglycerides'     => 'nullable|numeric',
+            'total_cholesterol' => 'nullable|numeric',
+            'hba1c'             => 'nullable|numeric',
+            'weight'            => 'nullable|numeric',
+            'height'            => 'nullable|numeric',
+            'bmi'               => 'nullable|numeric',
+            'icc'               => 'nullable|numeric',
+            'waist'             => 'nullable|numeric',
+            'hip'               => 'nullable|numeric',
+            'comments'          => 'nullable|string',
         ]);
-
-        $patient = Patient::findOrFail($id);
+    
+        $patient = Patient::where('CURP', $id)->firstOrFail();
+    
         $patient->update([
-            'first_name' => $request->input('first_name'),
-            'last_name' => $request->input('last_name'),
-            'email' => $request->input('email'),
-            'phone' => $request->input('phone'),
-            'address' => $request->input('address'),
+            'PACIENTE'          => $request->input('first_name'),
+            'ESCUELA'           => $request->input('school_name'),
+            'SEXO'              => $request->input('gender'),
+            'EDAD'              => $request->input('age'),
+            'AYUNO'             => $request->input('fasting_status'),
+            'GLUCOSA'           => $request->input('glucose'),
+            'TRIGLICÉRIDOS'     => $request->input('triglycerides'),
+            'COLESTEROL TOTAL'  => $request->input('total_cholesterol'),
+            'HBA1C'             => $request->input('hba1c'),
+            'PESO'              => $request->input('weight'),
+            'TALLA'             => $request->input('height'),
+            'IMC'               => $request->input('bmi'),
+            'ICC'               => $request->input('icc'),
+            'CINTURA'           => $request->input('waist'),
+            'CADERA'            => $request->input('hip'),
+            'COMENTARIO'        => $request->input('comments'),
         ]);
-
+    
         return redirect()->route('admin.users.patient_profile', $id)->with('success', 'Patient profile updated successfully!');
-    }
+    }    
 
     // Fetch Patient Measurements
     public function patientMeasurements($id)
@@ -290,17 +363,113 @@ class AdminUsersController extends Controller
         $patient = Patient::where('CURP', $id)->firstOrFail();
     
         // Retrieve measurements tied to the patient via user_id
-        $measurements = Measurement::where('user_id', $patient->CURP)->get(); // Assuming user_id maps to CURP
+        $measurements = Measurement::where('user_id', $patient->CURP)->get();
     
         return view('admin_user.users.patient_measurements', compact('measurements', 'patient'));
-    }       
-
+    }
+    
+    public function updateMeasurement(Request $request, $id)
+    {
+        // Fetch the patient using CURP
+        $patient = Patient::where('CURP', $id)->firstOrFail();
+    
+        // Update measurements and synchronize with patients table
+        foreach ($request->input('measurements', []) as $measurementId => $data) {
+            $measurement = Measurement::findOrFail($measurementId);
+            $measurement->update($data);
+    
+            // Update relevant fields in the patients table
+            $patient->update([
+                'GLUCOSA' => $measurement->glucose_level,
+                'TRIGLICÉRIDOS' => $measurement->triglycerides,
+                'COLESTEROL TOTAL' => $measurement->cholesterol,
+                'HBA1C' => $measurement->hemoglobin,
+                'IMC' => $measurement->body_mass,
+                'ICC' => $measurement->waist_hip_ratio,
+                'CINTURA' => $measurement->waist,
+                'CADERA' => $measurement->hip,
+            ]);
+        }
+    
+        return redirect()->route('admin.users.patient_measurements', $patient->CURP)
+            ->with('success', 'Measurements updated successfully and synced with patient records!');
+    }
+          
     // Fetch All Patient Lab Results
     public function patientLabResults($id)
     {
-        $patient = Patient::findOrFail($id);
-        $labResults = LabResult::where('user_id', $id)->get();
+        // Fetch the patient using CURP
+        $patient = Patient::where('CURP', $id)->firstOrFail();
+
+        // Retrieve lab results tied to the patient via user_id
+        $labResults = LabResult::where('user_id', $patient->CURP)->get();
+
         return view('admin_user.users.patient_labResults', compact('labResults', 'patient'));
+    }
+
+    // Upload Lab Result
+    public function uploadLabResult(Request $request, $id)
+    {
+        // Validate upload inputs
+        $request->validate([
+            'lab_result'   => 'required|file|mimes:pdf,jpg,png|max:10240',
+            'description'  => 'required|string|max:255',
+        ]);
+
+        // Fetch the patient using CURP
+        $patient = Patient::where('CURP', $id)->firstOrFail();
+
+        if ($request->hasFile('lab_result')) {
+            $file = $request->file('lab_result');
+            $filename = time() . '-' . $file->getClientOriginalName();
+
+            // Save file directly to public/lab_results (similar to documents)
+            $file->move(public_path('lab_results'), $filename);
+
+            // Save lab result record using the correct relative path
+            LabResult::create([
+                'user_id'       => $patient->CURP,
+                'name'          => $request->input('description'),
+                'file_path'     => 'lab_results/' . $filename,  // Note the folder prefix, as in documents
+                'date_assigned' => now()->toDateString(),
+            ]);
+        }
+
+        return redirect()->route('admin.users.patient_labResults', $patient->CURP)
+            ->with('success', 'Lab result uploaded successfully!');
+    }
+
+    // Download Lab Result
+    public function downloadLabResult($id)
+    {   
+        $labResult = LabResult::findOrFail($id);
+        // Use public_path like in documents
+        $filePath = public_path($labResult->file_path);
+
+        if (file_exists($filePath)) {
+            return response()->download($filePath);
+        }
+
+        return redirect()->back()->with('error', 'Lab result not found.');
+    }    
+
+    public function deleteLabResult($id)
+    {
+        // Find the lab result by ID
+        $labResult = LabResult::findOrFail($id);
+
+        // Get the file path in the public folder
+        $filePath = public_path($labResult->file_path);
+
+        // Delete the file if it exists
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+
+        // Delete the lab result record from the database
+        $labResult->delete();
+
+        return redirect()->back()->with('success', 'Lab result deleted successfully!');
     }
 
     // Fetch All Patient Documents
@@ -310,7 +479,7 @@ class AdminUsersController extends Controller
         $patient = Patient::where('CURP', $id)->firstOrFail();
     
         // Retrieve documents tied to the patient via user_id
-        $documents = Document::where('user_id', $patient->id)->get(); // Ensure user_id maps to patient ID
+        $documents = Document::where('user_id', $patient->CURP)->get(); // Ensure user_id maps to patient ID
     
         return view('admin_user.users.patient_documents', compact('documents', 'patient'));
     }    
@@ -318,26 +487,22 @@ class AdminUsersController extends Controller
     // Upload Document
     public function uploadDocument(Request $request, $id)
     {
-        // Validate input
         $request->validate([
             'document_name' => 'required|string|max:255',
             'document_file' => 'required|file|mimes:pdf,doc,docx,png,jpg|max:10240',
         ]);
     
-        // Fetch the patient using CURP (primary key)
-        $patient = Patient::findOrFail($id); // Since CURP is the primary key, this works directly
+        $patient = Patient::where('CURP', $id)->firstOrFail();
     
-        // Check if a valid file is being uploaded
         if ($request->hasFile('document_file') && $request->file('document_file')->isValid()) {
             $file = $request->file('document_file');
             $filename = time() . '-' . $file->getClientOriginalName();
-            $path = $file->storeAs('public/documents', $filename);
+            $file->move(public_path('documents'), $filename); // Save file directly to public/documents
     
-            // Create the document record using CURP as the user_id
             Document::create([
-                'name' => $request->input('document_name'),
-                'file_path' => 'documents/' . $filename,
-                'user_id' => $patient->CURP, // Use CURP as the foreign key
+                'name'      => $request->input('document_name'),
+                'file_path' => 'documents/' . $filename, // Relative to the public folder
+                'user_id'   => $patient->CURP,
             ]);
     
             return redirect()->route('admin.users.patient_documents', $id)
@@ -345,13 +510,13 @@ class AdminUsersController extends Controller
         }
     
         return back()->with('error', 'File upload failed or no valid file provided.');
-    }                
+    }                           
 
     // Delete Document
     public function deleteDocument($documentId)
     {
         $document = Document::findOrFail($documentId);
-        $filePath = storage_path('app/public/' . $document->file_path);
+        $filePath = public_path($document->file_path);
     
         if (file_exists($filePath)) {
             unlink($filePath);
@@ -360,5 +525,17 @@ class AdminUsersController extends Controller
         $document->delete();
     
         return redirect()->back()->with('success', 'Document deleted successfully!');
+    }    
+    
+    public function downloadDocument($documentId)
+    {
+        $document = Document::findOrFail($documentId);
+        $filePath = public_path($document->file_path);
+    
+        if (file_exists($filePath)) {
+            return response()->download($filePath);
+        }
+    
+        return redirect()->back()->with('error', 'File not found.');
     }    
 }

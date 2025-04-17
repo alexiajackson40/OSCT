@@ -13,7 +13,12 @@
     <div class="main-content mt-5 d-flex justify-content-center">
         <div class="profile-container">
             <div class="card">
-            <button class="btn-page btn-primary" onclick="window.location='{{ route('personnel.editProfile', $user->employee_id) }}'">[Edit Information]</button>
+                <!-- Edit Info and Change Password Buttons -->
+                <div class="d-flex justify-content-between px-3 pt-3">
+                    <button class="btn-page btn-primary" onclick="window.location='{{ route('personnel.editProfile', $user->employee_id) }}'">[Edit Information]</button>
+                    <button class="btn-page btn-primary" onclick="window.location='{{ route('personnel.changePasswordForm', $user->employee_id) }}'">[Change Password]</button>
+                </div>
+
                 <div class="card-body d-flex flex-column align-items-center">
                     <h1 class="card-title">{{ $user->first_name }} {{ $user->last_name }}</h1>
 
@@ -47,6 +52,10 @@
                             <tr>
                                 <td>Email</td>
                                 <td>{{ $user->email }}</td>
+                            </tr>
+                            <tr>
+                                <td>Address</td>
+                                <td>{{ $user->address ?? 'Not provided' }}</td>
                             </tr>
                         </table>
                     </div>
@@ -100,10 +109,6 @@
         color: #000;
     }
     .btn-page {
-        position: absolute;
-        right: 1rem;
-        top: 1rem;
-        width: auto;
         border: none;
         background: #F2F2F2;
         font-size: 1rem;

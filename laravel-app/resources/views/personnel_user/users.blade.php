@@ -9,15 +9,13 @@
 </head>
 <body>
     @include('personnel_user.header_personnel')
-
-    <div class="main-content d-flex justify-content-center mt-5">
-        <div class="users-container w-75">
-            <div class="card p-4">
+    <div class="main-content d-flex justify-content-center">
+        <div class="users-container mt-5">
+            <div class="card">
                 <div class="card-body">
                     <h1 class="card-title mb-4">Patient Users</h1>
-
-                    <table class="table table-hover table-bordered">
-                        <thead class="table-light">
+                    <table class="table">
+                        <thead>
                             <tr>
                                 <th>Name</th>
                                 <th>Student ID</th>
@@ -30,34 +28,56 @@
                                     <td>{{ $patient->PACIENTE }}</td>
                                     <td>{{ $patient->getKey() }}</td>
                                     <td>
-                                        <a href="{{ route('personnel.patientProfile', $patient->getKey()) }}" class="btn btn-primary btn-sm">View Profile</a>
+                                        <a href="{{ route('personnel.patientProfile', $patient->getKey()) }}" class="btn btn-primary btn-view btn-sm">View Profile</a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
     </div>
 </body>
-
 <style>
     .main-content {
         width: 100%;
         min-height: 100vh;
     }
-    .card-title {
-        font-size: 2rem;
-        font-weight: 600;
-        text-align: left;
-    }
-    .table th, .table td {
-        vertical-align: middle;
+    .users-container {
+        width: 70%;
     }
     .card {
-        background-color: #F2F2F2;
+        background-color:#F2F2F2;
+        height: 100%;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+    }
+    .card-body {
+        margin-left: 1.5625rem;
+        margin-right: 1.5625rem;
+    }
+    .card-title {
+        font-size: 2.2rem;
+        font-weight: 500;
+        text-align: left;
+        margin-bottom: 1.5625rem;
+        margin-top: 2rem;
+    }
+    .table {
+        align-items: center;
+        margin-bottom: 0px;
+        --bs-table-bg: #F2F2F2;
+        --bs-table-border-color: #000;
+    }
+    .btn-view {
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        justify-content: center;
     }
 </style>
 </html>

@@ -9,17 +9,16 @@
 </head>
 <body>
     @include('personnel_user.header_personnel')
-
-    <div class="main-content d-flex align-self-center">
+    <div class="main-content">
         <div class="profile-container mt-5">
             <div class="card">
                 <!-- Top Buttons -->
                 <div class="top-buttons d-flex flex-row align-self-center">
                     <a href="{{ route('personnel.users') }}" class="btn-back">&lt; Go Back</a>
+                    <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#editPatientModal">[Edit Information]</button>
                 </div>
-
                 <!-- Patient Information -->
-                <div class="card-body d-flex flex-column align-self-center">
+                <div class="card-body d-flex flex-column">
                     <h1 class="card-title">{{ $patient->PACIENTE }}</h1>
                     <div class="information-container d-flex flex-column align-items-left">
                         <h2 class="container-header">Patient Information</h2>
@@ -48,18 +47,115 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <!-- Navigation Buttons -->
+        <div class="button-container mt-5 d-flex flex-column">
+            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientProfile', $patient->CURP) }}">Patient Profile</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientMeasurements', $patient->CURP) }}">Measurements</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.documents', $patient->CURP) }}">Documents</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientLabResults', $patient->CURP) }}">Lab Results</a>
+        </div>
+    </div>
+    <!-- Edit Patient Modal -->
+    <div class="modal fade" id="editPatientModal" tabindex="-1" aria-labelledby="editPatientModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Patient Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('personnel.updatePatient', $patient->CURP) }}" method="POST">
+                        @csrf
+                        @method('PUT')
 
-            <!-- Navigation Buttons -->
-            <div class="button-container mt-5 d-flex flex-column">
-                <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientProfile', $patient->CURP) }}">Patient Profile</a>
-                <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientMeasurements', $patient->CURP) }}">Measurements</a>
-                <a class="record-btn btn-primary" role="button" href="{{ route('personnel.documents', $patient->CURP) }}">Documents</a>
-                <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientLabResults', $patient->CURP) }}">Lab Results</a>
+                        <div class="form-group">
+                            <label for="first_name">Full Name</label>
+                            <input type="text" name="first_name" class="form-control" value="{{ $patient->PACIENTE }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="school_name">School</label>
+                            <input type="text" name="school_name" class="form-control" value="{{ $patient->ESCUELA }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <input type="text" name="gender" class="form-control" value="{{ $patient->SEXO }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" name="age" class="form-control" value="{{ $patient->EDAD }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fasting_status">Fasting Status</label>
+                            <input type="text" name="fasting_status" class="form-control" value="{{ $patient->AYUNO }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="glucose">Glucose</label>
+                            <input type="text" name="glucose" class="form-control" value="{{ $patient->GLUCOSA }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="triglycerides">Triglycerides</label>
+                            <input type="text" name="triglycerides" class="form-control" value="{{ $patient->TRIGLICÉRIDOS }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="total_cholesterol">Total Cholesterol</label>
+                            <input type="text" name="total_cholesterol" class="form-control" value="{{ $patient->{'COLESTEROL TOTAL'} }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hba1c">HBA1C</label>
+                            <input type="text" name="hba1c" class="form-control" value="{{ $patient->HBA1C }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="weight">Weight</label>
+                            <input type="text" name="weight" class="form-control" value="{{ $patient->PESO }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="height">Height</label>
+                            <input type="text" name="height" class="form-control" value="{{ $patient->TALLA }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bmi">BMI</label>
+                            <input type="text" name="bmi" class="form-control" value="{{ $patient->IMC }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="icc">ICC</label>
+                            <input type="text" name="icc" class="form-control" value="{{ $patient->ICC }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="waist">Waist</label>
+                            <input type="text" name="waist" class="form-control" value="{{ $patient->CINTURA }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hip">Hip</label>
+                            <input type="text" name="hip" class="form-control" value="{{ $patient->CADERA }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comments">Comment</label>
+                            <textarea name="comments" class="form-control">{{ $patient->COMENTARIO }}</textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </body>
-
 <style>
     .main-content {
         display: flex;
@@ -68,15 +164,23 @@
         min-height: 100vh;
     }
     .profile-container {
-        width: 70%;
-        display: flex;
-        justify-content: center;
+        width: fit-content;
     }
     .card {
         background-color: #F2F2F2;
-        width: 34.063rem;
-        height: 800px;
-        position: relative;
+        width: fit-content;
+        height: fit-content;
+        display: flex;
+        justify-content: center;
+    }
+    .card-body {
+        margin-bottom: 1rem;
+        margin-left: 0.625rem;
+        margin-right: 0.625rem;
+        padding-top: 0.625rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     .top-buttons {
         margin-top: 0.625rem;
@@ -86,15 +190,11 @@
         display: flex;
         flex-direction: row;
     }
-    .card-body {
-        padding-top: 0.625rem;
-        display: flex;
-        flex-direction: column;
-    }
     .card-title {
         font-size: 2rem;
         font-weight: 500;
         margin-top: 2.5rem;
+        width: 28.063rem;
     }
     .container-header {
         font-size: 1.25rem;
@@ -126,28 +226,41 @@
         color: #000;
         background: #F2F2F2;
     }
+    .btn-edit {
+        position: absolute;
+        right: 1.875rem;
+        border: none;
+        color: #000;
+        background: #F2F2F2;
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
     .button-container {
         width: 13.375rem;
-        height: 17rem;
+        height: fit-content;
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        justify-content: center;
+        align-items: center;
         margin-right: 0.5rem;
         margin-left: 0.5rem;
+        gap: 0.5rem;
     }
     .record-btn {
-        width: 214px;
-        height: 60px;
-        display: inline-flex;
-        padding: 18.5px 40px 18.5px 39px;
+        width: 100%;
+        height: 3.75rem;
+        display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 8px;
-        background: #6F1A34;
-        box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+        background: #7C1332;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         color: #FFF;
-        font-size: 20px;
+        font-size: 1.25rem;
         font-weight: 500;
+        text-decoration: none;
     }
+    .record-btn:hover {
+            background-color: #6F1A34;
+        }
 </style>
 </html>

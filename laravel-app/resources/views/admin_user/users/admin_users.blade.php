@@ -15,19 +15,17 @@
     <div class="main-content">
         <!-- Side Buttons Container -->
         <div class="button-container mt-5 d-flex flex-column">
-            <!-- Correct route names for navigation -->
             <a class="table-btn btn-primary" role="button" href="{{ route('admin.patientUsers') }}">Patients</a>
             <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnelUsers') }}">Personnel</a>
             <a class="table-btn btn-primary" role="button" href="{{ route('admin.adminUsers') }}">Admin</a>
         </div>
+
         <div class="users-container mt-5">
             <div class="card">
-                <!-- Add/Remove User -->
-                <a class="btn-page btn-primary" href="{{ route('admin.addUser') }}">[Add/Remove Admin]</a>
+                <a class="btn-page btn-primary" href="{{ route('admin.addUser') }}">[Add Admin]</a>
                 <div class="card-body d-flex flex-column">
                     <div class="document-content">
                         <h1 class="card-title">Admin Users</h1>
-                        <!-- Table List Container -->
                         <table id="Table" class="table table-hover">
                             <thead>
                                 <tr>
@@ -41,9 +39,14 @@
                                     <tr>
                                         <td>{{ $admin->first_name }} {{ $admin->last_name }}</td>
                                         <td>{{ $admin->email }}</td>
-                                        <td>
-                                            <!-- View Profile Button -->
-                                            <a href="{{ route('admin.users.admin_profile', $admin->id) }}" class="btn btn-primary btn-sm">View Profile</a>
+                                        <td class="d-flex gap-2">
+                                            <a href="{{ route('admin.users.admin_profile', $admin->id) }}" class="btn btn-primary btn-action">View Profile</a>
+
+                                            <form action="{{ route('admin.removeAdmin', $admin->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to remove this admin?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-action">Remove</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -56,7 +59,6 @@
     </div>
 </body>
 
-<!-- Existing Styling Preserved -->
 <style>
     .main-content {
         display: flex;
@@ -128,6 +130,12 @@
         background: #F2F2F2;
         font-size: 20px;
         font-weight: 500;
+    }
+
+    .btn-action {
+        min-width: 90px;
+        font-size: 14px;
+        padding: 6px 12px;
     }
 </style>
 </html>

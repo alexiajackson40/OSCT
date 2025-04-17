@@ -19,14 +19,14 @@
             <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnelUsers') }}">Personnel</a>
             <a class="table-btn btn-primary" role="button" href="{{ route('admin.adminUsers') }}">Admin</a>
         </div>
+
         <div class="users-container mt-5">
             <div class="card">
                 <!-- Add/Remove User -->
-                <a class="btn-page btn-primary" href="{{ route('admin.addUser') }}">[Add/Remove Personnel]</a>
-                <a class="btn-page btn-primary" href="{{ route('admin.addUser') }}">[Add/Remove User]</a>
+                <a class="btn-page btn-primary" href="{{ route('admin.addUser') }}">[Add Personnel]</a>
                 <div class="card-body d-flex flex-column">
                     <div class="document-content">
-                        <h1 class="card-title">Personnel Users</h1>
+                        <h1 class="card-title">Personnel</h1>
                         <!-- Table List -->
                         <table id="Table" class="table table-hover">
                             <thead>
@@ -41,9 +41,14 @@
                                     <tr>
                                         <td>{{ $person->first_name }} {{ $person->last_name }}</td>
                                         <td>{{ $person->email }}</td>
-                                        <td>
-                                            <!-- Use getKey() to ensure the correct primary key (employee_id) is passed -->
-                                            <a href="{{ route('admin.users.personnel_profile', $person->getKey()) }}" class="btn btn-primary btn-sm">View Profile</a>
+                                        <td class="d-flex gap-2">
+                                            <a href="{{ route('admin.users.personnel_profile', $person->getKey()) }}" class="btn btn-primary btn-action">View</a>
+
+                                            <form action="{{ route('admin.removePersonnel', $person->getKey()) }}" method="POST" onsubmit="return confirm('Are you sure you want to remove this personnel user?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-action">Remove</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -127,6 +132,11 @@
             background: #F2F2F2;
             font-size: 20px;
             font-weight: 500;
+        }
+        .btn-action {
+            min-width: 90px;
+            font-size: 14px;
+            padding: 6px 12px;
         }
     </style>
 </body>

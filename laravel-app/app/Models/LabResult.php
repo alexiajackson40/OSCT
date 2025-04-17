@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class LabResult extends Model
 {
-    protected $fillable = ['user_id', 'name', 'result_value', 'assigned_date'];
+    protected $fillable = ['user_id', 'name', 'file_path', 'date_assigned'];
 
     public function patient()
     {

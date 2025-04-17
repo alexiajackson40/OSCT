@@ -9,20 +9,15 @@ class Schedule extends Model
     protected $table = 'schedule';
 
     protected $fillable = [
-        'NIVEL',
-        'TURNO',
-        'CCT',
-        'NOMBRE_DE_LA_ESCUELA',
-        'MUNICIPIO',
-        'LOCALIDAD',
-        'DOMICILIO',
-        'TOTAL_DE_ALUMNOS',
-        'FECHA',
+        'level',
+        'shift',
+        'cct',
         'school_name',
-        'location',
-        'visit_date',
-        'file_path',
-        'admin_id',
+        'municipality',
+        'locality',
+        'address',
+        'total_students',
+        'date',
     ];
 
     public $timestamps = true;

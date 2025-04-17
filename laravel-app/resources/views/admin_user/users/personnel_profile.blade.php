@@ -7,9 +7,7 @@
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
 </head>
-<!-- Personnel User Profile Page -->
 <body>
-    <!-- Include the header dynamically -->
     @include('admin_user.header_admin')
 
     <div class="main-content">
@@ -30,7 +28,7 @@
                             </tr>
                             <tr>
                                 <td><strong>Phone Number:</strong></td>
-                                <td>{{ $personnel->phone_number }}</td>
+                                <td>{{ $personnel->phone }}</td>
                             </tr>
                             <tr>
                                 <td><strong>Username:</strong></td>
@@ -65,7 +63,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('admin.updatePersonnel', $personnel->id) }}" method="POST">
+                    <form action="{{ route('admin.updatePersonnel', $personnel->employee_id) }}" method="POST">
                         @csrf
                         @method('PUT')
 
@@ -80,8 +78,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="phone_number">Phone Number</label>
-                            <input type="text" name="phone_number" id="phone_number" value="{{ $personnel->phone_number }}" class="form-control">
+                            <label for="phone">Phone Number</label>
+                            <input type="text" name="phone" value="{{ $personnel->phone }}" class="form-control">
                         </div>
 
                         <div class="form-group">
@@ -97,7 +95,7 @@
     </div>
 </body>
 
-<!-- Existing Styling Preserved -->
+<!-- Styling -->
 <style>
     .main-content {
         display:flex;

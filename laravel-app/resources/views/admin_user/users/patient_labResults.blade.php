@@ -27,7 +27,7 @@
                             <thead>
                                 <tr>
                                     <th>Lab Result Name</th>
-                                    <th>Uploaded By</th>
+                                    <th>Date Assigned</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -35,7 +35,7 @@
                                 @foreach($labResults as $labResult)
                                     <tr>
                                         <td>{{ $labResult->name }}</td>
-                                        <td>{{ $labResult->uploaded_by }}</td>
+                                        <td>{{ $labResult->date_assigned }}</td>
                                         <td>
                                             <a href="{{ route('admin.labResultDownload', $labResult->id) }}" class="btn btn-primary btn-sm">Download</a>
                                             <form action="{{ route('admin.deleteLabResult', $labResult->id) }}" method="POST" style="display:inline;">
