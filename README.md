@@ -13,7 +13,7 @@ Before starting the website setup, make sure all required tools and environments
    - Set a root password and remember it.
    - Choose the option to start MySQL automatically on system boot.
 
-3. To verify that MySQL is downloaded, open the **Commant Prompt** or **Powershell** and run:
+3. To verify that MySQL is downloaded, open the **Command Prompt** or **Powershell** and run:
    ```
    mysql --version
    ```
@@ -22,8 +22,7 @@ Before starting the website setup, make sure all required tools and environments
    - The bin directory is usually located at:
       ```
       C:\Program Files\MySQL\MySQL Server X.X\bin
-      ```
-      onto
+      ``` 
    - To add it to your system PATH:
       1. Search for Environment Variables in the Start menu.
       2. Under System Variables, find and edit the Path variable. 
