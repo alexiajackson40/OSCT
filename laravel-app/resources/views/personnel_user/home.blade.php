@@ -37,9 +37,13 @@
         justify-content: center;
         width: 100%;
         min-height: 100vh;
+        background-color: var(--light-surface-one);
     }
     .home-container {
         width: 70%;
+    }
+    .card {
+        background-color: #FAFAFA;
     }
     .card-title {
         font-size: 30px;

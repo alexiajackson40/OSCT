@@ -42,7 +42,6 @@
             </div>
         </div>
     </div>
-
     <!-- Navigation Bar -->
     <div class="navigation-container">
         <nav class="nav nav-pills nav-fill">
@@ -51,7 +50,6 @@
             <a class="nav-link {{ request()->is('personnel/schedule') ? 'active' : '' }}" href="{{ route('personnel.schedule') }}">Schedule</a>
         </nav>
     </div>
-
     <style>
         .main-body {
             background-color: var(--primary-red);
@@ -119,13 +117,13 @@
         }
         .nav-pills .nav-link:hover {
             color: #7C1332 !important;
-            background-color: var(--light-surface-one) !important;
+            background-color: var(--light-surface-three) !important;
         }
         .nav-pills .nav-link:not(.active):not(:hover) {
             color: black !important;
         }
         .nav {
-            background-color: var(--light-surface-two) !important;
+            background-color: white !important;
             box-shadow: 0rem 0rem 0.25rem 0rem rgba(0, 0, 0, 0.25) !important;
             height: 3.75rem !important;
             --bs-nav-link-padding-x: 1rem !important;
