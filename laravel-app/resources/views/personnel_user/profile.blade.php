@@ -9,22 +9,19 @@
 </head>
 <body>
     @include('personnel_user.header_personnel')
-
-    <div class="main-content mt-5 d-flex justify-content-center">
-        <div class="profile-container">
+    <div class="main-content">
+        <div class="profile-container mt-5">
             <div class="card">
                 <!-- Edit Info and Change Password Buttons -->
-                <div class="d-flex justify-content-between px-3 pt-3">
+                <div class="top-btn d-flex justify-content-between px-3 pt-3">
                     <button class="btn-page btn-primary" onclick="window.location='{{ route('personnel.editProfile', $user->employee_id) }}'">[Edit Information]</button>
                     <button class="btn-page btn-primary" onclick="window.location='{{ route('personnel.changePasswordForm', $user->employee_id) }}'">[Change Password]</button>
                 </div>
-
-                <div class="card-body d-flex flex-column align-items-center">
+                <div class="card-body d-flex flex-column">
                     <h1 class="card-title">{{ $user->first_name }} {{ $user->last_name }}</h1>
-
                     <!-- User Information -->
-                    <div class="information-container">
-                        <h2 class="container-header">User Information</h2>
+                    <div class="information-container d-flex flex-column">
+                        <h2 class="container-header align-self-left">User Information</h2>
                         <table class="table">
                             <tr>
                                 <td>First Name</td>
@@ -44,10 +41,9 @@
                             </tr>
                         </table>
                     </div>
-
                     <!-- Contact Information -->
-                    <div class="contact-container">
-                        <h2 class="container-header">Contact Information</h2>
+                    <div class="contact-container d-flex flex-column">
+                        <h2 class="container-header align-self-left">Contact Information</h2>
                         <table class="table">
                             <tr>
                                 <td>Email</td>
@@ -64,56 +60,64 @@
         </div>
     </div>
 </body>
-
 <style>
     .main-content {
         display: flex;
         justify-content: center;
         width: 100%;
         min-height: 100vh;
+        background-color: var(--light-surface-one);
     }
     .profile-container {
-        width: 70%;
+        width: fit-content;
     }
     .card {
-        background-color: #F2F2F2;
-        width: 100%;
-        max-width: 600px;
-        position: relative;
+        background-color: #FAFAFA;
+        width: fit-content;
+        height: fit-content;
+        display: flex;
+        justify-content: center;
+    }
+    .btn-page {
+        border: none;
+        background: #FAFAFA;
+        font-size: 1rem;
+        font-weight: 500;
+        text-decoration: underline;
     }
     .card-body {
         padding: 2rem;
     }
     .card-title {
         font-size: 2rem;
-        font-weight: 600;
-        margin-bottom: 2rem;
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+        width: 28.063rem;
     }
     .container-header {
         font-size: 1.25rem;
         font-weight: 500;
-        margin-bottom: 0.75rem;
-        margin-top: 1rem;
+        padding-left: 0.875rem;
+        padding-top: 0.875rem;
     }
     .information-container,
     .contact-container {
-        width: 100%;
-        padding: 1rem;
-        background: #FFF;
-        border-radius: 6px;
-        border: 1px solid rgba(0, 0, 0, 0.3);
-        margin-bottom: 1.25rem;
+        margin-top: 0.75rem;
+        width: 28.063rem;
+        height: auto;
+        border-radius: 0.375rem;
+        border: 0.063rem solid rgba(0,0,0,0.30);
+        background: white;
+        display: flex;
+        justify-content: center;
     }
     .table {
+        margin-left: 0.875rem;
+        margin-right: 0.875rem;
         font-size: 1rem;
         color: #000;
-    }
-    .btn-page {
-        border: none;
-        background: #F2F2F2;
-        font-size: 1rem;
-        font-weight: 500;
-        text-decoration: underline;
+        font-weight: 400;
+        width: auto;
     }
 </style>
 </html>

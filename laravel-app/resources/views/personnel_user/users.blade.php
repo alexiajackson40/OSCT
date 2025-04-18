@@ -14,7 +14,7 @@
             <div class="card">
                 <div class="card-body">
                     <h1 class="card-title mb-4">Patient Users</h1>
-                    <table class="table">
+                    <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -43,12 +43,13 @@
     .main-content {
         width: 100%;
         min-height: 100vh;
+        background-color: var(--light-surface-one);
     }
     .users-container {
         width: 70%;
     }
     .card {
-        background-color:#F2F2F2;
+        background-color: #FAFAFA;
         height: 100%;
         min-height: 100vh;
         display: flex;
@@ -68,8 +69,9 @@
     .table {
         align-items: center;
         margin-bottom: 0px;
-        --bs-table-bg: #F2F2F2;
+        --bs-table-bg: white;
         --bs-table-border-color: #000;
+        border: 1px solid #000000;
     }
     .btn-view {
         height: 3rem;

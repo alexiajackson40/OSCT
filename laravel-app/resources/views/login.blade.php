@@ -81,6 +81,12 @@
     align-items:center;
     margin-bottom: 1.25rem;
   }
+  .logo img {
+    margin: 0 auto;
+    width: auto;
+    max-width: 40%;
+    height: auto;
+  }
   .media {
     display:flex;
     justify-content:center;
@@ -156,12 +162,6 @@
     --bs-btn-hover-bg-color: #808080;
     border-radius: 0.5rem;
     box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25) inset;
-  }
-  .logo img {
-    margin: 0 auto;
-    width: 25vw;
-    max-width: 55%;
-    height: auto;
   }
   .signUp-container {
     margin-top: 1rem;
