@@ -23,7 +23,6 @@ Before starting the website setup, make sure all required tools and environments
       ```
       C:\Program Files\MySQL\MySQL Server X.X\bin
       ```
-      onto
    - To add it to your system PATH:
       1. Search for Environment Variables in the Start menu.
       2. Under System Variables, find and edit the Path variable. 
