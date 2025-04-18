@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Document;
 use App\Models\LabResult;
 use App\Models\Measurement;
+use App\Models\Patient;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Schedule;
 
 class ParentController extends Controller
 {
@@ -71,6 +73,29 @@ public function downloadLabResult($id)
     return redirect()->back()->with('error', 'File not found.');
 }
 
+public function measurements()
+{
+    $parent = auth()->user();
+
+    // Get the patient whose CURP matches the parent’s CURP
+    $patient = Patient::where('CURP', $parent->CURP)->first();
+
+    // Prevent crash if no patient found
+    if (!$patient) {
+        return redirect()->back()->with('error', 'No linked student found.');
+    }
+
+    // Pull measurements for that CURP
+    $measurements = Measurement::where('user_id', $patient->CURP)->get();
+
+    return view('patient_user.measurements', compact('measurements'));
+}
+
+public function schedule()
+    {
+        $schedules = Schedule::all(); // Retrieve all schedules
+        return view('patient_user.schedule', compact('schedules'));
+    }
 
 
     public function store(Request $request)

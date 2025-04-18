@@ -50,7 +50,7 @@
                             </tr>
                         </table>
                     </div>
-                    <button class="btn-page btn-primary">Measurements</button>
+                    <a href="{{ route('patient.measurements') }}" class="btn-page btn-primary">Measurements</a>
                 </div>
             </div>
         </div>

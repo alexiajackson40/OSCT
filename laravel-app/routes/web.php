@@ -156,15 +156,8 @@ Route::middleware('auth:parent')->group(function () {
     
         return redirect('/login'); // Or wherever your login page is
     })->name('parent.logout');
-    
+    Route::get('/patient/measurements', [ParentController::class, 'measurements'])->name('patient.measurements');
 });
-
-Route::get('/whoami', function () {
-    return auth()->check()
-        ? '✅ Logged in as ' . auth()->user()->username
-        : '❌ Not logged in';
-})->middleware('web');
-
 
 // Fallback for Storage Access
 Route::get('storage/{path}', function ($path) {
