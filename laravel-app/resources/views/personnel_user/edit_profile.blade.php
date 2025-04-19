@@ -51,6 +51,7 @@
     </div>
 </body>
 <style>
+    /* Styling for Containers*/
     .main-content {
         display: flex;
         justify-content: center;
@@ -70,10 +71,13 @@
         width: 30%;
         height: fit-content;
     }
+    /*-----------------------------------*/
+    /* Styling Title*/
     .card-title {
         font-size: 1.75rem;
         font-weight: 500;
         margin-bottom: 1.5rem;
     }
+    /*-----------------------------------*/
 </style>
 </html>

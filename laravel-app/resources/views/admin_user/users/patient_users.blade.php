@@ -18,7 +18,6 @@
             <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnelUsers') }}">Personnel</a>
             <a class="table-btn btn-primary" role="button" href="{{ route('admin.adminUsers') }}">Admin</a>
         </div>
-
         <!-- Users Container -->
         <div class="users-container mt-5">
             <div class="card">

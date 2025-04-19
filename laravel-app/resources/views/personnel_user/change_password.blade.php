@@ -35,32 +35,38 @@
             </div>
         </div>
     </div>
-    <style>
-        .main-content {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            min-height: 100vh;
-            background-color: var(--light-surface-one);
-        }
-        .card {
-            width: 30%;
-            height: fit-content;
-            background-color: #FAFAFA;
-        }
-        .card-body {
-            padding: 2rem;
-        }
-        .card-title {
-            font-size: 1.75rem;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
-        }
-        .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-    </style>
+<style>
+    /* Styling for Containers*/
+    .main-content {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        min-height: 100vh;
+        background-color: var(--light-surface-one);
+    }
+    .card {
+        width: 30%;
+        height: fit-content;
+        background-color: #FAFAFA;
+    }
+    .card-body {
+        padding: 2rem;
+    }
+    /*-----------------------------------*/
+    /* Styling Title*/
+    .card-title {
+        font-size: 1.75rem;
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+    }
+    /*-----------------------------------*/
+    /* Styling for Button*/
+    .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    /*-----------------------------------*/
+</style>
 </body>
 </html>

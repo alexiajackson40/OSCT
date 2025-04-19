@@ -50,7 +50,7 @@
         </div>
         <!-- Navigation Buttons -->
         <div class="button-container mt-5 d-flex flex-column">
-            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientProfile', $patient->CURP) }}">Patient Profile</a>
+            <a class="record-btn btn-primary active-btn" role="button" href="{{ route('personnel.patientProfile', $patient->CURP) }}">Patient Profile</a>
             <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientMeasurements', $patient->CURP) }}">Measurements</a>
             <a class="record-btn btn-primary" role="button" href="{{ route('personnel.documents', $patient->CURP) }}">Documents</a>
             <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientLabResults', $patient->CURP) }}">Lab Results</a>
@@ -157,17 +157,19 @@
     </div>
 </body>
 <style>
+    /* Styling for Containers*/
     .main-content {
         display: flex;
         justify-content: center;
         width: 100%;
         min-height: 100vh;
+        background-color: var(--light-surface-one);
     }
     .profile-container {
         width: fit-content;
     }
     .card {
-        background-color: #F2F2F2;
+        background-color: #FAFAFA;
         width: fit-content;
         height: fit-content;
         display: flex;
@@ -182,6 +184,16 @@
         flex-direction: column;
         align-items: center;
     }
+    /*-----------------------------------*/
+    /* Styling Title*/
+    .card-title {
+        font-size: 2rem;
+        font-weight: 500;
+        margin-top: 2.5rem;
+        width: 28.063rem;
+    }
+    /*-----------------------------------*/
+    /* Styling for Back and Edit Buttons*/
     .top-buttons {
         margin-top: 0.625rem;
         margin-bottom: 0.625rem;
@@ -190,12 +202,26 @@
         display: flex;
         flex-direction: row;
     }
-    .card-title {
-        font-size: 2rem;
+    .btn-back {
+        position: absolute;
+        left: 1.875rem;
+        font-size: 1.25rem;
         font-weight: 500;
-        margin-top: 2.5rem;
-        width: 28.063rem;
+        border: none;
+        color: #000;
+        background: #FAFAFA;
     }
+    .btn-edit {
+        position: absolute;
+        right: 1.875rem;
+        border: none;
+        color: #000;
+        background: #FAFAFA;
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
+    /*-----------------------------------*/
+    /* Styling for Table*/
     .container-header {
         font-size: 1.25rem;
         font-weight: 500;
@@ -218,24 +244,8 @@
         font-weight: 400;
         width: auto;
     }
-    .btn-back {
-        position: absolute;
-        left: 1.875rem;
-        font-size: 1.25rem;
-        font-weight: 500;
-        border: none;
-        color: #000;
-        background: #F2F2F2;
-    }
-    .btn-edit {
-        position: absolute;
-        right: 1.875rem;
-        border: none;
-        color: #000;
-        background: #F2F2F2;
-        font-size: 1.25rem;
-        font-weight: 500;
-    }
+    /*-----------------------------------*/
+    /* Styling for Side Buttons*/
     .button-container {
         width: 13.375rem;
         height: fit-content;
@@ -252,16 +262,21 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 8px;
+        border-radius: 0.5rem;
         background: #7C1332;
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
         color: #FFF;
         font-size: 1.25rem;
         font-weight: 500;
         text-decoration: none;
     }
     .record-btn:hover {
-            background-color: #6F1A34;
+        background-color: #52051C;
         }
+    .active-btn {
+        background: #808080;
+        box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25) inset;
+    }
+    /*-----------------------------------*/
 </style>
 </html>
