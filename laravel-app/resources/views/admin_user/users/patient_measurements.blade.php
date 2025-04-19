@@ -10,8 +10,7 @@
 <!-- Patient Measurements Page -->
 <body>
     @include('admin_user.header_admin')
-
-    <div class="main-content d-flex align-self-center">
+    <div class="main-content">
         <div class="profile-container mt-5">
             <div class="card">
                 <!-- Top Buttons -->
@@ -19,9 +18,8 @@
                     <a href="{{ route('admin.patientUsers') }}" class="btn-back">&lt; Go Back</a>
                 </div>
 
-                <div class="card-body d-flex flex-column align-self-center align-items-left">
-                    <h1 class="card-title">Patient Measurements for {{ $patient->PACIENTE }}</h1>
-
+                <div class="card-body d-flex flex-column">
+                    <h1 class="card-title">Patient Measurements for:<br> {{ $patient->PACIENTE }}</h1>
                     <!-- Form starts -->
                     <form action="{{ route('admin.updateMeasurement', $patient->CURP) }}" method="POST">
                         @csrf
@@ -85,17 +83,15 @@
                     </form>
                 </div>
             </div>
-
-            <div class="button-container mt-5 d-flex flex-column">
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_profile', $patient->CURP) }}">Patient Profile</a>
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_measurements', $patient->CURP) }}">Measurements</a>
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_documents', $patient->CURP) }}">Documents</a>
-                <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_labResults', $patient->CURP) }}">Lab Results</a>
-            </div>
+        </div>
+        <div class="button-container mt-5 d-flex flex-column">
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_profile', $patient->CURP) }}">Patient Profile</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_measurements', $patient->CURP) }}">Measurements</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_documents', $patient->CURP) }}">Documents</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_labResults', $patient->CURP) }}">Lab Results</a>
         </div>
     </div>
 </body>
-
 <style>
     .main-content {
         display: flex;
@@ -104,15 +100,23 @@
         min-height: 100vh;
     }
     .profile-container {
-        width: 70%;
-        display: flex;
-        justify-content: center;
+        width: fit-content;
     }
     .card {
         background-color: #F2F2F2;
-        width: 34.063rem;
-        height: auto;
-        position: relative;
+        width: fit-content;
+        height: fit-content;
+        display: flex;
+        justify-content: center;
+    }
+    .card-body {
+        margin-bottom: 1rem;
+        margin-left: 0.625rem;
+        margin-right: 0.625rem;
+        padding-top: 0.625rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     .top-buttons {
         margin-top: 0.625rem;
@@ -122,20 +126,15 @@
         display: flex;
         flex-direction: row;
     }
-    .card-body {
-        padding-top: 0.625rem;
-        display: flex;
-        flex-direction: column;
-        width: 29rem;
-    }
     .card-title {
         font-size: 2rem;
         font-weight: 500;
         margin-top: 2.5rem;
+        width: 40rem;
     }
     .measurements-container {
         margin-top: 0.75rem;
-        width: 26.688rem;
+        width: 40rem;
         height: auto;
         border-radius: 0.375rem;
         border: 0.063rem solid rgba(0, 0, 0, 0.30);
@@ -145,34 +144,40 @@
         align-items: left;
     }
     .table {
+        margin-left: 0.875rem;
+        margin-right: 0.875rem;
         color: #000000;
         font-size: 1rem;
         font-weight: 400;
+        width: auto;
     }
     .button-container {
-    width: 13.375rem;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Adjust alignment */
-    gap: 0.5rem; /* Adds a gap of 0.5rem between buttons */
-    margin-right: 0.5rem;
-    margin-left: 0.5rem;
+        width: 13.375rem;
+        height: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 0.5rem;
+        margin-left: 0.5rem;
+        gap: 0.5rem;
     }
     .record-btn {
-        width: 214px;
-        height: 60px;
-        display: inline-flex;
-        padding: 18.5px 40px 18.5px 39px;
+        width: 100%;
+        height: 3.75rem;
+        display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 8px;
-        background: #6F1A34;
+        background: #7C1332;
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         color: #FFF;
-        font-size: 20px;
+        font-size: 1.25rem;
         font-weight: 500;
+        text-decoration: none;
     }
+    .record-btn:hover {
+            background-color: #6F1A34;
+        }
     .btn-back {
         position: absolute;
         left: 1.875rem;

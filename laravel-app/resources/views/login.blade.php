@@ -18,15 +18,12 @@
               </div>
             </div>
             <h1 class="card-title">Sign In</h1>
-
             <!-- Display error message if login fails -->
             @if ($errors->has('login'))
               <div class="alert alert-danger">
                 {{ $errors->first('login') }}
               </div>
             @endif
-
-
             <div class="login-form">
               <form action="{{ route('login') }}" method="POST">
                 @csrf
@@ -53,96 +50,108 @@
     </div>
   </div>
 </body>
-
 <style>
   .page-content {
     background:#F9F9F9;
   }
   .login-container {
     width: 100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
   }
   .card {
-    width: 500px;
-    height: 540px;
+    width: fit-content;
+    height: fit-content;
     flex-shrink: 0;
-    border-radius: 14px;
-    border: 1px solid rgba(0, 0, 0, 0.20);
+    border-radius: 0.875rem;
+    border: 0.063rem solid rgba(0, 0, 0, 0.20);
     background: #FAFAFA;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.25rem;
   }
+  /* Logo Styling */
   .logo{
     width:100%;
     display:flex;
     justify-content:center;
     align-items:center;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
   }
-  .login-content{
-    width:100%;
+  .logo img {
+    margin: 0 auto;
+    width: auto;
+    max-width: 40%;
+    height: auto;
+  }
+  .media {
     display:flex;
     justify-content:center;
     align-items:center;
+  }
+  /* ---------------------- */
+  .login-content{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
   }
   .card-title{
     text-align: center;
     color: #000;
-    font-size: 36px;
+    font-size: 2.25rem;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
   }
   .login-form{
-    display:flex;
-    max-width: 336px;
-    width:100%;
+    display: flex;
+    max-width: 21rem;
+    width: 100%;
     flex-direction: column;
-    justify-content:center;
-    align-items:center;
+    justify-content: center;
+    align-items: center;
   }
   .form-group{
-    margin-top: 10px;
+    margin-top: 0.625rem;
     display: flex;
     width: 100%;
     flex-direction: column;
     color: #000;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
   }
   .form-control{
-    border-radius: 8px;
-    border: 1px solid #000;
+    border-radius: 0.5rem;
+    border: 0.063rem solid #000;
     background: #FFF;
-    width: 336px;
-    height: 60px;
+    width: 21rem;
+    height: 3.75rem;
     margin-bottom: 10px;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
   }
   .btn{
-    margin-top: 20px;
-    width: 336px;
-    height: 60px;
+    margin-top: 1.25rem;
+    width: 21rem;
+    height: 3.75rem;
     flex-shrink: 0;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     background: #6F1A34;
     --bs-btn-border-color: #6F1A34;
     --bs-btn-bg-color: #6F1A34;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
     color: #FFF;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -151,20 +160,13 @@
     background: #808080;
     --bs-btn-hover-border-color: #808080;
     --bs-btn-hover-bg-color: #808080;
-    border-radius: 8px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
-  }
-  .logo img {
-    margin: 0 auto;
-    display:block;
-    width:25vw;
-    max-width: 55%;
-    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25) inset;
   }
   .signUp-container {
-    margin-top:1rem;
-    display:flex;
-    flex-direction:column;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
     align-items: center;
   }
 </style>

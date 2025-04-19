@@ -23,7 +23,7 @@
             <!-- Profile Button with Dropdown -->
             <div class="user-container dropdown ms-auto">
                 <a id="profile" class="btn btn-light d-flex align-items-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="{{ asset('img/The_Donkey.JPEG') }}" class="img-thumbnail rounded-circle me-2" alt="profile logo" width="45" height="45">
+                    <img src="{{ asset('img/blank_profile.png') }}" class="img-thumbnail rounded-circle me-2" alt="profile logo" width="45" height="45">
                     @if(Auth::guard('admin')->check())
                         <span class="user-text">{{ Auth::guard('admin')->user()->username }}</span>
                     @else
@@ -65,7 +65,6 @@
             text-align: left;
             margin-left: 1rem;
         }
-
         .user-container {
             display: flex;
             align-items: center;

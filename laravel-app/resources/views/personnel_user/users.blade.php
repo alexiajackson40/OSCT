@@ -14,7 +14,7 @@
             <div class="card">
                 <div class="card-body">
                     <h1 class="card-title mb-4">Patient Users</h1>
-                    <table class="table">
+                    <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -40,15 +40,17 @@
     </div>
 </body>
 <style>
+    /* Styling for Containers*/
     .main-content {
         width: 100%;
         min-height: 100vh;
+        background-color: var(--light-surface-one);
     }
     .users-container {
         width: 70%;
     }
     .card {
-        background-color:#F2F2F2;
+        background-color: #FAFAFA;
         height: 100%;
         min-height: 100vh;
         display: flex;
@@ -58,6 +60,8 @@
         margin-left: 1.5625rem;
         margin-right: 1.5625rem;
     }
+    /*-----------------------------------*/
+    /* Styling Title*/
     .card-title {
         font-size: 2.2rem;
         font-weight: 500;
@@ -65,12 +69,17 @@
         margin-bottom: 1.5625rem;
         margin-top: 2rem;
     }
+    /*-----------------------------------*/
+    /* Styling for Table*/
     .table {
         align-items: center;
-        margin-bottom: 0px;
-        --bs-table-bg: #F2F2F2;
+        margin-bottom: 0rem;
+        --bs-table-bg: white;
         --bs-table-border-color: #000;
+        border: 0.063rem solid #000000;
     }
+    /*-----------------------------------*/
+    /* Styling for View Button*/
     .btn-view {
         height: 3rem;
         display: flex;
@@ -79,5 +88,6 @@
         font-weight: 500;
         justify-content: center;
     }
+    /*-----------------------------------*/
 </style>
 </html>

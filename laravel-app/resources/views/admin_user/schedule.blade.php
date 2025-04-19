@@ -8,7 +8,6 @@
 </head>
 <body>
     @include('admin_user.header_admin')
-
     <div class="main-content">
         <div class="schedule-container mt-5">
             <div class="card">
@@ -17,54 +16,52 @@
                     <div class="card-body d-flex flex-column">
                         <h1 class="card-title">Programación vista a Planteles Escolares</h1>
                         <h2 class="table-title">Operación Salud Colima Tamizaje</h2>
-                        <div class="form-group">
+                        <div class="form-group upload-form">
                             <label for="schedule_file">Upload Schedule (.CSV only)</label>
                             <input type="file" class="form-control" id="schedule_file" name="schedule_file" accept=".csv" required>
+                            <button type="submit" class="btn btn-primary btn-upload mt-3">Upload Schedule</button>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-3">Upload Schedule</button>
+                        <div class="schedule-content mt-4">
+                            <table class="table table-striped table-bordered">
+                                <thead class="tHead">
+                                    <tr>
+                                        <th>NIVEL</th>
+                                        <th>TURNO</th>
+                                        <th>CCT</th>
+                                        <th>NOMBRE DE LA ESCUELA</th>
+                                        <th>MUNICIPIO</th>
+                                        <th>LOCALIDAD</th>
+                                        <th>DOMICILIO</th>
+                                        <th>TOTAL DE ALUMNOS</th>
+                                        <th>FECHA</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="tBody">
+                                    @foreach($schedules as $schedule)
+                                        <tr>
+                                            <td>{{ $schedule->level }}</td>
+                                            <td>{{ $schedule->shift }}</td>
+                                            <td>{{ $schedule->cct }}</td>
+                                            <td>{{ $schedule->school_name }}</td>
+                                            <td>{{ $schedule->municipality }}</td>
+                                            <td>{{ $schedule->locality }}</td>
+                                            <td>{{ $schedule->address }}</td>
+                                            <td>{{ $schedule->total_students }}</td>
+                                            <td>{{ $schedule->date }}</td>
+                                            <td>
+                                                <a href="{{ route('schedule.edit', $schedule->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </form>
-
-                <div class="schedule-content mt-4">
-                    <table class="table table-bordered">
-                        <thead class="tHead">
-                            <tr>
-                                <th>NIVEL</th>
-                                <th>TURNO</th>
-                                <th>CCT</th>
-                                <th>NOMBRE DE LA ESCUELA</th>
-                                <th>MUNICIPIO</th>
-                                <th>LOCALIDAD</th>
-                                <th>DOMICILIO</th>
-                                <th>TOTAL DE ALUMNOS</th>
-                                <th>FECHA</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody class="tBody">
-                            @foreach($schedules as $schedule)
-                                <tr>
-                                    <td>{{ $schedule->level }}</td>
-                                    <td>{{ $schedule->shift }}</td>
-                                    <td>{{ $schedule->cct }}</td>
-                                    <td>{{ $schedule->school_name }}</td>
-                                    <td>{{ $schedule->municipality }}</td>
-                                    <td>{{ $schedule->locality }}</td>
-                                    <td>{{ $schedule->address }}</td>
-                                    <td>{{ $schedule->total_students }}</td>
-                                    <td>{{ $schedule->date }}</td>
-                                    <td>
-                                        <a href="{{ route('schedule.edit', $schedule->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </div>
     </div>
-
     <style>
         .main-content {
             display: flex;
@@ -72,38 +69,54 @@
             width: 100%;
             min-height: 100vh;
         }
-
-        .schedule-container {
-            width: 90%;
+        .btn-upload {
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            border-radius:0.5rem;
+            font-weight: 500;
+            justify-content: center;
         }
-
+        .schedule-container {
+            width: 95%;
+        }
         .card {
             background-color: #F2F2F2;
             height: 100%;
             padding: 1.5rem;
         }
-
         .card-title {
             font-size: 2rem;
             font-weight: 500;
         }
-
         .table-title {
             font-size: 1.25rem;
             margin-bottom: 1rem;
         }
-
-        .table {
-            background-color: white;
+        .upload-form {
+            width: 25%;
         }
-
+        .table {
+            table-layout: fixed;
+            align-items: center;
+            margin-bottom: 0rem;
+            --bs-table-bg: #F2F2F2;
+            --bs-table-border-color: #000;
+        }
         .tHead {
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
-
         .tBody {
             font-size: 0.85rem;
+        }
+        .btn-warning {
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            border-radius:0.5rem;
+            font-weight: 500;
+            justify-content: center;
         }
     </style>
 </body>
