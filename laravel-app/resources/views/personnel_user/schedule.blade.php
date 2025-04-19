@@ -16,6 +16,11 @@
                     <div class="card-body d-flex flex-column">
                         <h1 class="card-title">Programación vista a Planteles Escolares</h1>
                         <h2 class="table-title">Operación Salud Colima Tamizaje</h2>
+                        <div class="form-group upload-form">
+                            <label for="schedule_file">Upload Schedule (.CSV only)</label>
+                            <input type="file" class="form-control" id="schedule_file" name="schedule_file" accept=".csv" required>
+                            <button type="submit" class="btn btn-primary btn-upload mt-3">Upload Schedule</button>
+                        </div>
                     </div>
                 </form>
                 <div class="schedule-content mt-4">
@@ -31,6 +36,7 @@
                                 <th>DOMICILIO</th>
                                 <th>TOTAL DE ALUMNOS</th>
                                 <th>FECHA</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody class="tBody">
@@ -45,6 +51,9 @@
                                     <td>{{ $schedule->address }}</td>
                                     <td>{{ $schedule->total_students }}</td>
                                     <td>{{ $schedule->date }}</td>
+                                    <td>
+                                        <a href="{{ route('schedule.edit', $schedule->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -63,7 +72,7 @@
         background-color: var(--light-surface-one);
     }
     .schedule-container {
-        width: 90%;
+        width: 95%;
     }
     .card {
         background-color: #FAFAFA;
@@ -81,6 +90,19 @@
         margin-bottom: 1rem;
     }
     /*-----------------------------------*/
+    /* Styling Upload section*/
+    .btn-upload {
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        justify-content: center;
+    }
+    .upload-form {
+        width: 25%;
+    }
+    /*-----------------------------------*/
     /* Styling for Table*/
     .table {
         table-layout: fixed;
@@ -96,6 +118,16 @@
     .tBody {
         font-size: 0.85rem;
     }
+    /*-----------------------------------*/
+    /* Styling for Edit Button*/
+    .btn-warning {
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        border-radius:0.5rem;
+        font-weight: 500;
+        justify-content: center;
+        }
     /*-----------------------------------*/
 </style>
     <script src="{{ asset('js/loadContent.js') }}"></script>

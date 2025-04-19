@@ -79,5 +79,12 @@
         margin-bottom: 1.5rem;
     }
     /*-----------------------------------*/
+    /* Styling for Submit Button*/
+    .btn-primary {
+        height: 3rem;
+        border-radius:0.5rem;
+        font-weight: 500;
+    }
+    /*-----------------------------------*/
 </style>
 </html>

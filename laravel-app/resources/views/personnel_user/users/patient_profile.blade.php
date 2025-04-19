@@ -185,14 +185,6 @@
         align-items: center;
     }
     /*-----------------------------------*/
-    /* Styling Title*/
-    .card-title {
-        font-size: 2rem;
-        font-weight: 500;
-        margin-top: 2.5rem;
-        width: 28.063rem;
-    }
-    /*-----------------------------------*/
     /* Styling for Back and Edit Buttons*/
     .top-buttons {
         margin-top: 0.625rem;
@@ -219,6 +211,14 @@
         background: #FAFAFA;
         font-size: 1.25rem;
         font-weight: 500;
+    }
+    /*-----------------------------------*/
+    /* Styling Title*/
+    .card-title {
+        font-size: 2rem;
+        font-weight: 500;
+        margin-top: 2.5rem;
+        width: 28.063rem;
     }
     /*-----------------------------------*/
     /* Styling for Table*/

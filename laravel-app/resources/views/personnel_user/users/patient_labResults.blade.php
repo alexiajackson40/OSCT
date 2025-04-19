@@ -101,30 +101,6 @@
         justify-content: center;
     }
     /*-----------------------------------*/
-    /* Styling Title*/
-    .card-title {
-        font-size: 2rem;
-        font-weight: 500;
-        text-align: left;
-        margin-bottom: 1.5625rem;
-        margin-top: 2.5rem;
-        margin-left: 1.5625rem;
-        margin-right: 1.5625rem;
-    }
-    /*-----------------------------------*/
-    /* Styling for Table*/
-    .document-content {
-        margin-left: 1.5625rem;
-        margin-right: 1.5625rem;
-    }
-    .table {
-        align-items: center;
-        margin-bottom: 0rem;
-        --bs-table-bg: #FAFAFA;
-        --bs-table-border-color: #000;
-        border: 0.063rem solid #000000;
-    }
-    /*-----------------------------------*/
     /* Styling for Back and Edit Buttons*/
     .btn-back {
         position: absolute;
@@ -151,6 +127,30 @@
         padding-top: 0.625rem;
         display: flex;
         flex-direction: row;
+    }
+    /*-----------------------------------*/
+    /* Styling Title*/
+    .card-title {
+        font-size: 2rem;
+        font-weight: 500;
+        text-align: left;
+        margin-bottom: 1.5625rem;
+        margin-top: 2.5rem;
+        margin-left: 1.5625rem;
+        margin-right: 1.5625rem;
+    }
+    /*-----------------------------------*/
+    /* Styling for Table*/
+    .document-content {
+        margin-left: 1.5625rem;
+        margin-right: 1.5625rem;
+    }
+    .table {
+        align-items: center;
+        margin-bottom: 0rem;
+        --bs-table-bg: #FAFAFA;
+        --bs-table-border-color: #000;
+        border: 0.063rem solid #000000;
     }
     /*-----------------------------------*/
     /* Styling for Side Buttons*/

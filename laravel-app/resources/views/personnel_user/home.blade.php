@@ -44,10 +44,14 @@
     .card {
         background-color: #FAFAFA;
     }
+    .card-body {
+        margin-left: 1.875rem;
+        margin-right: 1.875rem;
+    }
     /*-----------------------------------*/
     /* Styling Title*/
     .card-title {
-        font-size: 30px;
+        font-size: 1.875rem;
     }
     /*-----------------------------------*/
     /* Styling Text*/
@@ -56,5 +60,4 @@
     }
     /*-----------------------------------*/
 </style>
-
 </html>

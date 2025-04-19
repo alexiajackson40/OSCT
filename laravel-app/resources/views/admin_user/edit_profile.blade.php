@@ -9,12 +9,12 @@
 </head>
 <!-- Edit Profile Page -->
 <body>
-    <div id="header"></div> 
+    @include('admin_user.header_admin')
     <div class="main-content">
         <div class="form-container mt-5">
             <div class="card">
                 <div class="card-body d-flex flex-column">
-                    <h2>Edit Profile</h2>
+                    <h2 class="card-title">Edit Profile</h2>
                     <form method="POST" action="{{ route('update.profile') }}" class="needs-validation" novalidate>
                         @csrf
                         @method('PUT')
@@ -51,4 +51,41 @@
         </div>
     </div>
 </body>
+<style>
+    /* Styling for Containers*/
+    .main-content {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        min-height: 100vh;
+        background-color: var(--light-surface-one);
+    }
+    .form-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .card-body {
+        padding: 2rem;
+    }
+    .card {
+        width: 30%;
+        height: fit-content;
+    }
+    /*-----------------------------------*/
+    /* Styling Title*/
+    .card-title {
+        font-size: 1.75rem;
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+    }
+    /*-----------------------------------*/
+    /* Styling for Submit Button*/
+    .btn-primary {
+        height: 3rem;
+        border-radius:0.5rem;
+        font-weight: 500;
+    }
+    /*-----------------------------------*/
+</style>
 </html>

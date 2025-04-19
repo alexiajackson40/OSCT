@@ -24,20 +24,12 @@
                         <h2 class="container-header align-self-left">User Information</h2>
                         <table class="table">
                             <tr>
-                                <td>First Name</td>
-                                <td>{{ $user->first_name }}</td>
-                            </tr>
-                            <tr>
-                                <td>Last Name</td>
-                                <td>{{ $user->last_name }}</td>
-                            </tr>
-                            <tr>
                                 <td>Username</td>
                                 <td>{{ $user->username }}</td>
                             </tr>
                             <tr>
-                                <td>Phone Number</td>
-                                <td>{{ $user->phone }}</td>
+                                <td>Role</td>
+                                <td>{{ ucfirst($user->role) }}</td>
                             </tr>
                         </table>
                     </div>
@@ -46,12 +38,16 @@
                         <h2 class="container-header align-self-left">Contact Information</h2>
                         <table class="table">
                             <tr>
+                                <td>Phone</td>
+                                <td>{{ $user->phone }}</td>
+                            </tr>
+                            <tr>
                                 <td>Email</td>
                                 <td>{{ $user->email }}</td>
                             </tr>
                             <tr>
                                 <td>Address</td>
-                                <td>{{ $user->address ?? 'Not provided' }}</td>
+                                <td>{{ $user->address }}</td>
                             </tr>
                         </table>
                     </div>
@@ -94,7 +90,7 @@
         justify-content: center;
     }
     /*-----------------------------------*/
-    /* Styling for Back and Edit Buttons*/
+    /* Styling for Edit and Change Password Buttons*/
     .btn-page {
         border: none;
         background: #FAFAFA;

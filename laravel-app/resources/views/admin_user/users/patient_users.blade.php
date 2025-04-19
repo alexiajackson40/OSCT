@@ -14,7 +14,7 @@
         <!-- Side Buttons Container -->
         <div class="button-container mt-5 d-flex flex-column">
             <!-- No admin check; these links will always show -->
-            <a class="table-btn btn-primary" role="button" href="{{ route('admin.patientUsers') }}">Patients</a>
+            <a class="table-btn btn-primary active-btn" role="button" href="{{ route('admin.patientUsers') }}">Patients</a>
             <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnelUsers') }}">Personnel</a>
             <a class="table-btn btn-primary" role="button" href="{{ route('admin.adminUsers') }}">Admin</a>
         </div>
@@ -112,7 +112,6 @@
                         <button type="submit" class="btn btn-primary mb-2">Add Patient</button>
                     </form>
                 </div>
-
                 <!-- CSV Upload Form (Hidden by Default) -->
                 <div id="uploadCSVForm" class="upload-csv-form mb-4" style="display: none;">
                     <h2>Import Patients via CSV</h2>
@@ -125,12 +124,11 @@
                         <button type="submit" class="btn btn-success mb-2">Upload and Import</button>
                     </form>
                 </div>
-
                 <!-- Card Body -->
                 <div class="card-body d-flex flex-column">
                     <div class="document-content">
                         <!-- Table List -->
-                        <table id="Table" class="table">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -185,12 +183,13 @@
         justify-content: left;
         width: 100%;
         min-height: 100vh;
+        background-color: var(--light-surface-one);
     }
     .users-container {
         width: 70%;
     }
     .card {
-        background-color:#F2F2F2;
+        background-color: #FAFAFA;
         height: 100%;
         min-height: 100vh;
         display: flex;
@@ -201,23 +200,23 @@
         margin-right: 1.5625rem;
     }
     .card-head{
-        width:93%;
+        width: 93%;
         display: flex;
         justify-content: space-between;
         align-self: center;
-        margin-top:0.5rem;
+        margin-top: 0.5rem;
     }
     /*-----------------------------------*/
     /* Styling for Side Buttons */
     .button-container {
         width: 13.375rem;
-        height: 13rem;
+        height: fit-content;
         display: flex;
         justify-content: center;
-        justify-content: space-around;
         align-items: center;
         margin-right: 0.5rem;
         margin-left: 0.5rem;
+        gap: 0.5rem;
     }
     .table-btn {
         width: 100%;
@@ -225,17 +224,21 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 8px;
+        border-radius: 0.5rem;
         background: #7C1332;
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
         color: #FFF;
         font-size: 1.25rem;
         font-weight: 500;
         text-decoration: none;
     }
     .table-btn:hover {
-            background-color: #6F1A34;
+        background-color: #52051C;
         }
+    .active-btn {
+        background: #808080;
+        box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25) inset;
+    }
     /*-----------------------------------*/
     /* Styling for Card Title*/
     .card-title {
@@ -256,7 +259,7 @@
         height: 3rem;
         display: flex;
         align-items: center;
-        border-radius:0.5rem;
+        border-radius: 0.5rem;
         font-weight: 500;
     }
     .btn-import {
@@ -264,27 +267,17 @@
         height: 3rem;
         display: flex;
         align-items: center;
-        border-radius:0.5rem;
+        border-radius: 0.5rem;
         font-weight: 500;
     }
     /*-----------------------------------*/
     /* Styling for Table and Table Rows */
     .table {
         align-items: center;
-        margin-bottom: 0px;
-        --bs-table-bg: #F2F2F2;
+        margin-bottom: 0rem;
+        --bs-table-bg: white;
         --bs-table-border-color: #000;
-    }
-    .btn-page {
-        position: absolute;
-        right: 4px;
-        width: 214px;
-        height: 60px;
-        border: none;
-        color: #000;
-        background: #F2F2F2;
-        font-size: 20px;
-        font-weight: 500;
+        border: 0.063rem solid #000000;
     }
     /*-----------------------------------*/
     /* Styling for View and Delete Buttons*/
@@ -292,7 +285,7 @@
         height: 3rem;
         display: flex;
         align-items: center;
-        border-radius:0.5rem;
+        border-radius: 0.5rem;
         font-weight: 500;
         justify-content: center;
     }
@@ -300,7 +293,7 @@
         height: 3rem;
         display: flex;
         align-items: center;
-        border-radius:0.5rem;
+        border-radius: 0.5rem;
         font-weight: 500;
         justify-content: center;
     }
