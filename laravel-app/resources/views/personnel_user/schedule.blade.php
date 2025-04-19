@@ -53,45 +53,51 @@
             </div>
         </div>
     </div>
-    <style>
-        .main-content {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            min-height: 100vh;
-            background-color: var(--light-surface-one);
-        }
-        .schedule-container {
-            width: 90%;
-        }
-        .card {
-            background-color: #FAFAFA;
-            height: 100%;
-            padding: 1.5rem;
-        }
-        .card-title {
-            font-size: 2rem;
-            font-weight: 500;
-        }
-        .table-title {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-        }
-        .table {
-            table-layout: fixed;
-            align-items: center;
-            margin-bottom: 0rem;
-            --bs-table-bg: white;
-            --bs-table-border-color: #000;
-        }
-        .tHead {
-            font-weight: bold;
-            font-size: 0.85rem;
-        }
-        .tBody {
-            font-size: 0.85rem;
-        }
-    </style>
+<style>
+    /* Styling for Containers*/
+    .main-content {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        min-height: 100vh;
+        background-color: var(--light-surface-one);
+    }
+    .schedule-container {
+        width: 90%;
+    }
+    .card {
+        background-color: #FAFAFA;
+        height: 100%;
+        padding: 1.5rem;
+    }
+    /*-----------------------------------*/
+    /* Styling Title*/
+    .card-title {
+        font-size: 2rem;
+        font-weight: 500;
+    }
+    .table-title {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+    /*-----------------------------------*/
+    /* Styling for Table*/
+    .table {
+        table-layout: fixed;
+        align-items: center;
+        margin-bottom: 0rem;
+        --bs-table-bg: white;
+        --bs-table-border-color: #000;
+    }
+    .tHead {
+        font-weight: bold;
+        font-size: 0.85rem;
+    }
+    .tBody {
+        font-size: 0.85rem;
+    }
+    /*-----------------------------------*/
+</style>
     <script src="{{ asset('js/loadContent.js') }}"></script>
     <script type="module" src="{{ asset('js/main.js') }}"></script>
 </body>

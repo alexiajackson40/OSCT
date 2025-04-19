@@ -10,7 +10,6 @@
 <body>
     <!-- Include the personnel header -->
     @include('personnel_user.header_personnel')
-
     <!-- Main Content -->
     <div class="main-content">
         <div class="home-container mt-5">
@@ -30,8 +29,8 @@
         </div>
     </div>
 </body>
-
 <style>
+    /* Styling for Containers*/
     .main-content {
         display: flex;
         justify-content: center;
@@ -45,12 +44,17 @@
     .card {
         background-color: #FAFAFA;
     }
+    /*-----------------------------------*/
+    /* Styling Title*/
     .card-title {
         font-size: 30px;
     }
+    /*-----------------------------------*/
+    /* Styling Text*/
     p {
         font-weight: 500;
     }
+    /*-----------------------------------*/
 </style>
 
 </html>

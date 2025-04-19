@@ -61,6 +61,7 @@
     </div>
 </body>
 <style>
+    /* Styling for Containers*/
     .main-content {
         display: flex;
         justify-content: center;
@@ -78,27 +79,8 @@
         display: flex;
         justify-content: center;
     }
-    .btn-page {
-        border: none;
-        background: #FAFAFA;
-        font-size: 1rem;
-        font-weight: 500;
-        text-decoration: underline;
-    }
     .card-body {
         padding: 2rem;
-    }
-    .card-title {
-        font-size: 2rem;
-        font-weight: 500;
-        margin-bottom: 1.5rem;
-        width: 28.063rem;
-    }
-    .container-header {
-        font-size: 1.25rem;
-        font-weight: 500;
-        padding-left: 0.875rem;
-        padding-top: 0.875rem;
     }
     .information-container,
     .contact-container {
@@ -111,6 +93,31 @@
         display: flex;
         justify-content: center;
     }
+    /*-----------------------------------*/
+    /* Styling for Back and Edit Buttons*/
+    .btn-page {
+        border: none;
+        background: #FAFAFA;
+        font-size: 1.25rem;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+    /*-----------------------------------*/
+    /* Styling for Card Title and Container Headers*/
+    .card-title {
+        font-size: 2rem;
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+        width: 28.063rem;
+    }
+    .container-header {
+        font-size: 1.25rem;
+        font-weight: 500;
+        padding-left: 0.875rem;
+        padding-top: 0.875rem;
+    }
+    /*-----------------------------------*/
+    /* Styling for Table*/
     .table {
         margin-left: 0.875rem;
         margin-right: 0.875rem;
@@ -119,5 +126,6 @@
         font-weight: 400;
         width: auto;
     }
+    /*-----------------------------------*/
 </style>
 </html>

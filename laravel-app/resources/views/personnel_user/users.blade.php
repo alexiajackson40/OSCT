@@ -40,6 +40,7 @@
     </div>
 </body>
 <style>
+    /* Styling for Containers*/
     .main-content {
         width: 100%;
         min-height: 100vh;
@@ -59,6 +60,8 @@
         margin-left: 1.5625rem;
         margin-right: 1.5625rem;
     }
+    /*-----------------------------------*/
+    /* Styling Title*/
     .card-title {
         font-size: 2.2rem;
         font-weight: 500;
@@ -66,13 +69,17 @@
         margin-bottom: 1.5625rem;
         margin-top: 2rem;
     }
+    /*-----------------------------------*/
+    /* Styling for Table*/
     .table {
         align-items: center;
-        margin-bottom: 0px;
+        margin-bottom: 0rem;
         --bs-table-bg: white;
         --bs-table-border-color: #000;
-        border: 1px solid #000000;
+        border: 0.063rem solid #000000;
     }
+    /*-----------------------------------*/
+    /* Styling for View Button*/
     .btn-view {
         height: 3rem;
         display: flex;
@@ -81,5 +88,6 @@
         font-weight: 500;
         justify-content: center;
     }
+    /*-----------------------------------*/
 </style>
 </html>

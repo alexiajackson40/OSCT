@@ -51,6 +51,7 @@
         </nav>
     </div>
     <style>
+        /* Styling for Containers*/
         .main-body {
             background-color: var(--primary-red);
         }
@@ -70,18 +71,22 @@
             margin-left: auto;
             margin-right: 1rem;
         }
+        /*-----------------------------------*/
+        /* Styling for Text*/
+        .user-text {
+            color: var(--dark-surface-three);
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+        /*-----------------------------------*/
+        /* Styling for Profile Button*/
         .btn {
             --bs-btn-border-radius: 0.9375rem !important;
             width: 100%;
             height: 3.125rem;
             border: 0.125rem solid var(--light-surface-three);
             cursor: pointer;
-        }
-        .user-text {
-            color: var(--dark-surface-three);
-            font-size: 1.15rem;
-            font-weight: 600;
-            margin-right: 0.5rem;
         }
         .img-thumbnail {
             background: none;
@@ -98,8 +103,8 @@
             min-width: 12rem;
             height: 2.5rem;
         }
-
-        /* Navigation Bar */
+        /*-----------------------------------*/
+        /* Styling for Navigation Bar */
         .nav-pills .nav-link {
             color: black !important;
             --bs-nav-pills-border-radius: 0;
@@ -129,6 +134,7 @@
             --bs-nav-link-padding-x: 1rem !important;
             --bs-nav-link-padding-y: 1rem !important;
         }
+        /*-----------------------------------*/
     </style>
 </body>
 </html>
