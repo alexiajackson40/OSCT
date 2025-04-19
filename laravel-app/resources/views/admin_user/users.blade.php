@@ -160,23 +160,23 @@
             </div>
         </div>
     </div>
-    <script>
-        // Toggle Add Patient Form
-        document.getElementById('toggleAddPatientForm').addEventListener('click', function () {
-            const form = document.getElementById('addPatientForm');
-            const isHidden = form.style.display === 'none';
-            form.style.display = isHidden ? 'block' : 'none';
-        });
+<script>
+    // Toggle Add Patient Form
+    document.getElementById('toggleAddPatientForm').addEventListener('click', function () {
+        const form = document.getElementById('addPatientForm');
+        const isHidden = form.style.display === 'none';
+        form.style.display = isHidden ? 'block' : 'none';
+    });
 
-        // Toggle CSV Upload Form
-        document.getElementById('toggleCSVForm').addEventListener('click', function () {
-            const form = document.getElementById('uploadCSVForm');
-            const isHidden = form.style.display === 'none';
-            form.style.display = isHidden ? 'block' : 'none';
-        });
-    </script>
-    <script src="{{ asset('js/loadContent.js') }}"></script>
-    <script type="module" src="{{ asset('js/main.js') }}"></script>
+    // Toggle CSV Upload Form
+    document.getElementById('toggleCSVForm').addEventListener('click', function () {
+        const form = document.getElementById('uploadCSVForm');
+        const isHidden = form.style.display === 'none';
+        form.style.display = isHidden ? 'block' : 'none';
+    });
+</script>
+<script src="{{ asset('js/loadContent.js') }}"></script>
+<script type="module" src="{{ asset('js/main.js') }}"></script>
 <style>
     /* Styling for Containers*/
     .main-content {

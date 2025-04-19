@@ -20,7 +20,7 @@
                 <div class="card-body d-flex flex-column">
                     <h1 class="card-title">Documents for:<br> {{ $patient->PACIENTE }}</h1>
                     <div class="measurements-container">
-                        <table id="Table" class="table">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Document Name</th>
@@ -119,15 +119,24 @@
             border: none;
             color: #000;
             background: #FAFAFA;
+            border-radius: 1rem;
+            text-decoration: none;
+        }
+        .btn-back:hover {
+            background-color: #E0E0E0;
         }
         .btn-edit {
             position: absolute;
             right: 1.875rem;
-            font-size: 1.25rem;
-            font-weight: 500;
             border: none;
             color: #000;
             background: #FAFAFA;
+            font-size: 1.25rem;
+            font-weight: 500;
+            border-radius: 1rem;
+        }
+        .btn-edit:hover {
+            background-color: #E0E0E0;
         }
         /*-----------------------------------*/
         /* Styling Title*/
@@ -151,6 +160,7 @@
             margin-bottom: 0rem;
             --bs-table-bg: #FAFAFA;
             --bs-table-border-color: #000;
+            border: 0.063rem solid #000000;
         }
         /*-----------------------------------*/
         /* Styling for Side Buttons*/

@@ -62,73 +62,73 @@
             </div>
         </div>
     </div>
-    <style>
-        /* Styling for Containers*/
-        .main-content {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            min-height: 100vh;
-            background-color: var(--light-surface-one);
-        }
-        .schedule-container {
-            width: 95%;
-        }
-        .card {
-            background-color: #FAFAFA;
-            height: 100%;
-            padding: 1.5rem;
-        }
-        /*-----------------------------------*/
-        /* Styling Title*/
-        .card-title {
-            font-size: 2rem;
-            font-weight: 500;
-        }
-        .table-title {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-        }
-        /*-----------------------------------*/
-        /* Styling Upload section*/
-        .btn-upload {
-            height: 3rem;
-            display: flex;
-            align-items: center;
-            border-radius: 0.5rem;
-            font-weight: 500;
-            justify-content: center;
-        }
-        .upload-form {
-            width: 25%;
-        }
-        /*-----------------------------------*/
-        /* Styling for Table*/
-        .table {
-            table-layout: fixed;
-            align-items: center;
-            margin-bottom: 0rem;
-            --bs-table-bg: white;
-            --bs-table-border-color: #000;
-        }
-        .tHead {
-            font-weight: bold;
-            font-size: 0.85rem;
-        }
-        .tBody {
-            font-size: 0.85rem;
-        }
-        /*-----------------------------------*/
-        /* Styling for Edit Button*/
-        .btn-warning {
-            height: 3rem;
-            display: flex;
-            align-items: center;
-            border-radius:0.5rem;
-            font-weight: 500;
-            justify-content: center;
-        }
-        /*-----------------------------------*/
-    </style>
+<style>
+    /* Styling for Containers*/
+    .main-content {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        min-height: 100vh;
+        background-color: var(--light-surface-one);
+    }
+    .schedule-container {
+        width: 95%;
+    }
+    .card {
+        background-color: #FAFAFA;
+        height: 100%;
+        padding: 1.5rem;
+    }
+    /*-----------------------------------*/
+    /* Styling Title*/
+    .card-title {
+        font-size: 2rem;
+        font-weight: 500;
+    }
+    .table-title {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+    /*-----------------------------------*/
+    /* Styling Upload section*/
+    .btn-upload {
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        justify-content: center;
+    }
+    .upload-form {
+        width: 25%;
+    }
+    /*-----------------------------------*/
+    /* Styling for Table*/
+    .table {
+        table-layout: fixed;
+        align-items: center;
+        margin-bottom: 0rem;
+        --bs-table-bg: white;
+        --bs-table-border-color: #000;
+    }
+    .tHead {
+        font-weight: bold;
+        font-size: 0.85rem;
+    }
+    .tBody {
+        font-size: 0.85rem;
+    }
+    /*-----------------------------------*/
+    /* Styling for Edit Button*/
+    .btn-warning {
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        border-radius:0.5rem;
+        font-weight: 500;
+        justify-content: center;
+    }
+    /*-----------------------------------*/
+</style>
 </body>
 </html>

@@ -134,6 +134,11 @@
         border: none;
         color: #000;
         background: #FAFAFA;
+        border-radius: 1rem;
+        text-decoration: none;
+    }
+    .btn-back:hover {
+        background-color: #E0E0E0;
     }
     /*-----------------------------------*/
     /* Styling Title*/
