@@ -19,13 +19,13 @@
                 </div>
 
                 <div class="card-body d-flex flex-column">
-                    <h1 class="card-title">Patient Measurements for:<br> {{ $patient->PACIENTE }}</h1>
+                    <h1 class="card-title">Measurements for:<br> {{ $patient->PACIENTE }}</h1>
                     <!-- Form starts -->
                     <form action="{{ route('admin.updateMeasurement', $patient->CURP) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="measurements-container d-flex flex-column align-items-left">
-                            <table id="Table" class="table">
+                            <table class="table">
                                 <thead>
                                     <tr>
                                         <th>Measurement Type</th>
@@ -86,24 +86,26 @@
         </div>
         <div class="button-container mt-5 d-flex flex-column">
             <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_profile', $patient->CURP) }}">Patient Profile</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_measurements', $patient->CURP) }}">Measurements</a>
+            <a class="record-btn btn-primary active-btn" role="button" href="{{ route('admin.users.patient_measurements', $patient->CURP) }}">Measurements</a>
             <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_documents', $patient->CURP) }}">Documents</a>
             <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_labResults', $patient->CURP) }}">Lab Results</a>
         </div>
     </div>
 </body>
 <style>
+    /* Styling for Containers*/
     .main-content {
         display: flex;
         justify-content: center;
         width: 100%;
         min-height: 100vh;
+        background-color: var(--light-surface-one);
     }
     .profile-container {
         width: fit-content;
     }
     .card {
-        background-color: #F2F2F2;
+        background-color: #FAFAFA;
         width: fit-content;
         height: fit-content;
         display: flex;
@@ -118,6 +120,8 @@
         flex-direction: column;
         align-items: center;
     }
+    /*-----------------------------------*/
+    /* Styling for Back and Edit Buttons*/
     .top-buttons {
         margin-top: 0.625rem;
         margin-bottom: 0.625rem;
@@ -126,12 +130,30 @@
         display: flex;
         flex-direction: row;
     }
+    .btn-back {
+        position: absolute;
+        left: 1.875rem;
+        font-size: 1.25rem;
+        font-weight: 500;
+        border: none;
+        color: #000;
+        background: #FAFAFA;
+        border-radius: 1rem;
+        text-decoration: none;
+    }
+    .btn-back:hover {
+        background-color: #E0E0E0;
+    }
+    /*-----------------------------------*/
+    /* Styling Title*/
     .card-title {
         font-size: 2rem;
         font-weight: 500;
         margin-top: 2.5rem;
         width: 40rem;
     }
+    /*-----------------------------------*/
+    /* Styling for Table*/
     .measurements-container {
         margin-top: 0.75rem;
         width: 40rem;
@@ -151,6 +173,8 @@
         font-weight: 400;
         width: auto;
     }
+    /*-----------------------------------*/
+    /* Styling for Side Buttons*/
     .button-container {
         width: 13.375rem;
         height: fit-content;
@@ -176,16 +200,12 @@
         text-decoration: none;
     }
     .record-btn:hover {
-            background-color: #6F1A34;
-        }
-    .btn-back {
-        position: absolute;
-        left: 1.875rem;
-        font-size: 1.25rem;
-        font-weight: 500;
-        border: none;
-        color: #000;
-        background: #F2F2F2;
+        background-color: #52051C;
     }
+    .active-btn {
+        background: #808080;
+        box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25) inset;
+    }
+    /*-----------------------------------*/
 </style>
 </html>

@@ -11,7 +11,6 @@
 <body>
     <!-- Include the header dynamically -->
     @include('admin_user.header_admin')
-
     <div class="main-content">
         <div class="document-container mt-5">
             <div class="card">
@@ -21,9 +20,8 @@
                 </div>
                 <div class="card-body d-flex flex-column">
                     <div class="document-content">
-                        <h1 class="card-title">Lab Results</h1>
-                        <h2 class="table-title">List of Assigned Lab Results</h2>
-                        <table id="Table" class="table table-hover">
+                    <h1 class="card-title">Lab Results for:<br> {{ $patient->PACIENTE }}</h1>
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Lab Result Name</th>
@@ -37,7 +35,7 @@
                                         <td>{{ $labResult->name }}</td>
                                         <td>{{ $labResult->date_assigned }}</td>
                                         <td>
-                                            <a href="{{ route('admin.labResultDownload', $labResult->id) }}" class="btn btn-primary btn-sm">Download</a>
+                                            <a href="{{ route('admin.labResultDownload', $labResult->id) }}" class="btn btn-primary btn-download btn-sm">Download</a>
                                             <form action="{{ route('admin.deleteLabResult', $labResult->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
@@ -57,10 +55,9 @@
             <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_profile', $patient->CURP) }}">Patient Profile</a>
             <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_measurements', $patient->CURP) }}">Measurements</a>
             <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_documents', $patient->CURP) }}">Documents</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_labResults', $patient->CURP) }}">Lab Results</a>
+            <a class="record-btn btn-primary active-btn" role="button" href="{{ route('admin.users.patient_labResults', $patient->CURP) }}">Lab Results</a>
         </div>
     </div>
-
     <!-- Modal for Uploading Lab Result -->
     <div class="modal fade" id="uploadLabResultModal" tabindex="-1" aria-labelledby="uploadLabResultModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -87,99 +84,137 @@
         </div>
     </div>
 </body>
-
-<!-- Existing Styling Maintained -->
 <style>
-    .main-content{
-        margin-top:2rem;
-        display:flex;
-        justify-content:center;
-        width:100%;
-        min-height:100vh;
+    /* Styling for Containers*/
+    .main-content {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        min-height: 100vh;
+        background-color: var(--light-surface-one);
     }
-    .document-container{
-        width:70%;
+    .document-container {
+        width: 70%;
     }
-    .card{
-        background-color:#F2F2F2;
-        height:100%;
-        min-height:100vh;
+    .card {
+        background-color: #FAFAFA;
+        height: 100%;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
     }
-    .document-content{
-        margin-left:1.5625rem;
-        margin-right:1.5625rem;
+    /*-----------------------------------*/
+    /* Styling for Back and Edit Buttons*/
+    .btn-back {
+        position: absolute;
+        left: 1.875rem;
+        font-size: 1.25rem;
+        font-weight: 500;
+        border: none;
+        color: #000;
+        background: #FAFAFA;
+        border-radius: 1rem;
+        text-decoration: none;
     }
-    .card-title{
-        font-size:2rem;
-        font-weight:500;
-        text-align:left;
-        margin-bottom:1.125rem;
-        margin-top:1.563rem;
+    .btn-back:hover {
+            background-color: #E0E0E0;
+        }
+    .btn-edit {
+        position: absolute;
+        right: 1.875rem;
+        font-size: 1.25rem;
+        font-weight: 500;
+        border: none;
+        color: #000;
+        background: #FAFAFA;
+        border-radius: 1rem;
     }
-    .table{
-        margin-bottom:0px;
-        --bs-table-bg:#F2F2F2;
-        --bs-table-border-color:#000;
-        align-items:center;
-    }
-    .td a{
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        color:#000;
-    }
-    .table-title{
-        font-size:1.25rem;
-        margin-bottom:1.563rem;
-    }
-    .button-container {
-        width:13.375rem;
-        height:17rem;
-        display:flex;
-        flex-direction:column;
-        justify-content:space-between;
-        margin-right:0.5rem;
-        margin-left:0.5rem;
-    }
-    .record-btn {
-        width:214px;
-        height:60px;
-        display:inline-flex;
-        padding:18.5px 40px 18.5px 39px;
-        justify-content:center;
-        align-items:center;
-        border-radius:8px;
-        background:#6F1A34;
-        box-shadow:0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        color:#FFF;
-        font-size:20px;
-        font-weight:500;
+    .btn-edit:hover {
+        background-color: #E0E0E0;
     }
     .top-buttons {
-        margin-top:0.625rem;
-        margin-bottom:0.625rem;
-        width:28.063;
-        padding-top:0.625rem;
-        display:flex;
-        flex-direction:row;
+        margin-top: 0.625rem;
+        margin-bottom: 0.625rem;
+        width: 28.063rem;
+        padding-top: 0.625rem;
+        display: flex;
+        flex-direction: row;
     }
-    .btn-back {
-        position:absolute;
-        left:1.875rem;
-        font-size:1.25rem;
-        font-weight:500;
-        border:none;
-        color:#000;
-        background:#F2F2F2;
+    /*-----------------------------------*/
+    /* Styling Title*/
+    .card-title {
+        font-size: 2rem;
+        font-weight: 500;
+        text-align: left;
+        margin-bottom: 1.5625rem;
+        margin-top: 2.5rem;
+        margin-left: 1.5625rem;
+        margin-right: 1.5625rem;
     }
-    .btn-edit {
-        position:absolute;
-        right:1.875rem;
-        border:none;
-        color:#000;
-        background:#F2F2F2;
-        font-size:1.25rem;
-        font-weight:500;
+    /*-----------------------------------*/
+    /* Styling for Table*/
+    .document-content {
+        margin-left: 1.5625rem;
+        margin-right: 1.5625rem;
     }
+    .table {
+        align-items: center;
+        margin-bottom: 0rem;
+        --bs-table-bg: #FAFAFA;
+        --bs-table-border-color: #000;
+        border: 0.063rem solid #000000;
+    }
+    /*-----------------------------------*/
+    /* Styling for Side Buttons*/
+    .button-container {
+        width: 13.375rem;
+        height: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 0.5rem;
+        margin-left: 0.5rem;
+        gap: 0.5rem;
+    }
+    .record-btn {
+        width: 100%;
+        height: 3.75rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0.5rem;
+        background: #7C1332;
+        box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
+        color: #FFF;
+        font-size: 1.25rem;
+        font-weight: 500;
+        text-decoration: none;
+    }
+    .record-btn:hover {
+            background-color: #52051C;
+    }
+    .active-btn {
+        background: #808080;
+        box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25) inset;
+    }
+    /*-----------------------------------*/
+        /* Styling for Download and Delete Buttons*/
+        .btn-download {
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            border-radius:0.5rem;
+            font-weight: 500;
+            justify-content: center;
+        }
+        .btn-danger {
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            border-radius:0.5rem;
+            font-weight: 500;
+            justify-content: center;
+        }
+        /*-----------------------------------*/
 </style>
 </html>

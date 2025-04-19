@@ -19,7 +19,7 @@
                 <div class="card-body d-flex flex-column">
                     <h1 class="card-title">Lab Results for:<br> {{ $patient->PACIENTE }}</h1>
                     <div class="document-content">
-                        <table id="Table" class="table table-striped">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Lab Result Name</th>
@@ -110,7 +110,12 @@
         border: none;
         color: #000;
         background: #FAFAFA;
+        border-radius: 1rem;
+        text-decoration: none;
     }
+    .btn-back:hover {
+            background-color: #E0E0E0;
+        }
     .btn-edit {
         position: absolute;
         right: 1.875rem;
@@ -119,6 +124,10 @@
         border: none;
         color: #000;
         background: #FAFAFA;
+        border-radius: 1rem;
+    }
+    .btn-edit:hover {
+        background-color: #E0E0E0;
     }
     .top-buttons {
         margin-top: 0.625rem;
