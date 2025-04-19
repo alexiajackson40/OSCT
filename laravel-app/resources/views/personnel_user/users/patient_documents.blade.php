@@ -102,6 +102,34 @@
             justify-content: center;
         }
         /*-----------------------------------*/
+        /* Styling for Back and Edit Buttons*/
+        .top-buttons {
+            margin-top: 0.625rem;
+            margin-bottom: 0.625rem;
+            width: 28.063rem;
+            padding-top: 0.625rem;
+            display: flex;
+            flex-direction: row;
+        }
+        .btn-back {
+            position: absolute;
+            left: 1.875rem;
+            font-size: 1.25rem;
+            font-weight: 500;
+            border: none;
+            color: #000;
+            background: #FAFAFA;
+        }
+        .btn-edit {
+            position: absolute;
+            right: 1.875rem;
+            font-size: 1.25rem;
+            font-weight: 500;
+            border: none;
+            color: #000;
+            background: #FAFAFA;
+        }
+        /*-----------------------------------*/
         /* Styling Title*/
         .card-title {
             font-size: 2rem;
@@ -156,34 +184,6 @@
         .active-btn {
             background: #808080;
             box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25) inset;
-        }
-        /*-----------------------------------*/
-        /* Styling for Back and Edit Buttons*/
-        .top-buttons {
-            margin-top: 0.625rem;
-            margin-bottom: 0.625rem;
-            width: 28.063rem;
-            padding-top: 0.625rem;
-            display: flex;
-            flex-direction: row;
-        }
-        .btn-back {
-            position: absolute;
-            left: 1.875rem;
-            font-size: 1.25rem;
-            font-weight: 500;
-            border: none;
-            color: #000;
-            background: #FAFAFA;
-        }
-        .btn-edit {
-            position: absolute;
-            right: 1.875rem;
-            font-size: 1.25rem;
-            font-weight: 500;
-            border: none;
-            color: #000;
-            background: #FAFAFA;
         }
         /*-----------------------------------*/
         /* Styling for Download and Delete Buttons*/

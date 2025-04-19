@@ -52,6 +52,7 @@
         </nav>
     </div>
     <style>
+        /* Styling for Containers*/
         .main-body {
             background-color: var(--primary-red);
         }
@@ -71,18 +72,22 @@
             margin-left: auto;
             margin-right: 1rem;
         }
+        /*-----------------------------------*/
+        /* Styling for Text*/
+        .user-text {
+            color: var(--dark-surface-three);
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+        /*-----------------------------------*/
+        /* Styling for Profile Button*/
         .btn {
             --bs-btn-border-radius: 0.9375rem !important;
             width: 100%;
             height: 3.125rem;
             border: 0.125rem solid var(--light-surface-three);
             cursor: pointer; 
-        }
-        .user-text {
-            color: var(--dark-surface-three);
-            font-size: 1.15rem;
-            font-weight: 600;
-            margin-right: 0.5rem;
         }
         .img-thumbnail {
             background: none;
@@ -99,7 +104,8 @@
             min-width: 12rem;
             height: 2.5rem;
         }
-        /* Navigation Bar */
+        /*-----------------------------------*/
+        /* Styling for Navigation Bar */
         .nav-pills .nav-link {
             color: black !important;
             --bs-nav-pills-border-radius: 0;
@@ -117,18 +123,19 @@
         }
         .nav-pills .nav-link:hover {
             color: #7C1332 !important;
-            background-color: var(--light-surface-one) !important;
+            background-color: var(--light-surface-three) !important;
         }
         .nav-pills .nav-link:not(.active):not(:hover) {
             color: black !important;
         }
         .nav {
-            background-color: var(--light-surface-two) !important;
+            background-color: white !important;
             box-shadow: 0rem 0rem 0.25rem 0rem rgba(0, 0, 0, 0.25) !important;
             height: 3.75rem !important;
             --bs-nav-link-padding-x: 1rem !important;
             --bs-nav-link-padding-y: 1rem !important;
         }
+        /*-----------------------------------*/
     </style>
 </body>
 </html>

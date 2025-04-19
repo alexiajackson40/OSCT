@@ -21,70 +21,66 @@
                             <input type="file" class="form-control" id="schedule_file" name="schedule_file" accept=".csv" required>
                             <button type="submit" class="btn btn-primary btn-upload mt-3">Upload Schedule</button>
                         </div>
-                        <div class="schedule-content mt-4">
-                            <table class="table table-striped table-bordered">
-                                <thead class="tHead">
+                    <div class="schedule-content mt-4">
+                        <table class="table table-striped table-bordered">
+                            <thead class="tHead">
+                                <tr>
+                                    <th>NIVEL</th>
+                                    <th>TURNO</th>
+                                    <th>CCT</th>
+                                    <th>NOMBRE DE LA ESCUELA</th>
+                                    <th>MUNICIPIO</th>
+                                    <th>LOCALIDAD</th>
+                                    <th>DOMICILIO</th>
+                                    <th>TOTAL DE ALUMNOS</th>
+                                    <th>FECHA</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="tBody">
+                                @foreach($schedules as $schedule)
                                     <tr>
-                                        <th>NIVEL</th>
-                                        <th>TURNO</th>
-                                        <th>CCT</th>
-                                        <th>NOMBRE DE LA ESCUELA</th>
-                                        <th>MUNICIPIO</th>
-                                        <th>LOCALIDAD</th>
-                                        <th>DOMICILIO</th>
-                                        <th>TOTAL DE ALUMNOS</th>
-                                        <th>FECHA</th>
-                                        <th>Actions</th>
+                                        <td>{{ $schedule->level }}</td>
+                                        <td>{{ $schedule->shift }}</td>
+                                        <td>{{ $schedule->cct }}</td>
+                                        <td>{{ $schedule->school_name }}</td>
+                                        <td>{{ $schedule->municipality }}</td>
+                                        <td>{{ $schedule->locality }}</td>
+                                        <td>{{ $schedule->address }}</td>
+                                        <td>{{ $schedule->total_students }}</td>
+                                        <td>{{ $schedule->date }}</td>
+                                        <td>
+                                            <a href="{{ route('schedule.edit', $schedule->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody class="tBody">
-                                    @foreach($schedules as $schedule)
-                                        <tr>
-                                            <td>{{ $schedule->level }}</td>
-                                            <td>{{ $schedule->shift }}</td>
-                                            <td>{{ $schedule->cct }}</td>
-                                            <td>{{ $schedule->school_name }}</td>
-                                            <td>{{ $schedule->municipality }}</td>
-                                            <td>{{ $schedule->locality }}</td>
-                                            <td>{{ $schedule->address }}</td>
-                                            <td>{{ $schedule->total_students }}</td>
-                                            <td>{{ $schedule->date }}</td>
-                                            <td>
-                                                <a href="{{ route('schedule.edit', $schedule->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
     <style>
+        /* Styling for Containers*/
         .main-content {
             display: flex;
             justify-content: center;
             width: 100%;
             min-height: 100vh;
-        }
-        .btn-upload {
-            height: 3rem;
-            display: flex;
-            align-items: center;
-            border-radius:0.5rem;
-            font-weight: 500;
-            justify-content: center;
+            background-color: var(--light-surface-one);
         }
         .schedule-container {
             width: 95%;
         }
         .card {
-            background-color: #F2F2F2;
+            background-color: #FAFAFA;
             height: 100%;
             padding: 1.5rem;
         }
+        /*-----------------------------------*/
+        /* Styling Title*/
         .card-title {
             font-size: 2rem;
             font-weight: 500;
@@ -93,14 +89,26 @@
             font-size: 1.25rem;
             margin-bottom: 1rem;
         }
+        /*-----------------------------------*/
+        /* Styling Upload section*/
+        .btn-upload {
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            justify-content: center;
+        }
         .upload-form {
             width: 25%;
         }
+        /*-----------------------------------*/
+        /* Styling for Table*/
         .table {
             table-layout: fixed;
             align-items: center;
             margin-bottom: 0rem;
-            --bs-table-bg: #F2F2F2;
+            --bs-table-bg: white;
             --bs-table-border-color: #000;
         }
         .tHead {
@@ -110,6 +118,8 @@
         .tBody {
             font-size: 0.85rem;
         }
+        /*-----------------------------------*/
+        /* Styling for Edit Button*/
         .btn-warning {
             height: 3rem;
             display: flex;
@@ -118,6 +128,7 @@
             font-weight: 500;
             justify-content: center;
         }
+        /*-----------------------------------*/
     </style>
 </body>
 </html>

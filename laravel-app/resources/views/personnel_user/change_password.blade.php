@@ -28,8 +28,8 @@
                         <input type="password" name="password_confirmation" class="form-control" required minlength="8">
                     </div>
                     <div class="d-flex justify-content-between">
-                        <a href="{{ route('personnel.profile', $user->employee_id) }}" class="btn btn-secondary">Cancel</a>
                         <button type="submit" class="btn btn-primary">Change Password</button>
+                        <a href="{{ route('personnel.profile', $user->employee_id) }}" class="btn btn-secondary">Cancel</a>
                     </div>
                 </form>
             </div>
@@ -65,6 +65,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        height: 3rem;
+        border-radius:0.5rem;
+        font-weight: 500;
     }
     /*-----------------------------------*/
 </style>

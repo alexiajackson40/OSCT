@@ -51,6 +51,7 @@
   </div>
 </body>
 <style>
+  /* Styling for Containers*/
   .page-content {
     background:#F9F9F9;
   }
@@ -73,6 +74,19 @@
     align-items: center;
     padding: 1.25rem;
   }
+  .login-content{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .signUp-container {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   /* Logo Styling */
   .logo{
     width:100%;
@@ -93,13 +107,7 @@
     align-items:center;
   }
   /* ---------------------- */
-  .login-content{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
+  /* Styling Title*/
   .card-title{
     text-align: center;
     color: #000;
@@ -109,6 +117,8 @@
     line-height: normal;
     margin-bottom: 0.625rem;
   }
+  /*-----------------------------------*/
+  /* Styling for Login form*/
   .login-form{
     display: flex;
     max-width: 21rem;
@@ -134,7 +144,7 @@
     background: #FFF;
     width: 21rem;
     height: 3.75rem;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
@@ -163,11 +173,6 @@
     border-radius: 0.5rem;
     box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25) inset;
   }
-  .signUp-container {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  /*-----------------------------------*/
 </style>
 </html>

@@ -8,16 +8,13 @@
 </head>
 <body>
     @include('admin_user.header_admin')
-
-    <div class="main-content d-flex justify-content-center mt-5">
-        <div class="card" style="width: 70%;">
+    <div class="main-content">
+        <div class="card mt-5">
             <div class="card-body">
                 <h1 class="card-title">Edit Schedule Entry</h1>
-
                 <form action="{{ route('schedule.update', $schedule->id) }}" method="POST">
                     @csrf
                     @method('PUT')
-
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label>Nivel</label>
@@ -56,7 +53,6 @@
                             <input type="date" class="form-control" name="date" value="{{ $schedule->date }}" required>
                         </div>
                     </div>
-
                     <div class="d-flex justify-content-between">
                         <a href="{{ route('schedule.index') }}" class="btn btn-secondary">Cancel</a>
                         <button type="submit" class="btn btn-primary">Update Schedule</button>
@@ -65,21 +61,41 @@
             </div>
         </div>
     </div>
-
     <style>
+        /* Styling for Containers*/
         .main-content {
-            min-height: 100vh;
+            display: flex;
+            justify-content: center;
             width: 100%;
+            min-height: 100vh;
+            background-color: var(--light-surface-one);
         }
         .card {
-            background-color: #F2F2F2;
+            width: 40%;
+            height: fit-content;
+            background-color: #FAFAFA;
+        }
+        .card-body {
             padding: 2rem;
         }
+        /*-----------------------------------*/
+        /* Styling Title*/
         .card-title {
             font-size: 2rem;
             font-weight: 500;
             margin-bottom: 1.5rem;
         }
+        /*-----------------------------------*/
+        /* Styling for Button*/
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 3rem;
+            border-radius:0.5rem;
+            font-weight: 500;
+        }
+        /*-----------------------------------*/
     </style>
 </body>
 </html>
