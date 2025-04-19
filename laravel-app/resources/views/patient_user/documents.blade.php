@@ -9,6 +9,8 @@
 </head>
 <!-- Patient Documents Page-->
 <body>
+    @include('layouts.header_patient') <!-- Include the header blade -->
+
     <div id="header"></div> 
     <div class="main-content">
         <div class="document-container mt-5">
@@ -30,9 +32,10 @@
                                     <tr>
                                         <td>{{ $document->name }}</td>
                                         <td>{{ $document->created_at->format('Y-m-d') }}</td>
-                                        <td>
-                                            <!-- throwing error since route does not exist -->
-                                            <a href="{{ route('admin.users.patientDocuments.download', $document->id) }}" class="btn btn-primary">Download</a>
+                                        <td class="text-center">
+                                            <a href="{{ route('parent.documents.download', $document->id) }}" class="btn btn-sm btn-primary">
+                                            Download
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach

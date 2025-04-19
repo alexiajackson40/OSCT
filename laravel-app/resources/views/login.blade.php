@@ -19,10 +19,10 @@
             </div>
             <h1 class="card-title">Sign In</h1>
             <!-- Display error message if login fails -->
-            @if(session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
+            @if ($errors->has('login'))
+              <div class="alert alert-danger">
+                {{ $errors->first('login') }}
+              </div>
             @endif
             <div class="login-form">
               <form action="{{ route('login') }}" method="POST">

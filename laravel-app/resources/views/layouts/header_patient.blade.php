@@ -23,7 +23,7 @@
             <!--Profile Button with Dropdown-->
             <div class="user-container dropdown">
                 <a id="profile" class="btn btn-light d-flex align-items-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="{{ asset('img/blank_profile.png') }}" class="img-thumbnail rounded-circle me-2" alt="logo" width="45" height="45">
+                    <img src="{{ asset('img/The_Donkey.JPEG') }}" class="img-thumbnail rounded-circle me-2" alt="logo" width="45" height="45">
                     <span class="user-text">{{ auth()->user()->username ?? 'Username' }}</span> <!-- Dynamically show the logged-in user's username --> 
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">

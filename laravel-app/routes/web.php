@@ -11,6 +11,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ParentController;
 
 // Main Route (public)
 Route::get('/', [HomeController::class, 'home'])->name('home');
@@ -129,7 +130,7 @@ Route::prefix('personnel')->middleware('auth:personnel')->group(function () {
 });
 
 // Patient Routes
-Route::prefix('patient')->middleware('auth')->group(function () {
+Route::prefix('patient')->middleware('auth:parent')->group(function () {
     Route::get('home', [PatientController::class, 'home'])->name('patient.home');
     Route::get('profile', [PatientController::class, 'profile'])->name('patient.profile');
     Route::get('documents', [PatientController::class, 'documents'])->name('patient.documents');
@@ -138,10 +139,24 @@ Route::prefix('patient')->middleware('auth')->group(function () {
     Route::get('signup', [PatientController::class, 'signUp'])->name('patient.signup');
 });
 
-// Parent Routes
-Route::prefix('parent')->middleware('auth')->group(function () {
-    Route::get('home', [ParentController::class, 'home'])->name('parent.home');
-    Route::get('profile', [ParentController::class, 'profile'])->name('parent.profile');
+// Routes for parent (patient-style) users
+Route::middleware('auth:parent')->group(function () {
+    Route::get('/patient/home', [ParentController::class, 'home'])->name('patient.home');
+    Route::get('/patient/profile', [PatientController::class, 'profile'])->name('patient.profile');
+    Route::get('/patient/documents', [PatientController::class, 'documents'])->name('patient.documents');
+    Route::get('/patient/lab-results', [PatientController::class, 'labResults'])->name('patient.lab_results');
+    Route::get('/patient/documents', [ParentController::class, 'documents'])->name('patient.documents');
+    Route::get('/patient/lab-results', [ParentController::class, 'labResults'])->name('patient.lab_results');
+    Route::get('/patient/documents/{id}/download', [ParentController::class, 'downloadDocument'])->name('parent.documents.download');
+    Route::get('/patient/lab-results/{id}/download', [ParentController::class, 'downloadLabResult'])->name('parent.labResults.download');
+    Route::post('/parent/logout', function () {
+        Auth::logout();              // Log the user out
+        request()->session()->invalidate(); // Invalidate session
+        request()->session()->regenerateToken(); // Regenerate CSRF token
+    
+        return redirect('/login'); // Or wherever your login page is
+    })->name('parent.logout');
+    Route::get('/patient/measurements', [ParentController::class, 'measurements'])->name('patient.measurements');
 });
 
 // Fallback for Storage Access

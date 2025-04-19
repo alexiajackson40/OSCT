@@ -21,15 +21,19 @@
                         <table id="Table" class="table">
                             <tr>
                                 <th>Student ID</th>
-                                <td>{{ $patient->student_id }}</td>
+                                <td>{{ $patient->CURP ?? 'N/A' }}</td>
+                            </tr>
+                            <tr>
+                                <th>Student Name</th>
+                                <td>{{ $patient->PACIENTE ?? 'N/A' }}</td>
                             </tr>
                             <tr>
                                 <th>Phone Number</th>
-                                <td>{{ $patient->phone_number }}</td>
+                                <td>{{ $parent->phone_number ?? 'N/A' }}</td>
                             </tr>
                             <tr>
                                 <th>Username</th>
-                                <td>{{ $patient->username }}</td>
+                                <td>{{ $parent->username ?? 'N/A' }}</td>
                             </tr>
                         </table>
                     </div>
@@ -38,21 +42,20 @@
                         <table id="Table" class="table">
                             <tr>
                                 <th>Email</th>
-                                <td>{{ $patient->email }}</td>
+                                <td>{{ $parent->email }}</td>
                             </tr>
                             <tr>
                                 <th>Address</th>
-                                <td>{{ $patient->address ?? 'N/A' }}</td>
+                                <td>{{ $parent->address ?? 'N/A' }}</td>
                             </tr>
                         </table>
                     </div>
-                    <button class="btn-page btn-primary">Measurements</button>
+                    <a href="{{ route('patient.measurements') }}" class="btn-page btn-primary">Measurements</a>
                 </div>
             </div>
         </div>
     </div>
 
-    @include('layouts.footer') <!-- Optional footer -->
 </body>
 
 <style>

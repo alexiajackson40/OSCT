@@ -121,6 +121,37 @@ Once all prerequisites are set up, follow these steps to run the Laravel web app
    ```
    cd laravel-app
    ```
+   
+2. Edit the .ini file
+
+Open your `php.ini` file
+Usually located at:
+```
+C:\php\php.ini
+```
+
+Now enable the `fileinfo` extension
+In the `php.ini` file, find this line (you can search for `fileinfo`):
+```
+;extension=fileinfo
+```
+
+Remove the semicolon (`;`) to uncomment it:
+```
+extension=fileinfo
+```
+
+Also, remove the semicolon (`;`) to uncomment it:
+---
+extension=pdo_mysql
+---
+
+Save the file.
+
+
+3. In VSCode, run the command
+   ---
+
 2. Run the following command to install all project dependencies:
    ```
    composer install

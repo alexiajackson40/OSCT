@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             MeasurementsTableSeeder::class,
             DocumentsTableSeeder::class,
             LabResultsTableSeeder::class,
+            ParentSeeder::class,
         ]);
     }
 }

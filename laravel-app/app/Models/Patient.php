@@ -57,6 +57,6 @@ class Patient extends Model
 
     public function parent()
     {
-        return $this->belongsTo(ParentModel::class, 'parent_id');
+        return $this->belongsTo(ParentModel::class, 'CURP');
     }
 }
