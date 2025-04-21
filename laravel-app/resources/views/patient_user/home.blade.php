@@ -9,8 +9,8 @@
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
 </head>
 <body>
-   @include('layouts.header_patient') <!-- Include the header blade -->
-
+    <!-- Include the header blade -->
+   @include('layouts.header_patient')
     <div class="main-content">
         <div class="home-container mt-5">
             <div class="card">
@@ -28,25 +28,36 @@
             </div>
         </div>
     </div>
-
-
 </body>
-
 <style>
+    /* Styling for Containers*/
     .main-content {
         display: flex;
         justify-content: center;
         width: 100%;
         min-height: 100vh;
+        background-color: var(--light-surface-one);
     }
     .home-container {
         width: 70%;
     }
-    .card-title {
-        font-size: 30px;
+    .card {
+        background-color: #FAFAFA;
     }
+    .card-body {
+        margin-left: 1.875rem;
+        margin-right: 1.875rem;
+    }
+    /*-----------------------------------*/
+    /* Styling Title*/
+    .card-title {
+        font-size: 1.875rem;
+    }
+    /*-----------------------------------*/
+    /* Styling Text*/
     p {
         font-weight: 500;
     }
+    /*-----------------------------------*/
 </style>
 </html>
