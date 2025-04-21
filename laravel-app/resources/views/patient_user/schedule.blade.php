@@ -10,12 +10,15 @@
 <!-- Patient Schedule Page -->
 <body>
     @include('layouts.header_patient')
-
     <div class="main-content">
         <div class="schedule-container mt-5">
             <div class="card">
+                <div class="card-body d-flex flex-column">
+                    <h1 class="card-title">Programación vista a Planteles Escolares</h1>
+                    <h2 class="table-title">Operación Salud Colima Tamizaje</h2>
+                </div>  
                 <div class="schedule-content mt-4">
-                    <table class="table table-bordered">
+                    <table class="table table-striped table-bordered">
                         <thead class="tHead">
                             <tr>
                                 <th>NIVEL</th>
@@ -49,47 +52,50 @@
             </div>
         </div>
     </div>
-
-    <style>
-        .main-content {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            min-height: 100vh;
-        }
-
-        .schedule-container {
-            width: 90%;
-        }
-
-        .card {
-            background-color: #F2F2F2;
-            height: 100%;
-            padding: 1.5rem;
-        }
-
-        .card-title {
-            font-size: 2rem;
-            font-weight: 500;
-        }
-
-        .table-title {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-        }
-
-        .table {
-            background-color: white;
-        }
-
-        .tHead {
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        .tBody {
-            font-size: 0.85rem;
-        }
-    </style>
+<style>
+    /* Styling for Containers*/
+    .main-content {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        min-height: 100vh;
+        background-color: var(--light-surface-one);
+    }
+    .schedule-container {
+        width: 95%;
+    }
+    .card {
+        background-color: #FAFAFA;
+        height: 100%;
+        padding: 1.5rem;
+    }
+    /*-----------------------------------*/
+    /* Styling Title*/
+    .card-title {
+        font-size: 2rem;
+        font-weight: 500;
+    }
+    .table-title {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+    /*-----------------------------------*/
+    /* Styling for Table*/
+    .table {
+        table-layout: fixed;
+        align-items: center;
+        margin-bottom: 0rem;
+        --bs-table-bg: white;
+        --bs-table-border-color: #000;
+    }
+    .tHead {
+        font-weight: bold;
+        font-size: 0.85rem;
+    }
+    .tBody {
+        font-size: 0.85rem;
+    }
+    /*-----------------------------------*/
+</style>
 </body>
 </html>

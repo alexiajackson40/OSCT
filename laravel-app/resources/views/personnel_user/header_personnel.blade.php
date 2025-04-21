@@ -50,91 +50,91 @@
             <a class="nav-link {{ request()->is('personnel/schedule') ? 'active' : '' }}" href="{{ route('personnel.schedule') }}">Schedule</a>
         </nav>
     </div>
-    <style>
-        /* Styling for Containers*/
-        .main-body {
-            background-color: var(--primary-red);
-        }
-        .header-container {
-            background-color: var(--primary-red);
-            align-items: center;
-            height: 5rem;
-        }
-        .project-title-container {
-            color: var(--white);
-            text-align: left;
-            margin-left: 1rem;
-        }
-        .user-container {
-            display: flex;
-            align-items: center;
-            margin-left: auto;
-            margin-right: 1rem;
-        }
-        /*-----------------------------------*/
-        /* Styling for Text*/
-        .user-text {
-            color: var(--dark-surface-three);
-            font-size: 1.15rem;
-            font-weight: 600;
-            margin-right: 0.5rem;
-        }
-        /*-----------------------------------*/
-        /* Styling for Profile Button*/
-        .btn {
-            --bs-btn-border-radius: 0.9375rem !important;
-            width: 100%;
-            height: 3.125rem;
-            border: 0.125rem solid var(--light-surface-three);
-            cursor: pointer;
-        }
-        .img-thumbnail {
-            background: none;
-            border-radius: 3.125rem;
-            border-width: 0.0625rem;
-            border-color: transparent;
-            padding: 0.2rem;
-        }
-        .dropdown-menu {
-            font-size: 1.15rem;
-        }
-        .dropdown-item {
-            width: 100%;
-            min-width: 12rem;
-            height: 2.5rem;
-        }
-        /*-----------------------------------*/
-        /* Styling for Navigation Bar */
-        .nav-pills .nav-link {
-            color: black !important;
-            --bs-nav-pills-border-radius: 0;
-            width: 7.8125rem !important;
-            font-weight: 600;
-            --bs-nav-link-font-size: 1.25rem !important;
-        }
-        .nav-pills .nav-link.active {
-            color: black !important;
-            background-color: var(--light-surface-three) !important;
-            border-bottom: 0.25rem solid #7C1332 !important;
-            font-weight: 600;
-            width: 7.8125rem !important;
-            height: 3.75rem !important;
-        }
-        .nav-pills .nav-link:hover {
-            color: #7C1332 !important;
-            background-color: var(--light-surface-three) !important;
-        }
-        .nav-pills .nav-link:not(.active):not(:hover) {
-            color: black !important;
-        }
-        .nav {
-            background-color: white !important;
-            box-shadow: 0rem 0rem 0.25rem 0rem rgba(0, 0, 0, 0.25) !important;
-            height: 3.75rem !important;
-            --bs-nav-link-padding-x: 1rem !important;
-            --bs-nav-link-padding-y: 1rem !important;
-        }
-        /*-----------------------------------*/
-    </style>
+<style>
+    /* Styling for Containers*/
+    .main-body {
+        background-color: var(--primary-red);
+    }
+    .header-container {
+        background-color: var(--primary-red);
+        align-items: center;
+        height: 5rem;
+    }
+    .project-title-container {
+        color: var(--white);
+        text-align: left;
+        margin-left: 1rem;
+    }
+    .user-container {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        margin-right: 1rem;
+    }
+    /*-----------------------------------*/
+    /* Styling for Text*/
+    .user-text {
+        color: var(--dark-surface-three);
+        font-size: 1.15rem;
+        font-weight: 600;
+        margin-right: 0.5rem;
+    }
+    /*-----------------------------------*/
+    /* Styling for Profile Button*/
+    .btn {
+        --bs-btn-border-radius: 0.9375rem !important;
+        width: 100%;
+        height: 3.125rem;
+        border: 0.125rem solid var(--light-surface-three);
+        cursor: pointer;
+    }
+    .img-thumbnail {
+        background: none;
+        border-radius: 3.125rem;
+        border-width: 0.0625rem;
+        border-color: transparent;
+        padding: 0.2rem;
+    }
+    .dropdown-menu {
+        font-size: 1.15rem;
+    }
+    .dropdown-item {
+        width: 100%;
+        min-width: 12rem;
+        height: 2.5rem;
+    }
+    /*-----------------------------------*/
+    /* Styling for Navigation Bar */
+    .nav-pills .nav-link {
+        color: black !important;
+        --bs-nav-pills-border-radius: 0;
+        width: 7.8125rem !important;
+        font-weight: 600;
+        --bs-nav-link-font-size: 1.25rem !important;
+    }
+    .nav-pills .nav-link.active {
+        color: black !important;
+        background-color: var(--light-surface-three) !important;
+        border-bottom: 0.25rem solid #7C1332 !important;
+        font-weight: 600;
+        width: 7.8125rem !important;
+        height: 3.75rem !important;
+    }
+    .nav-pills .nav-link:hover {
+        color: #7C1332 !important;
+        background-color: var(--light-surface-three) !important;
+    }
+    .nav-pills .nav-link:not(.active):not(:hover) {
+        color: black !important;
+    }
+    .nav {
+        background-color: white !important;
+        box-shadow: 0rem 0rem 0.25rem 0rem rgba(0, 0, 0, 0.25) !important;
+        height: 3.75rem !important;
+        --bs-nav-link-padding-x: 1rem !important;
+        --bs-nav-link-padding-y: 1rem !important;
+    }
+    /*-----------------------------------*/
+</style>
 </body>
 </html>
