@@ -264,7 +264,7 @@
     }
     .record-btn:hover {
         background-color: #52051C;
-        }
+    }
     .active-btn {
         background: #808080;
         box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25) inset;

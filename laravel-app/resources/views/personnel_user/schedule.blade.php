@@ -24,7 +24,7 @@
                     </div>
                 </form>
                 <div class="schedule-content mt-4">
-                    <table class="table  table-striped table-bordered">
+                    <table class="table table-striped table-bordered">
                         <thead class="tHead">
                             <tr>
                                 <th>NIVEL</th>
