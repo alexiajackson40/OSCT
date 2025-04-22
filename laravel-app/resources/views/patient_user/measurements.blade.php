@@ -7,138 +7,124 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
 </head>
-
 <body>
 @include('layouts.header_patient')
-
-<div class="container mt-5">
-    <h2 class="mb-4">Your Measurements</h2>
-
-    @if($measurements->isEmpty())
-        <p>No measurements available.</p>
-    @else
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Waist</th>
-                    <th>Hip</th>
-                    <th>Waist-Hip Ratio</th>
-                    <th>Body Mass</th>
-                    <th>Cholesterol</th>
-                    <th>Glucose</th>
-                    <th>Hemoglobin</th>
-                    <th>Triglycerides</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($measurements as $m)
-                    <tr>
-                        <td>{{ $m->created_at->format('Y-m-d') }}</td>
-                        <td>{{ $m->waist ?? '—' }}</td>
-                        <td>{{ $m->hip ?? '—' }}</td>
-                        <td>{{ $m->waist_hip_ratio ?? '—' }}</td>
-                        <td>{{ $m->body_mass ?? '—' }}</td>
-                        <td>{{ $m->cholesterol ?? '—' }}</td>
-                        <td>{{ $m->glucose_level ?? '—' }}</td>
-                        <td>{{ $m->hemoglobin ?? '—' }}</td>
-                        <td>{{ $m->triglycerides ?? '—' }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    @endif
+<div class="main-content">
+    <div class="container mt-5">
+        <div class="card">
+            <div class="top-buttons d-flex flex-row">
+                <a href="{{ route('patient.profile') }}" class="btn-back">&lt; Return to Profile</a>
+            </div>
+            <div class="card-body d-flex flex-column">
+                <h2 class="card-title">Recorded Measurements</h2>
+                <div class="measurements-content mt-4">
+                    @if($measurements->isEmpty())
+                    <p>No measurements available.</p>
+                    @else
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Waist</th>
+                                <th>Hip</th>
+                                <th>Waist-Hip Ratio</th>
+                                <th>Body Mass</th>
+                                <th>Cholesterol</th>
+                                <th>Glucose</th>
+                                <th>Hemoglobin</th>
+                                <th>Triglycerides</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($measurements as $m)
+                                <tr>
+                                    <td>{{ $m->created_at->format('Y-m-d') }}</td>
+                                    <td>{{ $m->waist ?? '—' }}</td>
+                                    <td>{{ $m->hip ?? '—' }}</td>
+                                    <td>{{ $m->waist_hip_ratio ?? '—' }}</td>
+                                    <td>{{ $m->body_mass ?? '—' }}</td>
+                                    <td>{{ $m->cholesterol ?? '—' }}</td>
+                                    <td>{{ $m->glucose_level ?? '—' }}</td>
+                                    <td>{{ $m->hemoglobin ?? '—' }}</td>
+                                    <td>{{ $m->triglycerides ?? '—' }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
 </body>
-
-
 <style>
+    /* Styling for Containers*/
     .main-content {
         display: flex;
         justify-content: center;
         width: 100%;
         min-height: 100vh;
+        background-color: var(--light-surface-one);
     }
-    .profile-container {
-        width: 70%;
+    .container {
+        width: fit-content;
+    }
+    .card {
+        background-color: #FAFAFA;
+        height: 100%;
+        min-height: 100vh;
         display: flex;
         justify-content: center;
     }
-    .card {
-        background-color: #F2F2F2;
-        width: 34.063rem;
-        height: auto;
-        position: relative;
-    }
-    .top-buttons {
-        margin-top: 0.625rem;
-        margin-bottom: 0.625rem;
-        width: 28.063rem;
-        padding-top: 0.625rem;
-        display: flex;
-        flex-direction: row;
-    }
     .card-body {
-        padding-top: 0.625rem;
-        display: flex;
-        flex-direction: column;
-        width: 29rem;
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
     }
+    /*-----------------------------------*/
+    /* Styling Title*/
     .card-title {
         font-size: 2rem;
         font-weight: 500;
-        margin-top: 2.5rem;
+        text-align: left;
+        margin-top: 2.25rem;
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
     }
-    .measurements-container {
-        margin-top: 0.75rem;
-        width: 26.688rem;
-        height: auto;
-        border-radius: 0.375rem;
-        border: 0.063rem solid rgba(0, 0, 0, 0.30);
-        background: #FFF;
-        display: flex;
-        justify-content: left;
-        align-items: left;
+    /*-----------------------------------*/
+    /* Styling for Table*/
+    .measurements-content {
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
     }
     .table {
-        color: #000000;
-        font-size: 1rem;
-        font-weight: 400;
-    }
-    .button-container {
-    width: 13.375rem;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Adjust alignment */
-    gap: 0.5rem; /* Adds a gap of 0.5rem between buttons */
-    margin-right: 0.5rem;
-    margin-left: 0.5rem;
-    }
-    .record-btn {
-        width: 214px;
-        height: 60px;
-        display: inline-flex;
-        padding: 18.5px 40px 18.5px 39px;
-        justify-content: center;
+        table-layout: fixed;
         align-items: center;
-        border-radius: 8px;
-        background: #6F1A34;
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        color: #FFF;
-        font-size: 20px;
-        font-weight: 500;
+        margin-bottom: 0rem;
+        --bs-table-bg: white;
+        --bs-table-border-color: #000;
+    }
+    /*-----------------------------------*/
+    /* Styling for Back Button*/
+    .top-buttons {
+        margin-top: 1.5rem;
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+        display: flex;
+        align-items: left;
     }
     .btn-back {
-        position: absolute;
-        left: 1.875rem;
         font-size: 1.25rem;
         font-weight: 500;
         border: none;
         color: #000;
-        background: #F2F2F2;
+        background: #FAFAFA;
+        border-radius: 1rem;
+        text-decoration: none;
     }
+    .btn-back:hover {
+        background-color: #E0E0E0;
+    }
+    /*-----------------------------------*/
 </style>
 </html>
-

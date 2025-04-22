@@ -22,8 +22,8 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Lab Result Name</th>
-                                    <th>Uploaded By</th>
+                                    <th>Report Name</th>
+                                    <th>Uploaded On</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -195,23 +195,23 @@
         box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25) inset;
     }
     /*-----------------------------------*/
-        /* Styling for Download and Delete Buttons*/
-        .btn-download {
-            height: 3rem;
-            display: flex;
-            align-items: center;
-            border-radius:0.5rem;
-            font-weight: 500;
-            justify-content: center;
-        }
-        .btn-danger {
-            height: 3rem;
-            display: flex;
-            align-items: center;
-            border-radius:0.5rem;
-            font-weight: 500;
-            justify-content: center;
-        }
-        /*-----------------------------------*/
+    /* Styling for Download and Delete Buttons*/
+    .btn-download {
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        border-radius:0.5rem;
+        font-weight: 500;
+        justify-content: center;
+    }
+    .btn-danger {
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        border-radius:0.5rem;
+        font-weight: 500;
+        justify-content: center;
+    }
+    /*-----------------------------------*/
 </style>
 </html>
