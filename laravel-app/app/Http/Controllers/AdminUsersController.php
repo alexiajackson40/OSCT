@@ -413,7 +413,7 @@ class AdminUsersController extends Controller
         // Validate upload inputs
         $request->validate([
             'lab_result'   => 'required|file|mimes:pdf,jpg,png|max:10240',
-            'description'  => 'required|string|max:255',
+            'name'         => 'required|string|max:255',
         ]);
 
         // Fetch the patient using CURP
@@ -429,7 +429,7 @@ class AdminUsersController extends Controller
             // Save lab result record using the correct relative path
             LabResult::create([
                 'user_id'       => $patient->CURP,
-                'name'          => $request->input('description'),
+                'name'          => $request->input('name'),
                 'file_path'     => 'lab_results/' . $filename,  // Note the folder prefix, as in documents
                 'date_assigned' => now()->toDateString(),
             ]);

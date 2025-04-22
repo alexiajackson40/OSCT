@@ -180,7 +180,7 @@ class PersonnelController extends Controller
     {
         $request->validate([
             'lab_result' => 'required|file|mimes:pdf,jpg,png|max:10240',
-            'description' => 'required|string|max:255',
+            'name'       => 'required|string|max:255',
         ]);
     
         $patient = Patient::where('CURP', $id)->firstOrFail();
@@ -192,7 +192,7 @@ class PersonnelController extends Controller
     
             LabResult::create([
                 'user_id' => $patient->CURP,
-                'name' => $request->input('description'),
+                'name' => $request->input('name'),
                 'file_path' => 'lab_results/' . $filename,
                 'date_assigned' => now()->toDateString(),
             ]);

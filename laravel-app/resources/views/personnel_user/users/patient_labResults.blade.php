@@ -70,11 +70,11 @@
                             <label for="lab_result">Select Lab Result</label>
                             <input type="file" name="lab_result" id="lab_result" class="form-control" required>
                         </div>
-                        <div class="form-group">
-                            <label for="description">Description</label>
-                            <textarea name="description" id="description" class="form-control" rows="3" required></textarea>
+                        <div class="form-group mt-3">
+                            <label for="name">Lab Result Name</label>
+                            <input type="text" name="name" id="name" class="form-control" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Upload</button>
+                        <button type="submit" class="btn btn-primary mt-3">Upload</button>
                     </form>
                 </div>
             </div>
@@ -82,7 +82,6 @@
     </div>
 </body>
 <style>
-    /* Styling for Containers*/
     .main-content {
         display: flex;
         justify-content: center;
@@ -100,8 +99,6 @@
         display: flex;
         justify-content: center;
     }
-    /*-----------------------------------*/
-    /* Styling for Back and Edit Buttons*/
     .btn-back {
         position: absolute;
         left: 1.875rem;
@@ -114,8 +111,8 @@
         text-decoration: none;
     }
     .btn-back:hover {
-            background-color: #E0E0E0;
-        }
+        background-color: #E0E0E0;
+    }
     .btn-edit {
         position: absolute;
         right: 1.875rem;
@@ -137,8 +134,6 @@
         display: flex;
         flex-direction: row;
     }
-    /*-----------------------------------*/
-    /* Styling Title*/
     .card-title {
         font-size: 2rem;
         font-weight: 500;
@@ -148,8 +143,6 @@
         margin-left: 1.5625rem;
         margin-right: 1.5625rem;
     }
-    /*-----------------------------------*/
-    /* Styling for Table*/
     .document-content {
         margin-left: 1.5625rem;
         margin-right: 1.5625rem;
@@ -161,8 +154,6 @@
         --bs-table-border-color: #000;
         border: 0.063rem solid #000000;
     }
-    /*-----------------------------------*/
-    /* Styling for Side Buttons*/
     .button-container {
         width: 13.375rem;
         height: fit-content;
@@ -188,30 +179,27 @@
         text-decoration: none;
     }
     .record-btn:hover {
-            background-color: #52051C;
+        background-color: #52051C;
     }
     .active-btn {
         background: #808080;
         box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25) inset;
     }
-    /*-----------------------------------*/
-        /* Styling for Download and Delete Buttons*/
-        .btn-download {
-            height: 3rem;
-            display: flex;
-            align-items: center;
-            border-radius:0.5rem;
-            font-weight: 500;
-            justify-content: center;
-        }
-        .btn-danger {
-            height: 3rem;
-            display: flex;
-            align-items: center;
-            border-radius:0.5rem;
-            font-weight: 500;
-            justify-content: center;
-        }
-        /*-----------------------------------*/
+    .btn-download {
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        justify-content: center;
+    }
+    .btn-danger {
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        justify-content: center;
+    }
 </style>
 </html>
