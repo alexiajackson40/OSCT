@@ -86,7 +86,7 @@
         height: 3rem;
         display: flex;
         align-items: center;
-        border-radius:0.5rem;
+        border-radius: 0.5rem;
         font-weight: 500;
         justify-content: center;
     }
