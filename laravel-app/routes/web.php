@@ -14,7 +14,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ParentController;
 
 // Main Route (public)
-Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/', fn () => redirect()->route('login'));
 
 // Login & Register (for Guests)
 Route::middleware('guest')->group(function () {

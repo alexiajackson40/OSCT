@@ -48,3 +48,18 @@ ALTER TABLE schedule
   CHANGE `CCT` cct VARCHAR(255),
   CHANGE `FECHA` date DATE;
 
+INSERT INTO admins (id, first_name, last_name, username, password, email, phone, address, role, created_at, updated_at)
+VALUES (
+    1,
+    'Admin',
+    'User',
+    'admin',
+    '$2y$12$tTt0ZJUTEE8rfj3F1/RUau6pn0peJFpq/EhIGt8HMFyFx1pRgIiyW',
+    'admin@example.com',
+    '555-555-5555',
+    '123 Admin St',
+    'admin',
+    NOW(),
+    NOW()
+);
+DELETE FROM admins WHERE username = 'admin';
