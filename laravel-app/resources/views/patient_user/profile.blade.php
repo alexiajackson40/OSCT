@@ -75,10 +75,7 @@
         justify-content: center;
     }
     .card-body {
-        margin-bottom: 1rem;
-        margin-left: 0.625rem;
-        margin-right: 0.625rem;
-        padding-top: 0.625rem;
+        padding: 2.5rem;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -89,34 +86,33 @@
         font-size: 2rem;
         font-weight: 500;
         margin-top: 2.5rem;
-        width: 28.063rem;
+        width: 28rem;
     }
     /*-----------------------------------*/
     /* Styling for Table*/
     .container-header {
         font-size: 1.25rem;
         font-weight: 500;
-        padding-left: 0.875rem;
-        padding-top: 0.875rem;
+        padding: 0.9rem 0rem 0rem 0.9rem;
     }
     .information-container {
         margin-top: 0.75rem;
-        width: 28.063rem;
+        width: 28rem;
         height: auto;
         border-radius: 0.375rem;
         border: 0.063rem solid rgba(0,0,0,0.30);
         background: #FFF;
     }
     .contact-container {
-        margin-top: 0.9375rem;
-        width: 28.063rem;
+        margin-top: 1rem;
+        width: 28rem;
         height: auto;
         border-radius: 0.375rem;
         border: 0.063rem solid rgba(0,0,0,0.30);
         background: #FFF;
     }
     .table {
-        margin-left: 0.875rem;
+        margin-left: 0.9rem;
         color: #000;
         font-size: 1rem;
         font-weight: 400;
@@ -125,8 +121,8 @@
     /*-----------------------------------*/
     /* Styling for Measurements Button*/
     .btn-page {
-        margin-top: 30px;
-        width: 13.375rem;
+        margin-top: 1.8rem;
+        width: 13rem;
         height: 3.75rem;
         display: flex;
         justify-content: center;

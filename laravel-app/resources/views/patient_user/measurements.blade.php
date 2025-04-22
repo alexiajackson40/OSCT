@@ -12,7 +12,7 @@
 <div class="main-content">
     <div class="container mt-5">
         <div class="card">
-            <div class="top-buttons d-flex flex-row">
+            <div class="top-button">
                 <a href="{{ route('patient.profile') }}" class="btn-back">&lt; Return to Profile</a>
             </div>
             <div class="card-body d-flex flex-column">
@@ -78,8 +78,7 @@
         justify-content: center;
     }
     .card-body {
-        margin-left: 1.5rem;
-        margin-right: 1.5rem;
+        padding: 2rem 3rem 3rem 3rem;
     }
     /*-----------------------------------*/
     /* Styling Title*/
@@ -87,16 +86,9 @@
         font-size: 2rem;
         font-weight: 500;
         text-align: left;
-        margin-top: 2.25rem;
-        margin-left: 1.5rem;
-        margin-right: 1.5rem;
     }
     /*-----------------------------------*/
     /* Styling for Table*/
-    .measurements-content {
-        margin-left: 1.5rem;
-        margin-right: 1.5rem;
-    }
     .table {
         table-layout: fixed;
         align-items: center;
@@ -106,10 +98,8 @@
     }
     /*-----------------------------------*/
     /* Styling for Back Button*/
-    .top-buttons {
-        margin-top: 1.5rem;
-        margin-left: 1.5rem;
-        margin-right: 1.5rem;
+    .top-button {
+        padding: 1.5rem 1.5rem 0rem 1.5rem;
         display: flex;
         align-items: left;
     }

@@ -15,8 +15,8 @@
             <div class="card">
                 <div class="card-body d-flex flex-column">
                     <h1 class="card-title">Lab Results</h1>
-                    <div class="document-content">
-                        <h2 class="table-title">List of Available Lab Reports</h2>
+                    <h2 class="table-title">List of Available Lab Reports</h2>
+                    <div class="document-content mt-4">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -49,7 +49,6 @@
         display: flex;
         justify-content: center;
         width: 100%;
-        align-items: center;
         min-height: 100vh;
         background-color: var(--light-surface-one);
     }
@@ -60,29 +59,20 @@
         background-color: #FAFAFA;
         height: 100%;
         min-height: 100vh;
-        display: flex;
-        justify-content: center;
+        padding: 1.5rem;
     }
     /*-----------------------------------*/
     /* Styling Title*/
     .card-title {
         font-size: 2rem;
         font-weight: 500;
-        text-align: left;
-        margin-top: 2.5rem;
-        margin-left: 1.5625rem;
-        margin-right: 1.5625rem;
-    }
-    /*-----------------------------------*/
-    /* Styling for Table*/
-    .document-content {
-        margin-left: 1.563rem;
-        margin-right: 1.563rem;
     }
     .table-title {
         font-size: 1.25rem;
-        margin-bottom: 1.563rem;
+        margin-bottom: 1rem;
     }
+    /*-----------------------------------*/
+    /* Styling for Table*/
     .table {
         align-items: center;
         margin-bottom: 0rem;

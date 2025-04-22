@@ -15,39 +15,39 @@
             <div class="card">
                 <div class="card-body d-flex flex-column">
                     <h1 class="card-title">Programación vista a Planteles Escolares</h1>
-                    <h2 class="table-title">Operación Salud Colima Tamizaje</h2>
-                </div>  
-                <div class="schedule-content mt-4">
-                    <table class="table table-striped table-bordered">
-                        <thead class="tHead">
-                            <tr>
-                                <th>NIVEL</th>
-                                <th>TURNO</th>
-                                <th>CCT</th>
-                                <th>NOMBRE DE LA ESCUELA</th>
-                                <th>MUNICIPIO</th>
-                                <th>LOCALIDAD</th>
-                                <th>DOMICILIO</th>
-                                <th>TOTAL DE ALUMNOS</th>
-                                <th>FECHA</th>
-                            </tr>
-                        </thead>
-                        <tbody class="tBody">
-                            @foreach($schedules as $schedule)
+                    <h2 class="table-title">Operación Salud Colima Tamizaje</h2>  
+                    <div class="schedule-content mt-4">
+                        <table class="table table-striped table-bordered">
+                            <thead>
                                 <tr>
-                                    <td>{{ $schedule->level }}</td>
-                                    <td>{{ $schedule->shift }}</td>
-                                    <td>{{ $schedule->cct }}</td>
-                                    <td>{{ $schedule->school_name }}</td>
-                                    <td>{{ $schedule->municipality }}</td>
-                                    <td>{{ $schedule->locality }}</td>
-                                    <td>{{ $schedule->address }}</td>
-                                    <td>{{ $schedule->total_students }}</td>
-                                    <td>{{ $schedule->date }}</td>
+                                    <th>NIVEL</th>
+                                    <th>TURNO</th>
+                                    <th>CCT</th>
+                                    <th>NOMBRE DE LA ESCUELA</th>
+                                    <th>MUNICIPIO</th>
+                                    <th>LOCALIDAD</th>
+                                    <th>DOMICILIO</th>
+                                    <th>TOTAL DE ALUMNOS</th>
+                                    <th>FECHA</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach($schedules as $schedule)
+                                    <tr>
+                                        <td>{{ $schedule->level }}</td>
+                                        <td>{{ $schedule->shift }}</td>
+                                        <td>{{ $schedule->cct }}</td>
+                                        <td>{{ $schedule->school_name }}</td>
+                                        <td>{{ $schedule->municipality }}</td>
+                                        <td>{{ $schedule->locality }}</td>
+                                        <td>{{ $schedule->address }}</td>
+                                        <td>{{ $schedule->total_students }}</td>
+                                        <td>{{ $schedule->date }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -67,6 +67,7 @@
     .card {
         background-color: #FAFAFA;
         height: 100%;
+        min-height: 100vh;
         padding: 1.5rem;
     }
     /*-----------------------------------*/
@@ -87,13 +88,6 @@
         margin-bottom: 0rem;
         --bs-table-bg: white;
         --bs-table-border-color: #000;
-    }
-    .tHead {
-        font-weight: bold;
-        font-size: 0.85rem;
-    }
-    .tBody {
-        font-size: 0.85rem;
     }
     /*-----------------------------------*/
 </style>
