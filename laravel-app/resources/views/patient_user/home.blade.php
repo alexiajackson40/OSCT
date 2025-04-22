@@ -49,6 +49,7 @@
     }
     .card-text {
         margin-top: 1.5rem;
+        text-align: center;
     }
     /*-----------------------------------*/
     /* Styling Text*/
