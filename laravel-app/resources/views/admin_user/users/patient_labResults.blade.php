@@ -9,6 +9,7 @@
 </head>
 <!-- Patient Lab Results Content -->
 <body>
+    <!-- Include the header dynamically -->
     @include('admin_user.header_admin')
     <div class="main-content">
         <div class="document-container mt-5">
@@ -19,7 +20,7 @@
                 </div>
                 <div class="card-body d-flex flex-column">
                     <div class="document-content">
-                        <h1 class="card-title">Lab Results for:<br> {{ $patient->PACIENTE }}</h1>
+                    <h1 class="card-title">Lab Results for:<br> {{ $patient->PACIENTE }}</h1>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -49,16 +50,14 @@
                 </div>
             </div>
         </div>
-
-        <!-- Side Navigation -->
         <div class="button-container mt-5 d-flex flex-column">      
+            <!-- Updated links for other patient-related actions -->
             <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_profile', $patient->CURP) }}">Patient Profile</a>
             <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_measurements', $patient->CURP) }}">Measurements</a>
             <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_documents', $patient->CURP) }}">Documents</a>
             <a class="record-btn btn-primary active-btn" role="button" href="{{ route('admin.users.patient_labResults', $patient->CURP) }}">Lab Results</a>
         </div>
     </div>
-
     <!-- Modal for Uploading Lab Result -->
     <div class="modal fade" id="uploadLabResultModal" tabindex="-1" aria-labelledby="uploadLabResultModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -70,11 +69,11 @@
                 <div class="modal-body">
                     <form action="{{ route('admin.uploadLabResult', $patient->CURP) }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="form-group mb-3">
+                        <div class="form-group">
                             <label for="lab_result">Select Lab Result</label>
                             <input type="file" name="lab_result" id="lab_result" class="form-control" required>
                         </div>
-                        <div class="form-group mb-3">
+                        <div class="form-group">
                             <label for="name">Lab Result Name</label>
                             <input type="text" name="name" id="name" class="form-control" required>
                         </div>
@@ -85,9 +84,8 @@
         </div>
     </div>
 </body>
-
-<!-- Styles -->
 <style>
+    /* Styling for Containers*/
     .main-content {
         display: flex;
         justify-content: center;
@@ -105,6 +103,8 @@
         display: flex;
         justify-content: center;
     }
+    /*-----------------------------------*/
+    /* Styling for Back and Edit Buttons*/
     .btn-back {
         position: absolute;
         left: 1.875rem;
@@ -117,8 +117,8 @@
         text-decoration: none;
     }
     .btn-back:hover {
-        background-color: #E0E0E0;
-    }
+            background-color: #E0E0E0;
+        }
     .btn-edit {
         position: absolute;
         right: 1.875rem;
@@ -140,14 +140,22 @@
         display: flex;
         flex-direction: row;
     }
+    /*-----------------------------------*/
+    /* Styling Title*/
     .card-title {
         font-size: 2rem;
         font-weight: 500;
         text-align: left;
-        margin: 2.5rem 1.5625rem 1.5625rem;
+        margin-bottom: 1.5625rem;
+        margin-top: 2.5rem;
+        margin-left: 1.5625rem;
+        margin-right: 1.5625rem;
     }
+    /*-----------------------------------*/
+    /* Styling for Table*/
     .document-content {
-        margin: 0 1.5625rem;
+        margin-left: 1.5625rem;
+        margin-right: 1.5625rem;
     }
     .table {
         align-items: center;
@@ -156,13 +164,16 @@
         --bs-table-border-color: #000;
         border: 0.063rem solid #000000;
     }
+    /*-----------------------------------*/
+    /* Styling for Side Buttons*/
     .button-container {
         width: 13.375rem;
+        height: fit-content;
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin: 0 0.5rem;
+        margin-right: 0.5rem;
+        margin-left: 0.5rem;
         gap: 0.5rem;
     }
     .record-btn {
@@ -173,26 +184,37 @@
         align-items: center;
         border-radius: 0.5rem;
         background: #7C1332;
-        box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+        box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
         color: #FFF;
         font-size: 1.25rem;
         font-weight: 500;
         text-decoration: none;
     }
     .record-btn:hover {
-        background-color: #52051C;
+            background-color: #52051C;
     }
     .active-btn {
         background: #808080;
-        box-shadow: inset 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+        box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25) inset;
     }
-    .btn-download, .btn-danger {
-        height: 3rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 0.5rem;
-        font-weight: 500;
-    }
+    /*-----------------------------------*/
+        /* Styling for Download and Delete Buttons*/
+        .btn-download {
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            border-radius:0.5rem;
+            font-weight: 500;
+            justify-content: center;
+        }
+        .btn-danger {
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            border-radius:0.5rem;
+            font-weight: 500;
+            justify-content: center;
+        }
+        /*-----------------------------------*/
 </style>
 </html>

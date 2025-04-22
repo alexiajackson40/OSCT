@@ -44,7 +44,10 @@
                                 <input type="text" name="address" class="form-control" id="address" value="{{ $user->address }}" required>
                             </div>
                         </div>
-                        <button class="btn btn-primary" type="submit">Update Profile</button>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-primary" type="submit">Update Profile</button>
+                            <a href="{{ route('admin.profile') }}" class="btn btn-secondary">Cancel</a>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -52,7 +55,6 @@
     </div>
 </body>
 <style>
-    /* Styling for Containers*/
     .main-content {
         display: flex;
         justify-content: center;
@@ -72,20 +74,26 @@
         width: 30%;
         height: fit-content;
     }
-    /*-----------------------------------*/
-    /* Styling Title*/
     .card-title {
         font-size: 1.75rem;
         font-weight: 500;
         margin-bottom: 1.5rem;
     }
-    /*-----------------------------------*/
-    /* Styling for Submit Button*/
     .btn-primary {
         height: 3rem;
-        border-radius:0.5rem;
+        border-radius: 0.5rem;
         font-weight: 500;
     }
-    /*-----------------------------------*/
+    .btn-secondary {
+        height: 3rem;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        background-color: #6c757d;
+        color: white;
+        border: none;
+    }
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
 </style>
 </html>
