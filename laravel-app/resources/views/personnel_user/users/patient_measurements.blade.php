@@ -21,7 +21,7 @@
                         @csrf
                         @method('PUT')
                         <div class="measurements-container d-flex flex-column align-items-left">
-                            <table id="Table" class="table">
+                            <table class="table">
                                 <thead>
                                     <tr>
                                         <th>Measurement Type</th>

@@ -10,16 +10,14 @@
 <!-- Patient Documents Page-->
 <body>
     @include('layouts.header_patient') <!-- Include the header blade -->
-
-    <div id="header"></div> 
     <div class="main-content">
         <div class="document-container mt-5">
             <div class="card">
                 <div class="card-body d-flex flex-column">
+                    <h1 class="card-title">Documents</h1>
                     <div class="document-content">
-                        <h1 class="card-title">Documents</h1>
                         <h2 class="table-title">List of Available Documents</h2>
-                        <table id="Table" class="table table-hover">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Document Name</th>
@@ -33,9 +31,7 @@
                                         <td>{{ $document->name }}</td>
                                         <td>{{ $document->created_at->format('Y-m-d') }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('parent.documents.download', $document->id) }}" class="btn btn-sm btn-primary">
-                                            Download
-                                            </a>
+                                            <a href="{{ route('parent.documents.download', $document->id) }}" class="btn btn-sm btn-download btn-primary">Download</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -47,49 +43,63 @@
         </div>
     </div>
 </body>
-
 <style>
+    /* Styling for Containers*/
     .main-content {
         display: flex;
         justify-content: center;
         width: 100%;
         align-items: center;
         min-height: 100vh;
+        background-color: var(--light-surface-one);
     }
     .document-container {
         width: 70%;
     }
     .card {
-        background-color: #F2F2F2;
+        background-color: #FAFAFA;
         height: 100%;
         min-height: 100vh;
+        display: flex;
+        justify-content: center;
     }
-    .document-content {
-        margin-left: 1.563rem;
-        margin-right: 1.563rem;
-    }
+    /*-----------------------------------*/
+    /* Styling Title*/
     .card-title {
         font-size: 2rem;
         font-weight: 500;
         text-align: left;
-        margin-bottom: 1.125rem;
-        margin-top: 1.563rem;
+        margin-top: 2.5rem;
+        margin-left: 1.5625rem;
+        margin-right: 1.5625rem;
+    }
+    /*-----------------------------------*/
+    /* Styling for Table*/
+    .document-content {
+        margin-left: 1.563rem;
+        margin-right: 1.563rem;
     }
     .table-title {
         font-size: 1.25rem;
         margin-bottom: 1.563rem;
     }
     .table {
-        margin-bottom: 0px;
-        --bs-table-bg: #F2F2F2;
-        --bs-table-border-color: #000;
         align-items: center;
+        margin-bottom: 0rem;
+        --bs-table-bg: #FAFAFA;
+        --bs-table-border-color: #000;
+        border: 0.063rem solid #000000;
     }
-    .td a {
+    /*-----------------------------------*/
+    /* Styling for Download Button*/
+    .btn-download {
+        height: 3rem;
         display: flex;
         align-items: center;
+        border-radius:0.5rem;
+        font-weight: 500;
         justify-content: center;
-        color: #000;
     }
+    /*-----------------------------------*/
 </style>
 </html>
