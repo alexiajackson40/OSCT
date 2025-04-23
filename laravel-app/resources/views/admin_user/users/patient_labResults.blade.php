@@ -35,7 +35,7 @@
                                         <td>{{ $labResult->name }}</td>
                                         <td>{{ $labResult->date_assigned }}</td>
                                         <td>
-                                            <a href="{{ route('admin.labResultDownload', $labResult->id) }}" class="btn btn-primary btn-download btn-sm">Download</a>
+                                            <a href="{{ route('admin.labResultDownload', $labResult->id) }}" class="btn btn-primary btn-download btn-sm" target="_blank">Download</a>
                                             <form action="{{ route('admin.deleteLabResult', $labResult->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')

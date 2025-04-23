@@ -447,7 +447,7 @@ class AdminUsersController extends Controller
         $filePath = public_path($labResult->file_path);
 
         if (file_exists($filePath)) {
-            return response()->download($filePath);
+            return response()->file($filePath);
         }
 
         return redirect()->back()->with('error', 'Lab result not found.');
@@ -533,7 +533,7 @@ class AdminUsersController extends Controller
         $filePath = public_path($document->file_path);
     
         if (file_exists($filePath)) {
-            return response()->download($filePath);
+            return response()->file($filePath);
         }
     
         return redirect()->back()->with('error', 'File not found.');

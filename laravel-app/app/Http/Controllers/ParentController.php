@@ -57,7 +57,7 @@ public function downloadDocument($id)
     $filePath = public_path($document->file_path); 
 
     if (file_exists($filePath)) {
-        return response()->download($filePath);
+        return response()->file($filePath);
     }
 
     return redirect()->back()->with('error', 'File not found.');
@@ -69,7 +69,7 @@ public function downloadLabResult($id)
     $filePath = public_path($result->file_path); 
 
     if (file_exists($filePath)) {
-        return response()->download($filePath);
+        return response()->file($filePath);
     }
 
     return redirect()->back()->with('error', 'File not found.');

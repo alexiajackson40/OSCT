@@ -31,7 +31,7 @@
                                         <td>{{ $document->name }}</td>
                                         <td>{{ $document->created_at->format('Y-m-d') }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('parent.documents.download', $document->id) }}" class="btn btn-sm btn-download btn-primary">Download</a>
+                                            <a href="{{ route('parent.documents.download', $document->id) }}" class="btn btn-sm btn-download btn-primary" target="_blank">Download</a>
                                         </td>
                                     </tr>
                                 @endforeach

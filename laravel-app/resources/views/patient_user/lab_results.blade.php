@@ -31,7 +31,7 @@
                                         <td>{{ $result->name }}</td>
                                         <td>{{ $result->created_at->format('Y-m-d') }}</td>
                                         <td>
-                                            <a href="{{ route('parent.labResults.download', $result->id) }}" class="btn btn-sm btn-download btn-primary">Download</a>
+                                            <a href="{{ route('parent.labResults.download', $result->id) }}" class="btn btn-sm btn-download btn-primary" target="_blank">Download</a>
                                         </td>
                                     </tr>
                                 @endforeach
