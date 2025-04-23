@@ -9,6 +9,8 @@ use App\Models\Measurement;
 use App\Models\Patient;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Schedule;
+use App\Models\ParentModel; 
+use Illuminate\Support\Facades\Hash;
 
 class ParentController extends Controller
 {

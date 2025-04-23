@@ -9,7 +9,7 @@
 </head>
 <!-- Patient Documents Page-->
 <body>
-    @include('layouts.header_patient') <!-- Include the header blade -->
+    @include('patient_user.header_patient') <!-- Include the header blade -->
     <div class="main-content">
         <div class="document-container mt-5">
             <div class="card">

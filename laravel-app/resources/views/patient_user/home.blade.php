@@ -10,7 +10,7 @@
 </head>
 <body>
     <!-- Page Header -->
-   @include('layouts.header_patient')
+   @include('patient_user.header_patient')
     <div class="main-content">
         <div class="home-container mt-5">
             <div class="card">

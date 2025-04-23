@@ -48,7 +48,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="email">Email (optional)</label>
-                  <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Email (optional)">
                 </div>
                 <div class="mb-3">
                   <label for="password">Password</label>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="CURP">Student ID (CURP)</label>
-                  <input type="text" id="CURP" name="CURP" class="form-control" required>
+                  <input type="text" id="CURP" name="CURP" class="form-control" placeholder="Student ID (CURP)" required>
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">Register</button>
               </div>

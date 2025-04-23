@@ -42,7 +42,7 @@
         <nav class="nav nav-pills nav-fill">
             <a class="nav-link {{ request()->is('patient/home') ? 'active' : '' }}" href="{{ route('patient.home') }}">Home</a>
             <a class="nav-link {{ request()->is('patient/schedule') ? 'active' : '' }}" href="{{ route('patient.schedule') }}">Schedule</a>
-            <a class="nav-link {{ request()->is('patient/labResults') ? 'active' : '' }}" href="{{ route('patient.lab_results') }}">Lab Results</a>
+            <a class="nav-link {{ request()->is('patient/lab-results') ? 'active' : '' }}" href="{{ route('patient.lab_results') }}">Lab Results</a>
             <a class="nav-link {{ request()->is('patient/documents') ? 'active' : '' }}" href="{{ route('patient.documents') }}">Documents</a>
         </nav>
     </div>

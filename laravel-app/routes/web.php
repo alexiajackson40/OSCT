@@ -27,7 +27,7 @@ Route::middleware('guest')->group(function () {
 
 // Patient Sign-Up Route
 Route::get('/signup', fn () => view('patient_user.sign_up'))->name('signup');
-Route::post('/signup', [UserController::class, 'signup'])->name('signup');
+Route::post('/signup', [ParentController::class, 'store'])->name('signup');
 
 // Admin Routes
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
