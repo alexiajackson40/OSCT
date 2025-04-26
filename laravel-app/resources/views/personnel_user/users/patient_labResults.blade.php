@@ -23,7 +23,7 @@
                             <thead>
                                 <tr>
                                     <th>Lab Result Name</th>
-                                    <th>Uploaded By</th>
+                                    <th>Upload Date</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -31,7 +31,7 @@
                                 @foreach($labResults as $labResult)
                                     <tr>
                                         <td>{{ $labResult->name }}</td>
-                                        <td>{{ $labResult->uploaded_by }}</td>
+                                        <td>{{ $labResult->date_assigned }}</td>
                                         <td>
                                             <a href="{{ url('/' . $labResult->file_path) }}" target="_blank" class="btn btn-primary btn-download btn-sm">Download</a>
                                             <form action="{{ route('personnel.deleteLabResult', $labResult->id) }}" method="POST" style="display:inline;">
@@ -55,6 +55,7 @@
             <a class="record-btn btn-primary active-btn" role="button" href="{{ route('personnel.patientLabResults', $patient->CURP) }}">Lab Results</a>
         </div>
     </div>
+
     <!-- Upload Lab Result Modal -->
     <div class="modal fade" id="uploadLabResultModal" tabindex="-1" aria-labelledby="uploadLabResultModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -67,8 +68,8 @@
                     <form action="{{ route('personnel.uploadLabResult', $patient->CURP) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="lab_result">Select Lab Result</label>
-                            <input type="file" name="lab_result" id="lab_result" class="form-control" required>
+                            <label for="lab_result">Select Lab Result (PDF Only)</label>
+                            <input type="file" name="lab_result" id="lab_result" accept="application/pdf" class="form-control" required>
                         </div>
                         <div class="form-group mt-3">
                             <label for="name">Lab Result Name</label>
@@ -81,6 +82,7 @@
         </div>
     </div>
 </body>
+
 <style>
     .main-content {
         display: flex;
