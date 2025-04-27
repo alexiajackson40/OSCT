@@ -538,4 +538,26 @@ class AdminUsersController extends Controller
     
         return redirect()->back()->with('error', 'File not found.');
     }    
+
+    public function updateAdmin(Request $request, $id)
+    {
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'nullable|string|email|max:255',
+            'phone' => 'nullable|string|max:15',
+        ]);
+    
+        $admin = \App\Models\Admin::findOrFail($id);
+    
+        $admin->update([
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+        ]);
+    
+        return redirect()->route('admin.users.admin_profile', $id)->with('success', 'Admin profile updated successfully!');
+    }
+    
 }

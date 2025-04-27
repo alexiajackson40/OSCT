@@ -73,7 +73,14 @@ class AdminController extends Controller
             ]);
         }
     
-        return redirect()->route('admin.users')->with('success', 'User added successfully!');
+        if ($request->input('role') === 'admin') {
+            return redirect()->route('admin.adminUsers')->with('success', 'Admin added successfully!');
+        } elseif ($request->input('role') === 'personnel') {
+            return redirect()->route('admin.personnelUsers')->with('success', 'Personnel added successfully!');
+        } else {
+            return redirect()->route('admin.patientUsers')->with('success', 'Patient added successfully!');
+        }
+        
     }
 
     public function editProfile()
