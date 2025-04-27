@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <link href="{{ asset('theme.css') }}" rel="stylesheet">
     <link href="{{ asset('style.css') }}" rel="stylesheet">
@@ -11,7 +11,7 @@
     <div class="main-content">
         <div class="card mt-5">
             <div class="card-body">
-                <h1 class="card-title">Edit Schedule Entry</h1>
+                <h1 class="card-title">Editar Entrada de Horario</h1>
                 <form action="{{ route('schedule.update', $schedule->id) }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -54,8 +54,8 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <a href="{{ route('schedule.index') }}" class="btn btn-secondary">Cancel</a>
-                        <button type="submit" class="btn btn-primary">Update Schedule</button>
+                        <a href="{{ route('schedule.index') }}" class="btn btn-secondary">Cancelar</a>
+                        <button type="submit" class="btn btn-primary">Actualizar Horario</button>
                     </div>
                 </form>
             </div>

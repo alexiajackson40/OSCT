@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <!-- Import Bootstrap and Custom Styles -->
     <link href="{{ asset('theme.css') }}" rel="stylesheet">
@@ -27,16 +27,16 @@
                     @if(Auth::guard('admin')->check())
                         <span class="user-text">{{ Auth::guard('admin')->user()->username }}</span>
                     @else
-                        <span class="user-text">Guest</span>
+                        <span class="user-text">Invitado</span>
                     @endif
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
-                    <li><a class="dropdown-item" id="profile-button" href="{{ route('admin.profile') }}">View Profile</a></li>
+                    <li><a class="dropdown-item" id="profile-button" href="{{ route('admin.profile') }}">Ver Perfil</a></li>
                     <li>
                         <!-- Sign Out link -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <button type="submit" class="dropdown-item">Sign Out</button>
+                            <button type="submit" class="dropdown-item">Cerrar Sesión</button>
                         </form>
                     </li>
                 </ul>
@@ -46,9 +46,9 @@
     <!-- Navigation Bar -->
     <div class="navigation-container">
         <nav class="nav nav-pills nav-fill">
-            <a class="nav-link {{ request()->is('admin/home') ? 'active' : '' }}" href="{{ route('admin.home') }}" data-page="admin_user/home">Home</a>
-            <a class="nav-link {{ request()->is('admin/users') ? 'active' : '' }}" href="{{ route('admin.users') }}" data-page="admin_user/users">Users</a>
-            <a class="nav-link {{ request()->is('admin/schedule') ? 'active' : '' }}" href="{{ route('schedule.index') }}" data-page="admin_user/schedule">Schedule</a>
+            <a class="nav-link {{ request()->is('admin/home') ? 'active' : '' }}" href="{{ route('admin.home') }}" data-page="admin_user/home">Inicio</a>
+            <a class="nav-link {{ request()->is('admin/users') ? 'active' : '' }}" href="{{ route('admin.users') }}" data-page="admin_user/users">Usuarios</a>
+            <a class="nav-link {{ request()->is('admin/schedule') ? 'active' : '' }}" href="{{ route('schedule.index') }}" data-page="admin_user/schedule">Horario</a>
         </nav>
     </div>
     <style>

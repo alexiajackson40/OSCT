@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <link href="{{ asset('theme.css') }}" rel="stylesheet">
     <link href="{{ asset('style.css') }}" rel="stylesheet">
@@ -17,38 +17,38 @@
                             @csrf
                             <div class="form-row">
                                 <div class="mb-3">
-                                    <label for="first_name">First Name</label>
-                                    <input type="text" name="first_name" class="form-control" id="first_name" placeholder="First Name" required>
+                                    <label for="first_name">Nombre</label>
+                                    <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Nombre" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="last_name">Last Name</label>
-                                    <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Last Name" required>
+                                    <label for="last_name">Apellido</label>
+                                    <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Apellido" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="username">Username</label>
+                                    <label for="username">Nombre de usuario</label>
                                     <div class="input-group">
                                         <span class="input-group-text">@</span>
-                                        <input type="text" name="username" class="form-control" id="username" placeholder="Username" required>
+                                        <input type="text" name="username" class="form-control" id="username" placeholder="Nombre de usuario" required>
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="email">Email</label>
-                                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" required>
+                                    <label for="email">Correo electrónico</label>
+                                    <input type="email" name="email" class="form-control" id="email" placeholder="Correo electrónico" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="phone">Phone Number</label>
+                                    <label for="phone">Número de teléfono</label>
                                     <input type="text" name="phone" class="form-control" id="phone" placeholder="(xxx)xxx-xxxx" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="password">Password</label>
-                                    <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+                                    <label for="password">Contraseña</label>
+                                    <input type="password" name="password" class="form-control" id="password" placeholder="Contraseña" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="role">Role</label>
+                                    <label for="role">Rol</label>
                                     <select name="role" class="form-control" id="role" required>
-                                        <option value="admin">Admin</option>
-                                        <option value="personnel">Personnel</option>
-                                        <option value="patient">Patient</option>
+                                        <option value="admin">Administrador</option>
+                                        <option value="personnel">Personal</option>
+                                        <option value="patient">Paciente</option>
                                     </select>
                                 </div>
                             </div>
@@ -56,11 +56,11 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="agree_terms" id="agree_terms" required>
                                     <label class="form-check-label" for="agree_terms">
-                                        Agree to terms and conditions
+                                        Aceptar términos y condiciones
                                     </label>
                                 </div>
                             </div>
-                            <button class="btn btn-primary" type="submit">Submit form</button>
+                            <button class="btn btn-primary" type="submit">Enviar formulario</button>
                         </form>
                     </div>
                 </div>

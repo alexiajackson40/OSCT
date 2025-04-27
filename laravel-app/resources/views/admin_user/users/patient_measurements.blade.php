@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <!-- Import Bootstrap and Custom Styles -->
     <link href="{{ asset('theme.css') }}" rel="stylesheet">
@@ -15,11 +15,11 @@
             <div class="card">
                 <!-- Top Buttons -->
                 <div class="top-buttons d-flex flex-row align-self-center">
-                    <a href="{{ route('admin.patientUsers') }}" class="btn-back">&lt; Go Back</a>
+                    <a href="{{ route('admin.patientUsers') }}" class="btn-back">&lt; Regresar</a>
                 </div>
 
                 <div class="card-body d-flex flex-column">
-                    <h1 class="card-title">Measurements for:<br> {{ $patient->PACIENTE }}</h1>
+                    <h1 class="card-title">Mediciones de:<br> {{ $patient->PACIENTE }}</h1>
                     <!-- Form starts -->
                     <form action="{{ route('admin.updateMeasurement', $patient->CURP) }}" method="POST">
                         @csrf
@@ -28,50 +28,50 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Measurement Type</th>
-                                        <th>Value</th>
-                                        <th>Date</th>
+                                        <th>Tipo de Medición</th>
+                                        <th>Valor</th>
+                                        <th>Fecha</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($measurements as $measurement)
                                         <tr>
-                                            <td>Waist</td>
+                                            <td>Cintura</td>
                                             <td><input type="text" name="measurements[{{ $measurement->id }}][waist]" value="{{ $measurement->waist }}" class="form-control"></td>
                                             <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Hip</td>
+                                            <td>Cadera</td>
                                             <td><input type="text" name="measurements[{{ $measurement->id }}][hip]" value="{{ $measurement->hip }}" class="form-control"></td>
                                             <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Waist-Hip Ratio</td>
+                                            <td>Relación Cintura-Cadera</td>
                                             <td><input type="text" name="measurements[{{ $measurement->id }}][waist_hip_ratio]" value="{{ $measurement->waist_hip_ratio }}" class="form-control"></td>
                                             <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Body Mass</td>
+                                            <td>Masa Corporal</td>
                                             <td><input type="text" name="measurements[{{ $measurement->id }}][body_mass]" value="{{ $measurement->body_mass }}" class="form-control"></td>
                                             <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Cholesterol</td>
+                                            <td>Colesterol</td>
                                             <td><input type="text" name="measurements[{{ $measurement->id }}][cholesterol]" value="{{ $measurement->cholesterol }}" class="form-control"></td>
                                             <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Glucose Level</td>
+                                            <td>Nivel de Glucosa</td>
                                             <td><input type="text" name="measurements[{{ $measurement->id }}][glucose_level]" value="{{ $measurement->glucose_level }}" class="form-control"></td>
                                             <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Hemoglobin</td>
+                                            <td>Hemoglobina</td>
                                             <td><input type="text" name="measurements[{{ $measurement->id }}][hemoglobin]" value="{{ $measurement->hemoglobin }}" class="form-control"></td>
                                             <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Triglycerides</td>
+                                            <td>Triglicéridos</td>
                                             <td><input type="text" name="measurements[{{ $measurement->id }}][triglycerides]" value="{{ $measurement->triglycerides }}" class="form-control"></td>
                                             <td>{{ $measurement->created_at->format('Y-m-d') }}</td>
                                         </tr>
@@ -79,16 +79,16 @@
                                 </tbody>
                             </table>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+                        <button type="submit" class="btn btn-primary mt-3">Guardar Cambios</button>
                     </form>
                 </div>
             </div>
         </div>
         <div class="button-container mt-5 d-flex flex-column">
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_profile', $patient->CURP) }}">Patient Profile</a>
-            <a class="record-btn btn-primary active-btn" role="button" href="{{ route('admin.users.patient_measurements', $patient->CURP) }}">Measurements</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_documents', $patient->CURP) }}">Documents</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_labResults', $patient->CURP) }}">Lab Results</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_profile', $patient->CURP) }}">Perfil del Paciente</a>
+            <a class="record-btn btn-primary active-btn" role="button" href="{{ route('admin.users.patient_measurements', $patient->CURP) }}">Mediciones</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_documents', $patient->CURP) }}">Documentos</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_labResults', $patient->CURP) }}">Resultados de Laboratorio</a>
         </div>
     </div>
 </body>
@@ -121,7 +121,7 @@
         align-items: center;
     }
     /*-----------------------------------*/
-    /* Styling for Back and Edit Buttons*/
+    /* Styling for Back Button*/
     .top-buttons {
         margin-top: 0.625rem;
         margin-bottom: 0.625rem;

@@ -11,9 +11,9 @@
     @include('admin_user.header_admin')
     <div class="main-content">
         <div class="button-container mt-5 d-flex flex-column">
-            <a class="table-btn btn-primary" role="button" href="{{ route('admin.patientUsers') }}">Patients</a>
-            <a class="table-btn btn-primary active-btn" role="button" href="{{ route('admin.personnelUsers') }}">Personnel</a>
-            <a class="table-btn btn-primary" role="button" href="{{ route('admin.adminUsers') }}">Admin</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.patientUsers') }}">Pacientes</a>
+            <a class="table-btn btn-primary active-btn" role="button" href="{{ route('admin.personnelUsers') }}">Personal</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.adminUsers') }}">Administrador</a>
         </div>
         <div class="users-container mt-5">
             <div class="card">
@@ -25,43 +25,43 @@
                 @endif
 
                 <div class="card-head d-flex flex-row">
-                    <h1 class="card-title">Personnel</h1>
+                    <h1 class="card-title">Personal</h1>
                     <div class="addBtn-container d-flex flex-row align-items-right mb-4">
-                        <button id="toggleAddPersonnelForm" class="btn btn-primary btn-new">+ Add New Personnel</button>
+                        <button id="toggleAddPersonnelForm" class="btn btn-primary btn-new">+ Agregar Nuevo Personal</button>
                     </div>
                 </div>
 
                 <!-- Add New Personnel Form (Hidden by Default) -->
                 <div id="addPersonnelForm" class="add-patient-form mb-4 p-4" style="display: none;">
-                    <h2>Add New Personnel</h2>
+                    <h2>Agregar Nuevo Personal</h2>
                     <form action="{{ route('admin.addUser') }}" method="POST" class="form-inline">
                         @csrf
                         <input type="hidden" name="role" value="personnel">
                         <div class="form-group mb-2">
-                            <label for="first_name">First Name:</label>
+                            <label for="first_name">Nombre:</label>
                             <input type="text" name="first_name" id="first_name" class="form-control mx-sm-2" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="last_name">Last Name:</label>
+                            <label for="last_name">Apellido:</label>
                             <input type="text" name="last_name" id="last_name" class="form-control mx-sm-2" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="username">Username:</label>
+                            <label for="username">Nombre de Usuario:</label>
                             <input type="text" name="username" id="username" class="form-control mx-sm-2" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="email">Email:</label>
+                            <label for="email">Correo Electrónico:</label>
                             <input type="email" name="email" id="email" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="phone">Phone:</label>
+                            <label for="phone">Teléfono:</label>
                             <input type="text" name="phone" id="phone" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="password">Password:</label>
+                            <label for="password">Contraseña:</label>
                             <input type="password" name="password" id="password" class="form-control mx-sm-2" required>
                         </div>
-                        <button type="submit" class="btn btn-primary mb-2">Add Personnel</button>
+                        <button type="submit" class="btn btn-primary mb-2">Agregar Personal</button>
                     </form>
                 </div>
 
@@ -70,9 +70,9 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Actions</th>
+                                    <th>Nombre</th>
+                                    <th>Correo Electrónico</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -81,11 +81,11 @@
                                         <td>{{ $person->first_name }} {{ $person->last_name }}</td>
                                         <td>{{ $person->email }}</td>
                                         <td>
-                                            <a href="{{ route('admin.users.personnel_profile', $person->getKey()) }}" class="btn btn-primary btn-view btn-action">View Profile</a>
-                                            <form action="{{ route('admin.removePersonnel', $person->getKey()) }}" method="POST" onsubmit="return confirm('Are you sure you want to remove this personnel user?');">
+                                            <a href="{{ route('admin.users.personnel_profile', $person->getKey()) }}" class="btn btn-primary btn-view btn-action">Ver Perfil</a>
+                                            <form action="{{ route('admin.removePersonnel', $person->getKey()) }}" method="POST" onsubmit="return confirm('¿Está seguro de que desea eliminar este usuario de personal?');" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-action">Delete</button>
+                                                <button type="submit" class="btn btn-danger btn-action">Eliminar</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -108,7 +108,6 @@
 </script>
 
 <style>
-    /* (ALL YOUR STYLES EXACTLY KEPT THE SAME, NO CHANGE) */
     /* Styling for Page Containers*/
     .main-content {
         display: flex;

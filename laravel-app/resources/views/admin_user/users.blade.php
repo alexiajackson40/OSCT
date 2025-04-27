@@ -90,7 +90,11 @@
                                         <td>{{ $user->email }}</td>
                                         <td>{{ ucfirst($user->role) }}</td>
                                         <td>
-                                            <a href="{{ route('admin.users.edit', $user->getKey()) }}" class="btn btn-primary btn-view btn-action">View Profile</a>
+                                            @if($user->role === 'admin')
+                                                <a href="{{ route('admin.users.admin_profile', $user->getKey()) }}" class="btn btn-primary btn-view btn-action">View Profile</a>
+                                            @elseif($user->role === 'personnel')
+                                                <a href="{{ route('admin.users.personnel_profile', $user->getKey()) }}" class="btn btn-primary btn-view btn-action">View Profile</a>
+                                            @endif
                                             <form action="{{ route('admin.users.destroy', $user->getKey()) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
@@ -117,7 +121,6 @@
 </script>
 
 <style>
-    /* (YOUR SAME EXACT STYLES) */
     .main-content {
         display: flex;
         justify-content: left;

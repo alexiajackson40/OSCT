@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
      <!-- Import Bootstrap and Custom Styles -->
      <link href="{{ asset('theme.css') }}" rel="stylesheet">
@@ -14,39 +14,39 @@
         <div class="form-container mt-5">
             <div class="card">
                 <div class="card-body d-flex flex-column">
-                    <h2 class="card-title">Edit Profile</h2>
+                    <h2 class="card-title">Editar Perfil</h2>
                     <form method="POST" action="{{ route('update.profile') }}" class="needs-validation" novalidate>
                         @csrf
                         @method('PUT')
                         <div class="form-row">
                             <div class="mb-3">
-                                <label for="first_name">First Name</label>
+                                <label for="first_name">Nombre</label>
                                 <input type="text" name="first_name" class="form-control" id="first_name" value="{{ $user->first_name }}" required>
                             </div>
                             <div class="mb-3">
-                                <label for="last_name">Last Name</label>
+                                <label for="last_name">Apellido</label>
                                 <input type="text" name="last_name" class="form-control" id="last_name" value="{{ $user->last_name }}" required>
                             </div>
                             <div class="mb-3">
-                                <label for="username">Username</label>
+                                <label for="username">Nombre de usuario</label>
                                 <input type="text" name="username" class="form-control" id="username" value="{{ $user->username }}" required>
                             </div>
                             <div class="mb-3">
-                                <label for="email">Email</label>
+                                <label for="email">Correo electrónico</label>
                                 <input type="email" name="email" class="form-control" id="email" value="{{ $user->email }}" required>
                             </div>
                             <div class="mb-3">
-                                <label for="phone">Phone Number</label>
+                                <label for="phone">Número de teléfono</label>
                                 <input type="text" name="phone" class="form-control" id="phone" value="{{ $user->phone }}" required>
                             </div>
                             <div class="mb-3">
-                                <label for="address">Address</label>
+                                <label for="address">Dirección</label>
                                 <input type="text" name="address" class="form-control" id="address" value="{{ $user->address }}" required>
                             </div>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary" type="submit">Update Profile</button>
-                            <a href="{{ route('admin.profile') }}" class="btn btn-secondary">Cancel</a>
+                            <button class="btn btn-primary" type="submit">Actualizar Perfil</button>
+                            <a href="{{ route('admin.profile') }}" class="btn btn-secondary">Cancelar</a>
                         </div>
                     </form>
                 </div>

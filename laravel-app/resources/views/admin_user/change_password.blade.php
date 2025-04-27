@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <link href="{{ asset('theme.css') }}" rel="stylesheet">
     <link href="{{ asset('style.css') }}" rel="stylesheet">
@@ -11,25 +11,25 @@
     <div class="main-content">
         <div class="card d-flex flex-column mt-5">
             <div class="card-body d-flex flex-column">
-            <h2 class="card-title">Change Password</h2>
+            <h2 class="card-title">Cambiar contraseña</h2>
                 <form action="{{ route('admin.updatePassword') }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
-                        <label for="current_password">Current Password</label>
+                        <label for="current_password">Contraseña actual</label>
                         <input type="password" name="current_password" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label for="new_password">New Password</label>
+                        <label for="new_password">Nueva contraseña</label>
                         <input type="password" name="new_password" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label for="new_password_confirmation">Confirm New Password</label>
+                        <label for="new_password_confirmation">Confirmar nueva contraseña</label>
                         <input type="password" name="new_password_confirmation" class="form-control" required>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <button type="submit" class="btn btn-primary">Update Password</button>
-                        <a href="{{ route('admin.profile') }}" class="btn btn-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Actualizar contraseña</button>
+                        <a href="{{ route('admin.profile') }}" class="btn btn-secondary">Cancelar</a>
                     </div>
                 </form>
             </div>

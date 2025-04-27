@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <link href="{{ asset('theme.css') }}" rel="stylesheet">
     <link href="{{ asset('style.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="{{ asset('bootstrap.min.js') }}" defer></script>
+    <script src="{{ asset('loadContent.js') }}" defer></script>
 </head>
 <body>
     @include('admin_user.header_admin')
@@ -14,12 +15,12 @@
                 <form action="{{ route('admin.uploadSchedule') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body d-flex flex-column">
-                        <h1 class="card-title">Programación vista a Planteles Escolares</h1>
+                        <h1 class="card-title">Programación de Visitas a Planteles Escolares</h1>
                         <h2 class="table-title">Operación Salud Colima Tamizaje</h2>
                         <div class="form-group upload-form">
-                            <label for="schedule_file">Upload Schedule (.CSV only)</label>
+                            <label for="schedule_file">Subir Horario (.CSV solamente)</label>
                             <input type="file" class="form-control" id="schedule_file" name="schedule_file" accept=".csv" required>
-                            <button type="submit" class="btn btn-primary btn-upload mt-3">Upload Schedule</button>
+                            <button type="submit" class="btn btn-primary btn-upload mt-3">Subir Horario</button>
                         </div>
                     <div class="schedule-content mt-4">
                         <table class="table table-striped table-bordered">
@@ -34,7 +35,7 @@
                                     <th>DOMICILIO</th>
                                     <th>TOTAL DE ALUMNOS</th>
                                     <th>FECHA</th>
-                                    <th>Actions</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody class="tBody">
@@ -50,7 +51,7 @@
                                         <td>{{ $schedule->total_students }}</td>
                                         <td>{{ $schedule->date }}</td>
                                         <td>
-                                            <a href="{{ route('schedule.edit', $schedule->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                            <a href="{{ route('schedule.edit', $schedule->id) }}" class="btn btn-warning btn-sm">Editar</a>
                                         </td>
                                     </tr>
                                 @endforeach

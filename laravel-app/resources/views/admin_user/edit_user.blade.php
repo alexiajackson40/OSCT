@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <link href="{{ asset('theme.css') }}" rel="stylesheet">
     <link href="{{ asset('style.css') }}" rel="stylesheet">
@@ -11,7 +11,7 @@
     <div class="main-content d-flex justify-content-center mt-5">
         <div class="card" style="width: 60%;">
             <div class="card-body">
-                <h1 class="card-title">Edit User</h1>
+                <h1 class="card-title">Editar Usuario</h1>
 
                 @php
                     $userId = $user->id ?? $user->employee_id;
@@ -22,28 +22,28 @@
                     @method('PUT')
 
                     <div class="mb-3">
-                        <label for="first_name" class="form-label">First Name</label>
+                        <label for="first_name" class="form-label">Nombre</label>
                         <input type="text" class="form-control" name="first_name" value="{{ $user->first_name }}">
                     </div>
 
                     <div class="mb-3">
-                        <label for="last_name" class="form-label">Last Name</label>
+                        <label for="last_name" class="form-label">Apellido</label>
                         <input type="text" class="form-control" name="last_name" value="{{ $user->last_name }}">
                     </div>
 
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
+                        <label for="email" class="form-label">Correo electrónico</label>
                         <input type="text" class="form-control" name="email" value="{{ $user->email }}">
                     </div>
 
                     <div class="mb-3">
-                        <label for="phone" class="form-label">Phone</label>
+                        <label for="phone" class="form-label">Teléfono</label>
                         <input type="text" class="form-control" name="phone" value="{{ $user->phone }}">
                     </div>
 
                     <div class="d-flex justify-content-between">
-                        <a href="{{ route('admin.users') }}" class="btn btn-secondary">Cancel</a>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <a href="{{ route('admin.users') }}" class="btn btn-secondary">Cancelar</a>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                     </div>
                 </form>
             </div>

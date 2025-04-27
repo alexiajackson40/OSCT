@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <!-- Import Bootstrap and Custom Styles -->
     <link href="{{ asset('theme.css') }}" rel="stylesheet">
@@ -15,33 +15,31 @@
             <div class="card">
                 <!-- Top Buttons -->
                 <div class="top-buttons d-flex flex-row align-self-center">
-                    <a href="{{ route('admin.patientUsers') }}" class="btn-back">&lt; Go Back</a>
-                    {{-- Use the admin guard check instead of a call to isAdmin() --}}
+                    <a href="{{ route('admin.patientUsers') }}" class="btn-back">&lt; Regresar</a>
                     @if(auth()->guard('admin')->check())
-                        <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#editPatientModal">[Edit Information]</button>
+                        <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#editPatientModal">[Editar Información]</button>
                     @endif
                 </div>
                 <!-- Patient Information -->
                 <div class="card-body d-flex flex-column">
-                    <!-- Instead of separate first and last names, display the full patient name from the PACIENTE column -->
                     <h1 class="card-title">{{ $patient->PACIENTE }}</h1>
                     <div class="information-container d-flex flex-column align-items-left">
-                        <h2 class="container-header">Patient Information</h2>
+                        <h2 class="container-header">Información del Paciente</h2>
                         <table class="table">
                             <tr>
-                                <td><strong>Student ID:</strong></td>
+                                <td><strong>ID de Estudiante:</strong></td>
                                 <td>{{ $patient->No_SOL }}</td>
                             </tr>
                             <tr>
-                                <td><strong>Gender:</strong></td>
+                                <td><strong>Sexo:</strong></td>
                                 <td>{{ $patient->SEXO }}</td>
                             </tr>
                             <tr>
-                                <td><strong>Age:</strong></td>
+                                <td><strong>Edad:</strong></td>
                                 <td>{{ $patient->EDAD }}</td>
                             </tr>
                             <tr>
-                                <td><strong>School:</strong></td>
+                                <td><strong>Escuela:</strong></td>
                                 <td>{{ $patient->ESCUELA }}</td>
                             </tr>
                             <tr>
@@ -55,10 +53,10 @@
         </div>
         <!-- Navigation Buttons -->
         <div class="button-container mt-5 d-flex flex-column">      
-            <a class="record-btn btn-primary active-btn" role="button" href="{{ route('admin.users.patient_profile', $patient->CURP) }}">Patient Profile</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_measurements', $patient->CURP) }}">Measurements</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_documents', $patient->CURP) }}">Documents</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_labResults', $patient->CURP) }}">Lab Results</a>
+            <a class="record-btn btn-primary active-btn" role="button" href="{{ route('admin.users.patient_profile', $patient->CURP) }}">Perfil del Paciente</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_measurements', $patient->CURP) }}">Mediciones</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_documents', $patient->CURP) }}">Documentos</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_labResults', $patient->CURP) }}">Resultados de Laboratorio</a>
         </div>
     </div>
     <!-- Modal for Editing Patient Information -->
@@ -66,43 +64,43 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editPatientModalLabel">Edit Patient Information</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="editPatientModalLabel">Editar Información del Paciente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('admin.updatePatient', $patient->CURP) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="first_name">Full Name</label>
+                            <label for="first_name">Nombre Completo</label>
                             <input type="text" name="first_name" id="first_name" value="{{ $patient->PACIENTE }}" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="school_name">School</label>
+                            <label for="school_name">Escuela</label>
                             <input type="text" name="school_name" id="school_name" value="{{ $patient->ESCUELA }}" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="gender">Gender</label>
+                            <label for="gender">Sexo</label>
                             <input type="text" name="gender" id="gender" value="{{ $patient->SEXO }}" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="age">Age</label>
+                            <label for="age">Edad</label>
                             <input type="number" name="age" id="age" value="{{ $patient->EDAD }}" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="fasting_status">Fasting Status</label>
+                            <label for="fasting_status">Estado de Ayuno</label>
                             <input type="text" name="fasting_status" id="fasting_status" value="{{ $patient->AYUNO }}" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="glucose">Glucose</label>
+                            <label for="glucose">Glucosa</label>
                             <input type="text" name="glucose" id="glucose" value="{{ $patient->GLUCOSA }}" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="triglycerides">Triglycerides</label>
+                            <label for="triglycerides">Triglicéridos</label>
                             <input type="text" name="triglycerides" id="triglycerides" value="{{ $patient->TRIGLICÉRIDOS }}" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="total_cholesterol">Total Cholesterol</label>
+                            <label for="total_cholesterol">Colesterol Total</label>
                             <input type="text" name="total_cholesterol" id="total_cholesterol" value="{{ $patient->{'COLESTEROL TOTAL'} }}" class="form-control">
                         </div>
                         <div class="form-group">
@@ -110,15 +108,15 @@
                             <input type="text" name="hba1c" id="hba1c" value="{{ $patient->HBA1C }}" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="weight">Weight</label>
+                            <label for="weight">Peso</label>
                             <input type="text" name="weight" id="weight" value="{{ $patient->PESO }}" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="height">Height</label>
+                            <label for="height">Talla</label>
                             <input type="text" name="height" id="height" value="{{ $patient->TALLA }}" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="bmi">BMI</label>
+                            <label for="bmi">IMC</label>
                             <input type="text" name="bmi" id="bmi" value="{{ $patient->IMC }}" class="form-control">
                         </div>
                         <div class="form-group">
@@ -126,18 +124,18 @@
                             <input type="text" name="icc" id="icc" value="{{ $patient->ICC }}" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="waist">Waist</label>
+                            <label for="waist">Cintura</label>
                             <input type="text" name="waist" id="waist" value="{{ $patient->CINTURA }}" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="hip">Hip</label>
+                            <label for="hip">Cadera</label>
                             <input type="text" name="hip" id="hip" value="{{ $patient->CADERA }}" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="comments">Comment</label>
+                            <label for="comments">Comentario</label>
                             <textarea name="comments" id="comments" class="form-control">{{ $patient->COMENTARIO }}</textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                     </form>
                 </div>
             </div>
@@ -145,7 +143,6 @@
     </div>
 </body>
 <style>
-    /* Styling for Containers*/
     .main-content {
         display: flex;
         justify-content: center;
@@ -172,8 +169,6 @@
         flex-direction: column;
         align-items: center;
     }
-    /*-----------------------------------*/
-    /* Styling for Back and Edit Buttons*/
     .top-buttons {
         margin-top: 0.625rem;
         margin-bottom: 0.625rem;
@@ -209,16 +204,12 @@
     .btn-edit:hover {
         background-color: #E0E0E0;
     }
-    /*-----------------------------------*/
-    /* Styling Title*/
     .card-title {
         font-size: 2rem;
         font-weight: 500;
         margin-top: 2.5rem;
         width: 28.063rem;
     }
-    /*-----------------------------------*/
-    /* Styling for Table*/
     .container-header {
         font-size: 1.25rem;
         font-weight: 500;
@@ -233,7 +224,6 @@
         border: 0.063rem solid rgba(0,0,0,0.30);
         background: #FFF;
     }
-    /*Contact Container needs to go here */
     .table {
         margin-left: 0.875rem;
         color: #000;
@@ -241,8 +231,6 @@
         font-weight: 400;
         width: auto;
     }
-    /*-----------------------------------*/
-    /* Styling for Side Buttons*/
     .button-container {
         width: 13.375rem;
         height: fit-content;
@@ -269,11 +257,10 @@
     }
     .record-btn:hover {
         background-color: #52051C;
-        }
+    }
     .active-btn {
         background: #808080;
         box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25) inset;
     }
-    /*-----------------------------------*/
 </style>
 </html>

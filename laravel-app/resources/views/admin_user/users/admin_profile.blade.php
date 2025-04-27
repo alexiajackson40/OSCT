@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
      <!-- Import Bootstrap and Custom Styles -->
      <link href="{{ asset('theme.css') }}" rel="stylesheet">
@@ -16,22 +16,22 @@
             <div class="card">
                 <div class="top-buttons d-flex flex-row align-self-center">
                     <!-- Back Button -->
-                    <a id="back-btn" class="btn-back" href="{{ route('admin.adminUsers') }}">&lt; Go Back</a>
-                    <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#editAdminModal">[Edit Information]</button>
+                    <a id="back-btn" class="btn-back" href="{{ route('admin.adminUsers') }}">&lt; Regresar</a>
+                    <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#editAdminModal">[Editar Información]</button>
                 </div>
                 <div class="card-body d-flex flex-column">
                     <!-- Admin Info -->
                     <h1 class="card-title">{{ $admin->first_name }} {{ $admin->last_name }}</h1>
                     <div class="information-container d-flex flex-column align-items-left">
-                        <h2 class="container-header">User Information</h2>
+                        <h2 class="container-header">Información del Usuario</h2>
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
+                                    <th>Nombre</th>
                                     <th>{{ $admin->first_name }} {{ $admin->last_name }}</th>
                                 </tr>
                                 <tr>
-                                    <th>Email</th>
+                                    <th>Correo Electrónico</th>
                                     <th>{{ $admin->email }}</th>
                                 </tr>
                             </thead>
@@ -39,11 +39,11 @@
                     </div>
                     <!-- Contact Info -->
                     <div class="contact-container d-flex flex-column align-items-left">
-                        <h2 class="container-header">Contact Information</h2>
+                        <h2 class="container-header">Información de Contacto</h2>
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Phone</th>
+                                    <th>Teléfono</th>
                                     <th>{{ $admin->phone ?? 'N/A' }}</th>
                                 </tr>
                             </thead>
@@ -58,30 +58,30 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editAdminModalLabel">Edit Admin Information</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="editAdminModalLabel">Editar Información del Administrador</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('admin.updateAdmin', $admin->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="first_name">First Name</label>
+                            <label for="first_name">Nombre</label>
                             <input type="text" name="first_name" id="first_name" value="{{ $admin->first_name }}" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="last_name">Last Name</label>
+                            <label for="last_name">Apellido</label>
                             <input type="text" name="last_name" id="last_name" value="{{ $admin->last_name }}" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
+                            <label for="email">Correo Electrónico</label>
                             <input type="email" name="email" id="email" value="{{ $admin->email }}" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="phone">Phone</label>
+                            <label for="phone">Teléfono</label>
                             <input type="text" name="phone" id="phone" value="{{ $admin->phone }}" class="form-control">
                         </div>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                     </form>
                 </div>
             </div>
@@ -178,7 +178,6 @@
         border: 0.063rem solid rgba(0,0,0,0.30);
         background: #FFF;
     }
-    /*Contact Container needs to go here */
     .table {
         margin-left: 0.875rem;
         color: #000;
@@ -186,6 +185,5 @@
         font-weight: 400;
         width: auto;
     }
-    /*-----------------------------------*/
 </style>
 </html>

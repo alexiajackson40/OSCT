@@ -14,9 +14,9 @@
         <!-- Side Buttons Container -->
         <div class="button-container mt-5 d-flex flex-column">
             <!-- No admin check; these links will always show -->
-            <a class="table-btn btn-primary active-btn" role="button" href="{{ route('admin.patientUsers') }}">Patients</a>
-            <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnelUsers') }}">Personnel</a>
-            <a class="table-btn btn-primary" role="button" href="{{ route('admin.adminUsers') }}">Admin</a>
+            <a class="table-btn btn-primary active-btn" role="button" href="{{ route('admin.patientUsers') }}">Pacientes</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnelUsers') }}">Personal</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.adminUsers') }}">Administradores</a>
         </div>
         <!-- Users Container -->
         <div class="users-container mt-5">
@@ -29,52 +29,52 @@
                     <div class="alert alert-danger">{{ session('error') }}</div>
                 @endif
                 <div class="card-head d-flex flex-row">
-                    <h1 class="card-title">Patient Users</h1>
+                    <h1 class="card-title">Usuarios Pacientes</h1>
                     <!-- Buttons for Add New Patient and CSV Upload -->
                     <div class="addBtn-container d-flex flex-row align-items-right mb-4">
-                        <button id="toggleCSVForm" class="btn btn-success btn-import">Import Patients via CSV</button>
-                        <button id="toggleAddPatientForm" class="btn btn-primary btn-new">+ Add New Patient</button>
+                        <button id="toggleCSVForm" class="btn btn-success btn-import">Importar Pacientes (.CSV)</button>
+                        <button id="toggleAddPatientForm" class="btn btn-primary btn-new">+ Añadir Paciente</button>
                     </div>
                 </div>
                 <!-- Add New Patient Form (Hidden by Default) -->
                 <div id="addPatientForm" class="add-patient-form mb-4 p-4" style="display: none;">
-                    <h2>Add New Patient</h2>
+                    <h2>Añadir Nuevo Paciente</h2>
                     <form action="{{ route('admin.addPatient') }}" method="POST" class="form-inline">
                         @csrf
                         <div class="form-group mb-2">
-                            <label for="first_name">PACIENTE:</label>
+                            <label for="first_name">Nombre del Paciente:</label>
                             <input type="text" name="first_name" id="first_name" class="form-control mx-sm-2" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="gender">SEXO:</label>
+                            <label for="gender">Sexo:</label>
                             <input type="text" name="gender" id="gender" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="age">EDAD:</label>
+                            <label for="age">Edad:</label>
                             <input type="number" name="age" id="age" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="school_name">ESCUELA:</label>
+                            <label for="school_name">Escuela:</label>
                             <input type="text" name="school_name" id="school_name" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="DERECHOHABIENCIA">DERECHOHABIENCIA:</label>
+                            <label for="DERECHOHABIENCIA">Derechohabiencia:</label>
                             <input type="text" name="DERECHOHABIENCIA" id="DERECHOHABIENCIA" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="fasting_status">AYUNO:</label>
+                            <label for="fasting_status">Estatus de Ayuno:</label>
                             <input type="text" name="fasting_status" id="fasting_status" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="glucose">GLUCOSA:</label>
+                            <label for="glucose">Glucosa:</label>
                             <input type="text" name="glucose" id="glucose" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="triglycerides">TRIGLICÉRIDOS:</label>
+                            <label for="triglycerides">Triglicéridos:</label>
                             <input type="text" name="triglycerides" id="triglycerides" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="total_cholesterol">COLESTEROL TOTAL:</label>
+                            <label for="total_cholesterol">Colesterol Total:</label>
                             <input type="text" name="total_cholesterol" id="total_cholesterol" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
@@ -82,11 +82,11 @@
                             <input type="text" name="hba1c" id="hba1c" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="weight">PESO:</label>
+                            <label for="weight">Peso:</label>
                             <input type="text" name="weight" id="weight" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="height">TALLA:</label>
+                            <label for="height">Talla:</label>
                             <input type="text" name="height" id="height" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
@@ -94,11 +94,11 @@
                             <input type="text" name="bmi" id="bmi" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="waist">CINTURA:</label>
+                            <label for="waist">Cintura:</label>
                             <input type="text" name="waist" id="waist" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="hip">CADERA:</label>
+                            <label for="hip">Cadera:</label>
                             <input type="text" name="hip" id="hip" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
@@ -106,22 +106,22 @@
                             <input type="text" name="icc" id="icc" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="comments">COMENTARIO:</label>
+                            <label for="comments">Comentario:</label>
                             <textarea name="comments" id="comments" class="form-control mx-sm-2"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary mb-2">Add Patient</button>
+                        <button type="submit" class="btn btn-primary mb-2">Añadir Paciente</button>
                     </form>
                 </div>
                 <!-- CSV Upload Form (Hidden by Default) -->
                 <div id="uploadCSVForm" class="upload-csv-form mb-4" style="display: none;">
-                    <h2>Import Patients via CSV</h2>
+                    <h2>Importar Pacientes via CSV</h2>
                     <form action="{{ route('admin.importPatients') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-2">
-                            <label for="csv_file">Choose CSV File:</label>
+                            <label for="csv_file">Elegir Archivo CSV:</label>
                             <input type="file" name="csv_file" id="csv_file" class="form-control" accept=".csv" required>
                         </div>
-                        <button type="submit" class="btn btn-success mb-2">Upload and Import</button>
+                        <button type="submit" class="btn btn-success mb-2">Subir e Importar</button>
                     </form>
                 </div>
                 <!-- Card Body -->
@@ -131,9 +131,9 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Student ID</th>
-                                    <th>Actions</th>
+                                    <th>Nombre</th>
+                                    <th>ID de Estudiante</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -143,12 +143,12 @@
                                         <td>{{ $patient->getKey() }}</td>
                                         <td>
                                             <!-- View Profile Button -->
-                                            <a href="{{ route('admin.users.patient_profile', $patient->getKey()) }}" class="btn btn-primary btn-view btn-sm">View Profile</a>
+                                            <a href="{{ route('admin.users.patient_profile', $patient->getKey()) }}" class="btn btn-primary btn-view btn-sm">Ver Perfil</a>
                                             <!-- Remove Button -->
                                             <form action="{{ route('admin.removePatient', $patient->getKey()) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                                             </form>
                                         </td>
                                     </tr>

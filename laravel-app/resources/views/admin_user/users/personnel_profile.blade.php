@@ -13,38 +13,38 @@
         <div class="profile-container mt-5">
             <div class="card">
                 <div class="top-buttons d-flex flex-row align-self-center">
-                    <a href="{{ route('admin.personnelUsers') }}" class="btn-back">&lt; Go Back</a>
-                    <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#editPersonnelModal">[Edit Information]</button>
+                    <a href="{{ route('admin.personnelUsers') }}" class="btn-back">&lt; Regresar</a>
+                    <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#editPersonnelModal">[Editar Información]</button>
                 </div>
                 <div class="card-body d-flex flex-column">
                     <h1 class="card-title">{{ $personnel->first_name }} {{ $personnel->last_name }}</h1>
                     <div class="information-container d-flex flex-column align-items-left">
-                        <h2 class="container-header">Personnel Information</h2>
+                        <h2 class="container-header">Información de Personal</h2>
                         <table class="table">
                             <tr>
-                                <td><strong>Employee ID:</strong></td>
+                                <td><strong>ID de Empleado:</strong></td>
                                 <td>{{ $personnel->employee_id }}</td>
                             </tr>
                             <tr>
-                                <td><strong>Phone Number:</strong></td>
+                                <td><strong>Número de Teléfono:</strong></td>
                                 <td>{{ $personnel->phone }}</td>
                             </tr>
                             <tr>
-                                <td><strong>Username:</strong></td>
+                                <td><strong>Nombre de Usuario:</strong></td>
                                 <td>{{ $personnel->username }}</td>
                             </tr>
                         </table>
                     </div>
                     <div class="contact-container d-flex flex-column align-items-left">
-                        <h2 class="container-header">Contact Information</h2>
+                        <h2 class="container-header">Información de Contacto</h2>
                         <table class="table">
                             <tr>
                                 <td><strong>Email:</strong></td>
                                 <td>{{ $personnel->email }}</td>
                             </tr>
                             <tr>
-                                <td><strong>Address:</strong></td>
-                                <td>{{ $personnel->address ?? 'Not provided' }}</td>
+                                <td><strong>Dirección:</strong></td>
+                                <td>{{ $personnel->address ?? 'No proporcionada' }}</td>
                             </tr>
                         </table>
                     </div>
@@ -57,7 +57,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editPersonnelModalLabel">Edit Personnel Information</h5>
+                    <h5 class="modal-title" id="editPersonnelModalLabel">Editar Información de Personal</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -65,22 +65,22 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="first_name">First Name</label>
+                            <label for="first_name">Nombre</label>
                             <input type="text" name="first_name" id="first_name" value="{{ $personnel->first_name }}" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="last_name">Last Name</label>
+                            <label for="last_name">Apellido</label>
                             <input type="text" name="last_name" id="last_name" value="{{ $personnel->last_name }}" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="phone">Phone Number</label>
+                            <label for="phone">Número de Teléfono</label>
                             <input type="text" name="phone" value="{{ $personnel->phone }}" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="address">Address</label>
+                            <label for="address">Dirección</label>
                             <input type="text" name="address" id="address" value="{{ $personnel->address }}" class="form-control">
                         </div>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                     </form>
                 </div>
             </div>
