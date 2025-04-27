@@ -17,7 +17,7 @@
                 <img src="{{ asset('img/colimaGobiernoDelEstado.png') }}" alt="logo">
               </div>
             </div>
-            <h1 class="card-title">Sign In</h1>
+            <h1 class="card-title">Iniciar Sesión</h1>
             <!-- Display error message if login fails -->
             @if ($errors->has('login'))
               <div class="alert alert-danger">
@@ -28,18 +28,18 @@
               <form action="{{ route('login') }}" method="POST">
                 @csrf
                 <div class="form-group">
-                  <label for="username">Username</label>
-                  <input type="text" class="form-control" id="username" name="username" aria-label="Username" placeholder="Username" required>
+                  <label for="username">Nombre de Usuario</label>
+                  <input type="text" class="form-control" id="username" name="username" aria-label="Username" placeholder="Nombre de Usuario" required>
                 </div>
                 <div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" class="form-control" id="password" name="password" aria-label="Password" placeholder="Password" required>
+                  <label for="password">Contraseña</label>
+                  <input type="password" class="form-control" id="password" name="password" aria-label="Password" placeholder="Contraseña" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Sign In</button>
+                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
                 <div class="signUp-container">
                   <p>
-                    Need an account?
-                    <a class="btn-signUp" href="{{ route('signup') }}">Create one here</a>
+                    ¿Necesitas una cuenta?
+                    <a class="btn-signUp" href="{{ route('signup') }}">Crear una aquí</a>
                   </p>
                 </div>
               </form>
