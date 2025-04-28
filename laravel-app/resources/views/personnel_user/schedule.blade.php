@@ -11,7 +11,7 @@
     <div class="main-content">
         <div class="schedule-container mt-5">
             <div class="card">
-                <form action="{{ route('admin.uploadSchedule') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('personnel.uploadSchedule') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body d-flex flex-column">
                         <h1 class="card-title">Programación vista a Planteles Escolares</h1>
@@ -52,7 +52,7 @@
                                     <td>{{ $schedule->total_students }}</td>
                                     <td>{{ $schedule->date }}</td>
                                     <td>
-                                        <a href="{{ route('schedule.edit', $schedule->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                                        <a href="{{ route('personnel.schedule.edit', $schedule->id) }}" class="btn btn-warning btn-sm">Editar</a>
                                     </td>
                                 </tr>
                             @endforeach

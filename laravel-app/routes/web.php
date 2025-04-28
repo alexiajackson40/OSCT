@@ -111,6 +111,10 @@ Route::prefix('personnel')->middleware('auth:personnel')->group(function () {
     Route::put('/personnel/change-password/{id}', [PersonnelController::class, 'changePassword'])->name('personnel.changePassword');
 
     Route::get('schedule', [PersonnelController::class, 'schedule'])->name('personnel.schedule');
+    Route::get('schedule/edit/{id}', [PersonnelController::class, 'editSchedule'])->name('personnel.schedule.edit');
+    Route::put('schedule/update/{id}', [PersonnelController::class, 'updateSchedule'])->name('personnel.schedule.update');
+    Route::post('schedule/upload', [PersonnelController::class, 'uploadSchedule'])->name('personnel.uploadSchedule');
+
     Route::get('users', [PersonnelController::class, 'users'])->name('personnel.users');
 
     Route::get('patients/{id}/profile', [PersonnelController::class, 'patientProfile'])->name('personnel.patientProfile');
