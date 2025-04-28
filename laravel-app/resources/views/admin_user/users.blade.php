@@ -11,9 +11,9 @@
     @include('admin_user.header_admin')
     <div class="main-content">
         <div class="button-container mt-5 d-flex flex-column">
-            <a class="table-btn" role="button" href="{{ route('admin.patientUsers') }}">Patients</a>
-            <a class="table-btn" role="button" href="{{ route('admin.personnelUsers') }}">Personnel</a>
-            <a class="table-btn" role="button" href="{{ route('admin.adminUsers') }}">Admin</a>
+            <a class="table-btn" role="button" href="{{ route('admin.patientUsers') }}">Pacientes</a>
+            <a class="table-btn" role="button" href="{{ route('admin.personnelUsers') }}">Personal</a>
+            <a class="table-btn" role="button" href="{{ route('admin.adminUsers') }}">Administrador</a>
         </div>
         <div class="users-container mt-5">
             <div class="card">
@@ -25,50 +25,50 @@
                 @endif
 
                 <div class="card-head d-flex flex-row">
-                    <h1 class="card-title">Users</h1>
+                    <h1 class="card-title">Usuarios</h1>
                     <div class="addBtn-container d-flex flex-row align-items-right mb-4">
-                        <button id="toggleAddUserForm" class="btn btn-primary btn-new">+ Add New User</button>
+                        <button id="toggleAddUserForm" class="btn btn-primary btn-new">+ Agregar Nuevo Usuario</button>
                     </div>
                 </div>
 
                 <!-- Add New Admin/Personnel Form -->
                 <div id="addUserForm" class="add-patient-form mb-4 p-4" style="display: none;">
-                    <h2>Add New User</h2>
+                    <h2>Agregar Nuevo Usuario</h2>
                     <form action="{{ route('admin.addUser') }}" method="POST" class="form-inline">
                         @csrf
                         <div class="form-group mb-2">
-                            <label for="role">Role:</label>
+                            <label for="role">Rol:</label>
                             <select name="role" id="role" class="form-control mx-sm-2" required>
-                                <option value="">Select Role</option>
-                                <option value="admin">Admin</option>
-                                <option value="personnel">Personnel</option>
+                                <option value="">Seleccionar Rol</option>
+                                <option value="admin">Administrador</option>
+                                <option value="personnel">Personal</option>
                             </select>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="first_name">First Name:</label>
+                            <label for="first_name">Nombre:</label>
                             <input type="text" name="first_name" id="first_name" class="form-control mx-sm-2" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="last_name">Last Name:</label>
+                            <label for="last_name">Apellido:</label>
                             <input type="text" name="last_name" id="last_name" class="form-control mx-sm-2" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="username">Username:</label>
+                            <label for="username">Nombre de Usuario:</label>
                             <input type="text" name="username" id="username" class="form-control mx-sm-2" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="email">Email:</label>
+                            <label for="email">Correo Electrónico:</label>
                             <input type="email" name="email" id="email" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="phone">Phone:</label>
+                            <label for="phone">Teléfono:</label>
                             <input type="text" name="phone" id="phone" class="form-control mx-sm-2">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="password">Password:</label>
+                            <label for="password">Contraseña:</label>
                             <input type="password" name="password" id="password" class="form-control mx-sm-2" required>
                         </div>
-                        <button type="submit" class="btn btn-primary mb-2">Add User</button>
+                        <button type="submit" class="btn btn-primary mb-2">Agregar Usuario</button>
                     </form>
                 </div>
 
@@ -77,10 +77,10 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Actions</th>
+                                    <th>Nombre</th>
+                                    <th>Correo Electrónico</th>
+                                    <th>Rol</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,14 +91,14 @@
                                         <td>{{ ucfirst($user->role) }}</td>
                                         <td>
                                             @if($user->role === 'admin')
-                                                <a href="{{ route('admin.users.admin_profile', $user->getKey()) }}" class="btn btn-primary btn-view btn-action">View Profile</a>
+                                                <a href="{{ route('admin.users.admin_profile', $user->getKey()) }}" class="btn btn-primary btn-view btn-action">Ver Perfil</a>
                                             @elseif($user->role === 'personnel')
-                                                <a href="{{ route('admin.users.personnel_profile', $user->getKey()) }}" class="btn btn-primary btn-view btn-action">View Profile</a>
+                                                <a href="{{ route('admin.users.personnel_profile', $user->getKey()) }}" class="btn btn-primary btn-view btn-action">Ver Perfil</a>
                                             @endif
                                             <form action="{{ route('admin.users.destroy', $user->getKey()) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-action" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
+                                                <button type="submit" class="btn btn-danger btn-action" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')">Eliminar</button>
                                             </form>
                                         </td>
                                     </tr>

@@ -9,12 +9,12 @@ class HomeController extends Controller
     // Method to show the home page
     public function home()
     {
-        return view('home'); // View located at resources/views/home.blade.php
+        return view('home');
     }
 
     // Method to show the login page
     public function login()
     {
-        return view('login'); // View located at resources/views/login.blade.php
+        return view('login');
     }
 }

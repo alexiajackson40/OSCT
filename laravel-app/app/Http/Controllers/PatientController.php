@@ -16,7 +16,7 @@ class PatientController extends Controller
     // Method to show the patient home page
     public function home()
     {
-        return view('patient_user.home');  // matches home.blade.php
+        return view('patient_user.home');
     }
 
     // Method to show patient profile
@@ -33,22 +33,22 @@ class PatientController extends Controller
     // Method to show patient's documents
     public function documents()
     {
-        $documents = Document::where('user_id', Auth::id())->get(); // Updated to fetch data for authenticated patient
-        return view('patient_user.documents', compact('documents')); // matches documents.blade.php
+        $documents = Document::where('user_id', Auth::id())->get();
+        return view('patient_user.documents', compact('documents'));
     }
 
     // Method to show patient's lab results
     public function labResults()
     {
-        $labResults = LabResult::where('user_id', Auth::id())->get(); // Updated to fetch data for authenticated patient
-        return view('patient_user.lab_results', compact('labResults')); // matches lab_results.blade.php
+        $labResults = LabResult::where('user_id', Auth::id())->get(); 
+        return view('patient_user.lab_results', compact('labResults')); 
     }
 
     // Method to show patient's schedule
     public function schedule()
     {
-        $schedules = Schedule::all(); // Retrieve all schedules
-        return view('patient_user.schedule', compact('schedules')); // matches schedule.blade.php
+        $schedules = Schedule::all(); 
+        return view('patient_user.schedule', compact('schedules'));
     }
 
     // Method to show patient's measurements
@@ -56,7 +56,7 @@ class PatientController extends Controller
     {  
     $parent = auth()->user();
     $patient = Patient::where('CURP', $parent->CURP)->first();
-    $measurements = Measurement::where('user_id', $patient->CURP)->get(); // or ID if that's how it's stored
+    $measurements = Measurement::where('user_id', $patient->CURP)->get();
 
     return view('patient_user.measurements', compact('measurements'));
     }
@@ -65,6 +65,6 @@ class PatientController extends Controller
     // Optional: Method to show the signup page
     public function signUp()
     {
-        return view('patient_user.sign_up'); // matches sign_up.blade.php
+        return view('patient_user.sign_up');
     }
 }

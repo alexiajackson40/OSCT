@@ -17,7 +17,7 @@ class AuthController extends Controller
     // Show registration form
     public function showRegisterForm()
     {
-        return view('auth.register'); // Make sure you have a view for the registration page
+        return view('auth.register'); 
     }
 
     // Handle user login authentication
@@ -31,7 +31,7 @@ class AuthController extends Controller
 
         // Admin authentication
         $admin = Admin::where('username', $request->username)->first();
-        if ($admin && Hash::check($request->password, $admin->password)) {  // Use Hash::check()
+        if ($admin && Hash::check($request->password, $admin->password)) {  
             Auth::guard('admin')->login($admin);
             return redirect()->route('admin.home');
         }
@@ -39,31 +39,21 @@ class AuthController extends Controller
         // Personnel authentication
         $personnel = Personnel::where('username', $request->username)->first();
         if ($personnel && Hash::check($request->password, $personnel->password)) {
-            Auth::guard('personnel')->login($personnel); // ← use personnel guard
+            Auth::guard('personnel')->login($personnel); 
             return redirect()->route('personnel.home');
         }
-        /*
-        // Patient authentication
-        $patient = Patient::where('username', $request->username)->first();
-        if ($patient && Hash::check($request->password, $patient->password)) {  // Use Hash::check()
-            Auth::login($patient);
-            return redirect()->route('patient.home');
-        }
-        */
+
         // Parent authentication
         $parent = ParentModel::where('username', $request->username)->first();
-if ($parent) {
-    if (Hash::check($request->password, $parent->password)) {
+        if ($parent) {
+        if (Hash::check($request->password, $parent->password)) {
         Auth::guard('parent')->login($parent);
         return redirect()->route('patient.home');
     }
 } 
-
-
         // If no match is found
         return back()->withErrors([
             'login' => 'Invalid username or password.',
         ]);
-        
     }
 }

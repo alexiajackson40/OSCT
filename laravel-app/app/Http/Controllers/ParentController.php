@@ -25,80 +25,72 @@ class ParentController extends Controller
     }
 
     public function profile()
-{
-    $parent = auth()->user(); // logged-in parent
-
-    // Get patient whose CURP matches the parent's CURP
-    $patient = Patient::where('CURP', $parent->CURP)->first();
-
-    return view('patient_user.profile', compact('patient', 'parent'));
-}
-
-public function documents()
-{
-    $parent = auth()->user();
-    $documents = Document::where('user_id', $parent->CURP)->get();
-
-    return view('patient_user.documents', compact('documents'));
-}
-
-public function labResults()
-{
-    $parent = auth()->user();
-    $labResults = LabResult::where('user_id', $parent->CURP)->get();
-
-    return view('patient_user.lab_results', compact('labResults'));
-}
-
-
-public function downloadDocument($id)
-{
-    $document = Document::findOrFail($id);
-    $filePath = public_path($document->file_path); 
-
-    if (file_exists($filePath)) {
-        return response()->file($filePath);
-    }
-
-    return redirect()->back()->with('error', 'File not found.');
-}
-
-public function downloadLabResult($id)
-{
-    $result = LabResult::findOrFail($id);
-    $filePath = public_path($result->file_path); 
-
-    if (file_exists($filePath)) {
-        return response()->file($filePath);
-    }
-
-    return redirect()->back()->with('error', 'File not found.');
-}
-
-public function measurements()
-{
-    $parent = auth()->user();
-
-    // Get the patient whose CURP matches the parent’s CURP
-    $patient = Patient::where('CURP', $parent->CURP)->first();
-
-    // Prevent crash if no patient found
-    if (!$patient) {
-        return redirect()->back()->with('error', 'No linked student found.');
-    }
-
-    // Pull measurements for that CURP
-    $measurements = Measurement::where('user_id', $patient->CURP)->get();
-
-    return view('patient_user.measurements', compact('measurements'));
-}
-
-public function schedule()
     {
-        $schedules = Schedule::all(); // Retrieve all schedules
+        $parent = auth()->user();
+        $patient = Patient::where('CURP', $parent->CURP)->first();
+
+        return view('patient_user.profile', compact('patient', 'parent'));
+    }
+
+    public function documents()
+    {
+        $parent = auth()->user();
+        $documents = Document::where('user_id', $parent->CURP)->get();
+
+        return view('patient_user.documents', compact('documents'));
+    }
+
+    public function labResults()
+    {
+        $parent = auth()->user();
+        $labResults = LabResult::where('user_id', $parent->CURP)->get();
+
+        return view('patient_user.lab_results', compact('labResults'));
+    }
+
+    public function downloadDocument($id)
+    {
+        $document = Document::findOrFail($id);
+        $filePath = public_path($document->file_path); 
+
+        if (file_exists($filePath)) {
+            return response()->file($filePath);
+        }
+
+        return redirect()->back()->with('error', 'Archivo no encontrado.');
+    }
+
+    public function downloadLabResult($id)
+    {
+        $result = LabResult::findOrFail($id);
+        $filePath = public_path($result->file_path); 
+
+        if (file_exists($filePath)) {
+            return response()->file($filePath);
+        }
+
+        return redirect()->back()->with('error', 'Archivo no encontrado.');
+    }
+
+    public function measurements()
+    {
+        $parent = auth()->user();
+        $patient = Patient::where('CURP', $parent->CURP)->first();
+
+        if (!$patient) {
+            return redirect()->back()->with('error', 'No se encontró un estudiante vinculado.');
+        }
+
+        $measurements = Measurement::where('user_id', $patient->CURP)->get();
+
+        return view('patient_user.measurements', compact('measurements'));
+    }
+
+    public function schedule()
+    {
+        $schedules = Schedule::all();
         return view('patient_user.schedule', compact('schedules'));
     }
-
 
     public function store(Request $request)
     {
@@ -120,6 +112,6 @@ public function schedule()
             'password'   => Hash::make($request->password),
         ]);
 
-        return redirect()->route('login')->with('success', 'Account created successfully.');
+        return redirect()->route('login')->with('success', '¡Cuenta creada exitosamente!');
     }
 }

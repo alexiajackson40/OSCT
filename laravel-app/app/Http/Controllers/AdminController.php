@@ -24,7 +24,7 @@ class AdminController extends Controller
         $user = Auth::guard('admin')->user();
     
         if (!$user) {
-            return redirect()->route('login')->withErrors('You must be logged in to access this page.');
+            return redirect()->route('login')->withErrors('Debes iniciar sesión para acceder a esta página.');
         }
     
         return view('admin_user.profile', compact('user'));
@@ -41,7 +41,6 @@ class AdminController extends Controller
             'phone' => 'nullable|string|max:15',
         ]);
 
-        // Handle creating the user based on role
         if ($request->input('role') === 'admin') {
             Admin::create([
                 'first_name' => $request->input('first_name'),
@@ -74,13 +73,12 @@ class AdminController extends Controller
         }
     
         if ($request->input('role') === 'admin') {
-            return redirect()->route('admin.adminUsers')->with('success', 'Admin added successfully!');
+            return redirect()->route('admin.adminUsers')->with('success', 'Administrador agregado exitosamente.');
         } elseif ($request->input('role') === 'personnel') {
-            return redirect()->route('admin.personnelUsers')->with('success', 'Personnel added successfully!');
+            return redirect()->route('admin.personnelUsers')->with('success', 'Personal agregado exitosamente.');
         } else {
-            return redirect()->route('admin.patientUsers')->with('success', 'Patient added successfully!');
+            return redirect()->route('admin.patientUsers')->with('success', 'Paciente agregado exitosamente.');
         }
-        
     }
 
     public function editProfile()
@@ -103,7 +101,6 @@ class AdminController extends Controller
     
         $user = Auth::guard('admin')->user();
     
-        // Update the user in the database
         $updated = $user->update([
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),
@@ -113,13 +110,11 @@ class AdminController extends Controller
             'address' => $request->input('address'),
         ]);
     
-        // Check if the update was successful
         if ($updated) {
-            return redirect()->route('admin.profile')->with('success', 'Profile updated successfully!');
+            return redirect()->route('admin.profile')->with('success', 'Perfil actualizado exitosamente.');
         }
     
-        // If the update failed, stay on the edit page with an error message
-        return redirect()->back()->withErrors('Failed to update profile. Please try again.');
+        return redirect()->back()->withErrors('No se pudo actualizar el perfil. Intenta de nuevo.');
     }
 
     public function destroyUser($id)
@@ -129,13 +124,13 @@ class AdminController extends Controller
     
         if ($admin) {
             $admin->delete();
-            return redirect()->route('admin.users')->with('success', 'Admin deleted successfully.');
+            return redirect()->route('admin.users')->with('success', 'Administrador eliminado exitosamente.');
         } elseif ($personnel) {
             $personnel->delete();
-            return redirect()->route('admin.users')->with('success', 'Personnel deleted successfully.');
+            return redirect()->route('admin.users')->with('success', 'Personal eliminado exitosamente.');
         }
     
-        return redirect()->route('admin.users')->with('error', 'User not found.');
+        return redirect()->route('admin.users')->with('error', 'Usuario no encontrado.');
     }
     
     public function headerAdmin()
@@ -145,14 +140,14 @@ class AdminController extends Controller
 
     public function schedule()
     {
-        $schedules = Schedule::all(); // Retrieve all schedules
+        $schedules = Schedule::all();
         return view('admin_user.schedule', compact('schedules'));
     }
     
     public function uploadSchedule(Request $request)
     {
         $request->validate([
-            'schedule_file' => 'required|mimes:csv,txt|max:2048', // Validate file type and size
+            'schedule_file' => 'required|mimes:csv,txt|max:2048',
         ]);
     
         if ($request->hasFile('schedule_file')) {
@@ -172,7 +167,6 @@ class AdminController extends Controller
                 'TOTAL DE ALUMNOS', 'FECHA'
             ];
     
-            // Ensure the header matches or contains at least the expected columns
             $truncatedHeader = array_slice($header, 0, count($expectedColumns));
     
             if ($truncatedHeader !== $expectedColumns) {
@@ -181,7 +175,7 @@ class AdminController extends Controller
                     'expected' => $expectedColumns,
                     'actual' => $header,
                 ]);
-                return back()->with('error', 'Invalid CSV format. Ensure headers match: ' . implode(', ', $expectedColumns));
+                return back()->with('error', 'Formato de CSV inválido. Asegúrate que los encabezados coincidan: ' . implode(', ', $expectedColumns));
             }
     
             $schedules = [];
@@ -192,60 +186,54 @@ class AdminController extends Controller
                 $rowIndex++;
                 \Log::info("Processing row $rowIndex:", $row);
     
-                // Truncate the row to match the expected columns
                 $row = array_slice($row, 0, count($expectedColumns));
                 \Log::info("Truncated row $rowIndex:", $row);
     
                 if (empty(array_filter($row)) || count($row) !== count($expectedColumns)) {
-                    $errors[] = "Invalid row at index $rowIndex. Skipping.";
+                    $errors[] = "Fila inválida en el índice $rowIndex. Saltando.";
                     \Log::warning("Row $rowIndex skipped due to empty or mismatched columns.", $row);
                     continue;
                 }
     
                 $rowData = @array_combine($expectedColumns, $row);
                 if (!$rowData) {
-                    $errors[] = "Row at index $rowIndex could not be processed. Skipping.";
+                    $errors[] = "La fila en el índice $rowIndex no pudo ser procesada. Saltando.";
                     \Log::warning("Row $rowIndex could not be processed. Data:", $row);
                     continue;
                 }
     
-                // Debug: Log raw FECHA value
                 $fechaRaw = trim($rowData['FECHA']);
                 \Log::info("Raw FECHA value for row $rowIndex: '$fechaRaw'");
     
-                // Sanitize FECHA column
-                $fechaCleaned = preg_replace('/^[A-ZÁÉÍÓÚÑ]+\s+/u', '', $fechaRaw); // Remove weekday
-                $fechaCleaned = preg_replace('/\s+/', '', $fechaCleaned); // Remove any remaining spaces
+                $fechaCleaned = preg_replace('/^[A-ZÁÉÍÓÚÑ]+\s+/u', '', $fechaRaw);
+                $fechaCleaned = preg_replace('/\s+/', '', $fechaCleaned);
                 \Log::info("Sanitized FECHA value for row $rowIndex: '$fechaCleaned'");
     
                 try {
-                    // Parse date assuming format d/m/y
                     $date = \Carbon\Carbon::createFromFormat('d/m/y', $fechaCleaned)->format('Y-m-d');
                     \Log::info("Parsed date for row $rowIndex: '$fechaCleaned' → '$date'");
                 } catch (\Exception $e) {
-                    $errors[] = "Invalid date format at row $rowIndex: '$fechaRaw'. Skipping.";
+                    $errors[] = "Formato de fecha inválido en la fila $rowIndex: '$fechaRaw'. Saltando.";
                     \Log::error("Date parsing error for row $rowIndex: '$fechaRaw' → '$fechaCleaned'", ['error' => $e->getMessage()]);
                     continue;
                 }
     
                 $schedules[] = [
-                    'level'           => $rowData['NIVEL'],
-                    'shift'           => $rowData['TURNO'],
-                    'cct'             => $rowData['CCT'],
-                    'school_name'     => $rowData['NOMBRE DE LA ESCUELA'],
-                    'municipality'    => $rowData['MUNICIPIO'],
-                    'locality'        => $rowData['LOCALIDAD'],
-                    'address'         => $rowData['DOMICILIO'],
-                    'total_students'  => is_numeric($rowData['TOTAL DE ALUMNOS']) ? (int) $rowData['TOTAL DE ALUMNOS'] : null,
-                    'date'            => $date,
-                    'created_at'      => now(),
-                    'updated_at'      => now(),
+                    'level' => $rowData['NIVEL'],
+                    'shift' => $rowData['TURNO'],
+                    'cct' => $rowData['CCT'],
+                    'school_name' => $rowData['NOMBRE DE LA ESCUELA'],
+                    'municipality' => $rowData['MUNICIPIO'],
+                    'locality' => $rowData['LOCALIDAD'],
+                    'address' => $rowData['DOMICILIO'],
+                    'total_students' => is_numeric($rowData['TOTAL DE ALUMNOS']) ? (int) $rowData['TOTAL DE ALUMNOS'] : null,
+                    'date' => $date,
+                    'created_at' => now(),
+                    'updated_at' => now(),
                 ];
             }
     
             fclose($fileHandle);
-    
-            \Log::info('Finished reading CSV file. Preparing for database insertion.');
     
             try {
                 if (!empty($schedules)) {
@@ -253,23 +241,24 @@ class AdminController extends Controller
                     \Log::info(count($schedules) . ' schedules inserted successfully.');
                 }
     
-                $successMessage = count($schedules) . ' schedules uploaded successfully.';
+                $successMessage = count($schedules) . ' horarios cargados exitosamente.';
                 if (!empty($errors)) {
-                    $successMessage .= '<br>Some errors occurred:<br>' . implode('<br>', $errors);
+                    $successMessage .= '<br>Se produjeron algunos errores:<br>' . implode('<br>', $errors);
                 }
     
                 return back()->with('success', $successMessage);
             } catch (\Exception $e) {
                 \Log::error('Database insertion error', ['error' => $e->getMessage()]);
-                return back()->with('error', 'Upload failed: ' . $e->getMessage());
+                return back()->with('error', 'Error al cargar: ' . $e->getMessage());
             }
         }
     
         \Log::error('No file uploaded.');
-        return back()->with('error', 'No file uploaded.');
+        return back()->with('error', 'No se subió ningún archivo.');
     }
     
-    public function scheduleEdit($id) {
+    public function scheduleEdit($id)
+    {
         $schedule = Schedule::findOrFail($id);
         return view('admin_user.edit_schedule', compact('schedule'));
     }
@@ -302,20 +291,16 @@ class AdminController extends Controller
             'date' => $request->input('date'),
         ]);
     
-        return redirect()->route('schedule.index')->with('success', 'Schedule updated!');
-    }         
+        return redirect()->route('schedule.index')->with('success', 'Horario actualizado exitosamente.');
+    }
 
     public function users()
     {
-        $admins = Admin::all(); // Fetch admins
-        $personnel = Personnel::all(); // Fetch personnel
-        //$patients = Patient::all(); // Fetch patients
-    
-        // Combine all user types into one collection
+        $admins = Admin::all();
+        $personnel = Personnel::all();
         $users = $admins->concat($personnel);
-    
         return view('admin_user.users', compact('users'));
-    }    
+    }
 
     public function addUser()
     {
@@ -324,10 +309,10 @@ class AdminController extends Controller
 
     public function editUser($id)
     {
-        $user = Admin::find($id) ?? Personnel::find($id) ?? Patient::find($id); // Fetch user by ID
+        $user = Admin::find($id) ?? Personnel::find($id) ?? Patient::find($id);
     
         if (!$user) {
-            return redirect()->route('admin.users')->withErrors('User not found.');
+            return redirect()->route('admin.users')->withErrors('Usuario no encontrado.');
         }
     
         return view('admin_user.edit_user', compact('user'));
@@ -345,7 +330,7 @@ class AdminController extends Controller
         $user = Admin::find($id) ?? Personnel::find($id);
     
         if (!$user) {
-            return redirect()->route('admin.users')->withErrors('User not found.');
+            return redirect()->route('admin.users')->withErrors('Usuario no encontrado.');
         }
     
         $user->update([
@@ -355,7 +340,7 @@ class AdminController extends Controller
             'phone' => $request->input('phone'),
         ]);
     
-        return redirect()->route('admin.users')->with('success', 'User updated successfully!');
+        return redirect()->route('admin.users')->with('success', 'Usuario actualizado exitosamente.');
     }
 
     public function changePasswordForm()
@@ -374,13 +359,12 @@ class AdminController extends Controller
         $user = Auth::guard('admin')->user();
     
         if (!Hash::check($request->current_password, $user->password)) {
-            return back()->withErrors(['current_password' => 'Current password is incorrect.']);
+            return back()->withErrors(['current_password' => 'La contraseña actual es incorrecta.']);
         }
     
         $user->password = $request->new_password;
         $user->save();
     
-        return redirect()->route('admin.profile')->with('success', 'Password updated successfully.');
+        return redirect()->route('admin.profile')->with('success', 'Contraseña actualizada exitosamente.');
     }
-    
 }
