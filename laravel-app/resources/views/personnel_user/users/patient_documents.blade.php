@@ -14,18 +14,18 @@
             <div class="card">
                 <!-- Top Buttons -->
                 <div class="top-buttons d-flex flex-row align-self-center">
-                    <a href="{{ route('personnel.users') }}" class="btn-back">&lt; Go Back</a>
-                    <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#uploadDocumentModal">[Upload Document]</button>
+                    <a href="{{ route('personnel.users') }}" class="btn-back">&lt; Volver</a>
+                    <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#uploadDocumentModal">[Cargar Documento]</button>
                 </div>
                 <div class="card-body d-flex flex-column">
-                    <h1 class="card-title">Documents for:<br> {{ $patient->PACIENTE }}</h1>
+                    <h1 class="card-title">Documentos para:<br> {{ $patient->PACIENTE }}</h1>
                     <div class="measurements-container">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Document Name</th>
-                                    <th>Uploaded By</th>
-                                    <th>Actions</th>
+                                    <th>Nombre del Documento</th>
+                                    <th>Subido por</th>
+                                    <th>Comportamiento</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -34,11 +34,11 @@
                                         <td>{{ $document->name }}</td>
                                         <td>{{ $document->uploaded_by }}</td>
                                         <td>
-                                            <a href="{{ url('/' . $document->file_path) }}" class="btn btn-primary btn-download btn-sm" target="_blank">Download</a>
+                                            <a href="{{ url('/' . $document->file_path) }}" class="btn btn-primary btn-download btn-sm" target="_blank">Descargar</a>
                                             <form action="{{ route('personnel.deleteDocument', $document->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -51,10 +51,10 @@
         </div>
         <!-- Side Buttons -->
         <div class="button-container mt-5 d-flex flex-column">
-            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientProfile', $patient->CURP) }}">Patient Profile</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientMeasurements', $patient->CURP) }}">Measurements</a>
-            <a class="record-btn btn-primary active-btn" role="button" href="{{ route('personnel.documents', $patient->CURP) }}">Documents</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientLabResults', $patient->CURP) }}">Lab Results</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientProfile', $patient->CURP) }}">Perfil del Paciente</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientMeasurements', $patient->CURP) }}">Medidas</a>
+            <a class="record-btn btn-primary active-btn" role="button" href="{{ route('personnel.documents', $patient->CURP) }}">Documentos</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientLabResults', $patient->CURP) }}">Resultados de Laboratorio</a>
         </div>
     </div>
     <!-- Modal for Uploading Document -->
@@ -62,21 +62,21 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="uploadDocumentModalLabel">Upload New Document</h5>
+                    <h5 class="modal-title" id="uploadDocumentModalLabel">Cargar Nuevo Documento</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('personnel.uploadDocument', $patient->CURP) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="document_name">Document Name</label>
+                            <label for="document_name">Nombre del Documento</label>
                             <input type="text" name="document_name" id="document_name" class="form-control" required>
                         </div>
                         <div class="form-group mt-3">
-                            <label for="document_file">Upload File</label>
+                            <label for="document_file">Cargar Archivo</label>
                             <input type="file" name="document_file" id="document_file" class="form-control" required>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-3">Upload</button>
+                        <button type="submit" class="btn btn-primary mt-3">Cargar</button>
                     </form>
                 </div>
             </div>

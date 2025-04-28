@@ -26,16 +26,16 @@
                     @if(Auth::check())
                         <span class="user-text">{{ Auth::user()->username }}</span>
                     @else
-                        <span class="user-text">Guest</span>
+                        <span class="user-text">Invitado</span>
                     @endif
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
-                    <li><a class="dropdown-item" id="profile-button" href="{{ route('personnel.profile', Auth::id()) }}">View Profile</a></li>
+                    <li><a class="dropdown-item" id="profile-button" href="{{ route('personnel.profile', Auth::id()) }}">Ver Perfil</a></li>
                     <li>
                         <!-- Sign Out form -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <button type="submit" class="dropdown-item">Sign Out</button>
+                            <button type="submit" class="dropdown-item">Desconectar</button>
                         </form>
                     </li>
                 </ul>
@@ -45,9 +45,9 @@
     <!-- Navigation Bar -->
     <div class="navigation-container">
         <nav class="nav nav-pills nav-fill">
-            <a class="nav-link {{ request()->is('personnel/home') ? 'active' : '' }}" href="{{ route('personnel.home') }}">Home</a>
-            <a class="nav-link {{ request()->is('personnel/users') ? 'active' : '' }}" href="{{ route('personnel.users') }}">Users</a>
-            <a class="nav-link {{ request()->is('personnel/schedule') ? 'active' : '' }}" href="{{ route('personnel.schedule') }}">Schedule</a>
+            <a class="nav-link {{ request()->is('personnel/home') ? 'active' : '' }}" href="{{ route('personnel.home') }}">Hogar</a>
+            <a class="nav-link {{ request()->is('personnel/users') ? 'active' : '' }}" href="{{ route('personnel.users') }}">Usuarios</a>
+            <a class="nav-link {{ request()->is('personnel/schedule') ? 'active' : '' }}" href="{{ route('personnel.schedule') }}">Cronograma</a>
         </nav>
     </div>
 <style>

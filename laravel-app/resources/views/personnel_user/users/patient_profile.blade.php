@@ -14,29 +14,29 @@
             <div class="card">
                 <!-- Top Buttons -->
                 <div class="top-buttons d-flex flex-row align-self-center">
-                    <a href="{{ route('personnel.users') }}" class="btn-back">&lt; Go Back</a>
-                    <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#editPatientModal">[Edit Information]</button>
+                    <a href="{{ route('personnel.users') }}" class="btn-back">&lt; Volver</a>
+                    <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#editPatientModal">[Editar Información]</button>
                 </div>
                 <!-- Patient Information -->
                 <div class="card-body d-flex flex-column">
                     <h1 class="card-title">{{ $patient->PACIENTE }}</h1>
                     <div class="information-container d-flex flex-column align-items-left">
-                        <h2 class="container-header">Patient Information</h2>
+                        <h2 class="container-header">Información del Paciente</h2>
                         <table class="table">
                             <tr>
-                                <td><strong>Student ID:</strong></td>
+                                <td><strong>Identificación de Estudiante:</strong></td>
                                 <td>{{ $patient->No_SOL }}</td>
                             </tr>
                             <tr>
-                                <td><strong>Gender:</strong></td>
+                                <td><strong>Sexo:</strong></td>
                                 <td>{{ $patient->SEXO }}</td>
                             </tr>
                             <tr>
-                                <td><strong>Age:</strong></td>
+                                <td><strong>Edad:</strong></td>
                                 <td>{{ $patient->EDAD }}</td>
                             </tr>
                             <tr>
-                                <td><strong>School:</strong></td>
+                                <td><strong>Escuela:</strong></td>
                                 <td>{{ $patient->ESCUELA }}</td>
                             </tr>
                             <tr>
@@ -50,10 +50,10 @@
         </div>
         <!-- Navigation Buttons -->
         <div class="button-container mt-5 d-flex flex-column">
-            <a class="record-btn btn-primary active-btn" role="button" href="{{ route('personnel.patientProfile', $patient->CURP) }}">Patient Profile</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientMeasurements', $patient->CURP) }}">Measurements</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.documents', $patient->CURP) }}">Documents</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientLabResults', $patient->CURP) }}">Lab Results</a>
+            <a class="record-btn btn-primary active-btn" role="button" href="{{ route('personnel.patientProfile', $patient->CURP) }}">Perfil del Paciente</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientMeasurements', $patient->CURP) }}">Medidas</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.documents', $patient->CURP) }}">Documentos</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientLabResults', $patient->CURP) }}">Resultados de Laboratorio</a>
         </div>
     </div>
     <!-- Edit Patient Modal -->

@@ -13,13 +13,13 @@
         <div class="users-container mt-5">
             <div class="card">
                 <div class="card-body">
-                    <h1 class="card-title mb-4">Patient Users</h1>
+                    <h1 class="card-title mb-4">Usuarios Pacientes</h1>
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Student ID</th>
-                                <th>Actions</th>
+                                <th>Nombre</th>
+                                <th>Identificación de Estudiante</th>
+                                <th>Comportamiento</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -28,7 +28,7 @@
                                     <td>{{ $patient->PACIENTE }}</td>
                                     <td>{{ $patient->getKey() }}</td>
                                     <td>
-                                        <a href="{{ route('personnel.patientProfile', $patient->getKey()) }}" class="btn btn-primary btn-view btn-sm">View Profile</a>
+                                        <a href="{{ route('personnel.patientProfile', $patient->getKey()) }}" class="btn btn-primary btn-view btn-sm">Ver Perfil</a>
                                     </td>
                                 </tr>
                             @endforeach

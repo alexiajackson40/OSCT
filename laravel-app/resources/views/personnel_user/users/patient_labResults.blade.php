@@ -13,18 +13,18 @@
         <div class="document-container mt-5">
             <div class="card">
                 <div class="top-buttons d-flex flex-row align-self-center">
-                    <a id="back-btn" class="btn-back" href="{{ route('personnel.users') }}">&lt; Go Back</a>
-                    <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#uploadLabResultModal">[Upload Lab Result]</button>
+                    <a id="back-btn" class="btn-back" href="{{ route('personnel.users') }}">&lt; Volver</a>
+                    <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#uploadLabResultModal">[Cargar Resultados de Laboratorio]</button>
                 </div>
                 <div class="card-body d-flex flex-column">
-                    <h1 class="card-title">Lab Results for:<br> {{ $patient->PACIENTE }}</h1>
+                    <h1 class="card-title">Resultados de Laboratorio para:<br> {{ $patient->PACIENTE }}</h1>
                     <div class="document-content">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Lab Result Name</th>
-                                    <th>Upload Date</th>
-                                    <th>Actions</th>
+                                    <th>Nombre del Resultado del Laboratorio</th>
+                                    <th>Fecha de Carga</th>
+                                    <th>Comportamiento</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -33,11 +33,11 @@
                                         <td>{{ $labResult->name }}</td>
                                         <td>{{ $labResult->date_assigned }}</td>
                                         <td>
-                                            <a href="{{ url('/' . $labResult->file_path) }}" target="_blank" class="btn btn-primary btn-download btn-sm">Download</a>
+                                            <a href="{{ url('/' . $labResult->file_path) }}" target="_blank" class="btn btn-primary btn-download btn-sm">Descargar</a>
                                             <form action="{{ route('personnel.deleteLabResult', $labResult->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -49,10 +49,10 @@
             </div>
         </div>
         <div class="button-container mt-5 d-flex flex-column">      
-            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientProfile', $patient->CURP) }}">Patient Profile</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientMeasurements', $patient->CURP) }}">Measurements</a>
-            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.documents', $patient->CURP) }}">Documents</a>
-            <a class="record-btn btn-primary active-btn" role="button" href="{{ route('personnel.patientLabResults', $patient->CURP) }}">Lab Results</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientProfile', $patient->CURP) }}">Perfil del Paciente</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientMeasurements', $patient->CURP) }}">Medidas</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.documents', $patient->CURP) }}">Documentos</a>
+            <a class="record-btn btn-primary active-btn" role="button" href="{{ route('personnel.patientLabResults', $patient->CURP) }}">Resultados de Laboratorio</a>
         </div>
     </div>
 
@@ -61,21 +61,21 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="uploadLabResultModalLabel">Upload New Lab Result</h5>
+                    <h5 class="modal-title" id="uploadLabResultModalLabel">Cargar Nuevo Resultado de Laboratorio</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('personnel.uploadLabResult', $patient->CURP) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="lab_result">Select Lab Result (PDF Only)</label>
+                            <label for="lab_result">Seleccionar Resultado de Laboratorio (PDF Solo)</label>
                             <input type="file" name="lab_result" id="lab_result" accept="application/pdf" class="form-control" required>
                         </div>
                         <div class="form-group mt-3">
-                            <label for="name">Lab Result Name</label>
+                            <label for="name">Nombre del Resultado del Laboratorio</label>
                             <input type="text" name="name" id="name" class="form-control" required>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-3">Upload</button>
+                        <button type="submit" class="btn btn-primary mt-3">Subir</button>
                     </form>
                 </div>
             </div>

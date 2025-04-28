@@ -11,25 +11,25 @@
     <div class="main-content">
         <div class="card d-flex flex-column mt-5">
             <div class="card-body d-flex flex-column">
-                <h2 class="card-title">Change Password</h2>
+                <h2 class="card-title">Cambiar la Contraseña</h2>
                 <form method="POST" action="{{ route('personnel.changePassword', $user->employee_id) }}">
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
-                        <label for="current_password" class="form-label">Current Password</label>
+                        <label for="current_password" class="form-label">Contraseña Actual</label>
                         <input type="password" name="current_password" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">New Password</label>
+                        <label for="password" class="form-label">Nueva Contraseña</label>
                         <input type="password" name="password" class="form-control" required minlength="8">
                     </div>
                     <div class="mb-3">
-                        <label for="password_confirmation" class="form-label">Confirm New Password</label>
+                        <label for="password_confirmation" class="form-label">Confirmar Nueva Contraseña</label>
                         <input type="password" name="password_confirmation" class="form-control" required minlength="8">
                     </div>
                     <div class="d-flex justify-content-between">
-                        <button type="submit" class="btn btn-primary">Change Password</button>
-                        <a href="{{ route('personnel.profile', $user->employee_id) }}" class="btn btn-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Cambiar la Contraseña</button>
+                        <a href="{{ route('personnel.profile', $user->employee_id) }}" class="btn btn-secondary">Cancelar</a>
                     </div>
                 </form>
             </div>

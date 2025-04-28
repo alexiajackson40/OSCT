@@ -14,39 +14,39 @@
             <div class="card">
                 <!-- Edit Info and Change Password Buttons -->
                 <div class="top-btn d-flex justify-content-between px-3 pt-3">
-                    <button class="btn-page btn-primary" onclick="window.location='{{ route('personnel.editProfile', $user->employee_id) }}'">[Edit Information]</button>
-                    <button class="btn-page btn-primary" onclick="window.location='{{ route('personnel.changePasswordForm', $user->employee_id) }}'">[Change Password]</button>
+                    <button class="btn-page btn-primary" onclick="window.location='{{ route('personnel.editProfile', $user->employee_id) }}'">[Editar Información]</button>
+                    <button class="btn-page btn-primary" onclick="window.location='{{ route('personnel.changePasswordForm', $user->employee_id) }}'">[Cambiar la Contraseña]</button>
                 </div>
                 <div class="card-body d-flex flex-column">
                     <h1 class="card-title">{{ $user->first_name }} {{ $user->last_name }}</h1>
                     <!-- User Information -->
                     <div class="information-container d-flex flex-column">
-                        <h2 class="container-header align-self-left">User Information</h2>
+                        <h2 class="container-header align-self-left">Información del Usuario</h2>
                         <table class="table">
                             <tr>
-                                <td>Username</td>
+                                <td>Nombre de Usuario</td>
                                 <td>{{ $user->username }}</td>
                             </tr>
                             <tr>
-                                <td>Role</td>
+                                <td>El Oficio</td>
                                 <td>{{ ucfirst($user->role) }}</td>
                             </tr>
                         </table>
                     </div>
                     <!-- Contact Information -->
                     <div class="contact-container d-flex flex-column">
-                        <h2 class="container-header align-self-left">Contact Information</h2>
+                        <h2 class="container-header align-self-left">Información del Contacto</h2>
                         <table class="table">
                             <tr>
-                                <td>Phone</td>
+                                <td>Teléfono</td>
                                 <td>{{ $user->phone }}</td>
                             </tr>
                             <tr>
-                                <td>Email</td>
+                                <td>Correo Electrónico</td>
                                 <td>{{ $user->email }}</td>
                             </tr>
                             <tr>
-                                <td>Address</td>
+                                <td>Dirección</td>
                                 <td>{{ $user->address }}</td>
                             </tr>
                         </table>

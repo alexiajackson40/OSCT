@@ -43,7 +43,7 @@ class PersonnelController extends Controller
 
         $user->update($request->only(['first_name', 'last_name', 'phone', 'address']));
     
-        return redirect()->route('personnel.profile', $id)->with('success', 'Profile updated.');
+        return redirect()->route('personnel.profile', $id)->with('success', 'Perfil actualizado.');
     }
 
     public function users()
@@ -90,7 +90,7 @@ class PersonnelController extends Controller
         }
     
         return redirect()->route('personnel.patientMeasurements', $patient->CURP)
-            ->with('success', 'Measurements updated successfully and synced with patient records!');
+            ->with('success', '¡Medidas actualizadas exitosamente y sincronizadas con los registros del paciente!');
     }
 
     public function patientProfile($id)
@@ -141,7 +141,7 @@ class PersonnelController extends Controller
             'COMENTARIO' => $request->input('comments'),
         ]);
     
-        return redirect()->route('personnel.patientProfile', $id)->with('success', 'Patient profile updated successfully!');
+        return redirect()->route('personnel.patientProfile', $id)->with('success', '¡Perfil del paciente actualizado exitosamente!');
     }    
 
     public function documents($id)
@@ -173,7 +173,7 @@ class PersonnelController extends Controller
             ]);
         }
     
-        return redirect()->route('personnel.documents', $id)->with('success', 'Document uploaded successfully!');
+        return redirect()->route('personnel.documents', $id)->with('success', '¡Documento cargado exitosamente!');
     }
     
     public function uploadLabResult(Request $request, $id)
@@ -198,7 +198,7 @@ class PersonnelController extends Controller
             ]);
         }
     
-        return redirect()->route('personnel.patientLabResults', $id)->with('success', 'Lab result uploaded successfully!');
+        return redirect()->route('personnel.patientLabResults', $id)->with('success', '¡Resultado de laboratorio cargado exitosamente!');
     }    
 
     // Delete Document (Personnel)
@@ -213,7 +213,7 @@ class PersonnelController extends Controller
 
         $document->delete();
 
-        return redirect()->back()->with('success', 'Document deleted successfully!');
+        return redirect()->back()->with('success', '¡Documento eliminado exitosamente!');
     }
 
     // Delete Lab Result (Personnel)
@@ -228,7 +228,7 @@ class PersonnelController extends Controller
 
         $labResult->delete();
 
-        return redirect()->back()->with('success', 'Lab result deleted successfully!');
+        return redirect()->back()->with('success', '¡Resultado de laboratorio eliminado exitosamente!');
     } 
     
     public function schedule()
@@ -254,13 +254,13 @@ class PersonnelController extends Controller
         $personnel = \App\Models\Personnel::findOrFail($id);
     
         if (!\Hash::check($request->current_password, $personnel->password)) {
-            return back()->withErrors(['current_password' => 'Current password is incorrect.']);
+            return back()->withErrors(['current_password' => 'La contraseña actual es incorrecta.']);
         }
 
         $personnel->password = $request->password;
         $personnel->save();
     
-        return redirect()->route('personnel.profile', $id)->with('success', 'Password updated successfully.');
+        return redirect()->route('personnel.profile', $id)->with('success', 'Contraseña actualizada exitosamente.');
     }    
     
 }

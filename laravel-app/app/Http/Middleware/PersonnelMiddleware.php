@@ -17,7 +17,7 @@ class PersonnelMiddleware
     public function handle($request, Closure $next)
     {
         if (!Auth::guard('personnel')->check()) {
-            return redirect()->route('login')->withErrors('Access denied!');
+            return redirect()->route('login')->withErrors('¡Acceso denegado!');
         }
         return $next($request);
     }

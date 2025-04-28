@@ -17,9 +17,9 @@
                         <h1 class="card-title">Programación vista a Planteles Escolares</h1>
                         <h2 class="table-title">Operación Salud Colima Tamizaje</h2>
                         <div class="form-group upload-form">
-                            <label for="schedule_file">Upload Schedule (.CSV only)</label>
+                            <label for="schedule_file">Cargar Cronograma (.CSV solo)</label>
                             <input type="file" class="form-control" id="schedule_file" name="schedule_file" accept=".csv" required>
-                            <button type="submit" class="btn btn-primary btn-upload mt-3">Upload Schedule</button>
+                            <button type="submit" class="btn btn-primary btn-upload mt-3">Cargar Cronograma</button>
                         </div>
                     </div>
                 </form>
@@ -52,7 +52,7 @@
                                     <td>{{ $schedule->total_students }}</td>
                                     <td>{{ $schedule->date }}</td>
                                     <td>
-                                        <a href="{{ route('schedule.edit', $schedule->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                        <a href="{{ route('schedule.edit', $schedule->id) }}" class="btn btn-warning btn-sm">Editar</a>
                                     </td>
                                 </tr>
                             @endforeach
