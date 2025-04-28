@@ -12,7 +12,7 @@
     <div class="main-content">
         <div class="button-container mt-5 d-flex flex-column">
             <a class="table-btn btn-primary" role="button" href="{{ route('admin.patientUsers') }}">Pacientes</a>
-            <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnelUsers') }}">Personal</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnelUsers') }}">Personal de Salud</a>
             <a class="table-btn btn-primary active-btn" role="button" href="{{ route('admin.adminUsers') }}">Administradores</a>
         </div>
         <div class="users-container mt-5">

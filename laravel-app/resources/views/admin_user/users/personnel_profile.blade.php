@@ -19,7 +19,7 @@
                 <div class="card-body d-flex flex-column">
                     <h1 class="card-title">{{ $personnel->first_name }} {{ $personnel->last_name }}</h1>
                     <div class="information-container d-flex flex-column align-items-left">
-                        <h2 class="container-header">Información de Personal</h2>
+                        <h2 class="container-header">Información de Personal de Salud</h2>
                         <table class="table">
                             <tr>
                                 <td><strong>ID de Empleado:</strong></td>
@@ -57,7 +57,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editPersonnelModalLabel">Editar Información de Personal</h5>
+                    <h5 class="modal-title" id="editPersonnelModalLabel">Editar Información de Personal de Salud</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

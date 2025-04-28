@@ -12,7 +12,7 @@
     <div class="main-content">
         <div class="button-container mt-5 d-flex flex-column">
             <a class="table-btn" role="button" href="{{ route('admin.patientUsers') }}">Pacientes</a>
-            <a class="table-btn" role="button" href="{{ route('admin.personnelUsers') }}">Personal</a>
+            <a class="table-btn" role="button" href="{{ route('admin.personnelUsers') }}">Personal de Salud</a>
             <a class="table-btn" role="button" href="{{ route('admin.adminUsers') }}">Administrador</a>
         </div>
         <div class="users-container mt-5">
@@ -41,7 +41,7 @@
                             <select name="role" id="role" class="form-control mx-sm-2" required>
                                 <option value="">Seleccionar Rol</option>
                                 <option value="admin">Administrador</option>
-                                <option value="personnel">Personal</option>
+                                <option value="personnel">Personal de Salud</option>
                             </select>
                         </div>
                         <div class="form-group mb-2">

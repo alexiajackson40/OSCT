@@ -51,7 +51,7 @@ class AdminUsersController extends Controller
         $personnel = \App\Models\Personnel::findOrFail($id);
         $personnel->delete();
 
-        return redirect()->route('admin.personnelUsers')->with('success', 'Personal eliminado exitosamente.');
+        return redirect()->route('admin.personnelUsers')->with('success', 'Personal de Salud eliminado exitosamente.');
     }
 
     public function personnelProfile($id)
@@ -79,7 +79,7 @@ class AdminUsersController extends Controller
         ]);
 
         return redirect()->route('admin.users.personnel_profile', $id)
-            ->with('success', 'Información del personal actualizada exitosamente.');
+            ->with('success', 'Información del Personal de Salud actualizada exitosamente.');
     }
 
     public function addPatient(Request $request)

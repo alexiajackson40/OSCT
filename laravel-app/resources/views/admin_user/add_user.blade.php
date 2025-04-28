@@ -47,7 +47,7 @@
                                     <label for="role">Rol</label>
                                     <select name="role" class="form-control" id="role" required>
                                         <option value="admin">Administrador</option>
-                                        <option value="personnel">Personal</option>
+                                        <option value="personnel">Personal de Salud</option>
                                         <option value="patient">Paciente</option>
                                     </select>
                                 </div>

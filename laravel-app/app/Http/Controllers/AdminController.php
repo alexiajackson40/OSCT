@@ -75,7 +75,7 @@ class AdminController extends Controller
         if ($request->input('role') === 'admin') {
             return redirect()->route('admin.adminUsers')->with('success', 'Administrador agregado exitosamente.');
         } elseif ($request->input('role') === 'personnel') {
-            return redirect()->route('admin.personnelUsers')->with('success', 'Personal agregado exitosamente.');
+            return redirect()->route('admin.personnelUsers')->with('success', 'Personal de Salud agregado exitosamente.');
         } else {
             return redirect()->route('admin.patientUsers')->with('success', 'Paciente agregado exitosamente.');
         }
@@ -127,7 +127,7 @@ class AdminController extends Controller
             return redirect()->route('admin.users')->with('success', 'Administrador eliminado exitosamente.');
         } elseif ($personnel) {
             $personnel->delete();
-            return redirect()->route('admin.users')->with('success', 'Personal eliminado exitosamente.');
+            return redirect()->route('admin.users')->with('success', 'Personal de Salud eliminado exitosamente.');
         }
     
         return redirect()->route('admin.users')->with('error', 'Usuario no encontrado.');
