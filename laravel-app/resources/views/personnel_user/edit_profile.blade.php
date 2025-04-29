@@ -90,6 +90,9 @@
         background-color: #6c757d;
         color: white;
         border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .btn-secondary:hover {
         background-color: #5a6268;

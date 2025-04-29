@@ -95,16 +95,9 @@
         font-weight: 500;
         padding: 0.9rem 0rem 0rem 0.9rem;
     }
-    .information-container {
-        margin-top: 0.75rem;
-        width: 28rem;
-        height: auto;
-        border-radius: 0.375rem;
-        border: 0.063rem solid rgba(0,0,0,0.30);
-        background: #FFF;
-    }
+    .information-container,
     .contact-container {
-        margin-top: 1rem;
+        margin-top: 0.75rem;
         width: 28rem;
         height: auto;
         border-radius: 0.375rem;
