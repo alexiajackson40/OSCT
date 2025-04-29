@@ -14,15 +14,15 @@
         <div class="document-container mt-5">
             <div class="card">
                 <div class="card-body d-flex flex-column">
-                    <h1 class="card-title">Documents</h1>
-                    <h2 class="table-title">List of Available Documents</h2>
+                    <h1 class="card-title">Documentos</h1>
+                    <h2 class="table-title">Lista de documentos disponibles</h2>
                     <div class="document-content mt-4">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Document Name</th>
-                                    <th>Uploaded On</th>
-                                    <th>Actions</th>
+                                    <th>Nombre del documento</th>
+                                    <th>Subido en</th>
+                                    <th>Comportamiento</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -31,7 +31,7 @@
                                         <td>{{ $document->name }}</td>
                                         <td>{{ $document->created_at->format('Y-m-d') }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('parent.documents.download', $document->id) }}" class="btn btn-sm btn-download btn-primary" target="_blank">Download</a>
+                                            <a href="{{ route('parent.documents.download', $document->id) }}" class="btn btn-sm btn-download btn-primary" target="_blank">Descargar</a>
                                         </td>
                                     </tr>
                                 @endforeach

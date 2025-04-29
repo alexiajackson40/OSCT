@@ -14,26 +14,26 @@
     <div class="container mt-5">
         <div class="card">
             <div class="top-button">
-                <a href="{{ route('patient.profile') }}" class="btn-back">&lt; Return to Profile</a>
+                <a href="{{ route('patient.profile') }}" class="btn-back">&lt; Volver al perfil</a>
             </div>
             <div class="card-body d-flex flex-column">
-                <h2 class="card-title">Recorded Measurements</h2>
+                <h2 class="card-title">Mediciones registradas</h2>
                 <div class="measurements-content mt-4">
                     @if($measurements->isEmpty())
-                    <p>No measurements available.</p>
+                    <p>No hay medidas disponibles.</p>
                     @else
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Waist</th>
-                                <th>Hip</th>
-                                <th>Waist-Hip Ratio</th>
-                                <th>Body Mass</th>
-                                <th>Cholesterol</th>
-                                <th>Glucose</th>
-                                <th>Hemoglobin</th>
-                                <th>Triglycerides</th>
+                                <th>Fecha</th>
+                                <th>Cintura</th>
+                                <th>Cadera</th>
+                                <th>Relación cintura-cadera</th>
+                                <th>Masa corporal</th>
+                                <th>Colesterol</th>
+                                <th>Glucosa</th>
+                                <th>Hemoglobina</th>
+                                <th>Triglicéridos</th>
                             </tr>
                         </thead>
                         <tbody>
