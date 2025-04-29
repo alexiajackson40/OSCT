@@ -55,7 +55,6 @@
             <a class="record-btn btn-primary active-btn" role="button" href="{{ route('personnel.patientLabResults', $patient->CURP) }}">Resultados de Laboratorio</a>
         </div>
     </div>
-
     <!-- Upload Lab Result Modal -->
     <div class="modal fade" id="uploadLabResultModal" tabindex="-1" aria-labelledby="uploadLabResultModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -82,8 +81,8 @@
         </div>
     </div>
 </body>
-
 <style>
+    /* Styling for Containers*/
     .main-content {
         display: flex;
         justify-content: center;
@@ -99,11 +98,20 @@
         height: 100%;
         min-height: 100vh;
         display: flex;
-        justify-content: center;
+    }
+    /*-----------------------------------*/
+    /* Styling for Back and Edit Buttons*/
+    .top-buttons {
+        margin-top: 0.6rem;
+        margin-bottom: 0.6rem;
+        width: 28rem;
+        padding-top: 0.6rem;
+        display: flex;
+        flex-direction: row;
     }
     .btn-back {
         position: absolute;
-        left: 1.875rem;
+        left: 1.9rem;
         font-size: 1.25rem;
         font-weight: 500;
         border: none;
@@ -117,7 +125,7 @@
     }
     .btn-edit {
         position: absolute;
-        right: 1.875rem;
+        right: 1.9rem;
         font-size: 1.25rem;
         font-weight: 500;
         border: none;
@@ -128,23 +136,19 @@
     .btn-edit:hover {
         background-color: #E0E0E0;
     }
-    .top-buttons {
-        margin-top: 0.625rem;
-        margin-bottom: 0.625rem;
-        width: 28.063rem;
-        padding-top: 0.625rem;
-        display: flex;
-        flex-direction: row;
-    }
+    /*-----------------------------------*/
+    /* Styling Title*/
     .card-title {
         font-size: 2rem;
         font-weight: 500;
         text-align: left;
-        margin-bottom: 1.5625rem;
         margin-top: 2.5rem;
+        margin-bottom: 1.5625rem;
         margin-left: 1.5625rem;
         margin-right: 1.5625rem;
     }
+    /*-----------------------------------*/
+    /* Styling for Table*/
     .document-content {
         margin-left: 1.5625rem;
         margin-right: 1.5625rem;
@@ -156,8 +160,10 @@
         --bs-table-border-color: #000;
         border: 0.063rem solid #000000;
     }
+    /*-----------------------------------*/
+    /* Styling for Side Buttons*/
     .button-container {
-        width: 13.375rem;
+        width: 13rem;
         height: fit-content;
         display: flex;
         justify-content: center;
@@ -172,6 +178,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        text-align: center;
         border-radius: 0.5rem;
         background: #7C1332;
         box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
@@ -187,6 +194,8 @@
         background: #808080;
         box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25) inset;
     }
+    /*-----------------------------------*/
+    /* Styling for Download and Delete Buttons*/
     .btn-download {
         height: 3rem;
         display: flex;
@@ -203,5 +212,6 @@
         font-weight: 500;
         justify-content: center;
     }
+    /*-----------------------------------*/
 </style>
 </html>

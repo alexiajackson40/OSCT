@@ -136,7 +136,6 @@
         height: 100%;
         min-height: 100vh;
         display: flex;
-        justify-content: center;
     }
     .document-content {
         margin-left: 1.5625rem;

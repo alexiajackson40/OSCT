@@ -143,6 +143,7 @@
     </div>
 </body>
 <style>
+    /* Styling for Containers*/
     .main-content {
         display: flex;
         justify-content: center;
@@ -161,25 +162,24 @@
         justify-content: center;
     }
     .card-body {
-        margin-bottom: 1rem;
-        margin-left: 0.625rem;
-        margin-right: 0.625rem;
-        padding-top: 0.625rem;
+        padding: 2.5rem;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
+    /*-----------------------------------*/
+    /* Styling for Back Button*/
     .top-buttons {
-        margin-top: 0.625rem;
-        margin-bottom: 0.625rem;
-        width: 28.063rem;
-        padding-top: 0.625rem;
+        margin-top: 0.6rem;
+        margin-bottom: 0.6rem;
+        width: 28rem;
+        padding-top: 0.6rem;
         display: flex;
         flex-direction: row;
     }
     .btn-back {
         position: absolute;
-        left: 1.875rem;
+        left: 1.9rem;
         font-size: 1.25rem;
         font-weight: 500;
         border: none;
@@ -193,7 +193,7 @@
     }
     .btn-edit {
         position: absolute;
-        right: 1.875rem;
+        right: 1.9rem;
         border: none;
         color: #000;
         background: #FAFAFA;
@@ -204,35 +204,39 @@
     .btn-edit:hover {
         background-color: #E0E0E0;
     }
+    /*-----------------------------------*/
+    /* Styling Title*/
     .card-title {
         font-size: 2rem;
         font-weight: 500;
-        margin-top: 2.5rem;
-        width: 28.063rem;
+        width: 28rem;
     }
     .container-header {
         font-size: 1.25rem;
         font-weight: 500;
-        padding-left: 0.875rem;
-        padding-top: 0.875rem;
+        padding: 0.9rem 0rem 0rem 0.9rem;
     }
     .information-container {
         margin-top: 0.75rem;
-        width: 28.063rem;
+        width: 28rem;
         height: auto;
         border-radius: 0.375rem;
         border: 0.063rem solid rgba(0,0,0,0.30);
         background: #FFF;
     }
+    /*-----------------------------------*/
+    /* Styling for Table*/
     .table {
-        margin-left: 0.875rem;
+        margin-left: 0.9rem;
         color: #000;
         font-size: 1rem;
         font-weight: 400;
         width: auto;
     }
+    /*-----------------------------------*/
+    /* Styling for Side Buttons*/
     .button-container {
-        width: 13.375rem;
+        width: 13rem;
         height: fit-content;
         display: flex;
         justify-content: center;
@@ -247,6 +251,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        text-align: center;
         border-radius: 0.5rem;
         background: #7C1332;
         box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
@@ -262,5 +267,6 @@
         background: #808080;
         box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25) inset;
     }
+    /*-----------------------------------*/
 </style>
 </html>
