@@ -18,12 +18,8 @@
                     <div class="media mb-3">
                         <img src="{{ asset('img/colimaGobiernoDelEstado.png') }}" alt="logo" width="225" height="200">
                     </div>
-                    <p class="card-text">Lorem ipsum dolor sit amet. 33 itaque laborum At labore ratione et autem exercitationem id veritatis dolorem sit maxime architecto qui beatae ratione. Et amet laborum qui nulla tempora vel impedit cupiditate est voluptatum adipisci et facilis quia sit optio unde.</p>
-                    <p class="card-text"> Vel laudantium facilis ut dolorem molestias ut galisum cupiditate eos earum voluptas ut fuga assumenda. Eos quos debitis et voluptatem galisum est distinctio impedit a facere sunt ut vitae saepe aut nihil architecto ea aspernatur labore. Eum libero facere est eius eaque At velit quam vel facilis amet et officiis quis aut sunt sunt aut commodi optio.</p>
-                    <p class="card-text">Est omnis aperiam sit doloribus atque At accusantium sint et esse assumenda quo exercitationem quaerat in consectetur totam. Est nostrum blanditiis At nisi nobis et consequatur minima aut voluptas molestiae et tempora obcaecati sit voluptatibus vero. Aut odio cumque qui impedit voluptatem ut consectetur tempora hic internos exercitationem. Vel quam placeat et pariatur dolor id ipsum quasi At velit numquam et quos quidem est alias obcaecati.</p>
-                    <p class="card-text">Lorem ipsum dolor sit amet. 33 itaque laborum At labore ratione et autem exercitationem id veritatis dolorem sit maxime architecto qui beatae ratione. Et amet laborum qui nulla tempora vel impedit cupiditate est voluptatum adipisci et facilis quia sit optio unde.</p>
-                    <p class="card-text">Vel laudantium facilis ut dolorem molestias ut galisum cupiditate eos earum voluptas ut fuga assumenda. Eos quos debitis et voluptatem galisum est distinctio impedit a facere sunt ut vitae saepe aut nihil architecto ea aspernatur labore. Eum libero facere est eius eaque At velit quam vel facilis amet et officiis quis aut sunt sunt aut commodi optio.</p>
-                    <p class="card-text">Est omnis aperiam sit doloribus atque At accusantium sint et esse assumenda quo exercitationem quaerat in consectetur totam. Est nostrum blanditiis At nisi nobis et consequatur minima aut voluptas molestiae et tempora obcaecati sit voluptatibus vero. Aut odio cumque qui impedit voluptatem ut consectetur tempora hic internos exercitationem. Vel quam placeat et pariatur dolor id ipsum quasi At velit numquam et quos quidem est alias obcaecati.</p>
+                    <p class="card-text">Operación Salud Colima Tamizaje, es una estrategia implementada por el Gobierno del Estado, a través de la Secretaría de Salud, con el objetivo de respaldar el derecho a la salud en México, lo anterior, con fundamento en el cumplimiento del artículo 4º de la Constitución, el cual estipula que “toda persona tiene derecho a la protección de la salud”.</p>
+                    <p class="card-text">Operación Salud Colima Tamizaje se enfoca en realizar una detección oportuna de las alteraciones nutrimentales y de salud que pudieran presentar niñas, niños y adolescentes que reciben educación básica en el sector público, para que de manera posterior en quienes así lo requiera, se refieran de manera oportuna y eficaz a las Instituciones prestadoras de Servicios de Salud en la Entidad.</p>
                 </div>
             </div>
         </div>
@@ -56,7 +52,10 @@
     /*-----------------------------------*/
     /* Styling Text*/
     p {
-        font-weight: 500;
+        font-weight: 600;
+        font-size: 20px;
+        margin-top: 0.5rem;
+        text-align: center;
     }
     /*-----------------------------------*/
 </style>
