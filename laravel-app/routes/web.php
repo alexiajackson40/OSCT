@@ -129,7 +129,6 @@ Route::prefix('personnel')->middleware('auth:personnel')->group(function () {
 
     Route::get('patients/{id}/lab-results', [PersonnelController::class, 'patientLabResults'])->name('personnel.patientLabResults');
     Route::post('patients/{id}/lab-results/upload', [PersonnelController::class, 'uploadLabResult'])->name('personnel.uploadLabResult');
-    Route::get('lab-results/download/{id}', [PersonnelController::class, 'downloadLabResult'])->name('personnel.labResultDownload');
     Route::delete('lab-results/{id}/delete', [PersonnelController::class, 'deleteLabResult'])->name('personnel.deleteLabResult');
 });
 
