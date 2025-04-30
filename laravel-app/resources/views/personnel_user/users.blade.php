@@ -13,13 +13,13 @@
         <div class="users-container mt-5">
             <div class="card">
                 <div class="card-body">
-                    <h1 class="card-title mb-4">Usuarios Pacientes</h1>
+                    <h1 class="card-title mb-4">Pacientes</h1>
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
-                                <th>Identificación de Estudiante</th>
-                                <th>Comportamiento</th>
+                                <th>Número de identificación</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>

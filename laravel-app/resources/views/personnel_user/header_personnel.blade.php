@@ -35,7 +35,7 @@
                         <!-- Sign Out form -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <button type="submit" class="dropdown-item">Desconectar</button>
+                            <button type="submit" class="dropdown-item">Cerrar Sesión</button>
                         </form>
                     </li>
                 </ul>

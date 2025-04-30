@@ -22,7 +22,7 @@
                         <h2 class="container-header">Información de Personal de Salud</h2>
                         <table class="table">
                             <tr>
-                                <td><strong>ID de Empleado:</strong></td>
+                                <td><strong>Número de identificación:</strong></td>
                                 <td>{{ $personnel->employee_id }}</td>
                             </tr>
                             <tr>

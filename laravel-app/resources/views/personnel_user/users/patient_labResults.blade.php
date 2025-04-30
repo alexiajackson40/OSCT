@@ -24,7 +24,7 @@
                                 <tr>
                                     <th>Nombre del Resultado del Laboratorio</th>
                                     <th>Fecha de Carga</th>
-                                    <th>Comportamiento</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>

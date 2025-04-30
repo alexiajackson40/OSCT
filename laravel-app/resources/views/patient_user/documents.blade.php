@@ -22,7 +22,7 @@
                                 <tr>
                                     <th>Nombre del documento</th>
                                     <th>Subido en</th>
-                                    <th>Comportamiento</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>

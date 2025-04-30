@@ -29,7 +29,7 @@
                     <div class="alert alert-danger">{{ session('error') }}</div>
                 @endif
                 <div class="card-head d-flex flex-row">
-                    <h1 class="card-title">Usuarios Pacientes</h1>
+                    <h1 class="card-title">Pacientes</h1>
                     <!-- Buttons for Add New Patient and CSV Upload -->
                     <div class="addBtn-container d-flex flex-row align-items-right mb-4">
                         <button id="toggleCSVForm" class="btn btn-success btn-import">Importar Pacientes (.CSV)</button>
@@ -132,7 +132,7 @@
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
-                                    <th>ID de Estudiante</th>
+                                    <th>Número de identificación</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>

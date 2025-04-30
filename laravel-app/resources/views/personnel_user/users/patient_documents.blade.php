@@ -25,7 +25,7 @@
                                 <tr>
                                     <th>Nombre del Documento</th>
                                     <th>Subido por</th>
-                                    <th>Comportamiento</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>

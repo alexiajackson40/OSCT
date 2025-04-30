@@ -28,7 +28,7 @@
                                 <td>{{ $user->username }}</td>
                             </tr>
                             <tr>
-                                <td>Rol</td>
+                                <td>Rol de Usuario</td>
                                 <td>{{ ucfirst($user->role) }}</td>
                             </tr>
                         </table>

@@ -15,14 +15,14 @@
             <div class="card">
                 <div class="card-body d-flex flex-column">
                     <h1 class="card-title">Resultados de laboratorio</h1>
-                    <h2 class="table-title">Lista de informes de laboratorio isponibles</h2>
+                    <h2 class="table-title">Lista de resultados de laboratorio disponibles</h2>
                     <div class="document-content mt-4">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Nombre del informe</th>
+                                    <th>Nombre del documento</th>
                                     <th>Subido en</th>
-                                    <th>Comportamiento</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>

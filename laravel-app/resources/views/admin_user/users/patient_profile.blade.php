@@ -27,7 +27,7 @@
                         <h2 class="container-header">Información del Paciente</h2>
                         <table class="table">
                             <tr>
-                                <td><strong>ID de Estudiante:</strong></td>
+                                <td><strong>Número de identificación:</strong></td>
                                 <td>{{ $patient->No_SOL }}</td>
                             </tr>
                             <tr>
