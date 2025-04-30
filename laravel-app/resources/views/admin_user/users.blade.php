@@ -79,7 +79,7 @@
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Correo Electrónico</th>
-                                    <th>Rol</th>
+                                    <th>Rol de Usuario</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>

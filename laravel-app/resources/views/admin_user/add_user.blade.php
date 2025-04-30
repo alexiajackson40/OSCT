@@ -44,7 +44,7 @@
                                     <input type="password" name="password" class="form-control" id="password" placeholder="Contraseña" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="role">Rol</label>
+                                    <label for="role">Rol de Usuario</label>
                                     <select name="role" class="form-control" id="role" required>
                                         <option value="admin">Administrador</option>
                                         <option value="personnel">Personal de Salud</option>

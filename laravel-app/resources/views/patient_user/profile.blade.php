@@ -19,7 +19,7 @@
                         <h2 class="container-header">Información del paciente</h2>
                         <table class="table">
                             <tr>
-                                <th>Identificación de estudiante</th>
+                                <th>Número de identificación</th>
                                 <td>{{ $patient->CURP ?? 'N/A' }}</td>
                             </tr>
                             <tr>
@@ -44,7 +44,7 @@
                                 <td>{{ $parent->email }}</td>
                             </tr>
                             <tr>
-                                <th>DIRECCIÓN</th>
+                                <th>Dirección</th>
                                 <td>{{ $parent->address ?? 'N/A' }}</td>
                             </tr>
                         </table>

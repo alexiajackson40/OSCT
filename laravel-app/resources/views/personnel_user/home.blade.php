@@ -18,7 +18,7 @@
                     <div class="media mb-3">
                         <img src="{{ asset('img/colimaGobiernoDelEstado.png') }}" alt="logo" width="225" height="200">
                     </div>
-                    <p class="card-text">Operación Salud Colima Tamizaje, es una estrategia implementada por el Gobierno del Estado, a través de la Secretaría de Salud, con el objetivo de respaldar el derecho a la salud en México, lo anterior, con fundamento en el cumplimiento del artículo 4º de la Constitución, el cual estipula que “toda persona tiene derecho a la protección de la salud”.</p>
+                    <p class="card-text">Operación Salud Colima Tamizaje, es una estrategia implementada por el Gobierno del Estado, a través de la Secretaría de Salud, con el objetivo de respaldar el derecho a la salud en México, lo anterior, con fundamento en el cumplimiento del artículo 4º de la Constitución, el cual estipula que "toda persona tiene derecho a la protección de la salud".</p>
                     <p class="card-text">Operación Salud Colima Tamizaje se enfoca en realizar una detección oportuna de las alteraciones nutrimentales y de salud que pudieran presentar niñas, niños y adolescentes que reciben educación básica en el sector público, para que de manera posterior en quienes así lo requiera, se refieran de manera oportuna y eficaz a las Instituciones prestadoras de Servicios de Salud en la Entidad.</p>
                 </div>
             </div>
