@@ -35,8 +35,8 @@
               @csrf
               <div class="form-row">
                 <div class="mb-3">
-                  <label for="firstName">Nombre de pila</label>
-                  <input type="text" class="form-control" id="firstName" name="first_name" placeholder="Nombre de pila" required>
+                  <label for="firstName">Nombre</label>
+                  <input type="text" class="form-control" id="firstName" name="first_name" placeholder="Nombre" required>
                 </div>
                 <div class="mb-3">
                   <label for="lastName">Apellido</label>
@@ -59,10 +59,10 @@
                   <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirmar Contraseña" required>
                 </div>
                 <div class="mb-3">
-                  <label for="CURP">Credencial de estudiante (CURP)</label>
-                  <input type="text" id="CURP" name="CURP" class="form-control" placeholder="Credencial de estudiante (CURP)" required>
+                  <label for="ID">Número de Identificación</label>
+                  <input type="text" id="CURP" name="CURP" class="form-control" placeholder="Número de Identificación" required>
                 </div>
-                <button type="submit" class="btn btn-primary mt-3">Registro</button>
+                <button type="submit" class="btn btn-primary mt-3">Registrar</button>
               </div>
             </form>
           </div>

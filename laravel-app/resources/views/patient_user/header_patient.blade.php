@@ -40,7 +40,7 @@
     <!--Navigation Bar-->
     <div class="navigation-container">
         <nav class="nav nav-pills nav-fill">
-            <a class="nav-link {{ request()->is('patient/home') ? 'active' : '' }}" href="{{ route('patient.home') }}">Hogar</a>
+            <a class="nav-link {{ request()->is('patient/home') ? 'active' : '' }}" href="{{ route('patient.home') }}">Inicio</a>
             <a class="nav-link {{ request()->is('patient/schedule') ? 'active' : '' }}" href="{{ route('patient.schedule') }}">Horario</a>
             <a class="nav-link {{ request()->is('patient/lab-results') ? 'active' : '' }}" href="{{ route('patient.lab_results') }}">Resultados de Laboratorio</a>
             <a class="nav-link {{ request()->is('patient/documents') ? 'active' : '' }}" href="{{ route('patient.documents') }}">Documentos</a>

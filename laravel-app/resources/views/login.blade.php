@@ -38,8 +38,8 @@
                 <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
                 <div class="signUp-container">
                   <p>
-                    ¿Necesitas una cuenta?
-                    <a class="btn-signUp" href="{{ route('signup') }}">Crear una aquí</a>
+                    ¿Necesita una cuenta?
+                    <a class="btn-signUp" href="{{ route('signup') }}">Cree una aquí</a>
                   </p>
                 </div>
               </form>

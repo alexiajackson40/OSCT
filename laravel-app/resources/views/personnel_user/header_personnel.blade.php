@@ -45,7 +45,7 @@
     <!-- Navigation Bar -->
     <div class="navigation-container">
         <nav class="nav nav-pills nav-fill">
-            <a class="nav-link {{ request()->is('personnel/home') ? 'active' : '' }}" href="{{ route('personnel.home') }}">Hogar</a>
+            <a class="nav-link {{ request()->is('personnel/home') ? 'active' : '' }}" href="{{ route('personnel.home') }}">Inicio</a>
             <a class="nav-link {{ request()->is('personnel/users') ? 'active' : '' }}" href="{{ route('personnel.users') }}">Usuarios</a>
             <a class="nav-link {{ request()->is('personnel/schedule') ? 'active' : '' }}" href="{{ route('personnel.schedule') }}">Horario</a>
         </nav>
