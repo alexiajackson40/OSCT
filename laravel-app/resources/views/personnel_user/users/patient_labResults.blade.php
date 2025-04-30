@@ -67,14 +67,14 @@
                     <form action="{{ route('personnel.uploadLabResult', $patient->CURP) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="lab_result">Seleccionar Resultado de Laboratorio (PDF Solo)</label>
+                            <label for="lab_result">Seleccionar Resultado de Laboratorio (Solo PDF)</label>
                             <input type="file" name="lab_result" id="lab_result" accept="application/pdf" class="form-control" required>
                         </div>
                         <div class="form-group mt-3">
                             <label for="name">Nombre del Resultado del Laboratorio</label>
                             <input type="text" name="name" id="name" class="form-control" required>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-3">Subir</button>
+                        <button type="submit" class="btn btn-primary mt-3">Cargar</button>
                     </form>
                 </div>
             </div>

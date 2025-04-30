@@ -39,7 +39,7 @@
                         <h2 class="container-header">Información de Contacto</h2>
                         <table class="table">
                             <tr>
-                                <td><strong>Email:</strong></td>
+                                <td><strong>Correo Electrónico:</strong></td>
                                 <td>{{ $personnel->email }}</td>
                             </tr>
                             <tr>

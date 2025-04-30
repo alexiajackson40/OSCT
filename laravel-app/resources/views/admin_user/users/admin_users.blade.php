@@ -26,13 +26,13 @@
                 <div class="card-head d-flex flex-row">
                     <h1 class="card-title">Administradores</h1>
                     <div class="addBtn-container d-flex flex-row align-items-right mb-4">
-                        <button id="toggleAddAdminForm" class="btn btn-primary btn-new">+ Agregar Nuevo Administrador</button>
+                        <button id="toggleAddAdminForm" class="btn btn-primary btn-new">+ Agregar Nuevo Usuario</button>
                     </div>
                 </div>
 
                 <!-- Add New Admin Form -->
                 <div id="addAdminForm" class="add-patient-form mb-4 p-4" style="display: none;">
-                    <h2>Agregar Nuevo Administrador</h2>
+                    <h2>Agregar Nuevo Usuario</h2>
                     <form action="{{ route('add-user.store') }}" method="POST" class="form-inline">
                         @csrf
                         <input type="hidden" name="role" value="admin">

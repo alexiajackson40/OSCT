@@ -113,7 +113,7 @@
                     </form>
                 </div>
                 <!-- CSV Upload Form (Hidden by Default) -->
-                <div id="uploadCSVForm" class="upload-csv-form mb-4" style="display: none;">
+                <div id="uploadCSVForm" class="upload-csv-form mb-4" style="display: none; margin-left: 2rem; margin-right: 2rem;">
                     <h2>Importar Pacientes via CSV</h2>
                     <form action="{{ route('admin.importPatients') }}" method="POST" enctype="multipart/form-data">
                         @csrf

@@ -61,7 +61,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit Patient Information</h5>
+                    <h5 class="modal-title">Editar la Información del Paciente</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -69,35 +69,35 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="first_name">Full Name</label>
+                            <label for="first_name">Nombre Completo</label>
                             <input type="text" name="first_name" class="form-control" value="{{ $patient->PACIENTE }}" required>
                         </div>
                         <div class="form-group">
-                            <label for="school_name">School</label>
+                            <label for="school_name">Escuela</label>
                             <input type="text" name="school_name" class="form-control" value="{{ $patient->ESCUELA }}" required>
                         </div>
                         <div class="form-group">
-                            <label for="gender">Gender</label>
+                            <label for="gender">Género</label>
                             <input type="text" name="gender" class="form-control" value="{{ $patient->SEXO }}" required>
                         </div>
                         <div class="form-group">
-                            <label for="age">Age</label>
+                            <label for="age">Edad</label>
                             <input type="number" name="age" class="form-control" value="{{ $patient->EDAD }}" required>
                         </div>
                         <div class="form-group">
-                            <label for="fasting_status">Fasting Status</label>
+                            <label for="fasting_status">Estado de Ayuno</label>
                             <input type="text" name="fasting_status" class="form-control" value="{{ $patient->AYUNO }}">
                         </div>
                         <div class="form-group">
-                            <label for="glucose">Glucose</label>
+                            <label for="glucose">Glucosa</label>
                             <input type="text" name="glucose" class="form-control" value="{{ $patient->GLUCOSA }}">
                         </div>
                         <div class="form-group">
-                            <label for="triglycerides">Triglycerides</label>
+                            <label for="triglycerides">Triglicéridos</label>
                             <input type="text" name="triglycerides" class="form-control" value="{{ $patient->TRIGLICÉRIDOS }}">
                         </div>
                         <div class="form-group">
-                            <label for="total_cholesterol">Total Cholesterol</label>
+                            <label for="total_cholesterol">Cholesterol Total</label>
                             <input type="text" name="total_cholesterol" class="form-control" value="{{ $patient->{'COLESTEROL TOTAL'} }}">
                         </div>
                         <div class="form-group">
@@ -105,11 +105,11 @@
                             <input type="text" name="hba1c" class="form-control" value="{{ $patient->HBA1C }}">
                         </div>
                         <div class="form-group">
-                            <label for="weight">Weight</label>
+                            <label for="weight">Peso</label>
                             <input type="text" name="weight" class="form-control" value="{{ $patient->PESO }}">
                         </div>
                         <div class="form-group">
-                            <label for="height">Height</label>
+                            <label for="height">Altura</label>
                             <input type="text" name="height" class="form-control" value="{{ $patient->TALLA }}">
                         </div>
                         <div class="form-group">
@@ -121,18 +121,18 @@
                             <input type="text" name="icc" class="form-control" value="{{ $patient->ICC }}">
                         </div>
                         <div class="form-group">
-                            <label for="waist">Waist</label>
+                            <label for="waist">Cintura</label>
                             <input type="text" name="waist" class="form-control" value="{{ $patient->CINTURA }}">
                         </div>
                         <div class="form-group">
-                            <label for="hip">Hip</label>
+                            <label for="hip">Cadera</label>
                             <input type="text" name="hip" class="form-control" value="{{ $patient->CADERA }}">
                         </div>
                         <div class="form-group">
-                            <label for="comments">Comment</label>
+                            <label for="comments">Comentarios</label>
                             <textarea name="comments" class="form-control">{{ $patient->COMENTARIO }}</textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                     </form>
                 </div>
             </div>
