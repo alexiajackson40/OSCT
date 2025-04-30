@@ -26,11 +26,11 @@
                     <span class="user-text">{{ auth()->user()->username ?? 'Username' }}</span> <!-- Dynamically show the logged-in user's username --> 
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
-                    <li><a class="dropdown-item" id="profile-button" href="{{ route('patient.profile') }}">View Profile</a></li>
+                    <li><a class="dropdown-item" id="profile-button" href="{{ route('patient.profile') }}">Ver Perfil</a></li>
                     <li>
                         <form action="{{ route('parent.logout') }}" method="POST" style="display: inline;">
                             @csrf
-                            <button type="submit" class="dropdown-item">Sign Out</button>
+                            <button type="submit" class="dropdown-item">Cerrar Sesión</button>
                         </form>
                     </li>
                 </ul>
@@ -40,10 +40,10 @@
     <!--Navigation Bar-->
     <div class="navigation-container">
         <nav class="nav nav-pills nav-fill">
-            <a class="nav-link {{ request()->is('patient/home') ? 'active' : '' }}" href="{{ route('patient.home') }}">Home</a>
-            <a class="nav-link {{ request()->is('patient/schedule') ? 'active' : '' }}" href="{{ route('patient.schedule') }}">Schedule</a>
-            <a class="nav-link {{ request()->is('patient/lab-results') ? 'active' : '' }}" href="{{ route('patient.lab_results') }}">Lab Results</a>
-            <a class="nav-link {{ request()->is('patient/documents') ? 'active' : '' }}" href="{{ route('patient.documents') }}">Documents</a>
+            <a class="nav-link {{ request()->is('patient/home') ? 'active' : '' }}" href="{{ route('patient.home') }}">Inicio</a>
+            <a class="nav-link {{ request()->is('patient/schedule') ? 'active' : '' }}" href="{{ route('patient.schedule') }}">Horario</a>
+            <a class="nav-link {{ request()->is('patient/lab-results') ? 'active' : '' }}" href="{{ route('patient.lab_results') }}">Resultados de Laboratorio</a>
+            <a class="nav-link {{ request()->is('patient/documents') ? 'active' : '' }}" href="{{ route('patient.documents') }}">Documentos</a>
         </nav>
     </div>
 <style>

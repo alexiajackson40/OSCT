@@ -13,7 +13,7 @@
     <div class="main-content">
       <div class="card mt-5">
         <div class="card-body d-flex flex-column">
-          <h3 class="form-title mb-4">Parent Signup</h3>
+          <h3 class="form-title mb-4">Registro de padres</h3>
           <div class="user-form">
             <!-- Success Message -->
             @if(session('success'))
@@ -35,34 +35,34 @@
               @csrf
               <div class="form-row">
                 <div class="mb-3">
-                  <label for="firstName">First Name</label>
-                  <input type="text" class="form-control" id="firstName" name="first_name" placeholder="First name" required>
+                  <label for="firstName">Nombre</label>
+                  <input type="text" class="form-control" id="firstName" name="first_name" placeholder="Nombre" required>
                 </div>
                 <div class="mb-3">
-                  <label for="lastName">Last Name</label>
-                  <input type="text" class="form-control" id="lastName" name="last_name" placeholder="Last name" required>
+                  <label for="lastName">Apellido</label>
+                  <input type="text" class="form-control" id="lastName" name="last_name" placeholder="Apellido" required>
                 </div>
                 <div class="mb-3">
-                  <label for="username">Username</label>
-                  <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                  <label for="username">Nombre de usuario</label>
+                  <input type="text" class="form-control" id="username" name="username" placeholder="Nombre de usuario" required>
                 </div>
                 <div class="mb-3">
-                  <label for="email">Email (optional)</label>
-                  <input type="email" class="form-control" id="email" name="email" placeholder="Email (optional)">
+                  <label for="email">Correo electrónico (opcional)</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Correo electrónico (opcional)">
                 </div>
                 <div class="mb-3">
-                  <label for="password">Password</label>
-                  <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                  <label for="password">Contraseña</label>
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required>
                 </div>
                 <div class="mb-3">
-                  <label for="password_confirmation">Confirm Password</label>
-                  <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password" required>
+                  <label for="password_confirmation">Confirmar Contraseña</label>
+                  <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirmar Contraseña" required>
                 </div>
                 <div class="mb-3">
-                  <label for="CURP">Student ID (CURP)</label>
-                  <input type="text" id="CURP" name="CURP" class="form-control" placeholder="Student ID (CURP)" required>
+                  <label for="ID">Número de Identificación</label>
+                  <input type="text" id="CURP" name="CURP" class="form-control" placeholder="Número de Identificación" required>
                 </div>
-                <button type="submit" class="btn btn-primary mt-3">Register</button>
+                <button type="submit" class="btn btn-primary mt-3">Registrar</button>
               </div>
             </form>
           </div>

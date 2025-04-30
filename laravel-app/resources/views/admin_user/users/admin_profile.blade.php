@@ -108,10 +108,7 @@
         justify-content: center;
     }
     .card-body {
-        margin-bottom: 1rem;
-        margin-left: 0.625rem;
-        margin-right: 0.625rem;
-        padding-top: 0.625rem;
+        padding: 2.5rem;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -119,16 +116,16 @@
     /*-----------------------------------*/
     /* Styling for Back and Edit Buttons*/
     .top-buttons {
-        margin-top: 0.625rem;
-        margin-bottom: 0.625rem;
-        width: 28.063rem;
-        padding-top: 0.625rem;
+        margin-top: 0.6rem;
+        margin-bottom: 0.6rem;
+        width: 28rem;
+        padding-top: 0.6rem;
         display: flex;
         flex-direction: row;
     }
     .btn-back {
         position: absolute;
-        left: 1.875rem;
+        left: 1.9rem;
         font-size: 1.25rem;
         font-weight: 500;
         border: none;
@@ -142,7 +139,7 @@
     }
     .btn-edit {
         position: absolute;
-        right: 1.875rem;
+        right: 1.9rem;
         border: none;
         color: #000;
         background: #FAFAFA;
@@ -158,28 +155,26 @@
     .card-title {
         font-size: 2rem;
         font-weight: 500;
-        margin-top: 2.5rem;
-        width: 28.063rem;
+        width: 28rem;
     }
     /*-----------------------------------*/
     /* Styling for Table*/
     .container-header {
         font-size: 1.25rem;
         font-weight: 500;
-        padding-left: 0.875rem;
-        padding-top: 0.875rem;
+        padding: 0.9rem 0rem 0rem 0.9rem;
     }
     .information-container,
     .contact-container {
         margin-top: 0.75rem;
-        width: 28.063rem;
+        width: 28rem;
         height: auto;
         border-radius: 0.375rem;
         border: 0.063rem solid rgba(0,0,0,0.30);
         background: #FFF;
     }
     .table {
-        margin-left: 0.875rem;
+        margin-left: 0.9rem;
         color: #000;
         font-size: 1rem;
         font-weight: 400;

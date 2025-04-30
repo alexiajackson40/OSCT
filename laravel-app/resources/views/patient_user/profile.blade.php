@@ -16,40 +16,40 @@
                 <div class="card-body d-flex flex-column">
                     <h1 class="card-title">{{ $patient->PACIENTE }} </h1>
                     <div class="information-container d-flex flex-column align-items-left">
-                        <h2 class="container-header">Patient Information</h2>
+                        <h2 class="container-header">Información del paciente</h2>
                         <table class="table">
                             <tr>
-                                <th>Student ID</th>
+                                <th>Número de identificación</th>
                                 <td>{{ $patient->CURP ?? 'N/A' }}</td>
                             </tr>
                             <tr>
-                                <th>Student Name</th>
+                                <th>Nombre del estudiante</th>
                                 <td>{{ $patient->PACIENTE ?? 'N/A' }}</td>
                             </tr>
                             <tr>
-                                <th>Phone Number</th>
+                                <th>Número de teléfono</th>
                                 <td>{{ $parent->phone_number ?? 'N/A' }}</td>
                             </tr>
                             <tr>
-                                <th>Username</th>
+                                <th>Nombre de usuario</th>
                                 <td>{{ $parent->username ?? 'N/A' }}</td>
                             </tr>
                         </table>
                     </div>
                     <div class="contact-container d-flex flex-column align-items-left">
-                        <h2 class="container-header">Contact Information</h2>
+                        <h2 class="container-header">Información del contacto</h2>
                         <table class="table">
                             <tr>
-                                <th>Email</th>
+                                <th>Correo electrónico</th>
                                 <td>{{ $parent->email }}</td>
                             </tr>
                             <tr>
-                                <th>Address</th>
+                                <th>Dirección</th>
                                 <td>{{ $parent->address ?? 'N/A' }}</td>
                             </tr>
                         </table>
                     </div>
-                    <a href="{{ route('patient.measurements') }}" class="btn-page btn-primary">Measurements</a>
+                    <a href="{{ route('patient.measurements') }}" class="btn-page btn-primary">Medidas</a>
                 </div>
             </div>
         </div>
@@ -95,16 +95,9 @@
         font-weight: 500;
         padding: 0.9rem 0rem 0rem 0.9rem;
     }
-    .information-container {
-        margin-top: 0.75rem;
-        width: 28rem;
-        height: auto;
-        border-radius: 0.375rem;
-        border: 0.063rem solid rgba(0,0,0,0.30);
-        background: #FFF;
-    }
+    .information-container,
     .contact-container {
-        margin-top: 1rem;
+        margin-top: 0.75rem;
         width: 28rem;
         height: auto;
         border-radius: 0.375rem;

@@ -14,15 +14,15 @@
         <div class="labresults-container mt-5">
             <div class="card">
                 <div class="card-body d-flex flex-column">
-                    <h1 class="card-title">Lab Results</h1>
-                    <h2 class="table-title">List of Available Lab Reports</h2>
+                    <h1 class="card-title">Resultados de laboratorio</h1>
+                    <h2 class="table-title">Lista de resultados de laboratorio disponibles</h2>
                     <div class="document-content mt-4">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Report Name</th>
-                                    <th>Uploaded On</th>
-                                    <th>Actions</th>
+                                    <th>Nombre del documento</th>
+                                    <th>Subido en</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -31,7 +31,7 @@
                                         <td>{{ $result->name }}</td>
                                         <td>{{ $result->created_at->format('Y-m-d') }}</td>
                                         <td>
-                                            <a href="{{ route('parent.labResults.download', $result->id) }}" class="btn btn-sm btn-download btn-primary" target="_blank">Download</a>
+                                            <a href="{{ route('parent.labResults.download', $result->id) }}" class="btn btn-sm btn-download btn-primary" target="_blank">Descargar</a>
                                         </td>
                                     </tr>
                                 @endforeach

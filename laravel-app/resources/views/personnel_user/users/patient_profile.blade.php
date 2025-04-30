@@ -24,7 +24,7 @@
                         <h2 class="container-header">Información del Paciente</h2>
                         <table class="table">
                             <tr>
-                                <td><strong>Identificación de Estudiante:</strong></td>
+                                <td><strong>No. Sol:</strong></td>
                                 <td>{{ $patient->No_SOL }}</td>
                             </tr>
                             <tr>
@@ -40,7 +40,7 @@
                                 <td>{{ $patient->ESCUELA }}</td>
                             </tr>
                             <tr>
-                                <td><strong>CURP:</strong></td>
+                                <td><strong>Número de identificación:</strong></td>
                                 <td>{{ $patient->CURP }}</td>
                             </tr>
                         </table>
@@ -61,7 +61,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit Patient Information</h5>
+                    <h5 class="modal-title">Editar la Información del Paciente</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -69,35 +69,35 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="first_name">Full Name</label>
+                            <label for="first_name">Nombre Completo</label>
                             <input type="text" name="first_name" class="form-control" value="{{ $patient->PACIENTE }}" required>
                         </div>
                         <div class="form-group">
-                            <label for="school_name">School</label>
+                            <label for="school_name">Escuela</label>
                             <input type="text" name="school_name" class="form-control" value="{{ $patient->ESCUELA }}" required>
                         </div>
                         <div class="form-group">
-                            <label for="gender">Gender</label>
+                            <label for="gender">Género</label>
                             <input type="text" name="gender" class="form-control" value="{{ $patient->SEXO }}" required>
                         </div>
                         <div class="form-group">
-                            <label for="age">Age</label>
+                            <label for="age">Edad</label>
                             <input type="number" name="age" class="form-control" value="{{ $patient->EDAD }}" required>
                         </div>
                         <div class="form-group">
-                            <label for="fasting_status">Fasting Status</label>
+                            <label for="fasting_status">Estado de Ayuno</label>
                             <input type="text" name="fasting_status" class="form-control" value="{{ $patient->AYUNO }}">
                         </div>
                         <div class="form-group">
-                            <label for="glucose">Glucose</label>
+                            <label for="glucose">Glucosa</label>
                             <input type="text" name="glucose" class="form-control" value="{{ $patient->GLUCOSA }}">
                         </div>
                         <div class="form-group">
-                            <label for="triglycerides">Triglycerides</label>
+                            <label for="triglycerides">Triglicéridos</label>
                             <input type="text" name="triglycerides" class="form-control" value="{{ $patient->TRIGLICÉRIDOS }}">
                         </div>
                         <div class="form-group">
-                            <label for="total_cholesterol">Total Cholesterol</label>
+                            <label for="total_cholesterol">Cholesterol Total</label>
                             <input type="text" name="total_cholesterol" class="form-control" value="{{ $patient->{'COLESTEROL TOTAL'} }}">
                         </div>
                         <div class="form-group">
@@ -105,11 +105,11 @@
                             <input type="text" name="hba1c" class="form-control" value="{{ $patient->HBA1C }}">
                         </div>
                         <div class="form-group">
-                            <label for="weight">Weight</label>
+                            <label for="weight">Peso</label>
                             <input type="text" name="weight" class="form-control" value="{{ $patient->PESO }}">
                         </div>
                         <div class="form-group">
-                            <label for="height">Height</label>
+                            <label for="height">Altura</label>
                             <input type="text" name="height" class="form-control" value="{{ $patient->TALLA }}">
                         </div>
                         <div class="form-group">
@@ -121,18 +121,18 @@
                             <input type="text" name="icc" class="form-control" value="{{ $patient->ICC }}">
                         </div>
                         <div class="form-group">
-                            <label for="waist">Waist</label>
+                            <label for="waist">Cintura</label>
                             <input type="text" name="waist" class="form-control" value="{{ $patient->CINTURA }}">
                         </div>
                         <div class="form-group">
-                            <label for="hip">Hip</label>
+                            <label for="hip">Cadera</label>
                             <input type="text" name="hip" class="form-control" value="{{ $patient->CADERA }}">
                         </div>
                         <div class="form-group">
-                            <label for="comments">Comment</label>
+                            <label for="comments">Comentarios</label>
                             <textarea name="comments" class="form-control">{{ $patient->COMENTARIO }}</textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                     </form>
                 </div>
             </div>
@@ -159,10 +159,7 @@
         justify-content: center;
     }
     .card-body {
-        margin-bottom: 1rem;
-        margin-left: 0.625rem;
-        margin-right: 0.625rem;
-        padding-top: 0.625rem;
+        padding: 2.5rem;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -170,16 +167,16 @@
     /*-----------------------------------*/
     /* Styling for Back and Edit Buttons*/
     .top-buttons {
-        margin-top: 0.625rem;
-        margin-bottom: 0.625rem;
-        width: 28.063rem;
-        padding-top: 0.625rem;
+        margin-top: 0.6rem;
+        margin-bottom: 0.6rem;
+        width: 28rem;
+        padding-top: 0.6rem;
         display: flex;
         flex-direction: row;
     }
     .btn-back {
         position: absolute;
-        left: 1.875rem;
+        left: 1.9rem;
         font-size: 1.25rem;
         font-weight: 500;
         border: none;
@@ -193,7 +190,7 @@
     }
     .btn-edit {
         position: absolute;
-        right: 1.875rem;
+        right: 1.9rem;
         border: none;
         color: #000;
         background: #FAFAFA;
@@ -209,7 +206,6 @@
     .card-title {
         font-size: 2rem;
         font-weight: 500;
-        margin-top: 2.5rem;
         width: 28.063rem;
     }
     /*-----------------------------------*/
@@ -217,12 +213,11 @@
     .container-header {
         font-size: 1.25rem;
         font-weight: 500;
-        padding-left: 0.875rem;
-        padding-top: 0.875rem;
+        padding: 0.9rem 0rem 0rem 0.9rem;
     }
     .information-container {
         margin-top: 0.75rem;
-        width: 28.063rem;
+        width: 28rem;
         height: auto;
         border-radius: 0.375rem;
         border: 0.063rem solid rgba(0,0,0,0.30);
@@ -230,7 +225,7 @@
     }
     /*Contact Container needs to go here */
     .table {
-        margin-left: 0.875rem;
+        margin-left: 0.9rem;
         color: #000;
         font-size: 1rem;
         font-weight: 400;
@@ -239,7 +234,7 @@
     /*-----------------------------------*/
     /* Styling for Side Buttons*/
     .button-container {
-        width: 13.375rem;
+        width: 13rem;
         height: fit-content;
         display: flex;
         justify-content: center;
@@ -254,6 +249,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        text-align: center;
         border-radius: 0.5rem;
         background: #7C1332;
         box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);

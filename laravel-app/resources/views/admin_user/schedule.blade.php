@@ -18,7 +18,7 @@
                         <h1 class="card-title">Programación de Visitas a Planteles Escolares</h1>
                         <h2 class="table-title">Operación Salud Colima Tamizaje</h2>
                         <div class="form-group upload-form">
-                            <label for="schedule_file">Subir Horario (.CSV solamente)</label>
+                            <label for="schedule_file">Subir Horario (solamente CSV)</label>
                             <input type="file" class="form-control" id="schedule_file" name="schedule_file" accept=".csv" required>
                             <button type="submit" class="btn btn-primary btn-upload mt-3">Subir Horario</button>
                         </div>

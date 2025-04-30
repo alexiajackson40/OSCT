@@ -14,13 +14,13 @@
         <div class="profile-container mt-5">
             <div class="card">
                 <!-- Buttons -->
-                <div class="d-flex justify-content-between px-3 pt-3">
-                    <button class="btn-page btn-primary" onclick="window.location='{{ route('admin.editProfile') }}'">[Editar Información]</button>
-                    <button class="btn-page btn-warning" onclick="window.location='{{ route('admin.changePassword') }}'">[Cambiar Contraseña]</button>
+                <div class="top-btn d-flex flex-row align-self-center">
+                    <button class="btn-page btn-edit btn-primary" onclick="window.location='{{ route('admin.editProfile') }}'">[Editar Información]</button>
+                    <button class="btn-page btn-pass btn-warning" onclick="window.location='{{ route('admin.changePassword') }}'">[Cambiar Contraseña]</button>
                 </div>
                 <div class="card-body d-flex flex-column">
                     <h1 class="card-title">{{ $user->first_name }} {{ $user->last_name }}</h1>
-                    <div class="information-container d-flex flex-column">
+                    <div class="information-container d-flex flex-column align-items-left">
                         <h2 class="container-header align-self-left">Información del Usuario</h2>
                         <table class="table">
                             <tr>
@@ -28,12 +28,12 @@
                                 <td>{{ $user->username }}</td>
                             </tr>
                             <tr>
-                                <td>Rol</td>
+                                <td>Rol de Usuario</td>
                                 <td>{{ ucfirst($user->role) }}</td>
                             </tr>
                         </table>
                     </div>
-                    <div class="contact-container d-flex flex-column">
+                    <div class="contact-container d-flex flex-column align-items-left">
                         <h2 class="container-header align-self-left">Información de Contacto</h2>
                         <table class="table">
                             <tr>
@@ -82,7 +82,7 @@
     .information-container,
     .contact-container {
         margin-top: 0.75rem;
-        width: 28.063rem;
+        width: 28rem;
         height: auto;
         border-radius: 0.375rem;
         border: 0.063rem solid rgba(0,0,0,0.30);
@@ -92,12 +92,40 @@
     }
     /*-----------------------------------*/
     /* Styling for Edit and Change Password Buttons*/
-    .btn-page {
+    .top-btn {
+        margin-top: 0.6rem;
+        margin-bottom: 0.6rem;
+        width: 28rem;
+        padding-top: 0.6rem;
+        display: flex;
+        flex-direction: row;
+    }
+    .btn-pass {
+        position: absolute;
+        left: 1.875rem;
+        font-size: 1.25rem;
+        font-weight: 500;
         border: none;
+        color: #000;
+        background: #FAFAFA;
+        border-radius: 1rem;
+        text-decoration: none;
+    }
+    .btn-pass:hover {
+        background-color: #E0E0E0;
+    }
+    .btn-edit {
+        position: absolute;
+        right: 1.875rem;
+        border: none;
+        color: #000;
         background: #FAFAFA;
         font-size: 1.25rem;
         font-weight: 500;
-        text-decoration: underline;
+        border-radius: 1rem;
+    }
+    .btn-edit:hover {
+        background-color: #E0E0E0;
     }
     /*-----------------------------------*/
     /* Styling for Card Title and Container Headers*/
@@ -105,19 +133,18 @@
         font-size: 2rem;
         font-weight: 500;
         margin-bottom: 1.5rem;
-        width: 28.063rem;
+        width: 28rem;
     }
     .container-header {
         font-size: 1.25rem;
         font-weight: 500;
-        padding-left: 0.875rem;
-        padding-top: 0.875rem;
+        padding: 0.9rem 0rem 0rem 0.9rem;
     }
     /*-----------------------------------*/
     /* Styling for Table*/
     .table {
-        margin-left: 0.875rem;
-        margin-right: 0.875rem;
+        margin-left: 0.9rem;
+        margin-right: 0.9rem;
         font-size: 1rem;
         color: #000;
         font-weight: 400;

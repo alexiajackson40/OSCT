@@ -29,7 +29,7 @@
                     <div class="alert alert-danger">{{ session('error') }}</div>
                 @endif
                 <div class="card-head d-flex flex-row">
-                    <h1 class="card-title">Usuarios Pacientes</h1>
+                    <h1 class="card-title">Pacientes</h1>
                     <!-- Buttons for Add New Patient and CSV Upload -->
                     <div class="addBtn-container d-flex flex-row align-items-right mb-4">
                         <button id="toggleCSVForm" class="btn btn-success btn-import">Importar Pacientes (.CSV)</button>
@@ -113,7 +113,7 @@
                     </form>
                 </div>
                 <!-- CSV Upload Form (Hidden by Default) -->
-                <div id="uploadCSVForm" class="upload-csv-form mb-4" style="display: none;">
+                <div id="uploadCSVForm" class="upload-csv-form mb-4" style="display: none; margin-left: 2rem; margin-right: 2rem;">
                     <h2>Importar Pacientes via CSV</h2>
                     <form action="{{ route('admin.importPatients') }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -132,7 +132,7 @@
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
-                                    <th>ID de Estudiante</th>
+                                    <th>Número de identificación</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -193,7 +193,6 @@
         height: 100%;
         min-height: 100vh;
         display: flex;
-        justify-content: center;
     }
     .document-content {
         margin-left: 1.5625rem;

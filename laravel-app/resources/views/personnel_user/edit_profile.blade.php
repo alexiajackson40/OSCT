@@ -19,7 +19,7 @@
                         @method('PUT')
                         <div class="form-row">
                             <div class="mb-3">
-                                <label for="first_name">Nombre de Pila</label>
+                                <label for="first_name">Nombre</label>
                                 <input type="text" name="first_name" class="form-control" id="first_name" value="{{ $user->first_name }}" required>
                             </div>
                             <div class="mb-3">
@@ -90,6 +90,9 @@
         background-color: #6c757d;
         color: white;
         border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .btn-secondary:hover {
         background-color: #5a6268;

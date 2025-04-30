@@ -112,10 +112,7 @@
         justify-content: center;
     }
     .card-body {
-        margin-bottom: 1rem;
-        margin-left: 0.625rem;
-        margin-right: 0.625rem;
-        padding-top: 0.625rem;
+        padding: 2.5rem;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -123,16 +120,16 @@
     /*-----------------------------------*/
     /* Styling for Back Button*/
     .top-buttons {
-        margin-top: 0.625rem;
-        margin-bottom: 0.625rem;
-        width: 28.063rem;
-        padding-top: 0.625rem;
+        margin-top: 0.6rem;
+        margin-bottom: 0.6rem;
+        width: 28rem;
+        padding-top: 0.6rem;
         display: flex;
         flex-direction: row;
     }
     .btn-back {
         position: absolute;
-        left: 1.875rem;
+        left: 1.9rem;
         font-size: 1.25rem;
         font-weight: 500;
         border: none;
@@ -149,7 +146,6 @@
     .card-title {
         font-size: 2rem;
         font-weight: 500;
-        margin-top: 2.5rem;
         width: 40rem;
     }
     /*-----------------------------------*/
@@ -166,8 +162,8 @@
         align-items: left;
     }
     .table {
-        margin-left: 0.875rem;
-        margin-right: 0.875rem;
+        margin-left: 0.9rem;
+        margin-right: 0.9rem;
         color: #000000;
         font-size: 1rem;
         font-weight: 400;
@@ -176,7 +172,7 @@
     /*-----------------------------------*/
     /* Styling for Side Buttons*/
     .button-container {
-        width: 13.375rem;
+        width: 13rem;
         height: fit-content;
         display: flex;
         justify-content: center;
@@ -191,9 +187,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 8px;
+        text-align: center;
+        border-radius: 0.5rem;
         background: #7C1332;
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
         color: #FFF;
         font-size: 1.25rem;
         font-weight: 500;

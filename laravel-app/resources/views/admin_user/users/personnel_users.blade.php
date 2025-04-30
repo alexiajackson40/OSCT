@@ -27,13 +27,13 @@
                 <div class="card-head d-flex flex-row">
                     <h1 class="card-title">Personal de Salud</h1>
                     <div class="addBtn-container d-flex flex-row align-items-right mb-4">
-                        <button id="toggleAddPersonnelForm" class="btn btn-primary btn-new">+ Agregar Nuevo Personal de Salud</button>
+                        <button id="toggleAddPersonnelForm" class="btn btn-primary btn-new">+ Agregar Usuario Nuevo</button>
                     </div>
                 </div>
 
                 <!-- Add New Personnel Form (Hidden by Default) -->
                 <div id="addPersonnelForm" class="add-patient-form mb-4 p-4" style="display: none;">
-                    <h2>Agregar Nuevo Personal de Salud</h2>
+                    <h2>Agregar Nuevo Usuario</h2>
                     <form action="{{ route('admin.addUser') }}" method="POST" class="form-inline">
                         @csrf
                         <input type="hidden" name="role" value="personnel">
@@ -124,7 +124,6 @@
         height: 100%;
         min-height: 100vh;
         display: flex;
-        justify-content: center;
     }
     .document-content {
         margin-left: 1.5625rem;
