@@ -11,7 +11,7 @@
     @include('admin_user.header_admin')
     <div class="main-content">
         <div class="button-container mt-5 d-flex flex-column">
-            <a class="table-btn" role="button" href="{{ route('admin.patientUsers') }}">Pacientes</a>
+            <a class="table-btn" role="button" href="{{ route('admin.patientUsers') }}">Alumnos</a>
             <a class="table-btn" role="button" href="{{ route('admin.personnelUsers') }}">Personal de Salud</a>
             <a class="table-btn" role="button" href="{{ route('admin.adminUsers') }}">Administrador</a>
         </div>
@@ -27,13 +27,13 @@
                 <div class="card-head d-flex flex-row">
                     <h1 class="card-title">Usuarios</h1>
                     <div class="addBtn-container d-flex flex-row align-items-right mb-4">
-                        <button id="toggleAddUserForm" class="btn btn-primary btn-new">+ Agregar Nuevo Usuario</button>
+                        <button id="toggleAddUserForm" class="btn btn-primary btn-new">+ Añadir Nuevo Usuario</button>
                     </div>
                 </div>
 
                 <!-- Add New Admin/Personnel Form -->
-                <div id="addUserForm" class="add-patient-form mb-4 p-4" style="display: none;">
-                    <h2>Agregar Nuevo Usuario</h2>
+                <div id="addUserForm" class="add-patient-form mb-4 p-4" style="display: none; margin-left: 1rem;">
+                    <h2>Añadir Nuevo Usuario</h2>
                     <form action="{{ route('admin.addUser') }}" method="POST" class="form-inline">
                         @csrf
                         <div class="form-group mb-2">

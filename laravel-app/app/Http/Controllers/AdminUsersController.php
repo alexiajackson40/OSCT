@@ -109,7 +109,7 @@ class AdminUsersController extends Controller
         $existingPatient = Patient::where('PACIENTE', $patientName)->first();
         if ($existingPatient) {
             return redirect()->route('admin.patientUsers')
-                ->with('error', 'Paciente duplicado detectado: ' . $patientName);
+                ->with('error', 'Alumno duplicado detectado: ' . $patientName);
         }
 
         $curp = $this->generateUniqueCURP();
@@ -139,7 +139,7 @@ class AdminUsersController extends Controller
             'COMENTARIO'        => $request->input('comments'),
         ]);
 
-        return redirect()->route('admin.patientUsers')->with('success', 'Paciente agregado exitosamente.');
+        return redirect()->route('admin.patientUsers')->with('success', 'Alumno agregado exitosamente.');
     }
 
     public function importPatients(Request $request)
@@ -178,7 +178,7 @@ class AdminUsersController extends Controller
                 $patientName = trim($row[3]);
                 $existingPatient = Patient::where('PACIENTE', $patientName)->first();
                 if ($existingPatient) {
-                    $errors[] = "Paciente duplicado detectado: {$patientName}";
+                    $errors[] = "Alumno duplicado detectado: {$patientName}";
                     continue;
                 }
 
@@ -231,7 +231,7 @@ class AdminUsersController extends Controller
 
             try {
                 Patient::insert($patients);
-                $successMessage = count($patients) . ' pacientes importados exitosamente.';
+                $successMessage = count($patients) . ' alumnos importados exitosamente.';
                 if (!empty($errors)) {
                     $successMessage .= '<br>Errores: ' . implode('<br>', $errors);
                 }
@@ -255,7 +255,7 @@ class AdminUsersController extends Controller
     {
         $patient = Patient::findOrFail($id);
         $patient->delete();
-        return redirect()->route('admin.patientUsers')->with('success', 'Paciente eliminado exitosamente.');
+        return redirect()->route('admin.patientUsers')->with('success', 'Alumno eliminado exitosamente.');
     }
 
     public function patientProfile($id)
@@ -306,7 +306,7 @@ class AdminUsersController extends Controller
             'COMENTARIO'        => $request->input('comments'),
         ]);
 
-        return redirect()->route('admin.users.patient_profile', $id)->with('success', 'Perfil del paciente actualizado exitosamente.');
+        return redirect()->route('admin.users.patient_profile', $id)->with('success', 'Perfil del alumno actualizado exitosamente.');
     }
 
     public function patientMeasurements($id)
@@ -338,7 +338,7 @@ class AdminUsersController extends Controller
         }
 
         return redirect()->route('admin.users.patient_measurements', $patient->CURP)
-            ->with('success', 'Mediciones actualizadas y sincronizadas exitosamente.');
+            ->with('success', 'Medidas actualizadas y sincronizadas exitosamente.');
     }
 
     public function patientLabResults($id)

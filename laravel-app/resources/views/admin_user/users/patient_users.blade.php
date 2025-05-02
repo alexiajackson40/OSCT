@@ -14,7 +14,7 @@
         <!-- Side Buttons Container -->
         <div class="button-container mt-5 d-flex flex-column">
             <!-- No admin check; these links will always show -->
-            <a class="table-btn btn-primary active-btn" role="button" href="{{ route('admin.patientUsers') }}">Pacientes</a>
+            <a class="table-btn btn-primary active-btn" role="button" href="{{ route('admin.patientUsers') }}">Alumnos</a>
             <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnelUsers') }}">Personal de Salud</a>
             <a class="table-btn btn-primary" role="button" href="{{ route('admin.adminUsers') }}">Administradores</a>
         </div>
@@ -29,20 +29,20 @@
                     <div class="alert alert-danger">{{ session('error') }}</div>
                 @endif
                 <div class="card-head d-flex flex-row">
-                    <h1 class="card-title">Pacientes</h1>
+                    <h1 class="card-title">Alumnos</h1>
                     <!-- Buttons for Add New Patient and CSV Upload -->
                     <div class="addBtn-container d-flex flex-row align-items-right mb-4">
-                        <button id="toggleCSVForm" class="btn btn-success btn-import">Importar Pacientes (.CSV)</button>
-                        <button id="toggleAddPatientForm" class="btn btn-primary btn-new">+ Añadir Paciente</button>
+                        <button id="toggleCSVForm" class="btn btn-success btn-import">Importar Alumnos (.CSV)</button>
+                        <button id="toggleAddPatientForm" class="btn btn-primary btn-new">+ Añadir Alumno</button>
                     </div>
                 </div>
                 <!-- Add New Patient Form (Hidden by Default) -->
-                <div id="addPatientForm" class="add-patient-form mb-4 p-4" style="display: none;">
-                    <h2>Añadir Nuevo Paciente</h2>
+                <div id="addPatientForm" class="add-patient-form mb-4 p-4" style="display: none; margin-left: 1rem;">
+                    <h2>Añadir Nuevo Alumno</h2>
                     <form action="{{ route('admin.addPatient') }}" method="POST" class="form-inline">
                         @csrf
                         <div class="form-group mb-2">
-                            <label for="first_name">Nombre del Paciente:</label>
+                            <label for="first_name">Nombre del Alumno:</label>
                             <input type="text" name="first_name" id="first_name" class="form-control mx-sm-2" required>
                         </div>
                         <div class="form-group mb-2">
@@ -109,12 +109,12 @@
                             <label for="comments">Comentario:</label>
                             <textarea name="comments" id="comments" class="form-control mx-sm-2"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary mb-2">Añadir Paciente</button>
+                        <button type="submit" class="btn btn-primary mb-2">Añadir Alumno</button>
                     </form>
                 </div>
                 <!-- CSV Upload Form (Hidden by Default) -->
                 <div id="uploadCSVForm" class="upload-csv-form mb-4" style="display: none; margin-left: 2rem; margin-right: 2rem;">
-                    <h2>Importar Pacientes via CSV</h2>
+                    <h2>Importar Alumnos via CSV</h2>
                     <form action="{{ route('admin.importPatients') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-2">

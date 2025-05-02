@@ -11,7 +11,7 @@
     @include('admin_user.header_admin')
     <div class="main-content">
         <div class="button-container mt-5 d-flex flex-column">
-            <a class="table-btn btn-primary" role="button" href="{{ route('admin.patientUsers') }}">Pacientes</a>
+            <a class="table-btn btn-primary" role="button" href="{{ route('admin.patientUsers') }}">Alumnos</a>
             <a class="table-btn btn-primary" role="button" href="{{ route('admin.personnelUsers') }}">Personal de Salud</a>
             <a class="table-btn btn-primary active-btn" role="button" href="{{ route('admin.adminUsers') }}">Administradores</a>
         </div>
@@ -26,13 +26,13 @@
                 <div class="card-head d-flex flex-row">
                     <h1 class="card-title">Administradores</h1>
                     <div class="addBtn-container d-flex flex-row align-items-right mb-4">
-                        <button id="toggleAddAdminForm" class="btn btn-primary btn-new">+ Agregar Nuevo Usuario</button>
+                        <button id="toggleAddAdminForm" class="btn btn-primary btn-new">+ Añadir Administrador</button>
                     </div>
                 </div>
 
                 <!-- Add New Admin Form -->
-                <div id="addAdminForm" class="add-patient-form mb-4 p-4" style="display: none;">
-                    <h2>Agregar Nuevo Usuario</h2>
+                <div id="addAdminForm" class="add-patient-form mb-4 p-4" style="display: none; margin-left: 1rem;">
+                    <h2>Añadir Nuevo Administrador</h2>
                     <form action="{{ route('add-user.store') }}" method="POST" class="form-inline">
                         @csrf
                         <input type="hidden" name="role" value="admin">

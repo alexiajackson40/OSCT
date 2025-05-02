@@ -16,7 +16,7 @@
                 <div class="card-body d-flex flex-column">
                     <h1 class="card-title">{{ $patient->PACIENTE }} </h1>
                     <div class="information-container d-flex flex-column align-items-left">
-                        <h2 class="container-header">Información del paciente</h2>
+                        <h2 class="container-header">Información del alumno</h2>
                         <table class="table">
                             <tr>
                                 <th>Número de identificación</th>

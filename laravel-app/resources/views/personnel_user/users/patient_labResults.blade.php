@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="button-container mt-5 d-flex flex-column">      
-            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientProfile', $patient->CURP) }}">Perfil del Paciente</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientProfile', $patient->CURP) }}">Perfil del Alumno</a>
             <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientMeasurements', $patient->CURP) }}">Medidas</a>
             <a class="record-btn btn-primary" role="button" href="{{ route('personnel.documents', $patient->CURP) }}">Documentos</a>
             <a class="record-btn btn-primary active-btn" role="button" href="{{ route('personnel.patientLabResults', $patient->CURP) }}">Resultados de Laboratorio</a>

@@ -90,7 +90,7 @@ class PersonnelController extends Controller
         }
     
         return redirect()->route('personnel.patientMeasurements', $patient->CURP)
-            ->with('success', '¡Medidas actualizadas exitosamente y sincronizadas con los registros del paciente!');
+            ->with('success', '¡Medidas actualizadas exitosamente y sincronizadas con los registros del alumno!');
     }
 
     public function patientProfile($id)
@@ -141,7 +141,7 @@ class PersonnelController extends Controller
             'COMENTARIO' => $request->input('comments'),
         ]);
     
-        return redirect()->route('personnel.patientProfile', $id)->with('success', '¡Perfil del paciente actualizado exitosamente!');
+        return redirect()->route('personnel.patientProfile', $id)->with('success', '¡Perfil del alumno actualizado exitosamente!');
     }    
 
     public function documents($id)

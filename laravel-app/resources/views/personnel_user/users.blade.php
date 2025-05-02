@@ -13,7 +13,7 @@
         <div class="users-container mt-5">
             <div class="card">
                 <div class="card-body">
-                    <h1 class="card-title mb-4">Pacientes</h1>
+                    <h1 class="card-title mb-4">Alumnos</h1>
                     <table class="table table-striped">
                         <thead>
                             <tr>

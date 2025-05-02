@@ -17,7 +17,7 @@
                 <a href="{{ route('patient.profile') }}" class="btn-back">&lt; Volver al perfil</a>
             </div>
             <div class="card-body d-flex flex-column">
-                <h2 class="card-title">Mediciones registradas</h2>
+                <h2 class="card-title">Medidas registradas</h2>
                 <div class="measurements-content mt-4">
                     @if($measurements->isEmpty())
                     <p>No hay medidas disponibles.</p>

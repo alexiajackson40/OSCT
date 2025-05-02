@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="card-body d-flex flex-column">
-                    <h1 class="card-title">Mediciones de:<br> {{ $patient->PACIENTE }}</h1>
+                    <h1 class="card-title">Medidas de:<br> {{ $patient->PACIENTE }}</h1>
                     <!-- Form starts -->
                     <form action="{{ route('admin.updateMeasurement', $patient->CURP) }}" method="POST">
                         @csrf
@@ -85,8 +85,8 @@
             </div>
         </div>
         <div class="button-container mt-5 d-flex flex-column">
-            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_profile', $patient->CURP) }}">Perfil del Paciente</a>
-            <a class="record-btn btn-primary active-btn" role="button" href="{{ route('admin.users.patient_measurements', $patient->CURP) }}">Mediciones</a>
+            <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_profile', $patient->CURP) }}">Perfil del Alumno</a>
+            <a class="record-btn btn-primary active-btn" role="button" href="{{ route('admin.users.patient_measurements', $patient->CURP) }}">Medidas</a>
             <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_documents', $patient->CURP) }}">Documentos</a>
             <a class="record-btn btn-primary" role="button" href="{{ route('admin.users.patient_labResults', $patient->CURP) }}">Resultados de Laboratorio</a>
         </div>

@@ -21,7 +21,7 @@
                 <div class="card-body d-flex flex-column">
                     <h1 class="card-title">{{ $patient->PACIENTE }}</h1>
                     <div class="information-container d-flex flex-column align-items-left">
-                        <h2 class="container-header">Información del Paciente</h2>
+                        <h2 class="container-header">Información del Alumno</h2>
                         <table class="table">
                             <tr>
                                 <td><strong>No. Sol:</strong></td>
@@ -50,7 +50,7 @@
         </div>
         <!-- Navigation Buttons -->
         <div class="button-container mt-5 d-flex flex-column">
-            <a class="record-btn btn-primary active-btn" role="button" href="{{ route('personnel.patientProfile', $patient->CURP) }}">Perfil del Paciente</a>
+            <a class="record-btn btn-primary active-btn" role="button" href="{{ route('personnel.patientProfile', $patient->CURP) }}">Perfil del Alumno</a>
             <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientMeasurements', $patient->CURP) }}">Medidas</a>
             <a class="record-btn btn-primary" role="button" href="{{ route('personnel.documents', $patient->CURP) }}">Documentos</a>
             <a class="record-btn btn-primary" role="button" href="{{ route('personnel.patientLabResults', $patient->CURP) }}">Resultados de Laboratorio</a>
@@ -61,7 +61,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Editar la Información del Paciente</h5>
+                    <h5 class="modal-title">Editar la Información del Alumno</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
